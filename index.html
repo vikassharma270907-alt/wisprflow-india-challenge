@@ -45,6 +45,36 @@
       box-shadow: 0 0 20px -5px rgba(6, 182, 212, 0.25);
     }
 
+    /* WCAG 2.2 Level AA Focus Appearance (SC 2.4.11 / 2.4.7) */
+    :focus-visible {
+      outline: 2px solid #38bdf8 !important;
+      outline-offset: 2px !important;
+    }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 2px solid #38bdf8 !important;
+      outline-offset: 2px !important;
+    }
+
+    /* WCAG 2.2 Level AA Contrast Helper (SC 1.4.3) */
+    .text-slate-500 {
+      color: #94a3b8 !important; /* Elevate slate-500 from 3.5:1 to 6.4:1 contrast ratio against slate-900/950 */
+    }
+
+    /* Reduced Motion (WCAG 2.2 SC 2.2.2 & SC 2.3.3) */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-marquee {
+        animation: none !important;
+      }
+      .animate-pulse, .animate-ping {
+        animation: none !important;
+      }
+      * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+
     
     /* Mobile & Desktop Responsive System */
     @media (max-width: 768px) {
@@ -193,8 +223,10 @@
   </style>
 </head>
 <body class="mode-desktop bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-blue-600 selection:text-white overflow-hidden">
+  <!-- Skip to Main Content Link (WCAG 2.2 SC 2.4.1) -->
+  <a href="#exec-content-area" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:font-bold focus:rounded-lg focus:shadow-2xl focus:ring-2 focus:ring-white">Skip to main content</a>
 
-  <canvas id="matrixCanvas"></canvas>
+  <canvas id="matrixCanvas" aria-hidden="true"></canvas>
 
   <!-- ======================================================== -->
   <!-- 1. FLOWOS DESKTOP MODE WORKSPACE                         -->
@@ -283,95 +315,95 @@
     <div id="desktop-area" class="flex-1 relative overflow-hidden p-4">
       
       <!-- DESKTOP SHORTCUT ICONS -->
-      <div id="desktop-icons-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-1 gap-3 sm:gap-4 w-full md:w-28 max-h-[calc(100vh-140px)] overflow-y-auto text-center select-none z-10 relative p-1">
+      <div id="desktop-icons-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-1 gap-3 sm:gap-4 w-full md:w-28 max-h-[calc(100vh-140px)] overflow-y-auto text-center select-none z-10 relative p-1" role="toolbar" aria-label="Desktop application shortcuts">
         
         <!-- Icon 1: 14% Funnel -->
-        <div onclick="openWindow('funnel')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform">
+        <button type="button" onclick="openWindow('funnel')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center text-center w-full focus:outline-none" aria-label="Open 14% to 2% Funnel window">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform" aria-hidden="true">
             <i data-lucide="trending-up" class="w-6 h-6"></i>
           </div>
           <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-blue-300">14%→2% Funnel</span>
-        </div>
+        </button>
 
         <!-- Icon 2: Hinglish Test -->
-        <div onclick="openWindow('benchmark')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">
+        <button type="button" onclick="openWindow('benchmark')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center text-center w-full focus:outline-none" aria-label="Open Hinglish Test window">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform" aria-hidden="true">
             <i data-lucide="mic" class="w-6 h-6"></i>
           </div>
           <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-emerald-300">Hinglish Test</span>
-        </div>
+        </button>
 
         <!-- Icon 3: Retention -->
-        <div onclick="openWindow('dashboard')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform">
+        <button type="button" onclick="openWindow('dashboard')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center text-center w-full focus:outline-none" aria-label="Open Retention Dashboard window">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform" aria-hidden="true">
             <i data-lucide="pie-chart" class="w-6 h-6"></i>
           </div>
           <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-indigo-300">Retention</span>
-        </div>
+        </button>
 
         <!-- Icon 4: $3k Rig -->
-        <div onclick="openWindow('grant')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-600 to-orange-600 flex items-center justify-center text-white shadow-lg shadow-amber-500/20 group-hover:scale-110 transition-transform">
+        <button type="button" onclick="openWindow('grant')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center text-center w-full focus:outline-none" aria-label="Open $3k Rig window">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-600 to-orange-600 flex items-center justify-center text-white shadow-lg shadow-amber-500/20 group-hover:scale-110 transition-transform" aria-hidden="true">
             <i data-lucide="dollar-sign" class="w-6 h-6"></i>
           </div>
           <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-amber-300">$3k Rig</span>
-        </div>
+        </button>
 
         <!-- Icon 5: The Operator -->
-        <div onclick="openWindow('operator')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-sky-600 to-blue-700 flex items-center justify-center text-white shadow-lg shadow-sky-500/20 group-hover:scale-110 transition-transform">
+        <button type="button" onclick="openWindow('operator')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center text-center w-full focus:outline-none" aria-label="Open My Profile window">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-sky-600 to-blue-700 flex items-center justify-center text-white shadow-lg shadow-sky-500/20 group-hover:scale-110 transition-transform" aria-hidden="true">
             <i data-lucide="user-check" class="w-6 h-6"></i>
           </div>
           <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-sky-300">My Profile</span>
-        </div>
+        </button>
 
         <!-- Icon 6: Studio -->
-        <div onclick="openWindow('studio')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-rose-600 to-pink-600 flex items-center justify-center text-white shadow-lg shadow-rose-500/20 group-hover:scale-110 transition-transform">
+        <button type="button" onclick="openWindow('studio')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center text-center w-full focus:outline-none" aria-label="Open Voice Studio window">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-rose-600 to-pink-600 flex items-center justify-center text-white shadow-lg shadow-rose-500/20 group-hover:scale-110 transition-transform" aria-hidden="true">
             <i data-lucide="mic-vocal" class="w-6 h-6"></i>
           </div>
           <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-rose-300">Voice Studio</span>
-        </div>
+        </button>
 
         <!-- Icon 7: Terminal -->
-        <div onclick="openWindow('terminal')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-slate-700 to-slate-900 border border-slate-600 flex items-center justify-center text-emerald-400 font-mono text-sm font-bold shadow-lg group-hover:scale-110 transition-transform">
+        <button type="button" onclick="openWindow('terminal')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center text-center w-full focus:outline-none" aria-label="Open Wispr Terminal window">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-slate-700 to-slate-900 border border-slate-600 flex items-center justify-center text-emerald-400 font-mono text-sm font-bold shadow-lg group-hover:scale-110 transition-transform" aria-hidden="true">
             &gt;_
           </div>
           <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-emerald-300">Terminal</span>
-        </div>
+        </button>
 
         <!-- Icon 8: Audio Lab -->
-        <div onclick="openWindow('audio')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-600 to-violet-800 flex items-center justify-center text-white shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform">
+        <button type="button" onclick="openWindow('audio')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center text-center w-full focus:outline-none" aria-label="Open Acoustic Lab window">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-600 to-violet-800 flex items-center justify-center text-white shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform" aria-hidden="true">
             <i data-lucide="headphones" class="w-6 h-6"></i>
           </div>
           <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-purple-300">Acoustic Lab</span>
-        </div>
+        </button>
 
         <!-- Icon 9: Growth Sweeper -->
-        <div onclick="openWindow('sweeper')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-yellow-600 to-amber-700 flex items-center justify-center text-white shadow-lg shadow-yellow-500/20 group-hover:scale-110 transition-transform">
+        <button type="button" onclick="openWindow('sweeper')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center text-center w-full focus:outline-none" aria-label="Open Sweeper Game window">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-yellow-600 to-amber-700 flex items-center justify-center text-white shadow-lg shadow-yellow-500/20 group-hover:scale-110 transition-transform" aria-hidden="true">
             <i data-lucide="gamepad-2" class="w-6 h-6"></i>
           </div>
           <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-yellow-300">Sweeper Game</span>
-        </div>
+        </button>
 
         <!-- Icon 10: Playbook -->
-        <div onclick="openWindow('playbook')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-700 to-cyan-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform">
+        <button type="button" onclick="openWindow('playbook')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center text-center w-full focus:outline-none" aria-label="Open Playbook window">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-700 to-cyan-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform" aria-hidden="true">
             <i data-lucide="file-text" class="w-6 h-6"></i>
           </div>
           <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-cyan-300">Playbook</span>
-        </div>
+        </button>
 
         <!-- Icon 11: Past Work & GitHub -->
-        <div onclick="openWindow('projects')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
-          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform">
+        <button type="button" onclick="openWindow('projects')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center text-center w-full focus:outline-none" aria-label="Open Past Work window">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform" aria-hidden="true">
             <i data-lucide="folder-git-2" class="w-6 h-6"></i>
           </div>
           <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-purple-300">Past Work</span>
-        </div>
+        </button>
 
       </div>
 

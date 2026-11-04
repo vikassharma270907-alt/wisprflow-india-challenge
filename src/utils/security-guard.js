@@ -22,11 +22,24 @@ function scanForSecrets(content, filename = '') {
     let match;
     const re = new RegExp(regex.source, regex.flags);
     while ((match = re.exec(content)) !== null) {
-      // Filter out false positives like SVG data URIs, tailwind class lists, or public dummy examples
       const val = match[0];
+
+      // Filter out false positives
+      // 1. Data URLs and standard web assets/fonts/cdn URLs
       if (val.includes('data:image') || val.includes('Plus+Jakarta') || val.includes('JetBrains') || val.includes('tailwindcss')) {
         continue;
       }
+
+      // 2. Sample alphabet sequences or canvas matrix rain character set
+      if (val.includes('ABCDEFGHIJKLMNOPQRSTUVWXYZ') || val.includes('0123456789')) {
+        continue;
+      }
+
+      // 3. Documented placeholder strings with repeated x's
+      if (/x{6,}/i.test(val) || val.includes('placeholder')) {
+        continue;
+      }
+
       findings.push({
         name,
         match: val.slice(0, 10) + '...',

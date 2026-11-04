@@ -1,6 +1,6 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
-import { BENCHMARK_CASES, getBenchmarkSummary } from '../src/benchmark.js';
+import { BENCHMARK_CASES, getBenchmarkSummary } from '../src/benchmark.mjs';
 
 describe('Hinglish Benchmark Data & Analytics Tests', () => {
   test('benchmark test cases are properly structured', () => {

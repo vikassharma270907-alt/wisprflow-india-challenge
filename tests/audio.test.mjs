@@ -1,6 +1,6 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
-import { NOISE_PROFILES, calculateAcousticRejection } from '../src/audio.js';
+import { NOISE_PROFILES, calculateAcousticRejection } from '../src/audio.mjs';
 
 describe('Acoustic Simulation & Noise Rejection Tests', () => {
   test('all required Bangalore ambient noise profiles are present', () => {

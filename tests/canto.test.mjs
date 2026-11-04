@@ -1,6 +1,6 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
-import { cantoPostProcess } from '../src/canto.js';
+import { cantoPostProcess } from '../src/canto.mjs';
 
 describe('Canto Voice Processing Engine Tests', () => {
   test('handles empty or whitespace inputs gracefully', () => {

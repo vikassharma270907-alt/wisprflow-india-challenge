@@ -60,11 +60,15 @@ describe('DOM & Navigation Architecture Verification', () => {
   });
 
   test('FlowOS window management architecture is declared for all workspaces', () => {
-    const WINDOWS = ['funnel', 'benchmark', 'dashboard', 'grant', 'operator', 'studio', 'audio', 'terminal', 'playbook', 'sweeper'];
+    assert(/id=["']window-container["']/.test(html), 'Missing #window-container');
+    assert(/const windowsConfig = \[/.test(html), 'Missing windowsConfig declaration');
+
+    const WINDOWS = ['funnel', 'benchmark', 'dashboard', 'grant', 'operator', 'studio', 'audio', 'terminal', 'playbook', 'sweeper', 'projects'];
     for (const win of WINDOWS) {
-      assert(new RegExp(`id=["']win-${win}["']`, 'i').test(html), `Missing desktop window #win-${win}`);
+      assert(new RegExp(`id:\\s*['"]${win}['"]`, 'i').test(html), `Missing window definition for ${win} in windowsConfig`);
     }
 
+    assert(/function initWindows\(/.test(html), 'Missing initWindows function');
     assert(/function openWindow\(/.test(html), 'Missing openWindow function');
     assert(/function closeWindow\(/.test(html), 'Missing closeWindow function');
     assert(/function minimizeWindow\(/.test(html), 'Missing minimizeWindow function');

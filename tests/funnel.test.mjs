@@ -1,6 +1,6 @@
 import { test, describe } from 'node:test';
 import assert from 'node:assert/strict';
-import { calculateFunnel } from '../src/funnel.js';
+import { calculateFunnel } from '../src/funnel.mjs';
 
 describe('Funnel Conversion Engine Tests', () => {
   test('default parameters produce expected baseline uplift', () => {
