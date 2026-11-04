@@ -258,6 +258,18 @@
           <span class="sm:hidden">Report</span>
         </button>
 
+        <!-- Candidate Profile Direct Button -->
+        <button type="button" onclick="openWindow('operator'); bringToFront('operator');" aria-label="Open Vikas Sharma Profile & Rankved Internship" class="px-2.5 py-1 rounded bg-sky-600/30 hover:bg-sky-600/50 text-sky-200 border border-sky-400/40 font-semibold text-[11px] flex items-center gap-1.5 transition shadow-sm hover:scale-105 active:scale-95" title="View Vikas Sharma Profile & Rankved Experience">
+          <i data-lucide="user-check" class="w-3.5 h-3.5 text-sky-400" aria-hidden="true"></i>
+          <span>👤 My Profile <span class="hidden xl:inline text-sky-300 font-normal font-mono">(Rankved Intern)</span></span>
+        </button>
+
+        <!-- Past Work Direct Button -->
+        <button type="button" onclick="openWindow('projects'); bringToFront('projects');" aria-label="Open Past Work and GitHub Repositories" class="px-2.5 py-1 rounded bg-purple-600/30 hover:bg-purple-600/50 text-purple-200 border border-purple-400/40 font-semibold text-[11px] flex items-center gap-1.5 transition hover:scale-105 active:scale-95" title="View Vikas Sharma 7 GitHub Projects">
+          <i data-lucide="folder-git-2" class="w-3.5 h-3.5 text-purple-400" aria-hidden="true"></i>
+          <span>🚀 Past Work <span class="hidden xl:inline text-purple-300 font-normal font-mono">(7 Repos)</span></span>
+        </button>
+
         <!-- X-Ray Toggle -->
         <button type="button" onclick="toggleXRay()" id="desktopXrayToggle" title="Toggle Voice-In / UI-Out Prompts" aria-label="Toggle Voice-In and UI-Out prompt cards" aria-pressed="false" class="p-1.5 min-w-[28px] min-h-[28px] rounded hover:bg-slate-800 text-slate-300 hover:text-white transition flex items-center justify-center gap-1">
           <i data-lucide="sparkles" class="w-3.5 h-3.5 text-blue-400" aria-hidden="true"></i>
@@ -313,6 +325,30 @@
 
     <!-- DESKTOP WORKSPACE AREA -->
     <div id="desktop-area" class="flex-1 relative overflow-hidden p-4">
+      
+      <!-- CANDIDATE PROFILE DISCOVERY DOCK (DESKTOP) -->
+      <aside aria-label="Candidate profile discovery" class="absolute top-2.5 left-1/2 -translate-x-1/2 z-20 pointer-events-auto bg-slate-900/95 border border-sky-500/40 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-2xl flex items-center gap-2 sm:gap-3 text-xs max-w-[95vw]">
+        <div class="flex items-center gap-2 font-mono">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true"></span>
+          <span class="text-slate-300">Candidate: <strong class="text-white">Vikas Sharma</strong></span>
+          <span class="px-2 py-0.5 rounded bg-sky-950/80 border border-sky-500/30 text-[10px] text-sky-300 font-semibold hidden sm:inline">Rankved Intern</span>
+        </div>
+        <div class="h-4 w-px bg-slate-700 hidden sm:block"></div>
+        <div class="flex items-center gap-1.5">
+          <button type="button" onclick="openWindow('operator'); bringToFront('operator');" class="px-2.5 py-1 rounded-full bg-sky-600 hover:bg-sky-500 text-white font-medium text-[11px] flex items-center gap-1 transition shadow-sm active:scale-95" title="Open My Profile window">
+            <i data-lucide="user-check" class="w-3 h-3"></i>
+            <span>👤 Profile Window</span>
+          </button>
+          <button type="button" onclick="openWindow('projects'); bringToFront('projects');" class="px-2.5 py-1 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-medium text-[11px] flex items-center gap-1 transition shadow-sm active:scale-95" title="Open Past Work window">
+            <i data-lucide="folder-git-2" class="w-3 h-3"></i>
+            <span>🚀 Past Work</span>
+          </button>
+          <button type="button" onclick="setMode('executive', 'operator')" class="px-2.5 py-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 font-medium text-[11px] flex items-center gap-1 transition active:scale-95" title="View Vikas Sharma's profile as a full standard webpage">
+            <i data-lucide="file-text" class="w-3 h-3 text-blue-400"></i>
+            <span class="hidden sm:inline">View as </span>Webpage
+          </button>
+        </div>
+      </aside>
       
       <!-- DESKTOP SHORTCUT ICONS -->
       <div id="desktop-icons-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-1 gap-3 sm:gap-4 w-full md:w-28 max-h-[calc(100vh-140px)] overflow-y-auto text-center select-none z-10 relative p-1" role="toolbar" aria-label="Desktop application shortcuts">
@@ -427,6 +463,8 @@
             Hi Tanay & Nimisha! Welcome to FlowState India. I'm Vikas Sharma's voice-driven navigator. Which module shall we inspect first?
           </p>
           <div class="flex flex-wrap gap-1.5 pt-1">
+            <button type="button" onclick="openWindow('operator'); updateFlowyText('Opening Vikas Sharma\'s profile and Rankved internship experience...');" class="px-2 py-1 rounded bg-sky-950 border border-sky-500/40 text-[10px] text-sky-300 hover:bg-sky-900 transition font-bold">👤 Vikas Sharma Profile</button>
+            <button type="button" onclick="openWindow('projects'); updateFlowyText('Showcasing Vikas\'s 7 GitHub hackathon repositories and builds...');" class="px-2 py-1 rounded bg-purple-950 border border-purple-500/40 text-[10px] text-purple-300 hover:bg-purple-900 transition font-bold">🚀 Past Work &amp; GitHub</button>
             <button onclick="openWindow('funnel'); updateFlowyText('Analyzing the 14% to 2% monetization gap...');" class="px-2 py-1 rounded bg-blue-950 border border-blue-500/30 text-[10px] text-blue-300 hover:bg-blue-900 transition">14% Simulator</button>
             <button onclick="openWindow('benchmark'); updateFlowyText('Benchmarking Canto vs Gboard Hinglish accuracy...');" class="px-2 py-1 rounded bg-emerald-950 border border-emerald-500/30 text-[10px] text-emerald-300 hover:bg-emerald-900 transition">Hinglish Test</button>
             <button onclick="openWindow('audio'); updateFlowyText('Synthesizing Bangalore street noise environments...');" class="px-2 py-1 rounded bg-purple-950 border border-purple-500/30 text-[10px] text-purple-300 hover:bg-purple-900 transition">Noise Lab</button>
@@ -459,6 +497,14 @@
 
       <!-- App Launchers Grid -->
       <div class="p-3 grid grid-cols-2 gap-1.5 border-b border-slate-800 max-h-64 overflow-y-auto">
+        <button type="button" onclick="openWindow('operator'); toggleStartMenu();" class="p-2 rounded-lg bg-sky-950/40 hover:bg-sky-900/60 border border-sky-500/30 flex items-center gap-2 text-left text-sky-200 transition">
+          <i data-lucide="user-check" class="w-4 h-4 text-sky-400"></i>
+          <span class="font-semibold">My Profile (Rankved)</span>
+        </button>
+        <button type="button" onclick="openWindow('projects'); toggleStartMenu();" class="p-2 rounded-lg bg-purple-950/40 hover:bg-purple-900/60 border border-purple-500/30 flex items-center gap-2 text-left text-purple-200 transition">
+          <i data-lucide="folder-git-2" class="w-4 h-4 text-purple-400"></i>
+          <span class="font-semibold">Past Work (GitHub)</span>
+        </button>
         <button onclick="openWindow('funnel'); toggleStartMenu();" class="p-2 rounded-lg hover:bg-slate-800/80 flex items-center gap-2 text-left text-slate-200 transition">
           <i data-lucide="trending-up" class="w-4 h-4 text-blue-400"></i>
           <span>14% Funnel Engine</span>
@@ -556,6 +602,9 @@
         <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> <strong>8,420 Words</strong></span>
         <span class="hidden md:inline text-slate-500">|</span>
         <span class="hidden lg:inline">Built via <strong>Emergent + Wispr Flow</strong></span>
+        <button type="button" onclick="switchTab('operator')" class="px-2.5 py-1 rounded bg-sky-600/80 hover:bg-sky-500 text-white font-semibold text-[11px] shadow-sm flex items-center gap-1 transition active:scale-95" title="Jump to Vikas Sharma Profile">
+          <i data-lucide="user-check" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Vikas Sharma </span>Profile
+        </button>
         <button onclick="setMode('desktop')" class="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white font-semibold text-[11px] shadow-sm flex items-center gap-1 transition active:scale-95">
           <i data-lucide="monitor" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Switch to </span>FlowOS Desktop
         </button>
@@ -579,7 +628,20 @@
         </div>
 
         <!-- CONTROLS -->
-        <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+        <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+          <!-- Profile & Past Work Direct Access -->
+          <button type="button" onclick="switchTab('operator')" aria-label="View Vikas Sharma Profile and Rankved Internship" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs flex items-center gap-1.5 transition shadow-md shadow-sky-600/25 active:scale-95" title="View Vikas Sharma's Profile & Rankved Internship">
+            <i data-lucide="user-check" class="w-3.5 h-3.5"></i>
+            <span>👤 Profile</span>
+            <span class="hidden md:inline text-[10px] px-1.5 py-0.5 rounded bg-sky-950/80 border border-sky-400/40 text-sky-200 font-mono">Rankved</span>
+          </button>
+
+          <button type="button" onclick="switchTab('projects')" aria-label="View Past Work and GitHub Repositories" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs flex items-center gap-1.5 transition shadow-md shadow-purple-600/25 active:scale-95" title="View Past Work & 7 GitHub Repos">
+            <i data-lucide="folder-git-2" class="w-3.5 h-3.5"></i>
+            <span>🚀 Past Work</span>
+            <span class="hidden md:inline text-[10px] px-1.5 py-0.5 rounded bg-purple-950/80 border border-purple-400/40 text-purple-200 font-mono">7 Repos</span>
+          </button>
+
           <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 hover:text-white flex items-center gap-1.5 transition font-mono" title="View GitHub Repositories" aria-label="Open Vikas Sharma's GitHub profile in a new tab">
             <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             <span class="hidden md:inline">GitHub</span>
@@ -619,9 +681,10 @@
           <i data-lucide="dollar-sign" class="w-4 h-4" aria-hidden="true"></i>
           4. $3,000 Bangalore Field Rig
         </button>
-        <button type="button" role="tab" aria-selected="false" aria-controls="content-operator" onclick="switchTab('operator')" id="tab-operator" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
-          <i data-lucide="user-check" class="w-4 h-4" aria-hidden="true"></i>
+        <button type="button" role="tab" aria-selected="false" aria-controls="content-operator" onclick="switchTab('operator')" id="tab-operator" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-sky-300 hover:text-white bg-sky-950/40 border border-sky-500/40 flex items-center gap-2 whitespace-nowrap transition-all shadow-sm">
+          <i data-lucide="user-check" class="w-4 h-4 text-sky-400" aria-hidden="true"></i>
           5. My Profile & Experience (Rankved Intern)
+          <span class="ml-1 px-1.5 py-0.5 text-[9px] font-mono rounded bg-sky-500 text-white font-bold">ME</span>
         </button>
         <button type="button" role="tab" aria-selected="false" aria-controls="content-studio" onclick="switchTab('studio')" id="tab-studio" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-emerald-400 hover:text-emerald-300 hover:bg-emerald-950/40 border border-emerald-500/30 flex items-center gap-2 whitespace-nowrap transition-all">
           <i data-lucide="mic-vocal" class="w-4 h-4 text-emerald-400 animate-pulse" aria-hidden="true"></i>
@@ -639,9 +702,10 @@
           <i data-lucide="file-text" class="w-4 h-4 text-slate-400" aria-hidden="true"></i>
           9. Master Playbook
         </button>
-        <button type="button" role="tab" aria-selected="false" aria-controls="content-projects" onclick="switchTab('projects')" id="tab-projects" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-purple-300 hover:text-purple-200 hover:bg-purple-950/40 border border-purple-500/30 flex items-center gap-2 whitespace-nowrap transition-all">
+        <button type="button" role="tab" aria-selected="false" aria-controls="content-projects" onclick="switchTab('projects')" id="tab-projects" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-purple-300 hover:text-white bg-purple-950/40 border border-purple-500/40 flex items-center gap-2 whitespace-nowrap transition-all shadow-sm">
           <i data-lucide="folder-git-2" class="w-4 h-4 text-purple-400" aria-hidden="true"></i>
           10. Past Work & GitHub (Judges)
+          <span class="ml-1 px-1.5 py-0.5 text-[9px] font-mono rounded bg-purple-500 text-white font-bold">7 REPOS</span>
         </button>
       </nav>
     </header>
@@ -1817,6 +1881,15 @@
 </div>
 </div>
       <div id="content-terminal" class="tab-content hidden space-y-6">
+        <!-- X-RAY OVERLAY CARD -->
+        <div class="xray-badge bg-gradient-to-r from-blue-950 to-indigo-950 border-2 border-dashed border-blue-500 rounded-xl p-4 text-xs font-mono mb-4 text-blue-200">
+          <div class="font-bold text-blue-400 flex items-center gap-2 mb-1">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            X-RAY // RAW VOICE PROMPT DICTATED INTO WISPR FLOW → EMERGENT:
+          </div>
+          <p class="italic text-slate-300">"Build an interactive terminal console emulating wispr-cli that runs real-time telemetry diagnostics, simulates our India pricing and retention models, outputs verified word count and acoustic metrics, and lets judges run status, whoami, and simulate commands directly in the browser."</p>
+        </div>
+
 <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 font-mono text-xs flex flex-col h-[480px]">
   <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-3 text-slate-400">
     <div class="flex items-center gap-2">
@@ -1877,6 +1950,15 @@
 </div>
 </div>
       <div id="content-playbook" class="tab-content hidden space-y-6">
+        <!-- X-RAY OVERLAY CARD -->
+        <div class="xray-badge bg-gradient-to-r from-blue-950 to-indigo-950 border-2 border-dashed border-blue-500 rounded-xl p-4 text-xs font-mono mb-4 text-blue-200">
+          <div class="font-bold text-blue-400 flex items-center gap-2 mb-1">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            X-RAY // RAW VOICE PROMPT DICTATED INTO WISPR FLOW → EMERGENT:
+          </div>
+          <p class="italic text-slate-300">"Build an executive growth briefing playbook summarizing the entire Bangalore sprint: including the second-by-second 3-minute video walkthrough, verified submission field values, and distribution strategies for Nimisha Mehta and Tanay Kothari."</p>
+        </div>
+
 <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
   <div class="border-b border-slate-800 pb-4">
     <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 mb-2">
@@ -1919,7 +2001,15 @@
         </div>
         <div>
           <span class="text-slate-400 block font-semibold">Target Evaluators:</span>
-          <span class="text-slate-200">Nimisha Mehta (India Lead) & Tanay Kothari (CEO)</span>
+          <span class="text-slate-200"><a href="https://www.linkedin.com/in/nimisha-mehta-593758166/" target="_blank" rel="noreferrer" class="text-blue-400 hover:underline font-semibold">Nimisha Mehta</a> (India Lead) & <a href="https://www.linkedin.com/in/tankots/" target="_blank" rel="noreferrer" class="text-blue-400 hover:underline font-semibold">Tanay Kothari</a> (CEO)</span>
+        </div>
+        <div>
+          <span class="text-slate-400 block font-semibold">LinkedIn Profile:</span>
+          <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="font-mono text-cyan-400 hover:underline">linkedin.com/in/vikas-sharma-97881737b/</a>
+        </div>
+        <div>
+          <span class="text-slate-400 block font-semibold">Wispr Flow Account Email:</span>
+          <span class="font-mono text-amber-400">vikas.sharma270907@gmail.com</span>
         </div>
         <div>
           <span class="text-slate-400 block font-semibold">Location & Notice:</span>
@@ -1958,7 +2048,7 @@
                 Shipped Projects & Past Work (For Judges)
               </h2>
               <p class="text-slate-400 mt-1 text-sm">
-                Evaluator reference for Nimisha Mehta, Tanay Kothari, and the Wispr Flow hiring team.
+                Evaluator reference for <a href="https://www.linkedin.com/in/nimisha-mehta-593758166/" target="_blank" rel="noreferrer" class="text-blue-400 hover:underline">Nimisha Mehta</a>, <a href="https://www.linkedin.com/in/tankots/" target="_blank" rel="noreferrer" class="text-blue-400 hover:underline">Tanay Kothari</a>, and the Wispr Flow hiring team.
               </p>
             </div>
 
@@ -2450,6 +2540,9 @@
             </div>
             <div class="flex items-center gap-2 text-[10px] font-mono text-slate-400">
               <span class="px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 font-semibold hidden sm:inline">LIVE TELEMETRY</span>
+              <button type="button" onclick="setMode('executive', '${cfg.id}')" title="View this section as full webpage" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-600 font-sans text-[10px] flex items-center gap-1 transition">
+                <span>Full Webpage</span> <i data-lucide="external-link" class="w-2.5 h-2.5"></i>
+              </button>
             </div>
           </div>
           <!-- Window Content Body -->
@@ -2501,6 +2594,8 @@
       });
     }
 
+    let currentActiveTab = 'funnel';
+
     function bringToFront(id) {
       const win = document.getElementById('win-' + id);
       if (!win) return;
@@ -2509,6 +2604,7 @@
 
       document.querySelectorAll('.os-window').forEach(w => w.classList.remove('active-window'));
       win.classList.add('active-window');
+      currentActiveTab = id;
 
       // Update taskbar button active state
       updateTaskbarTabs();
@@ -2701,7 +2797,7 @@
     // ==========================================
     let currentMode = 'desktop';
 
-    function setMode(mode) {
+    function setMode(mode, targetTab) {
       playSound('chime');
       currentMode = mode;
       document.body.classList.remove('mode-desktop', 'mode-executive');
@@ -2717,10 +2813,13 @@
             execArea.appendChild(content);
           }
         });
-        switchTab('funnel');
+        const tabToOpen = targetTab || currentActiveTab || 'funnel';
+        switchTab(tabToOpen);
       } else {
-        // Desktop mode: open default windows
-        openWindow('funnel');
+        // Desktop mode: open specified or active window
+        const winToOpen = targetTab || currentActiveTab || 'funnel';
+        openWindow(winToOpen);
+        bringToFront(winToOpen);
       }
 
       lucide.createIcons();
@@ -3111,6 +3210,63 @@
     setInterval(updateClock, 1000);
     updateClock();
 
+    // ==========================================
+    // DEEP LINKING & URL HASH ROUTING
+    // ==========================================
+    function handleUrlRouting() {
+      const rawHash = (window.location.hash || '').toLowerCase().replace(/^#/, '').trim();
+      const params = new URLSearchParams(window.location.search);
+      const viewParam = (params.get('view') || params.get('page') || params.get('tab') || '').toLowerCase();
+      const modeParam = (params.get('mode') || '').toLowerCase();
+
+      const route = rawHash || viewParam;
+
+      if (!route && !modeParam) return false;
+
+      if (['profile', 'operator', 'me', 'vikas', 'rankved'].includes(route)) {
+        if (modeParam === 'desktop') {
+          setMode('desktop', 'operator');
+        } else {
+          setMode('executive', 'operator');
+        }
+        return true;
+      }
+
+      if (['projects', 'pastwork', 'work', 'github', 'repos'].includes(route)) {
+        if (modeParam === 'desktop') {
+          setMode('desktop', 'projects');
+        } else {
+          setMode('executive', 'projects');
+        }
+        return true;
+      }
+
+      if (['funnel', 'benchmark', 'dashboard', 'grant', 'studio', 'audio', 'terminal', 'playbook', 'sweeper'].includes(route)) {
+        if (modeParam === 'desktop') {
+          setMode('desktop', route);
+        } else {
+          setMode('executive', route);
+        }
+        return true;
+      }
+
+      if (modeParam === 'executive' || route === 'executive' || route === 'report') {
+        setMode('executive', 'funnel');
+        return true;
+      }
+
+      if (modeParam === 'desktop' || route === 'desktop') {
+        setMode('desktop', 'funnel');
+        return true;
+      }
+
+      return false;
+    }
+
+    window.addEventListener('hashchange', () => {
+      handleUrlRouting();
+    });
+
     window.addEventListener('DOMContentLoaded', () => {
       initWindows();
       initSweeperGame();
@@ -3118,9 +3274,12 @@
       initApiState();
       lucide.createIcons();
 
-      const defaultMode = window.innerWidth < 768 ? 'executive' : 'desktop';
-      const savedMode = localStorage.getItem('FLOWSTATE_VIEW_MODE') || defaultMode;
-      setMode(savedMode);
+      const routed = handleUrlRouting();
+      if (!routed) {
+        const defaultMode = window.innerWidth < 768 ? 'executive' : 'desktop';
+        const savedMode = localStorage.getItem('FLOWSTATE_VIEW_MODE') || defaultMode;
+        setMode(savedMode);
+      }
     });
 
     // Spacebar Hotkey for Dictation Studio
@@ -3175,6 +3334,7 @@
     }
 
     function switchTab(tabName) {
+      currentActiveTab = tabName;
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('bg-blue-600', 'text-white');
@@ -3190,7 +3350,15 @@
         selectedTab.classList.add('bg-blue-600', 'text-white');
         selectedTab.classList.remove('text-slate-400');
         selectedTab.setAttribute('aria-selected', 'true');
+        try {
+          selectedTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } catch (e) {}
       }
+
+      if (window.location.hash !== '#' + tabName && history.replaceState) {
+        history.replaceState(null, '', '#' + tabName);
+      }
+
       lucide.createIcons();
     }
 

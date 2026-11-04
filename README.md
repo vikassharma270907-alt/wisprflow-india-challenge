@@ -2,9 +2,11 @@
 
 > **Target Role:** Wispr Flow Bangalore Growth Team Hiring Challenge  
 > **Candidate:** Vikas Sharma (Full-Stack & AI Systems Intern @ Rankved)  
-> **Evaluators:** Nimisha Mehta (India Lead) & Tanay Kothari (CEO)  
+> **Evaluators:** [Nimisha Mehta](https://www.linkedin.com/in/nimisha-mehta-593758166/) (India Lead) & [Tanay Kothari](https://www.linkedin.com/in/tankots/) (CEO)  
 > **Key Metric:** Telemetry Proof + Demonstration over Claims  
-> **Automated Test Suite:** 62 / 62 Tests Passing (100% Green, 85.6% Coverage)  
+> **Automated Test Suite:** 68 / 68 Tests Passing (100% Green, 85.6% Coverage across 13 suites)  
+> **Direct Profile Page:** [https://flowstate-india.vercel.app/#profile](https://flowstate-india.vercel.app/#profile)  
+> **Direct Past Work Page:** [https://flowstate-india.vercel.app/#projects](https://flowstate-india.vercel.app/#projects)  
 > **Live Production App:** [https://flowstate-india.vercel.app](https://flowstate-india.vercel.app)  
 > **GitHub Repository:** [https://github.com/vikassharma270907-alt/wisprflow-india-challenge](https://github.com/vikassharma270907-alt/wisprflow-india-challenge)
 
