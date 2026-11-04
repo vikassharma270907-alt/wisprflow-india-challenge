@@ -10,14 +10,20 @@
 
 ### Field: Wispr Flow Account Email
 *Input your exact account email used when dictating with Wispr Flow (ensure alphabetical prefix, no '+' aliases).*  
-`[your.clean.email@gmail.com]`
+`vikas.sharma270907@gmail.com`
 
 ### Field: Portfolio / Build URL
 *Your publicly accessible live production URL (tested & verified 200 OK with zero login walls):*  
 `https://flowstate-india.vercel.app`
 
-### GitHub Repository
+### GitHub Repository (Challenge Codebase)
 `https://github.com/vikassharma270907-alt/wisprflow-india-challenge`
+
+### GitHub Profile (All Repositories)
+`https://github.com/vikassharma270907-alt`
+
+### LinkedIn Profile
+`https://www.linkedin.com/in/vikas-sharma-97881737b/`
 
 ### Field: Recording URL (3-Minute Loom / YouTube Video)
 `https://www.loom.com/share/[your-id]` or `https://youtu.be/[unlisted-id]`
@@ -84,3 +90,20 @@ vercel deploy --prod
 
 > "Wispr Flow's Canto speech model achieves a 10% Word Error Rate by conditioning on multi-modal contextual tokens and personal dictionary entries within a strict 700 millisecond end-to-end latency ceiling. In contrast to Apple native dictation at 47% error rate and OpenAI Whisper at 27%, Canto's reinforcement learning policy penalizes hallucinated tokens and strips filler words in real time. For Indian users navigating mixed-language code-switching, the primary barrier to adoption is not purchasing power parity, but habit formation across desktop surfaces such as Cursor, Visual Studio Code, Slack, and Notion. When scaling in Bangalore and Tier-2 hubs, demonstration beats claims every single time."
 
+
+
+---
+
+## 5. Shipped Projects & Past Work Reference (For Judges)
+
+All codebases are open source and deployed with live URLs:
+
+| Project | Hackathon / Challenge | Key Highlight | Live URL | GitHub Repository |
+|---|---|---|---|---|
+| **BeyondFlow (FlowGuard Treasury)** | ArmorIQ Flow State (Airwallex Track) | Autonomous Voice Treasury with ArmorIQ intent tokens, MCP endpoint, and dual-supervisor hold | [flowguard-treasury.vercel.app](https://flowguard-treasury.vercel.app) | [flowguard-treasury](https://github.com/vikassharma270907-alt/flowguard-treasury) |
+| **RestockPilot** | PayPal AI Hackathon 2026 | Autonomous purchasing agent with Channel3 catalog search, NVIDIA NIM MiniMax, and PayPal Orders v2 checkout | [restockpilot.vercel.app](https://restockpilot.vercel.app) | [restockpilot](https://github.com/vikassharma270907-alt/restockpilot) |
+| **Airlock Guardrails** | GitLab Transcend Hackathon | Deterministic CI/CD guardrails with reader/writer agent isolation and verified human approval gates | [airlock-guardrails.vercel.app](https://airlock-guardrails.vercel.app) | [airlock-guardrails](https://github.com/vikassharma270907-alt/airlock-guardrails) |
+| **Swapcast** | Qloo AI Hackathon | Data-grounded podcast promo-swap engine with two-way Qloo taste matching and automated pitch generator | [swapcast-tau.vercel.app](https://swapcast-tau.vercel.app) | [swapcast](https://github.com/vikassharma270907-alt/swapcast) |
+| **Brightloop** | Odoo x FLUX Lucknow Hackathon '26 | Full-stack subscription billing & quotation platform over PostgreSQL 16 (1,500 customers, 5k subscriptions) | [brightloop-do6a.onrender.com](https://brightloop-do6a.onrender.com) | [odoo-flux-hackathon](https://github.com/vikassharma270907-alt/odoo-flux-hackathon) |
+| **ChaosForge** | Codex x TwitchCon Hackathon | Real-time Twitch EventSub chat modding engine with zero-latency OBS Browser Source canvas arena | [chaosforge-3ky4.onrender.com](https://chaosforge-3ky4.onrender.com) | [ChaosForge](https://github.com/vikassharma270907-alt/ChaosForge-deployment-and-compliance-check.) |
+| **FlowState India** | Wispr Flow Challenge | Interactive 14% -> 2% conversion funnel simulator, Hinglish benchmark, retention dashboard, and Canto dictation studio | [flowstate-india.vercel.app](https://flowstate-india.vercel.app) | [wisprflow-india-challenge](https://github.com/vikassharma270907-alt/wisprflow-india-challenge) |

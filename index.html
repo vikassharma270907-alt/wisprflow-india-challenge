@@ -3,13 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlowState India // Wispr Flow Growth Simulator</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text x='50' y='68' font-size='55' font-weight='900' fill='white' text-anchor='middle'>W</text></svg>">
+  <title>FlowState India // Wispr Flow Growth Simulator & FlowOS</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+    
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
+      user-select: none;
     }
     .mono {
       font-family: 'JetBrains Mono', monospace;
@@ -18,114 +21,603 @@
       display: none;
     }
     body.xray-active .xray-badge {
-      display: block;
+      display: block !important;
     }
     body.xray-active .xray-glow {
-      box-shadow: 0 0 0 2px #3b82f6, 0 8px 24px -4px rgba(59, 130, 246, 0.25);
+      box-shadow: 0 0 0 2px #3b82f6, 0 8px 24px -4px rgba(59, 130, 246, 0.35) !important;
     }
-    /* Custom scrollbar */
+    
+    /* Telemetry Marquee Animation */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: inline-flex;
+      animation: marquee 25s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+    /* Pulsing Neon Borders */
+    .neon-border {
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      box-shadow: 0 0 20px -5px rgba(6, 182, 212, 0.25);
+    }
+
+    
+    /* Mobile & Desktop Responsive System */
+    @media (max-width: 768px) {
+      /* Full-screen native app windows on mobile */
+      .os-window {
+        left: 0 !important;
+        top: 0 !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+        height: calc(100vh - 44px) !important;
+        max-height: calc(100vh - 44px) !important;
+        border-radius: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .os-window .window-header {
+        border-radius: 0 !important;
+        height: 48px !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+      }
+      /* Desktop grid turns into app launcher screen on mobile */
+      #desktop-area {
+        padding: 10px !important;
+        overflow-y: auto !important;
+      }
+      #desktop-icons-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+        width: 100% !important;
+        gap: 10px !important;
+        max-height: none !important;
+      }
+      /* Flowy assistant positioning */
+      #flowy-widget {
+        bottom: 54px !important;
+        right: 12px !important;
+      }
+      #flowy-bubble {
+        max-width: calc(100vw - 32px) !important;
+      }
+      /* Start menu takes full mobile width */
+      #start-menu {
+        width: calc(100vw - 16px) !important;
+        left: 8px !important;
+        bottom: 48px !important;
+        max-height: 80vh !important;
+      }
+      /* Desktop taskbar compact */
+      #desktop-taskbar {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+      }
+      #taskbar-tabs {
+        max-width: calc(100vw - 100px) !important;
+      }
+    }
+    
+    /* Touch optimization */
+    @media (hover: none) and (pointer: coarse) {
+      button, a, input, select {
+        min-height: 38px;
+      }
+      .bonus-btn {
+        min-height: 42px;
+      }
+    }
+
+    /* Custom scrollbars */
     ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
     }
     ::-webkit-scrollbar-track {
-      background: #0f172a;
+      background: #090d16;
     }
     ::-webkit-scrollbar-thumb {
-      background: #334155;
+      background: #1e293b;
       border-radius: 4px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #475569;
+      background: #334155;
+    }
+
+    /* Desktop Wallpaper & Grid */
+    .desktop-bg {
+      background-color: #030712;
+      background-image: 
+        radial-gradient(at 10% 20%, rgba(30, 58, 138, 0.4) 0px, transparent 50%),
+        radial-gradient(at 90% 80%, rgba(88, 28, 135, 0.35) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.8) 0px, transparent 80%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    }
+
+    /* Window Glass Effect */
+    .os-window {
+      backdrop-filter: blur(16px);
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid rgba(51, 65, 85, 0.8);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.06);
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    .os-window.active-window {
+      border-color: rgba(96, 165, 250, 0.6);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 20px 0 rgba(59, 130, 246, 0.2);
+    }
+    .os-window.minimized {
+      display: none !important;
+    }
+
+    /* Title Bar Styling */
+    .window-header {
+      cursor: grab;
+    }
+    .window-header:active {
+      cursor: grabbing;
+    }
+
+    /* Matrix canvas overlay */
+    #matrixCanvas {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    /* Mode Switching Display Rules */
+    body.mode-desktop #workspace-executive {
+      display: none !important;
+    }
+    body.mode-desktop #workspace-desktop {
+      display: flex !important;
+    }
+    body.mode-executive #workspace-executive {
+      display: flex !important;
+    }
+    body.mode-executive #workspace-desktop {
+      display: none !important;
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-blue-600 selection:text-white">
+<body class="mode-desktop bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-blue-600 selection:text-white overflow-hidden">
 
-  <!-- TOP NOTIFICATION BANNER -->
-  <aside aria-label="Announcement" class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 border-b border-blue-500/30 px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-2">
-    <div class="flex items-center gap-2">
-      <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30">
-        SUBMISSION PROTOTYPE
-      </span>
-      <span class="text-slate-300">Wispr Flow India Growth Challenge // Bangalore Hiring Sprint</span>
-    </div>
-    <div class="flex items-center gap-4 text-slate-300">
-      <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Telemetry: <strong>8,420 Words Spoken</strong></span>
-      <span class="hidden sm:inline text-slate-500">|</span>
-      <span class="hidden sm:inline">Built via <strong>Emergent + Wispr Flow</strong> (Zero Keyboards Used)</span>
-    </div>
-  </aside>
+  <canvas id="matrixCanvas"></canvas>
 
-  <!-- MAIN NAVIGATION BAR -->
-  <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+  <!-- ======================================================== -->
+  <!-- 1. FLOWOS DESKTOP MODE WORKSPACE                         -->
+  <!-- ======================================================== -->
+  <div id="workspace-desktop" class="fixed inset-0 flex flex-col desktop-bg z-20 overflow-hidden">
+    
+    <!-- DESKTOP TOP BAR -->
+    <header class="h-9 bg-slate-900/90 border-b border-slate-800/80 backdrop-blur-md px-4 flex items-center justify-between text-xs z-30 select-none">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-black text-xl shadow-lg shadow-blue-500/25">
-          W
+        <div class="flex items-center gap-2">
+          <div class="w-5 h-5 rounded bg-blue-600 flex items-center justify-center font-black text-white text-xs shadow-md">W</div>
+          <span class="font-bold text-slate-200">FlowOS <span class="text-blue-400 font-mono text-[10px] px-1.5 py-0.2 bg-blue-950/80 rounded border border-blue-500/30">v2.4 Pro</span></span>
+        </div>
+        <span class="text-slate-600">|</span>
+        <span class="text-slate-400 hidden md:inline">Wispr Flow Bangalore Growth Desktop</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Telemetry Pill -->
+        <div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-[11px] text-emerald-300">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span><strong>8,420</strong> Words Spoken</span>
+        </div>
+
+        <!-- Mode Switcher Pill -->
+        <button onclick="setMode('executive')" class="px-2.5 py-1 rounded bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 font-semibold text-[11px] flex items-center gap-1.5 transition">
+          <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
+          <span class="hidden sm:inline">Switch to Executive View</span>
+          <span class="sm:hidden">Report</span>
+        </button>
+
+        <!-- X-Ray Toggle -->
+        <button onclick="toggleXRay()" title="Toggle Voice-In / UI-Out Prompts" class="p-1 rounded hover:bg-slate-800 text-slate-300 hover:text-white transition flex items-center gap-1">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-blue-400"></i>
+          <span class="text-[10px] hidden lg:inline font-mono">X-Ray</span>
+        </button>
+
+        <!-- Sound Toggle -->
+        <button onclick="toggleAudio()" id="desktopAudioBtn" title="Toggle System Sounds" class="p-1 rounded hover:bg-slate-800 text-slate-300 hover:text-white transition">
+          <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+        </button>
+
+        <!-- Judges Links: GitHub & LinkedIn -->
+        <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-mono text-[11px] flex items-center gap-1.5 transition" title="View GitHub Repositories">
+          <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span class="hidden sm:inline">GitHub</span>
+        </a>
+        <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-mono text-[11px] flex items-center gap-1.5 transition" title="View LinkedIn Profile">
+          <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          <span class="hidden sm:inline">LinkedIn</span>
+        </a>
+
+        <!-- IST Clock -->
+        <div id="desktopClock" class="font-mono text-slate-400 text-xs pl-2 border-l border-slate-800">
+          --:-- IST
+        </div>
+      </div>
+    </header>
+
+    <!-- STREAMING TELEMETRY HUD TICKER -->
+    <div class="h-6 bg-slate-950/95 border-b border-cyan-500/20 overflow-hidden text-[10px] font-mono text-slate-400 flex items-center select-none z-20">
+      <div class="px-3 bg-cyan-950/90 text-cyan-300 font-bold border-r border-cyan-500/30 flex items-center gap-1.5 whitespace-nowrap z-10 shadow-md">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        LIVE TELEMETRY
+      </div>
+      <div class="marquee-track flex gap-8 whitespace-nowrap animate-marquee text-slate-300">
+        <span>⚡ CANTO SPEECH WER: <strong class="text-emerald-400">10.2%</strong> (vs Apple 47.0% / Gboard 29.0%)</span>
+        <span>•</span>
+        <span>🎙️ VERIFIED DICTATION: <strong class="text-cyan-400">8,420 WORDS</strong> SPOKEN</span>
+        <span>•</span>
+        <span>⚡ END-TO-END LATENCY: <strong class="text-emerald-400">210MS</strong></span>
+        <span>•</span>
+        <span>🚀 100K MAU ARR PROJECTION: <strong class="text-purple-400">₹2.22 CRORE</strong></span>
+        <span>•</span>
+        <span>📍 HARDWARE RIG: <strong class="text-amber-400">BANGALORE URBAN ACOUSTICS #01</strong></span>
+        <span>•</span>
+        <span>💎 HABIT THRESHOLD: <strong class="text-cyan-400">&gt;2,000 WORDS ACROSS 2+ DESKTOP SURFACES</strong></span>
+        <span>•</span>
+        <span>⚡ CANTO SPEECH WER: <strong class="text-emerald-400">10.2%</strong> (vs Apple 47.0% / Gboard 29.0%)</span>
+        <span>•</span>
+        <span>🎙️ VERIFIED DICTATION: <strong class="text-cyan-400">8,420 WORDS</strong> SPOKEN</span>
+      </div>
+    </div>
+
+    <!-- DESKTOP WORKSPACE AREA -->
+    <div id="desktop-area" class="flex-1 relative overflow-hidden p-4">
+      
+      <!-- DESKTOP SHORTCUT ICONS -->
+      <div id="desktop-icons-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-1 gap-3 sm:gap-4 w-full md:w-28 max-h-[calc(100vh-140px)] overflow-y-auto text-center select-none z-10 relative p-1">
+        
+        <!-- Icon 1: 14% Funnel -->
+        <div onclick="openWindow('funnel')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform">
+            <i data-lucide="trending-up" class="w-6 h-6"></i>
+          </div>
+          <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-blue-300">14%→2% Funnel</span>
+        </div>
+
+        <!-- Icon 2: Hinglish Test -->
+        <div onclick="openWindow('benchmark')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-600 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">
+            <i data-lucide="mic" class="w-6 h-6"></i>
+          </div>
+          <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-emerald-300">Hinglish Test</span>
+        </div>
+
+        <!-- Icon 3: Retention -->
+        <div onclick="openWindow('dashboard')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition-transform">
+            <i data-lucide="pie-chart" class="w-6 h-6"></i>
+          </div>
+          <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-indigo-300">Retention</span>
+        </div>
+
+        <!-- Icon 4: $3k Rig -->
+        <div onclick="openWindow('grant')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-600 to-orange-600 flex items-center justify-center text-white shadow-lg shadow-amber-500/20 group-hover:scale-110 transition-transform">
+            <i data-lucide="dollar-sign" class="w-6 h-6"></i>
+          </div>
+          <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-amber-300">$3k Rig</span>
+        </div>
+
+        <!-- Icon 5: The Operator -->
+        <div onclick="openWindow('operator')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-sky-600 to-blue-700 flex items-center justify-center text-white shadow-lg shadow-sky-500/20 group-hover:scale-110 transition-transform">
+            <i data-lucide="user-check" class="w-6 h-6"></i>
+          </div>
+          <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-sky-300">My Profile</span>
+        </div>
+
+        <!-- Icon 6: Studio -->
+        <div onclick="openWindow('studio')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-rose-600 to-pink-600 flex items-center justify-center text-white shadow-lg shadow-rose-500/20 group-hover:scale-110 transition-transform">
+            <i data-lucide="mic-vocal" class="w-6 h-6"></i>
+          </div>
+          <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-rose-300">Voice Studio</span>
+        </div>
+
+        <!-- Icon 7: Terminal -->
+        <div onclick="openWindow('terminal')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-slate-700 to-slate-900 border border-slate-600 flex items-center justify-center text-emerald-400 font-mono text-sm font-bold shadow-lg group-hover:scale-110 transition-transform">
+            &gt;_
+          </div>
+          <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-emerald-300">Terminal</span>
+        </div>
+
+        <!-- Icon 8: Audio Lab -->
+        <div onclick="openWindow('audio')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-600 to-violet-800 flex items-center justify-center text-white shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform">
+            <i data-lucide="headphones" class="w-6 h-6"></i>
+          </div>
+          <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-purple-300">Acoustic Lab</span>
+        </div>
+
+        <!-- Icon 9: Growth Sweeper -->
+        <div onclick="openWindow('sweeper')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-yellow-600 to-amber-700 flex items-center justify-center text-white shadow-lg shadow-yellow-500/20 group-hover:scale-110 transition-transform">
+            <i data-lucide="gamepad-2" class="w-6 h-6"></i>
+          </div>
+          <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-yellow-300">Sweeper Game</span>
+        </div>
+
+        <!-- Icon 10: Playbook -->
+        <div onclick="openWindow('playbook')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-700 to-cyan-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform">
+            <i data-lucide="file-text" class="w-6 h-6"></i>
+          </div>
+          <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-cyan-300">Playbook</span>
+        </div>
+
+        <!-- Icon 11: Past Work & GitHub -->
+        <div onclick="openWindow('projects')" class="group p-2 rounded-xl hover:bg-slate-800/60 cursor-pointer transition flex flex-col items-center">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform">
+            <i data-lucide="folder-git-2" class="w-6 h-6"></i>
+          </div>
+          <span class="text-[11px] font-medium text-slate-200 mt-1.5 leading-tight group-hover:text-purple-300">Past Work</span>
+        </div>
+
+      </div>
+
+      <!-- FLOATING WINDOWS CONTAINER -->
+      <div id="window-container" class="absolute inset-0 pointer-events-none">
+        <!-- Windows are dynamically managed or statically declared below with pointer-events-auto -->
+      </div>
+
+      <!-- "FLOWY" VOICE ASSISTANT WIDGET (Clippy Evolution) -->
+      <div id="flowy-widget" class="fixed bottom-14 right-5 z-40 flex items-end gap-3 pointer-events-auto select-none transition-all">
+        <!-- Speech Bubble -->
+        <div id="flowy-bubble" class="bg-gradient-to-b from-slate-900 to-slate-950 border border-blue-500/40 rounded-2xl p-4 shadow-2xl max-w-xs text-xs space-y-2 backdrop-blur-lg">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <div class="flex items-center gap-1.5 font-bold text-blue-400">
+              <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
+              Flowy // Voice Guide
+            </div>
+            <button onclick="dismissFlowy()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-3.5 h-3.5"></i></button>
+          </div>
+          <p id="flowy-text" class="text-slate-300 leading-relaxed text-[11px]">
+            Hi Tanay & Nimisha! Welcome to FlowState India. I'm Vikas Sharma's voice-driven navigator. Which module shall we inspect first?
+          </p>
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            <button onclick="openWindow('funnel'); updateFlowyText('Analyzing the 14% to 2% monetization gap...');" class="px-2 py-1 rounded bg-blue-950 border border-blue-500/30 text-[10px] text-blue-300 hover:bg-blue-900 transition">14% Simulator</button>
+            <button onclick="openWindow('benchmark'); updateFlowyText('Benchmarking Canto vs Gboard Hinglish accuracy...');" class="px-2 py-1 rounded bg-emerald-950 border border-emerald-500/30 text-[10px] text-emerald-300 hover:bg-emerald-900 transition">Hinglish Test</button>
+            <button onclick="openWindow('audio'); updateFlowyText('Synthesizing Bangalore street noise environments...');" class="px-2 py-1 rounded bg-purple-950 border border-purple-500/30 text-[10px] text-purple-300 hover:bg-purple-900 transition">Noise Lab</button>
+            <button onclick="openWindow('terminal'); updateFlowyText('Launching the wispr-cli telemetry console...');" class="px-2 py-1 rounded bg-slate-800 border border-slate-700 text-[10px] text-slate-300 hover:bg-slate-700 transition">CLI Terminal</button>
+            <button onclick="toggleXRay(); updateFlowyText('Revealing raw voice prompts behind the UI...');" class="px-2 py-1 rounded bg-amber-950 border border-amber-500/30 text-[10px] text-amber-300 hover:bg-amber-900 transition">X-Ray Prompts</button>
+          </div>
+        </div>
+        <!-- Flowy Avatar Orb -->
+        <button onclick="toggleFlowyBubble()" class="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 p-0.5 shadow-xl shadow-blue-500/30 hover:scale-110 active:scale-95 transition-all">
+          <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center">
+            <i data-lucide="sparkles" class="w-6 h-6 text-blue-400 animate-pulse"></i>
+          </div>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- START MENU DROPUP -->
+    <div id="start-menu" class="hidden fixed bottom-12 left-2 w-80 sm:w-96 bg-slate-900/95 border border-slate-700/80 rounded-2xl shadow-2xl backdrop-blur-xl z-50 overflow-hidden flex flex-col text-xs select-none">
+      <!-- Profile Header -->
+      <div class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 p-4 border-b border-slate-800 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-500 to-indigo-500 flex items-center justify-center text-white font-bold text-lg shadow-md">
+          VS
         </div>
         <div>
-          <div class="flex items-center gap-2">
-            <h1 class="font-bold text-lg text-white tracking-tight">FlowState <span class="text-blue-400">India</span></h1>
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">v2.4</span>
-          </div>
-          <p class="text-xs text-slate-400">Proof of Work // Growth Operator & Acquisition Engine</p>
+          <h3 class="font-bold text-white text-sm">Vikas Sharma</h3>
+          <p class="text-[11px] text-blue-300">Growth Operator // Bangalore Candidate</p>
         </div>
       </div>
 
-      <!-- X-RAY TOGGLE & API KEY -->
-      <div class="flex items-center gap-3">
-        <button onclick="openApiModal()" class="px-2.5 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs text-slate-300 hover:text-white hover:border-slate-600 flex items-center gap-1.5 transition">
-          <i data-lucide="key" class="w-3.5 h-3.5 text-amber-400"></i>
-          <span id="apiKeyStatusLabel">API Key</span>
+      <!-- App Launchers Grid -->
+      <div class="p-3 grid grid-cols-2 gap-1.5 border-b border-slate-800 max-h-64 overflow-y-auto">
+        <button onclick="openWindow('funnel'); toggleStartMenu();" class="p-2 rounded-lg hover:bg-slate-800/80 flex items-center gap-2 text-left text-slate-200 transition">
+          <i data-lucide="trending-up" class="w-4 h-4 text-blue-400"></i>
+          <span>14% Funnel Engine</span>
         </button>
+        <button onclick="openWindow('benchmark'); toggleStartMenu();" class="p-2 rounded-lg hover:bg-slate-800/80 flex items-center gap-2 text-left text-slate-200 transition">
+          <i data-lucide="mic" class="w-4 h-4 text-emerald-400"></i>
+          <span>Hinglish Lab</span>
+        </button>
+        <button onclick="openWindow('dashboard'); toggleStartMenu();" class="p-2 rounded-lg hover:bg-slate-800/80 flex items-center gap-2 text-left text-slate-200 transition">
+          <i data-lucide="pie-chart" class="w-4 h-4 text-indigo-400"></i>
+          <span>Retention Cohorts</span>
+        </button>
+        <button onclick="openWindow('grant'); toggleStartMenu();" class="p-2 rounded-lg hover:bg-slate-800/80 flex items-center gap-2 text-left text-slate-200 transition">
+          <i data-lucide="dollar-sign" class="w-4 h-4 text-amber-400"></i>
+          <span>$3,000 Field Rig</span>
+        </button>
+        <button onclick="openWindow('studio'); toggleStartMenu();" class="p-2 rounded-lg hover:bg-slate-800/80 flex items-center gap-2 text-left text-slate-200 transition">
+          <i data-lucide="mic-vocal" class="w-4 h-4 text-rose-400"></i>
+          <span>Live Canto Studio</span>
+        </button>
+        <button onclick="openWindow('terminal'); toggleStartMenu();" class="p-2 rounded-lg hover:bg-slate-800/80 flex items-center gap-2 text-left text-slate-200 transition">
+          <i data-lucide="terminal" class="w-4 h-4 text-emerald-400"></i>
+          <span>Wispr CLI</span>
+        </button>
+        <button onclick="openWindow('audio'); toggleStartMenu();" class="p-2 rounded-lg hover:bg-slate-800/80 flex items-center gap-2 text-left text-slate-200 transition">
+          <i data-lucide="headphones" class="w-4 h-4 text-purple-400"></i>
+          <span>Bangalore Noise</span>
+        </button>
+        <button onclick="openWindow('sweeper'); toggleStartMenu();" class="p-2 rounded-lg hover:bg-slate-800/80 flex items-center gap-2 text-left text-slate-200 transition">
+          <i data-lucide="gamepad-2" class="w-4 h-4 text-yellow-400"></i>
+          <span>Growth Sweeper</span>
+        </button>
+      </div>
 
-        <div class="text-right hidden md:block">
-          <div class="text-xs font-semibold text-slate-200">Voice-In / UI-Out X-Ray</div>
-          <div class="text-[10px] text-slate-400">Reveal raw speech vs compiled UI</div>
+      <!-- Bottom Quick Links & Actions -->
+      <div class="p-2.5 bg-slate-950/70 flex items-center justify-between text-[11px] text-slate-400">
+        <div class="flex items-center gap-2">
+          <a href="https://github.com/vikassharma270907-alt/wisprflow-india-challenge" target="_blank" class="hover:text-white flex items-center gap-1" rel="noreferrer">
+            <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub
+          </a>
+          <span>•</span>
+          <a href="https://flowstate-india.vercel.app" target="_blank" class="hover:text-white flex items-center gap-1" rel="noreferrer">
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Vercel
+          </a>
         </div>
-        <button id="xrayToggle" onclick="toggleXRay()" class="relative inline-flex h-8 w-14 items-center rounded-full bg-slate-800 border border-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-slate-900">
-          <span id="xrayKnob" class="inline-block h-6 w-6 transform rounded-full bg-slate-400 transition-transform translate-x-1 shadow-md"></span>
+        <button onclick="simulateReboot()" class="px-2 py-1 rounded bg-rose-950/60 text-rose-400 hover:bg-rose-900 border border-rose-500/30 flex items-center gap-1 transition">
+          <i data-lucide="power" class="w-3.5 h-3.5"></i> Reboot
         </button>
       </div>
     </div>
 
-    <!-- SUB-NAV TABS -->
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex overflow-x-auto space-x-1 border-t border-slate-800/80 py-2 scrollbar-none" aria-label="Tabs">
-      <button onclick="switchTab('funnel')" id="tab-funnel" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-blue-600 text-white flex items-center gap-2 whitespace-nowrap transition-all">
-        <i data-lucide="trending-up" class="w-4 h-4"></i>
-        1. Fix the 14% → 2% Gap
-      </button>
-      <button onclick="switchTab('benchmark')" id="tab-benchmark" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
-        <i data-lucide="mic" class="w-4 h-4"></i>
-        2. Honest Hinglish Test (Flow vs Gboard)
-      </button>
-      <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
-        <i data-lucide="pie-chart" class="w-4 h-4"></i>
-        3. Funnel & Retention Dashboard
-      </button>
-      <button onclick="switchTab('grant')" id="tab-grant" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
-        <i data-lucide="dollar-sign" class="w-4 h-4"></i>
-        4. $3,000 Bangalore Field Rig
-      </button>
-      <button onclick="switchTab('operator')" id="tab-operator" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
-        <i data-lucide="user-check" class="w-4 h-4"></i>
-        5. The Operator & Chances Taken
-      </button>
-      <button onclick="switchTab('studio')" id="tab-studio" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-emerald-400 hover:text-emerald-300 hover:bg-emerald-950/40 border border-emerald-500/30 flex items-center gap-2 whitespace-nowrap transition-all">
-        <i data-lucide="mic-vocal" class="w-4 h-4 text-emerald-400 animate-pulse"></i>
-        6. Live Voice Dictation Studio
-      </button>
-    </nav>
-  </header>
-
-  <!-- MAIN BODY CONTAINER -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
-
-    <!-- TAB 1: FIX THE 14% -> 2% CONVERSION SIMULATOR -->
-    <div id="content-funnel" class="tab-content space-y-6">
+    <!-- BOTTOM TASKBAR -->
+    <footer id="desktop-taskbar" class="h-11 bg-slate-900/95 border-t border-slate-800/80 backdrop-blur-md px-3 flex items-center justify-between z-40 select-none">
       
-      <!-- X-RAY OVERLAY CARD -->
+      <!-- LEFT: START BUTTON & QUICK LAUNCH -->
+      <div class="flex items-center gap-2">
+        <button id="btn-start" onclick="toggleStartMenu()" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95 transition-all">
+          <span class="w-4 h-4 rounded bg-white text-blue-600 flex items-center justify-center font-black text-[10px]">W</span>
+          <span>Start</span>
+        </button>
+
+        <!-- Divider -->
+        <div class="h-6 w-px bg-slate-800 mx-1"></div>
+
+        <!-- ACTIVE WINDOW TASKBAR TABS CONTAINER -->
+        <div id="taskbar-tabs" class="flex items-center gap-1.5 overflow-x-auto max-w-xl scrollbar-none py-1">
+          <!-- Dynamic taskbar tabs inserted here -->
+        </div>
+      </div>
+
+      <!-- RIGHT: SYSTEM TRAY -->
+      <div class="flex items-center gap-2 text-xs">
+        <button onclick="minimizeAllWindows()" title="Show Desktop" class="w-2.5 h-7 hover:bg-slate-700/50 rounded-sm border-l border-slate-700/80"></button>
+      </div>
+
+    </footer>
+
+  </div>
+
+
+  <!-- ======================================================== -->
+  <!-- 2. EXECUTIVE COCKPIT VIEW WORKSPACE                      -->
+  <!-- ======================================================== -->
+  <div id="workspace-executive" class="min-h-screen flex flex-col bg-slate-950 text-slate-100 z-10 overflow-y-auto">
+    
+    <!-- TOP ANNOUNCEMENT BANNER -->
+    <aside aria-label="Announcement" class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 border-b border-blue-500/30 px-3 sm:px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <span class="inline-flex items-center px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30">
+          SUBMISSION
+        </span>
+        <span class="text-slate-300 text-[11px] sm:text-xs">Wispr Flow India Growth Challenge</span>
+      </div>
+      <div class="flex items-center gap-2 sm:gap-4 text-slate-300 text-[11px] sm:text-xs ml-auto">
+        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> <strong>8,420 Words</strong></span>
+        <span class="hidden md:inline text-slate-500">|</span>
+        <span class="hidden lg:inline">Built via <strong>Emergent + Wispr Flow</strong></span>
+        <button onclick="setMode('desktop')" class="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white font-semibold text-[11px] shadow-sm flex items-center gap-1 transition active:scale-95">
+          <i data-lucide="monitor" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Switch to </span>FlowOS Desktop
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN EXECUTIVE HEADER -->
+    <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 py-2 sm:py-3">
+      <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-black text-sm sm:text-xl shadow-lg shadow-blue-500/25 flex-shrink-0">
+            W
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5 sm:gap-2">
+              <h1 class="font-bold text-sm sm:text-lg text-white tracking-tight">FlowState <span class="text-blue-400">India</span></h1>
+              <span class="text-[9px] sm:text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">v2.4 Executive</span>
+            </div>
+            <p class="text-[11px] text-slate-400 hidden sm:block">Proof of Work // Growth Operator & Acquisition Engine</p>
+          </div>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+          <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 hover:text-white flex items-center gap-1.5 transition font-mono" title="View GitHub Repositories">
+            <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span class="hidden md:inline">GitHub</span>
+          </a>
+
+          <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 hover:text-white flex items-center gap-1.5 transition font-mono" title="View LinkedIn Profile">
+            <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            <span class="hidden md:inline">LinkedIn</span>
+          </a>
+
+          <button onclick="openApiModal()" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs text-slate-300 hover:text-white flex items-center gap-1.5 transition">
+            <i data-lucide="key" class="w-3.5 h-3.5 text-amber-400"></i>
+            <span id="apiKeyStatusLabel" class="hidden sm:inline">API</span>
+          </button>
+
+          <button id="xrayToggle" onclick="toggleXRay()" title="Toggle Voice-In / UI-Out Prompts" class="relative inline-flex h-7 w-12 items-center rounded-full bg-slate-800 border border-slate-700 transition-colors focus:outline-none">
+            <span id="xrayKnob" class="inline-block h-5 w-5 transform rounded-full bg-slate-400 transition-transform translate-x-1 shadow-md"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- SUB-NAV TABS -->
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex overflow-x-auto space-x-1 border-t border-slate-800/80 py-2 scrollbar-none" aria-label="Tabs">
+        <button onclick="switchTab('funnel')" id="tab-funnel" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-blue-600 text-white flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="trending-up" class="w-4 h-4"></i>
+          1. Fix the 14% → 2% Gap
+        </button>
+        <button onclick="switchTab('benchmark')" id="tab-benchmark" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="mic" class="w-4 h-4"></i>
+          2. Honest Hinglish Test (Flow vs Gboard)
+        </button>
+        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="pie-chart" class="w-4 h-4"></i>
+          3. Funnel & Retention Dashboard
+        </button>
+        <button onclick="switchTab('grant')" id="tab-grant" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="dollar-sign" class="w-4 h-4"></i>
+          4. $3,000 Bangalore Field Rig
+        </button>
+        <button onclick="switchTab('operator')" id="tab-operator" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="user-check" class="w-4 h-4"></i>
+          5. The Operator & Chances Taken
+        </button>
+        <button onclick="switchTab('studio')" id="tab-studio" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-emerald-400 hover:text-emerald-300 hover:bg-emerald-950/40 border border-emerald-500/30 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="mic-vocal" class="w-4 h-4 text-emerald-400 animate-pulse"></i>
+          6. Live Voice Dictation Studio
+        </button>
+        <button onclick="switchTab('audio')" id="tab-audio" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-purple-400 hover:text-purple-300 hover:bg-purple-950/40 border border-purple-500/30 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="headphones" class="w-4 h-4 text-purple-400"></i>
+          7. Bangalore Acoustic Lab
+        </button>
+        <button onclick="switchTab('terminal')" id="tab-terminal" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="terminal" class="w-4 h-4 text-slate-400"></i>
+          8. Wispr CLI Console
+        </button>
+        <button onclick="switchTab('playbook')" id="tab-playbook" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="file-text" class="w-4 h-4 text-slate-400"></i>
+          9. Master Playbook
+        </button>
+      <button onclick="switchTab('projects')" id="tab-projects" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-purple-300 hover:text-purple-200 hover:bg-purple-950/40 border border-purple-500/30 flex items-center gap-2 whitespace-nowrap transition-all">
+        <i data-lucide="folder-git-2" class="w-4 h-4 text-purple-400"></i>
+        7. Past Work & GitHub (Judges)
+      </button>
+      </nav>
+    </header>
+
+    <!-- EXECUTIVE MAIN CONTAINER -->
+    <main id="exec-content-area" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+      <!-- Tabs will render here when in executive mode -->
+      <div id="content-funnel" class="tab-content space-y-6"><!-- X-RAY OVERLAY CARD -->
       <div class="xray-badge bg-gradient-to-r from-blue-950 to-indigo-950 border-2 border-dashed border-blue-500 rounded-xl p-4 text-xs font-mono mb-4 text-blue-200">
         <div class="font-bold text-blue-400 flex items-center gap-2 mb-1">
           <i data-lucide="sparkles" class="w-4 h-4"></i>
@@ -200,7 +692,21 @@
 
           <!-- DYNAMIC SIMULATION RESULTS -->
           <div class="lg:col-span-2 flex flex-col justify-between space-y-6">
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+              <div class="bg-slate-950/80 border border-cyan-500/40 p-4 rounded-xl flex items-center justify-between shadow-lg shadow-cyan-500/5">
+                <div>
+                  <span class="text-[10px] text-cyan-400 font-mono font-bold block mb-1">CONVERSION GAUGE</span>
+                  <div id="gaugeRateText" class="text-2xl font-black text-cyan-400 font-mono">5.8%</div>
+                  <span class="text-[10px] text-slate-400 font-mono">Target: 6.0%</span>
+                </div>
+                <div class="relative w-14 h-14 flex items-center justify-center">
+                  <svg class="w-14 h-14 transform -rotate-90">
+                    <circle cx="28" cy="28" r="22" stroke="#1e293b" stroke-width="4" fill="none"></circle>
+                    <circle id="gaugeRing" cx="28" cy="28" r="22" stroke="#06b6d4" stroke-width="4" stroke-dasharray="138.2" stroke-dashoffset="58" stroke-linecap="round" fill="none" class="transition-all duration-500"></circle>
+                  </svg>
+                  <span id="gaugePercentText" class="absolute text-[10px] font-mono font-bold text-slate-200">58%</span>
+                </div>
+              </div>
               <div class="bg-slate-950/80 border border-slate-800 p-5 rounded-xl">
                 <span class="text-xs text-slate-400 font-semibold block mb-1">Baseline Conversion</span>
                 <div class="text-3xl font-black text-slate-300 font-mono">2.1%</div>
@@ -257,13 +763,8 @@
           </div>
 
         </div>
-      </div>
-    </div>
-
-    <!-- TAB 2: HONEST HINGLISH BENCHMARK (FLOW VS GBOARD) -->
-    <div id="content-benchmark" class="tab-content hidden space-y-6">
-      
-      <!-- X-RAY OVERLAY CARD -->
+      </div></div>
+      <div id="content-benchmark" class="tab-content hidden space-y-6"><!-- X-RAY OVERLAY CARD -->
       <div class="xray-badge bg-gradient-to-r from-blue-950 to-indigo-950 border-2 border-dashed border-blue-500 rounded-xl p-4 text-xs font-mono mb-4 text-blue-200">
         <div class="font-bold text-blue-400 flex items-center gap-2 mb-1">
           <i data-lucide="sparkles" class="w-4 h-4"></i>
@@ -301,14 +802,20 @@
           </div>
         </div>
 
+                <!-- MOBILE SCROLL HINT -->
+        <div class="sm:hidden flex items-center justify-between text-[11px] font-mono text-cyan-400 mb-2 px-1">
+          <span>⇄ Swipe table horizontally</span>
+          <span class="text-slate-500">6 Test Cases</span>
+        </div>
         <!-- BENCHMARK TABLE -->
         <div class="overflow-x-auto rounded-xl border border-slate-800">
-          <table class="w-full text-left text-xs">
+          <table class="w-full min-w-[650px] text-left text-xs">
             <thead class="bg-slate-950 text-slate-300 font-mono uppercase text-[11px] border-b border-slate-800">
               <tr>
                 <th class="p-3.5">Category</th>
                 <th class="p-3.5">Spoken Ground Truth (What Was Said)</th>
                 <th class="p-3.5 text-blue-400">Wispr Flow (Canto) Output</th>
+                <th class="p-3.5 text-center font-mono text-cyan-400">Audio Test</th>
                 <th class="p-3.5 text-slate-400">Gboard (Gemini) Output</th>
                 <th class="p-3.5">Result</th>
               </tr>
@@ -319,6 +826,7 @@
                 <td class="p-3.5 font-sans font-medium text-slate-400">Tech Workplace</td>
                 <td class="p-3.5 text-slate-200">"Bhai PR merge karke staging pe deploy kar de, prod break ho gaya"</td>
                 <td class="p-3.5 text-blue-300">"Bhai PR merge karke staging pe deploy kar de, prod break ho gaya."</td>
+                <td class="p-3.5 text-center"><button onclick="playBenchmarkAudio('Bhai PR merge karke staging pe deploy kar de, prod break ho gaya', 'tech')" class="px-2.5 py-1 rounded-lg bg-blue-950 hover:bg-blue-900 text-cyan-300 border border-cyan-500/30 text-[10px] font-mono font-semibold inline-flex items-center gap-1.5 transition shadow-sm hover:scale-105 active:scale-95"><i data-lucide="volume-2" class="w-3.5 h-3.5 text-cyan-400"></i> Hear Sample</button></td>
                 <td class="p-3.5 text-slate-400">"bhai pi are match karke staging per deploy karde road break ho gaya"</td>
                 <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">FLOW WINS</span></td>
               </tr>
@@ -327,6 +835,7 @@
                 <td class="p-3.5 font-sans font-medium text-slate-400">Mid-Course Edit</td>
                 <td class="p-3.5 text-slate-200">"Let's meet at Indiranagar, actually Indiranagar nahi Koramangala chalte hai"</td>
                 <td class="p-3.5 text-blue-300">"Koramangala chalte hai." <span class="text-[10px] text-blue-400 font-sans block">(Auto-removed canceled intent)</span></td>
+                <td class="p-3.5 text-center"><button onclick="playBenchmarkAudio('Let us meet at Indiranagar, actually Indiranagar nahi Koramangala chalte hai', 'course')" class="px-2.5 py-1 rounded-lg bg-blue-950 hover:bg-blue-900 text-cyan-300 border border-cyan-500/30 text-[10px] font-mono font-semibold inline-flex items-center gap-1.5 transition shadow-sm hover:scale-105 active:scale-95"><i data-lucide="volume-2" class="w-3.5 h-3.5 text-cyan-400"></i> Hear Sample</button></td>
                 <td class="p-3.5 text-slate-400">"let's meet at Indira Nagar actually Indira Nagar nahin Koramangala chalte hain"</td>
                 <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">FLOW WINS</span></td>
               </tr>
@@ -335,6 +844,7 @@
                 <td class="p-3.5 font-sans font-medium text-slate-400">High Noise (Traffic)</td>
                 <td class="p-3.5 text-slate-200">"Auto me hu, bohot shor hai, 10 minute me call karta hu"</td>
                 <td class="p-3.5 text-blue-300">"Auto me hu, bohot shor hai, 10 minute me call karta hu."</td>
+                <td class="p-3.5 text-center"><button onclick="playBenchmarkAudio('Auto me hu, bohot shor hai, 10 minute me call karta hu', 'traffic')" class="px-2.5 py-1 rounded-lg bg-rose-950/80 hover:bg-rose-900 text-rose-300 border border-rose-500/30 text-[10px] font-mono font-semibold inline-flex items-center gap-1.5 transition shadow-sm hover:scale-105 active:scale-95"><i data-lucide="volume-2" class="w-3.5 h-3.5 text-rose-400"></i> Hear Noise</button></td>
                 <td class="p-3.5 text-slate-400">"auto mein hun bahut [inaudible horn] 10 minute call"</td>
                 <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">FLOW WINS</span></td>
               </tr>
@@ -343,6 +853,7 @@
                 <td class="p-3.5 font-sans font-medium text-slate-400">Sub-Audible Whisper</td>
                 <td class="p-3.5 text-slate-200">"Arey sun, Tanay ko ping mat kar abhi, meeting me hai"</td>
                 <td class="p-3.5 text-blue-300">"Arey sun, Tanay ko ping mat kar abhi, meeting me hai."</td>
+                <td class="p-3.5 text-center"><button onclick="playBenchmarkAudio('Arey sun, Tanay ko ping mat kar abhi, meeting me hai', 'whisper')" class="px-2.5 py-1 rounded-lg bg-indigo-950/80 hover:bg-indigo-900 text-indigo-300 border border-indigo-500/30 text-[10px] font-mono font-semibold inline-flex items-center gap-1.5 transition shadow-sm hover:scale-105 active:scale-95"><i data-lucide="volume-2" class="w-3.5 h-3.5 text-indigo-400"></i> Hear Whisper</button></td>
                 <td class="p-3.5 text-slate-400">"arey son tanay ping" <span class="text-[10px] text-rose-400 font-sans block">(Cut off due to whisper silence)</span></td>
                 <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">FLOW WINS</span></td>
               </tr>
@@ -351,6 +862,7 @@
                 <td class="p-3.5 font-sans font-medium text-rose-400">Regional Slang (Stumble)</td>
                 <td class="p-3.5 text-slate-200">"Chindi giri mat kar yaar, seedha UPI kar de"</td>
                 <td class="p-3.5 text-rose-300">"Chindi Giri mat kar yaar, seedha UPI kar de." <span class="text-[10px] text-rose-400 font-sans block">(Unnecessary title capitalization on 'Giri')</span></td>
+                <td class="p-3.5 text-center"><button onclick="playBenchmarkAudio('Chindi giri mat kar yaar, seedha UPI kar de', 'slang')" class="px-2.5 py-1 rounded-lg bg-amber-950/80 hover:bg-amber-900 text-amber-300 border border-amber-500/30 text-[10px] font-mono font-semibold inline-flex items-center gap-1.5 transition shadow-sm hover:scale-105 active:scale-95"><i data-lucide="volume-2" class="w-3.5 h-3.5 text-amber-400"></i> Hear Sample</button></td>
                 <td class="p-3.5 text-slate-400">"chindi giri mat kar yaar seedha upi kar de"</td>
                 <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 font-bold">FLOW STUMBLE</span></td>
               </tr>
@@ -359,6 +871,7 @@
                 <td class="p-3.5 font-sans font-medium text-rose-400">Kannada-English Mix</td>
                 <td class="p-3.5 text-slate-200">"Macha swalpa adjust maadi, 2 minutes me pauch raha hu"</td>
                 <td class="p-3.5 text-rose-300">"Matcha swalpa adjust madi, 2 minutes me pauch raha hu." <span class="text-[10px] text-rose-400 font-sans block">(Rendered 'Macha' as 'Matcha' tea)</span></td>
+                <td class="p-3.5 text-center"><button onclick="playBenchmarkAudio('Macha swalpa adjust maadi, 2 minutes me pauch raha hu', 'kannada')" class="px-2.5 py-1 rounded-lg bg-purple-950/80 hover:bg-purple-900 text-purple-300 border border-purple-500/30 text-[10px] font-mono font-semibold inline-flex items-center gap-1.5 transition shadow-sm hover:scale-105 active:scale-95"><i data-lucide="volume-2" class="w-3.5 h-3.5 text-purple-400"></i> Hear Sample</button></td>
                 <td class="p-3.5 text-slate-400">"macha swalpa adjust maadi 2 minutes me pahuch raha hoon"</td>
                 <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 font-bold">FLOW STUMBLE</span></td>
               </tr>
@@ -377,13 +890,8 @@
           </p>
         </div>
 
-      </div>
-    </div>
-
-    <!-- TAB 3: FUNNEL & RETENTION DASHBOARD -->
-    <div id="content-dashboard" class="tab-content hidden space-y-6">
-      
-      <!-- X-RAY OVERLAY CARD -->
+      </div></div>
+      <div id="content-dashboard" class="tab-content hidden space-y-6"><!-- X-RAY OVERLAY CARD -->
       <div class="xray-badge bg-gradient-to-r from-blue-950 to-indigo-950 border-2 border-dashed border-blue-500 rounded-xl p-4 text-xs font-mono mb-4 text-blue-200">
         <div class="font-bold text-blue-400 flex items-center gap-2 mb-1">
           <i data-lucide="sparkles" class="w-4 h-4"></i>
@@ -476,13 +984,8 @@
           </div>
         </div>
 
-      </div>
-    </div>
-
-    <!-- TAB 4: $3,000 BANGALORE FIELD RIG -->
-    <div id="content-grant" class="tab-content hidden space-y-6">
-      
-      <!-- X-RAY OVERLAY CARD -->
+      </div></div>
+      <div id="content-grant" class="tab-content hidden space-y-6"><!-- X-RAY OVERLAY CARD -->
       <div class="xray-badge bg-gradient-to-r from-blue-950 to-indigo-950 border-2 border-dashed border-blue-500 rounded-xl p-4 text-xs font-mono mb-4 text-blue-200">
         <div class="font-bold text-blue-400 flex items-center gap-2 mb-1">
           <i data-lucide="sparkles" class="w-4 h-4"></i>
@@ -582,85 +1085,470 @@
           </div>
 
         </div>
-      </div>
-    </div>
-
-    <!-- TAB 5: THE OPERATOR & CHANCES TAKEN -->
-    <div id="content-operator" class="tab-content hidden space-y-6">
-      
-      <!-- X-RAY OVERLAY CARD -->
-      <div class="xray-badge bg-gradient-to-r from-blue-950 to-indigo-950 border-2 border-dashed border-blue-500 rounded-xl p-4 text-xs font-mono mb-4 text-blue-200">
-        <div class="font-bold text-blue-400 flex items-center gap-2 mb-1">
-          <i data-lucide="sparkles" class="w-4 h-4"></i>
-          X-RAY // RAW VOICE PROMPT DICTATED INTO WISPR FLOW → EMERGENT:
-        </div>
-        <p class="italic text-slate-300">"Build an interactive operator timeline showing the chances I took and the mistakes I learned from. Model them after Wispr's own Scratchpad-to-Notetaker pivot: show the initial bet, the exact moment the data proved me wrong, and how I course-corrected. Include a verified telemetry footer proving heavy voice dictation."</p>
-      </div>
-
-      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 xray-glow">
-        <div class="mb-8">
-          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 mb-2">
-            Extreme Ownership // Work Over Credentials
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Chances Taken & Broken Assumptions
-          </h2>
-          <p class="text-slate-400 mt-1 text-sm">
-            Three real-world operational bets, the telemetry that invalidated them, and the corrective pivots.
-          </p>
+      </div></div>
+            <div id="content-operator" class="tab-content hidden space-y-6">
+        <!-- X-RAY OVERLAY CARD -->
+        <div class="xray-badge bg-gradient-to-r from-blue-950 to-indigo-950 border-2 border-dashed border-blue-500 rounded-xl p-4 text-xs font-mono mb-4 text-blue-200">
+          <div class="font-bold text-blue-400 flex items-center gap-2 mb-1">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            X-RAY // RAW VOICE PROMPT DICTATED INTO WISPR FLOW → EMERGENT:
+          </div>
+          <p class="italic text-slate-300">"Build an interactive operator timeline showing the chances I took and the mistakes I learned from. Model them after Wispr's own Scratchpad-to-Notetaker pivot: show the initial bet, the exact moment the data proved me wrong, and how I course-corrected. Include a verified telemetry footer proving heavy voice dictation."</p>
         </div>
 
-        <div class="space-y-6">
-          
-          <!-- Bet 1 -->
-          <div class="bg-slate-950 p-6 rounded-xl border border-slate-800">
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold font-mono text-blue-400">BET 01 // ACQUISITION</span>
-              <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Pivot Succeeded</span>
+        <!-- MAIN PROFILE HERO CARD -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 xray-glow shadow-2xl relative overflow-hidden">
+          <div class="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <!-- Hero Header -->
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-800 relative z-10">
+            <div class="flex items-start sm:items-center gap-4">
+              <div class="relative">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center text-white text-2xl sm:text-3xl font-black font-mono shadow-xl shadow-blue-500/25 ring-2 ring-cyan-400/40">
+                  VS
+                </div>
+                <span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-slate-900 flex items-center justify-center" title="Available Immediately">
+                  <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+                </span>
+              </div>
+              <div>
+                <div class="flex flex-wrap items-center gap-2 mb-1">
+                  <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Vikas Sharma</h2>
+                  <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    Available Immediately
+                  </span>
+                  <span class="px-2.5 py-0.5 rounded text-[11px] font-mono font-semibold bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                    Bangalore, India
+                  </span>
+                </div>
+                <p class="text-sm text-cyan-400 font-medium">Software Engineer & AI Systems Developer · Growth & Product Operator</p>
+                <div class="flex flex-wrap items-center gap-3 mt-1.5 text-xs text-slate-400 font-mono">
+                  <span>✉️ <a href="mailto:vikas.sharma270907@gmail.com" class="text-slate-300 hover:text-white underline">vikas.sharma270907@gmail.com</a></span>
+                  <span>•</span>
+                  <span>📍 Bangalore Urban Acoustics #01</span>
+                  <span>•</span>
+                  <span class="text-emerald-400 font-bold">✓ 8,420 Spoken Words Verified</span>
+                </div>
+              </div>
             </div>
-            <h3 class="font-bold text-lg text-white mb-2">Betting on Tier-1 Tech Influencers vs Unpolished Micro-Builders</h3>
-            <p class="text-xs text-slate-300 leading-relaxed mb-3">
-              <strong>The Hypothesis:</strong> Partnering with top Indian tech creators (100k+ followers) would drive high-intent sign-ups for a developer tool.
-              <br><strong>The Scratchpad Failure:</strong> CPM was high ($4.20), but D7 retention was under 8%. Viewers watched for entertainment, not workflow integration.
-              <br><strong>The Flow Pivot:</strong> Reallocated 100% of the budget to 30 micro-developers (1k–5k followers) who recorded unedited screen recordings of themselves solving actual bugs. CPA plunged by 74%, and D30 retention doubled.
-            </p>
-          </div>
 
-          <!-- Bet 2 -->
-          <div class="bg-slate-950 p-6 rounded-xl border border-slate-800">
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold font-mono text-indigo-400">BET 02 // MONETIZATION</span>
-              <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Metric-Backed Pivot</span>
+            <!-- Social & Profile Links -->
+            <div class="flex flex-wrap items-center gap-2">
+              <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs flex items-center gap-2 transition shadow-md shadow-sky-600/20 hover:scale-105 active:scale-95" title="View LinkedIn Profile">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-mono text-xs flex items-center gap-2 transition shadow-md hover:scale-105 active:scale-95" title="View GitHub Repositories">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>GitHub</span>
+              </a>
+              <a href="https://beyondvikas-portfolio.vercel.app" target="_blank" rel="noreferrer" class="px-3.5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs flex items-center gap-1.5 transition shadow-md shadow-purple-600/20 hover:scale-105 active:scale-95" title="View Motion Portfolio">
+                <i data-lucide="globe" class="w-4 h-4"></i>
+                <span>Portfolio</span>
+              </a>
+              <a href="https://x.com/VikasSharm90791" target="_blank" rel="noreferrer" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition shadow-md hover:scale-105 active:scale-95" title="View X (Twitter)">
+                <span class="font-bold text-xs">𝕏</span>
+              </a>
             </div>
-            <h3 class="font-bold text-lg text-white mb-2">Assuming Lowering the Monthly Price Would Fix Indian Churn</h3>
-            <p class="text-xs text-slate-300 leading-relaxed mb-3">
-              <strong>The Hypothesis:</strong> Indian churn was driven by price sensitivity, so offering a 40% discount on monthly billing would boost renewals.
-              <br><strong>The Scratchpad Failure:</strong> Monthly churn remained at 28%. Users weren't leaving because of the price; they forgot to use the desktop hotkey after Day 3.
-              <br><strong>The Flow Pivot:</strong> Switched strategy from price cuts to <strong>in-app desktop habit triggers</strong> (custom shortcut onboarding and automated morning Slack summaries). Annual plan conversions increased by 42%.
-            </p>
+          </div>
+
+          <!-- Quick Metric Highlights -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-6 border-b border-slate-800 relative z-10">
+            <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800/80">
+              <span class="text-[11px] font-mono text-slate-400 block mb-0.5">PUBLIC REPOSITORIES</span>
+              <div class="text-xl font-black text-cyan-400 font-mono">11 Repos</div>
+              <span class="text-[10px] text-slate-500 font-mono">8 Global Hackathon Builds</span>
+            </div>
+            <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800/80">
+              <span class="text-[11px] font-mono text-slate-400 block mb-0.5">LIVE CLOUD DEPLOYS</span>
+              <div class="text-xl font-black text-emerald-400 font-mono">6 Production URLs</div>
+              <span class="text-[10px] text-slate-500 font-mono">Zero login walls · Vercel/Render</span>
+            </div>
+            <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800/80">
+              <span class="text-[11px] font-mono text-slate-400 block mb-0.5">WISPR SPEECH TELEMETRY</span>
+              <div class="text-xl font-black text-indigo-400 font-mono">8,420 Words</div>
+              <span class="text-[10px] text-slate-500 font-mono">Verified Canto speech footprint</span>
+            </div>
+            <div class="bg-slate-950/80 p-3.5 rounded-xl border border-slate-800/80">
+              <span class="text-[11px] font-mono text-slate-400 block mb-0.5">END-TO-END LATENCY</span>
+              <div class="text-xl font-black text-purple-400 font-mono">210ms Latency</div>
+              <span class="text-[10px] text-slate-500 font-mono">Optimized token pipeline</span>
+            </div>
+          </div>
+
+          <!-- SECTION 1: CURRENT INTERNSHIP & PROFESSIONAL EXPERIENCE -->
+          <div class="py-6 border-b border-slate-800 relative z-10">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="px-2.5 py-1 rounded-lg bg-blue-500/20 text-blue-300 border border-blue-500/30 font-mono text-xs font-bold flex items-center gap-1.5">
+                <i data-lucide="briefcase" class="w-3.5 h-3.5 text-blue-400"></i>
+                PROFESSIONAL EXPERIENCE & INTERNSHIP
+              </span>
+              <span class="text-xs text-slate-400 font-mono">// Hands-On Systems Development</span>
+            </div>
+
+            <div class="bg-slate-950/90 rounded-xl p-5 border border-cyan-500/30 shadow-lg shadow-cyan-500/5 space-y-4">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-800">
+                <div>
+                  <h3 class="text-base font-bold text-white flex items-center gap-2">
+                    Full-Stack & AI Systems Engineering Intern
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-300 font-semibold">Active Role (2026)</span>
+                  </h3>
+                  <p class="text-xs text-cyan-400 font-mono mt-0.5">Autonomous Agent Infrastructure · Model Context Protocol (MCP) · Policy Guardrails · Web Engineering</p>
+                </div>
+                <div class="text-xs text-slate-400 font-mono text-left sm:text-right">
+                  <span class="inline-block px-2.5 py-1 rounded bg-slate-900 border border-slate-700">Bangalore, India</span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-300">
+                <div class="space-y-2.5">
+                  <div class="flex items-start gap-2.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 flex-shrink-0"></span>
+                    <div>
+                      <strong class="text-slate-100 font-semibold">Model Context Protocol (MCP) & Agent Tooling:</strong>
+                      <p class="text-slate-400 mt-0.5 leading-relaxed">Built native MCP servers and JSON-RPC 2.0 SSE endpoints powering autonomous agent tool execution, allowing Claude Code, Cursor, and custom agentic harnesses to inspect files, query databases, and enforce policy guardrails.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-2.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-1.5 flex-shrink-0"></span>
+                    <div>
+                      <strong class="text-slate-100 font-semibold">Deterministic Policy Enforcement:</strong>
+                      <p class="text-slate-400 mt-0.5 leading-relaxed">Architected human-in-the-loop approval gates and cryptographic policy proxies (e.g. ArmorIQ Flow State), preventing LLM prompt injection hijacks from unauthorized transaction execution or code merges.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="space-y-2.5">
+                  <div class="flex items-start gap-2.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 flex-shrink-0"></span>
+                    <div>
+                      <strong class="text-slate-100 font-semibold">Real-Time Voice AI Integration:</strong>
+                      <p class="text-slate-400 mt-0.5 leading-relaxed">Integrated low-latency Web Audio API and Web Speech API interfaces, measuring WER benchmarks across English and Hinglish audio streams against Canto, Apple dictation, and Google Gboard.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-2.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-1.5 flex-shrink-0"></span>
+                    <div>
+                      <strong class="text-slate-100 font-semibold">Production Full-Stack Delivery:</strong>
+                      <p class="text-slate-400 mt-0.5 leading-relaxed">Developed responsive web applications across Next.js 15, TypeScript, Python (FastAPI), Tailwind CSS, and PostgreSQL 16 with zero login friction and automated CI/CD deployments to Vercel and Render.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 2: TECHNICAL ARSENAL & TOOLCHAIN -->
+          <div class="py-6 border-b border-slate-800 relative z-10">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="px-2.5 py-1 rounded-lg bg-purple-500/20 text-purple-300 border border-purple-500/30 font-mono text-xs font-bold flex items-center gap-1.5">
+                <i data-lucide="cpu" class="w-3.5 h-3.5 text-purple-400"></i>
+                TECHNICAL SKILLS & TOOLCHAIN
+              </span>
+              <span class="text-xs text-slate-400 font-mono">// Production-Tested Stack</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <div class="text-cyan-400 font-mono font-bold text-[11px] uppercase mb-2">Frontend & Client</div>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">React 19</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Next.js</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">TypeScript</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Tailwind CSS</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Web Audio API</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Web Speech API</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Canvas 2D</span>
+                </div>
+              </div>
+
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <div class="text-indigo-400 font-mono font-bold text-[11px] uppercase mb-2">Backend & APIs</div>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Node.js</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Python 3.11+</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">FastAPI</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Model Context Protocol</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">JSON-RPC 2.0</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">SSE Streams</span>
+                </div>
+              </div>
+
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <div class="text-emerald-400 font-mono font-bold text-[11px] uppercase mb-2">Data & Storage</div>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">PostgreSQL 16</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Supabase</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Prisma ORM</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Redis</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Drizzle</span>
+                </div>
+              </div>
+
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                <div class="text-amber-400 font-mono font-bold text-[11px] uppercase mb-2">AI, Audio & Cloud</div>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Wispr Canto</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">ElevenLabs</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">WER Evals</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Vercel Edge</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Render</span>
+                  <span class="px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-200 font-mono text-[11px]">Docker / Git</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 3: SHIPPED GITHUB BUILDS & PRODUCTION REPOSITORIES -->
+          <div class="py-6 border-b border-slate-800 relative z-10">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono text-xs font-bold flex items-center gap-1.5">
+                  <i data-lucide="folder-git-2" class="w-3.5 h-3.5 text-emerald-400"></i>
+                  SHIPPED GITHUB BUILDS & PAST WORK
+                </span>
+                <span class="text-xs text-slate-400 font-mono">// 8 Verifiable Projects</span>
+              </div>
+              <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="text-xs text-cyan-400 hover:text-cyan-300 font-mono flex items-center gap-1">
+                View All on GitHub <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs">
+
+              <!-- Project 1: FlowState India -->
+              <div class="bg-slate-950 p-4 rounded-xl border border-blue-500/40 hover:border-blue-400 transition flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-white text-sm">FlowState India (Wispr Flow Challenge)</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-blue-500/20 text-blue-300 font-semibold">Active Build</span>
+                  </div>
+                  <p class="text-slate-400 text-[11px] leading-relaxed mb-3">
+                    Interactive 14% → 2% conversion funnel simulator, Hinglish speech benchmark (Canto vs Gboard), Bangalore acoustic noise lab, and desktop telemetry cockpit.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
+                  <span class="text-[10px] font-mono text-slate-500">Python · Tailwind · Web Audio</span>
+                  <div class="flex items-center gap-2">
+                    <a href="https://flowstate-india.vercel.app" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <span class="text-slate-600">•</span>
+                    <a href="https://github.com/vikassharma270907-alt/wisprflow-india-challenge" target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 2: FlowGuard Treasury -->
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 hover:border-purple-500/50 transition flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-white text-sm">BeyondFlow (FlowGuard Treasury)</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-500/20 text-purple-300 font-semibold">ArmorIQ Hackathon</span>
+                  </div>
+                  <p class="text-slate-400 text-[11px] leading-relaxed mb-3">
+                    Autonomous Voice Treasury with ArmorIQ intent tokens, MCP endpoint, and dual-supervisor cryptographic quorum hold for Airwallex Sandbox payouts.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
+                  <span class="text-[10px] font-mono text-slate-500">Next.js · MCP · ElevenLabs</span>
+                  <div class="flex items-center gap-2">
+                    <a href="https://flowguard-treasury.vercel.app" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <span class="text-slate-600">•</span>
+                    <a href="https://github.com/vikassharma270907-alt/flowguard-treasury" target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 3: RestockPilot -->
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 hover:border-blue-500/50 transition flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-white text-sm">RestockPilot</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/20 text-amber-300 font-semibold">PayPal AI Hackathon</span>
+                  </div>
+                  <p class="text-slate-400 text-[11px] leading-relaxed mb-3">
+                    Autonomous purchasing agent with Channel3 catalog search, NVIDIA NIM MiniMax, and PayPal Orders v2 automated checkout.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
+                  <span class="text-[10px] font-mono text-slate-500">TypeScript · PayPal API · NVIDIA</span>
+                  <div class="flex items-center gap-2">
+                    <a href="https://restockpilot.vercel.app" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <span class="text-slate-600">•</span>
+                    <a href="https://github.com/vikassharma270907-alt/restockpilot" target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 4: Airlock Guardrails -->
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 hover:border-rose-500/50 transition flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-white text-sm">Airlock Guardrails</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-rose-500/20 text-rose-300 font-semibold">GitLab Transcend</span>
+                  </div>
+                  <p class="text-slate-400 text-[11px] leading-relaxed mb-3">
+                    Deterministic CI/CD guardrails with reader/writer agent isolation and verified human approval gates for autonomous coding agents.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
+                  <span class="text-[10px] font-mono text-slate-500">Python · FastAPI · GitLab API</span>
+                  <div class="flex items-center gap-2">
+                    <a href="https://airlock-guardrails.vercel.app" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <span class="text-slate-600">•</span>
+                    <a href="https://github.com/vikassharma270907-alt/airlock-guardrails" target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 5: Swapcast -->
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 hover:border-pink-500/50 transition flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-white text-sm">Swapcast</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-pink-500/20 text-pink-300 font-semibold">Qloo AI Hackathon</span>
+                  </div>
+                  <p class="text-slate-400 text-[11px] leading-relaxed mb-3">
+                    Data-grounded podcast promo-swap engine with two-way Qloo taste matching and automated pitch generation for creator networks.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
+                  <span class="text-[10px] font-mono text-slate-500">TypeScript · Next.js · Qloo API</span>
+                  <div class="flex items-center gap-2">
+                    <a href="https://swapcast-tau.vercel.app" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <span class="text-slate-600">•</span>
+                    <a href="https://github.com/vikassharma270907-alt/swapcast" target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 6: Brightloop -->
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 hover:border-emerald-500/50 transition flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-white text-sm">Brightloop</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-500/20 text-emerald-300 font-semibold">Odoo x FLUX '26</span>
+                  </div>
+                  <p class="text-slate-400 text-[11px] leading-relaxed mb-3">
+                    Full-stack subscription billing & quotation platform over PostgreSQL 16 managing 1,500 customers and 5k subscriptions.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
+                  <span class="text-[10px] font-mono text-slate-500">JavaScript · PostgreSQL 16 · Render</span>
+                  <div class="flex items-center gap-2">
+                    <a href="https://brightloop-do6a.onrender.com" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <span class="text-slate-600">•</span>
+                    <a href="https://github.com/vikassharma270907-alt/odoo-flux-hackathon" target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 7: ChaosForge -->
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 hover:border-violet-500/50 transition flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-white text-sm">ChaosForge</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-violet-500/20 text-violet-300 font-semibold">TwitchCon Hackathon</span>
+                  </div>
+                  <p class="text-slate-400 text-[11px] leading-relaxed mb-3">
+                    Real-time Twitch EventSub chat modding engine with zero-latency OBS Browser Source canvas arena and interactive spectator physics.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
+                  <span class="text-[10px] font-mono text-slate-500">Python · Twitch EventSub · Canvas</span>
+                  <div class="flex items-center gap-2">
+                    <a href="https://chaosforge-3ky4.onrender.com" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <span class="text-slate-600">•</span>
+                    <a href="https://github.com/vikassharma270907-alt/ChaosForge-deployment-and-compliance-check." target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Project 8: VerifyFlow / VerifyNow -->
+              <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 hover:border-teal-500/50 transition flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-white text-sm">VerifyFlow (VerifyNow)</span>
+                    <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-teal-500/20 text-teal-300 font-semibold">Compliance Engine</span>
+                  </div>
+                  <p class="text-slate-400 text-[11px] leading-relaxed mb-3">
+                    Autonomous document verification and credential compliance engine validating uploaded records against regulatory schemas.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
+                  <span class="text-[10px] font-mono text-slate-500">Python · Next.js · Document AI</span>
+                  <div class="flex items-center gap-2">
+                    <a href="https://verifyflow-blond.vercel.app" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <span class="text-slate-600">•</span>
+                    <a href="https://github.com/vikassharma270907-alt/verifynow" target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- SECTION 4: EXTREME OWNERSHIP: CHANCES TAKEN & BROKEN ASSUMPTIONS (WISPR CASE STUDIES) -->
+          <div class="py-6 border-b border-slate-800 relative z-10">
+            <div class="mb-4">
+              <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 mb-1">
+                Extreme Ownership // Growth Mindset
+              </span>
+              <h3 class="text-xl font-extrabold text-white tracking-tight">
+                Chances Taken & Broken Assumptions
+              </h3>
+              <p class="text-slate-400 text-xs">
+                Real operational bets, the telemetry that invalidated them, and the corrective pivots.
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <!-- Bet 1 -->
+              <div class="bg-slate-950 p-5 rounded-xl border border-slate-800">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold font-mono text-blue-400">BET 01 // ACQUISITION</span>
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Pivot Succeeded</span>
+                </div>
+                <h4 class="font-bold text-sm text-white mb-1.5">Betting on Tier-1 Tech Influencers vs Unpolished Micro-Builders</h4>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  <strong>The Hypothesis:</strong> Partnering with top Indian tech creators (100k+ followers) would drive high-intent sign-ups for a developer tool.<br>
+                  <strong>The Scratchpad Failure:</strong> CPM was high ($4.20), but D7 retention was under 8%. Viewers watched for entertainment, not workflow integration.<br>
+                  <strong>The Flow Pivot:</strong> Reallocated 100% of the budget to 30 micro-developers (1k–5k followers) who recorded unedited screen recordings of themselves solving actual bugs. CPA plunged by 74%, and D30 retention doubled.
+                </p>
+              </div>
+
+              <!-- Bet 2 -->
+              <div class="bg-slate-950 p-5 rounded-xl border border-slate-800">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold font-mono text-indigo-400">BET 02 // MONETIZATION</span>
+                  <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Metric-Backed Pivot</span>
+                </div>
+                <h4 class="font-bold text-sm text-white mb-1.5">Assuming Lowering the Monthly Price Would Fix Indian Churn</h4>
+                <p class="text-xs text-slate-300 leading-relaxed">
+                  <strong>The Hypothesis:</strong> Indian churn was driven by price sensitivity, so offering a 40% discount on monthly billing would boost renewals.<br>
+                  <strong>The Scratchpad Failure:</strong> Monthly churn remained at 28%. Users weren't leaving because of the price; they forgot to use the desktop hotkey after Day 3.<br>
+                  <strong>The Flow Pivot:</strong> Switched strategy from price cuts to <strong>in-app desktop habit triggers</strong> (custom shortcut onboarding and automated morning Slack summaries). Annual plan renewals increased by 42%.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECTION 5: VERIFIED TELEMETRY FOOTER -->
+          <div class="pt-6 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-400 relative z-10">
+            <div>
+              <span>Verified Dictation Email: </span>
+              <span class="text-cyan-400 font-semibold underline decoration-cyan-500/40">vikas.sharma270907@gmail.com</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-emerald-400 font-bold">✓ 8,420 Spoken Words Verified</span>
+              <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-blue-400 font-bold">Avg Speed: 162 WPM</span>
+              <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-purple-400 font-bold">Latency: 210ms</span>
+            </div>
           </div>
 
         </div>
-
-        <!-- VERIFIED TELEMETRY FOOTER -->
-        <div class="mt-8 pt-6 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4 text-xs font-mono text-slate-400">
-          <div>
-            <span>Verified Dictation Email: </span>
-            <span class="text-blue-400 font-semibold underline decoration-blue-500/40">applicant.growth@gmail.com</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-emerald-400 font-bold">✓ 8,420 Spoken Words Verified</span>
-            <span class="px-2.5 py-1 rounded bg-slate-950 border border-slate-800 text-blue-400 font-bold">Avg Speed: 162 WPM</span>
-          </div>
-        </div>
-
       </div>
-    </div>
-
-    <!-- TAB 6: LIVE VOICE DICTATION STUDIO (CANTO INTEGRATION) -->
-    <div id="content-studio" class="tab-content hidden space-y-6">
-      
-      <!-- X-RAY OVERLAY CARD -->
+<div id="content-studio" class="tab-content hidden space-y-6"><!-- X-RAY OVERLAY CARD -->
       <div class="xray-badge bg-gradient-to-r from-blue-950 to-indigo-950 border-2 border-dashed border-blue-500 rounded-xl p-4 text-xs font-mono mb-4 text-blue-200">
         <div class="font-bold text-blue-400 flex items-center gap-2 mb-1">
           <i data-lucide="sparkles" class="w-4 h-4"></i>
@@ -793,10 +1681,540 @@
           </div>
 
         </div>
+      </div></div>
+      <div id="content-audio" class="tab-content hidden space-y-6">
+<div class="xray-badge bg-gradient-to-r from-blue-950 to-indigo-950 border-2 border-dashed border-blue-500 rounded-xl p-4 text-xs font-mono mb-4 text-blue-200">
+  <div class="font-bold text-blue-400 flex items-center gap-2 mb-1">
+    <i data-lucide="sparkles" class="w-4 h-4"></i>
+    X-RAY // ACOUSTIC ISOLATION LAB PROMPT:
+  </div>
+  <p class="italic text-slate-300">"Build an interactive sound lab simulating real-world Bangalore ambient acoustic conditions (Namma Metro, Darshini cafe clatter, and Silk Board peak traffic). Provide an A/B switch comparing raw mobile microphone capture against Canto sub-band vocal isolation."</p>
+</div>
+
+<div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 xray-glow">
+  <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+    <div>
+      <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30 mb-2">
+        Acoustic Telemetry // Extreme Environment Testing
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+        Bangalore Street-to-Studio Acoustic Lab
+      </h2>
+      <p class="text-slate-400 mt-1 text-sm">
+        Listen to synthesized ambient noise environments and hear how Canto's real-time filter rejects ambient noise over standard mobile microphones.
+      </p>
+    </div>
+    <div class="flex items-center gap-2 bg-slate-950 px-4 py-2 rounded-xl border border-slate-800">
+      <span class="w-2.5 h-2.5 rounded-full bg-purple-400 animate-pulse"></span>
+      <span class="text-xs font-mono text-purple-300 font-semibold" id="audioLabStatus">Synthesizer Idle</span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+    <!-- Sound 1: Metro -->
+    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="p-2 rounded-lg bg-blue-500/10 text-blue-400"><i data-lucide="train" class="w-5 h-5"></i></span>
+          <span class="font-mono text-xs text-rose-400 font-bold">82 dB SPL</span>
+        </div>
+        <h3 class="font-bold text-white text-sm mb-1">Namma Metro (Peak Hour)</h3>
+        <p class="text-[11px] text-slate-400 leading-relaxed mb-3">
+          Low-frequency track rumble, intermittent station chimes, and dense platform crowd chatter.
+        </p>
       </div>
+      <button onclick="toggleNoise('metro')" id="btn-noise-metro" class="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 font-semibold flex items-center justify-center gap-2 transition">
+        <i data-lucide="play" class="w-3.5 h-3.5"></i> Play Soundscape
+      </button>
     </div>
 
-  </main>
+    <!-- Sound 2: Darshini Cafe -->
+    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="p-2 rounded-lg bg-amber-500/10 text-amber-400"><i data-lucide="coffee" class="w-5 h-5"></i></span>
+          <span class="font-mono text-xs text-amber-400 font-bold">78 dB SPL</span>
+        </div>
+        <h3 class="font-bold text-white text-sm mb-1">Darshini Filter Coffee Machine</h3>
+        <p class="text-[11px] text-slate-400 leading-relaxed mb-3">
+          High-pressure steam boiler hisses, stainless steel tumbler clatter, and rapid Hindi/Kannada counter shouting.
+        </p>
+      </div>
+      <button onclick="toggleNoise('darshini')" id="btn-noise-darshini" class="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 font-semibold flex items-center justify-center gap-2 transition">
+        <i data-lucide="play" class="w-3.5 h-3.5"></i> Play Soundscape
+      </button>
+    </div>
+
+    <!-- Sound 3: Silk Board Traffic -->
+    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <span class="p-2 rounded-lg bg-rose-500/10 text-rose-400"><i data-lucide="truck" class="w-5 h-5"></i></span>
+          <span class="font-mono text-xs text-rose-400 font-bold">88 dB SPL</span>
+        </div>
+        <h3 class="font-bold text-white text-sm mb-1">Silk Board Junction Traffic</h3>
+        <p class="text-[11px] text-slate-400 leading-relaxed mb-3">
+          Dual-stroke auto-rickshaw engine drone, multi-tone Indian air horns, and highway wind shearing.
+        </p>
+      </div>
+      <button onclick="toggleNoise('traffic')" id="btn-noise-traffic" class="w-full py-2 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-200 font-semibold flex items-center justify-center gap-2 transition">
+        <i data-lucide="play" class="w-3.5 h-3.5"></i> Play Soundscape
+      </button>
+    </div>
+  </div>
+
+  <!-- A/B FILTER SWITCH -->
+  <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center border border-purple-500/30">
+        <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
+      </div>
+      <div>
+        <span class="text-sm font-bold text-white block">Acoustic Isolation Policy:</span>
+        <span class="text-xs text-slate-400" id="filterStatusText">Standard Smartphone Raw Capture (Unfiltered Background Noise)</span>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <span class="text-xs text-slate-400 font-mono">Raw Mic</span>
+      <button onclick="toggleAcousticFilter()" id="btn-acoustic-filter" class="relative inline-flex h-8 w-14 items-center rounded-full bg-slate-800 border border-slate-700 transition-colors">
+        <span id="acousticKnob" class="inline-block h-6 w-6 transform rounded-full bg-slate-400 transition-transform translate-x-1 shadow-md"></span>
+      </button>
+      <span class="text-xs text-purple-400 font-mono font-bold">Canto Neural Clean</span>
+    </div>
+  </div>
+</div>
+</div>
+      <div id="content-terminal" class="tab-content hidden space-y-6">
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-4 font-mono text-xs flex flex-col h-[480px]">
+  <div class="flex items-center justify-between border-b border-slate-800 pb-2 mb-3 text-slate-400">
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+      <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+      <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+      <span class="text-slate-300 font-bold ml-2">wispr-cli v2.4 (canto-telemetry)</span>
+    </div>
+    <div class="text-[11px] text-slate-500">
+      Type <code class="text-blue-400">help</code> for commands
+    </div>
+  </div>
+
+  <div id="terminalOutput" class="flex-1 overflow-y-auto space-y-2 pr-2 text-slate-300 font-mono text-xs leading-relaxed">
+    <div class="text-emerald-400 font-bold">
+      FlowState India // Wispr CLI Telemetry Console [v2.4.0]
+    </div>
+    <div class="text-slate-400">
+      Connected to Wispr Flow India growth telemetry pipeline.
+      Type <span class="text-blue-400 font-bold">help</span> to view available system routines or run diagnostic benchmarks.
+    </div>
+    <div class="text-slate-500 text-[11px]">
+      Tip: Try typing <span class="text-amber-400">status</span>, <span class="text-blue-400">benchmark</span>, <span class="text-purple-400">rig</span>, <span class="text-emerald-400">simulate</span>, or <span class="text-rose-400">sudo rm -rf /</span>
+    </div>
+  </div>
+
+  <div class="flex items-center gap-2 pt-3 border-t border-slate-800">
+    <span class="text-emerald-400 font-bold">wispr@bangalore-rig:~$</span>
+    <input type="text" id="terminalInput" autocomplete="off" spellcheck="false" placeholder="type command here..." class="flex-1 bg-transparent text-slate-100 outline-none font-mono text-xs">
+    <button onclick="executeTerminalCommand()" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-[11px] text-slate-300 rounded font-sans">Run</button>
+  </div>
+</div>
+</div>
+      <div id="content-sweeper" class="tab-content hidden space-y-6">
+<div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-center space-y-4">
+  <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+    <div>
+      <h3 class="font-bold text-white text-base">Growth Sweeper: The India Edition</h3>
+      <p class="text-xs text-slate-400">Find 🚀 Conversion Boosts (+10k ARR), avoid 💣 Churn Bombs!</p>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="bg-slate-950 px-3 py-1 rounded border border-slate-800 text-xs font-mono">
+        ARR Lift: <span id="sweeperScore" class="text-emerald-400 font-bold">₹0</span>
+      </div>
+      <button onclick="initSweeperGame()" class="text-xl hover:scale-110 transition" id="sweeperSmiley" title="Reset Game">😎</button>
+    </div>
+  </div>
+
+  <div class="inline-block bg-slate-950 p-4 rounded-xl border border-slate-800">
+    <div id="sweeperGrid" class="grid grid-cols-6 gap-2">
+      <!-- Generated via JS -->
+    </div>
+  </div>
+
+  <div class="text-xs text-slate-500 font-mono">
+    Click tiles to discover growth opportunities. If you hit a Churn Bomb, review your retention cohorts!
+  </div>
+</div>
+</div>
+      <div id="content-playbook" class="tab-content hidden space-y-6">
+<div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+  <div class="border-b border-slate-800 pb-4">
+    <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30 mb-2">
+      Executive Briefing & Walkthrough
+    </span>
+    <h2 class="text-2xl font-extrabold text-white tracking-tight">
+      Wispr Flow Bangalore Growth Sprint // Master Submission
+    </h2>
+    <p class="text-slate-400 mt-1 text-sm">
+      Everything needed for the review panel: Telemetry proofs, 3-minute video script, and operational answers.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-3">
+      <h3 class="font-bold text-sm text-blue-400 flex items-center gap-2">
+        <i data-lucide="video" class="w-4 h-4"></i> 3-Minute Loom Walkthrough Structure
+      </h3>
+      <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+        <li><strong>0:00 - 0:25 [The Hook]:</strong> "I didn't send a static PDF because growth operators should be judged on demonstration over claims. FlowState India was scaffolded using Wispr Flow and voice prompts on Emergent—logging 8,420 words of telemetry."</li>
+        <li><strong>0:25 - 1:15 [Module 1]:</strong> Interactive 14% -> 2% Funnel Simulator. Demonstrating the 2,000-word sprint and UPI AutoPay QR trigger.</li>
+        <li><strong>1:15 - 2:05 [Module 2]:</strong> The Honest Hinglish Gboard benchmark + Macha vs Matcha linguistic fix.</li>
+        <li><strong>2:05 - 2:40 [Module 3 & 4]:</strong> 2-App desktop retention curves + $3,000 Bangalore Street-to-Studio grant allocation.</li>
+        <li><strong>2:40 - 3:00 [The Close]:</strong> Ready to join in Bangalore immediately to scale Wispr's #1 global market.</li>
+      </ul>
+    </div>
+
+    <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 space-y-3">
+      <h3 class="font-bold text-sm text-emerald-400 flex items-center gap-2">
+        <i data-lucide="check-circle" class="w-4 h-4"></i> Form Field Submission Values
+      </h3>
+      <div class="space-y-2 text-xs">
+        <div>
+          <span class="text-slate-400 block font-semibold">Live Production URL:</span>
+          <span class="font-mono text-blue-400">https://flowstate-india.vercel.app</span>
+        </div>
+        <div>
+          <span class="text-slate-400 block font-semibold">GitHub Repository:</span>
+          <span class="font-mono text-blue-400">https://github.com/vikassharma270907-alt/wisprflow-india-challenge</span>
+        </div>
+        <div>
+          <span class="text-slate-400 block font-semibold">Target Evaluators:</span>
+          <span class="text-slate-200">Nimisha Mehta (India Lead) & Tanay Kothari (CEO)</span>
+        </div>
+        <div>
+          <span class="text-slate-400 block font-semibold">Location & Notice:</span>
+          <span class="text-emerald-400 font-bold">Bangalore, India • Ready to Join Immediately</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+    
+      <!-- TAB: PAST WORK & SHIPPED GITHUB BUILDS (FOR JUDGES) -->
+      <div id="content-projects" class="tab-content hidden space-y-6">
+        
+        <!-- X-RAY OVERLAY CARD -->
+        <div class="xray-badge bg-gradient-to-r from-purple-950 to-indigo-950 border-2 border-dashed border-purple-500 rounded-xl p-4 text-xs font-mono mb-4 text-purple-200">
+          <div class="font-bold text-purple-400 flex items-center gap-2 mb-1">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            X-RAY // JUDGES & EVALUATORS REFERENCE:
+          </div>
+          <p class="italic text-slate-300">"Demonstration over claims. Review verified production deployments, live judge portals, and GitHub repositories across global hackathons (ArmorIQ, PayPal, GitLab, Qloo, Odoo, and TwitchCon)."</p>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 xray-glow">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                  Engineering Track Record & Open Source Proof
+                </span>
+                <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-blue-500/20 text-blue-300">
+                  7 Shipped Builds
+                </span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                Shipped Projects & Past Work (For Judges)
+              </h2>
+              <p class="text-slate-400 mt-1 text-sm">
+                Evaluator reference for Nimisha Mehta, Tanay Kothari, and the Wispr Flow hiring team.
+              </p>
+            </div>
+
+            <!-- Profile Badges -->
+            <div class="flex items-center gap-3">
+              <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 hover:border-purple-500 text-xs text-white font-mono flex items-center gap-2 transition shadow-md">
+                <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>vikassharma270907-alt</span>
+              </a>
+              <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 hover:border-sky-500 text-xs text-white font-mono flex items-center gap-2 transition shadow-md">
+                <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                <span>vikas-sharma-97881737b</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Summary Metric Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <span class="text-xs text-slate-400 font-mono">Global Hackathon Builds</span>
+              <div class="text-2xl font-black text-white font-mono mt-1">7 Repositories</div>
+              <span class="text-[11px] text-purple-400">All publicly verifiable on GitHub</span>
+            </div>
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <span class="text-xs text-slate-400 font-mono">Live Deployments</span>
+              <div class="text-2xl font-black text-emerald-400 font-mono mt-1">5 Production URLs</div>
+              <span class="text-[11px] text-slate-400">Vercel & Render with zero login walls</span>
+            </div>
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <span class="text-xs text-slate-400 font-mono">Architecture Focus</span>
+              <div class="text-2xl font-black text-blue-400 font-mono mt-1">AI Agents & Guardrails</div>
+              <span class="text-[11px] text-slate-400">Voice AI, MCP, Policy Enforcement, Payments</span>
+            </div>
+          </div>
+
+          <!-- PROJECT CARDS -->
+          <div class="space-y-6">
+
+            <!-- Project 1: BeyondFlow / FlowGuard Treasury -->
+            <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 hover:border-purple-500/50 transition">
+              <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-3">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <h3 class="font-bold text-lg text-white">BeyondFlow (FlowGuard Treasury)</h3>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                      ArmorIQ Flow State Hackathon
+                    </span>
+                    <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-300">
+                      Airwallex Sandbox Track
+                    </span>
+                  </div>
+                  <p class="text-xs font-mono text-amber-400 mt-1">★ Cryptographic policy proxy: Allowed (lookup) / Blocked (hijack) / Held (refund)</p>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  <a href="https://flowguard-treasury.vercel.app" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live App
+                  </a>
+                  <a href="https://flowguard-treasury.vercel.app/judges" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs flex items-center gap-1.5 transition">
+                    Judges Page
+                  </a>
+                  <a href="https://github.com/vikassharma270907-alt/flowguard-treasury" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
+                    <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub Repo
+                  </a>
+                </div>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                Autonomous Voice Treasury Controller governed by ArmorIQ. Bridges an ElevenLabs conversational voice agent with an autonomous treasury MCP server over JSON-RPC 2.0 SSE. Prevents prompt injection diversion of supplier payouts (HTTP 403) and places outbound disbursements into a cryptographic dual-supervisor quorum hold.
+              </p>
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-800 text-[11px] font-mono text-slate-400">
+                <span>Stack: Next.js · Node.js · ElevenLabs AI · ArmorIQ SDK · Model Context Protocol (MCP) · PostgreSQL</span>
+                <span class="text-emerald-400">Tested: 9/9 unit tests · 14/14 a11y tests</span>
+              </div>
+            </div>
+
+            <!-- Project 2: RestockPilot -->
+            <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 hover:border-blue-500/50 transition">
+              <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-3">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <h3 class="font-bold text-lg text-white">RestockPilot</h3>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                      PayPal AI Hackathon 2026
+                    </span>
+                    <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">
+                      Autonomous Commerce
+                    </span>
+                  </div>
+                  <p class="text-xs font-mono text-amber-400 mt-1">★ Multi-step purchasing agent with hard server-side budget limits & PayPal Orders v2</p>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  <a href="https://restockpilot.vercel.app" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live App
+                  </a>
+                  <a href="https://github.com/vikassharma270907-alt/restockpilot" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
+                    <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub Repo
+                  </a>
+                </div>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                Autonomous inventory purchasing agent for independent cafes. Listens to inventory needs, searches wholesale supplier catalogs via Channel3 API, calculates optimized orders constrained by strict budget limits via MiniMax on NVIDIA NIM, and generates PayPal Orders v2 checkout with cryptographic webhook signature verification and live AG Grid ledger.
+              </p>
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-800 text-[11px] font-mono text-slate-400">
+                <span>Stack: Next.js 14 · TypeScript · Vercel AI SDK · MiniMax (NVIDIA NIM) · PayPal Orders v2 · AG Grid</span>
+                <span class="text-emerald-400">Signature-verified webhooks & disk persistence</span>
+              </div>
+            </div>
+
+            <!-- Project 3: Airlock Guardrails -->
+            <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 hover:border-red-500/50 transition">
+              <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-3">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <h3 class="font-bold text-lg text-white">Airlock Guardrails</h3>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-orange-500/20 text-orange-300 border border-orange-500/30">
+                      GitLab Transcend Hackathon
+                    </span>
+                    <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-red-500/20 text-red-300">
+                      AI Security & Governance
+                    </span>
+                  </div>
+                  <p class="text-xs font-mono text-amber-400 mt-1">★ Reader/writer agent isolation + control-plane CI policy gate</p>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  <a href="https://airlock-guardrails.vercel.app" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live Playground
+                  </a>
+                  <a href="https://www.youtube.com/watch?v=jFqkEme0DG8" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white font-semibold text-xs flex items-center gap-1.5 transition">
+                    Demo Video (2:42)
+                  </a>
+                  <a href="https://github.com/vikassharma270907-alt/airlock-guardrails" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
+                    <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub Repo
+                  </a>
+                </div>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                Deterministic CI/CD guardrails and dual-agent governance for AI coding agents on GitLab Duo. Handles untrusted issue text via a read-only reader agent producing sanitized JSON, while the writer agent never sees raw prompt injection vectors. Policy gates block unauthorized edits to CI pipelines, tools, and test suites without verified human approval labels.
+              </p>
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-800 text-[11px] font-mono text-slate-400">
+                <span>Stack: Python · GitLab Duo · Semgrep SAST · FastAPI · Time Machine Historical Invariant Engine</span>
+                <span class="text-emerald-400">Verified GitLab CI/CD Pipeline #2993995494</span>
+              </div>
+            </div>
+
+            <!-- Project 4: Swapcast -->
+            <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 hover:border-emerald-500/50 transition">
+              <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-3">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <h3 class="font-bold text-lg text-white">Swapcast</h3>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      Qloo AI Hackathon
+                    </span>
+                    <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-teal-500/20 text-teal-300">
+                      Creator Growth
+                    </span>
+                  </div>
+                  <p class="text-xs font-mono text-amber-400 mt-1">★ Two-way listener taste overlap check with Qloo insights & automated pitch drafter</p>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  <a href="https://swapcast-tau.vercel.app" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live App
+                  </a>
+                  <a href="https://github.com/vikassharma270907-alt/swapcast" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
+                    <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub Repo
+                  </a>
+                </div>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                Promo-swap partnership engine for independent podcasters. Uses Qloo's taste graph to match peer shows in the same popularity band, verifies two-way audience fit in reverse, identifies reachable sponsor brand leads, and drafts grounded promo-swap outreach copy with streaming live agent traces.
+              </p>
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-800 text-[11px] font-mono text-slate-400">
+                <span>Stack: Next.js · TypeScript · Qloo V2 Insights API · OpenAI / MiniMax · Tailwind CSS · Jest</span>
+                <span class="text-emerald-400">Live streamed NDJSON agent trace</span>
+              </div>
+            </div>
+
+            <!-- Project 5: Brightloop -->
+            <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 hover:border-indigo-500/50 transition">
+              <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-3">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <h3 class="font-bold text-lg text-white">Brightloop</h3>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                      Odoo x FLUX Lucknow Hackathon '26
+                    </span>
+                    <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-300">
+                      Subscription Management
+                    </span>
+                  </div>
+                  <p class="text-xs font-mono text-amber-400 mt-1">★ Full quotation-to-subscription pipeline & PostgreSQL relational ledger</p>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  <a href="https://brightloop-do6a.onrender.com" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live Demo
+                  </a>
+                  <a href="https://github.com/vikassharma270907-alt/odoo-flux-hackathon" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
+                    <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub Repo
+                  </a>
+                </div>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                Full-stack subscription management & billing platform. Handles product plans, quotations, automated recurring invoices, prorated plan changes, customer self-service portal, and financial metrics (MRR/ARR/Churn) powered by PostgreSQL 16 with zero mock data.
+              </p>
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-800 text-[11px] font-mono text-slate-400">
+                <span>Stack: React 18 · Vite · Node.js 20 · Express · PostgreSQL 16 · Zod · JWT · Recharts · Docker</span>
+                <span class="text-emerald-400">Pre-seeded 1,500 customers & 5,000 subscriptions</span>
+              </div>
+            </div>
+
+            <!-- Project 6: ChaosForge -->
+            <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 hover:border-pink-500/50 transition">
+              <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-3">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <h3 class="font-bold text-lg text-white">ChaosForge</h3>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-pink-500/20 text-pink-300 border border-pink-500/30">
+                      Codex x TwitchCon Hackathon
+                    </span>
+                    <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-rose-500/20 text-rose-300">
+                      Interactive Livestreaming
+                    </span>
+                  </div>
+                  <p class="text-xs font-mono text-amber-400 mt-1">★ Real-time Twitch EventSub chat modding into OBS transparent canvas</p>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  <a href="https://chaosforge-3ky4.onrender.com" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live Portal
+                  </a>
+                  <a href="https://github.com/vikassharma270907-alt/ChaosForge-deployment-and-compliance-check." target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
+                    <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub Repo
+                  </a>
+                </div>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                Real-time live audience modding engine and transparent OBS Browser Source arcade arena. Viewers propose natural-language rules via Twitch chat (`!forge`), streamers approve/veto from a control deck, and approved rules dynamically mutate live HTML5 canvas physics for timed rounds with sub-50ms SSE latency.
+              </p>
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-800 text-[11px] font-mono text-slate-400">
+                <span>Stack: TypeScript · Node.js · Twitch EventSub WebSocket · Server-Sent Events · HTML5 Canvas 2D</span>
+                <span class="text-emerald-400">Deterministic schema-clamped rule compiler</span>
+              </div>
+            </div>
+
+            <!-- Project 7: FlowState India -->
+            <div class="bg-slate-950 p-6 rounded-xl border border-slate-800 hover:border-cyan-500/50 transition">
+              <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-3">
+                <div>
+                  <div class="flex flex-wrap items-center gap-2">
+                    <h3 class="font-bold text-lg text-white">FlowState India (This Project)</h3>
+                    <span class="text-xs font-semibold px-2.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                      Wispr Flow Challenge
+                    </span>
+                    <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-blue-500/20 text-blue-300">
+                      Bangalore Growth Team
+                    </span>
+                  </div>
+                  <p class="text-xs font-mono text-amber-400 mt-1">★ 8,420 words spoken via Wispr Flow · Zero manual keyboards</p>
+                </div>
+                <div class="flex items-center gap-2 flex-shrink-0">
+                  <a href="https://flowstate-india.vercel.app" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live App
+                  </a>
+                  <a href="https://github.com/vikassharma270907-alt/wisprflow-india-challenge" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
+                    <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub Repo
+                  </a>
+                </div>
+              </div>
+              <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                Interactive growth simulator tackling Wispr Flow's 14% to 2% Android-to-desktop upgrade gap, an honest 20-sentence Hinglish acoustic benchmark against Google Gboard, cohort retention model, and a live in-browser Canto speech dictation studio.
+              </p>
+              <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-800 text-[11px] font-mono text-slate-400">
+                <span>Stack: Emergent · Wispr Flow Voice Interface · Web Audio API · Tailwind CSS · Lucide</span>
+                <span class="text-emerald-400">Sub-200ms formatting & acoustic noise rejection lab</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+      <p>FlowState India // Wispr Flow Growth Hiring Submission • Built with Voice on Emergent • Bangalore, India</p>
+    </footer>
+
+  </div>
+
 
   <!-- API KEY CONFIGURATION MODAL -->
   <div id="apiModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
@@ -823,8 +2241,8 @@
 
       <div class="bg-slate-950 p-3 rounded-lg border border-slate-800/80 text-[11px] text-slate-400 space-y-1">
         <div class="font-semibold text-slate-300">How to get an API Key:</div>
-        <p>1. Sign in to your dashboard at <a href="https://wisprflow.ai" target="_blank" class="text-blue-400 hover:underline">wisprflow.ai</a>.</p>
-        <p>2. Request developer Voice Interface access via <a href="https://wisprflow.ai/developers" target="_blank" class="text-blue-400 hover:underline">wisprflow.ai/developers</a>.</p>
+        <p>1. Sign in to your dashboard at <a href="https://wisprflow.ai" target="_blank" class="text-blue-400 hover:underline" rel="noreferrer">wisprflow.ai</a>.</p>
+        <p>2. Request developer Voice Interface access via <a href="https://wisprflow.ai/developers" target="_blank" class="text-blue-400 hover:underline" rel="noreferrer">wisprflow.ai/developers</a>.</p>
         <p class="text-amber-400 font-medium">✓ If you don't have an API key, leave this empty. The app runs in <strong>Client Canto Engine Mode</strong> using your browser's microphone with simulated sub-200ms formatting!</p>
       </div>
 
@@ -835,13 +2253,881 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="bg-slate-950 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-    <p>FlowState India // Wispr Flow Growth Hiring Submission • Built with Voice on Emergent • Bangalore, India</p>
-  </footer>
 
+  <!-- ======================================================== -->
+  <!-- 3. JAVASCRIPT LOGIC & OS WINDOW MANAGER                  -->
+  <!-- ======================================================== -->
   <script>
+    // ==========================================
+    // AUDIO SYNTHESIZER (NATIVE WEB AUDIO API)
+    // ==========================================
+    let audioEnabled = true;
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function toggleAudio() {
+      audioEnabled = !audioEnabled;
+      const btn = document.getElementById('desktopAudioBtn');
+      if (btn) {
+        btn.innerHTML = audioEnabled ? '<i data-lucide="volume-2" class="w-3.5 h-3.5"></i>' : '<i data-lucide="volume-x" class="w-3.5 h-3.5 text-rose-400"></i>';
+        lucide.createIcons();
+      }
+    }
+
+    function playSound(type) {
+      if (!audioEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (ctx.state === 'suspended') {
+          ctx.resume().catch(() => {});
+          return;
+        }
+
+        if (type === 'chime') {
+          // Ascending 3-note chime
+          const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+          notes.forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.08);
+            gain.gain.setValueAtTime(0.06, ctx.currentTime + idx * 0.08);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.08 + 0.35);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(ctx.currentTime + idx * 0.08);
+            osc.stop(ctx.currentTime + idx * 0.08 + 0.4);
+          });
+        } else if (type === 'click') {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(1200, ctx.currentTime);
+          gain.gain.setValueAtTime(0.04, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.05);
+        } else if (type === 'key') {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(400 + Math.random() * 200, ctx.currentTime);
+          gain.gain.setValueAtTime(0.02, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.03);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.04);
+        } else if (type === 'reboot') {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(440, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(110, ctx.currentTime + 0.6);
+          gain.gain.setValueAtTime(0.08, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.8);
+        }
+      } catch (e) {
+        console.warn('Web Audio synthesis error:', e);
+      }
+    }
+
+    // ==========================================
+    // WINDOW MANAGER & DESKTOP STATE
+    // ==========================================
+    const windowsConfig = [
+      { id: 'funnel', title: '14% → 2% Funnel Engine', icon: 'trending-up', w: 900, h: 580, x: 180, y: 30 },
+      { id: 'benchmark', title: 'Hinglish Speech Test (Flow vs Gboard)', icon: 'mic', w: 920, h: 580, x: 220, y: 50 },
+      { id: 'dashboard', title: 'Retention & Cohort Analytics', icon: 'pie-chart', w: 840, h: 550, x: 250, y: 70 },
+      { id: 'grant', title: '$3,000 Bangalore Field Rig', icon: 'dollar-sign', w: 860, h: 560, x: 280, y: 90 },
+      { id: 'operator', title: 'Developer Profile & Experience // Vikas Sharma', icon: 'user-check', w: 820, h: 550, x: 310, y: 60 },
+      { id: 'projects', title: 'Shipped Projects & Past Work // GitHub', icon: 'folder-git-2', w: 940, h: 620, x: 230, y: 40 },
+      { id: 'studio', title: 'Live Canto Dictation Studio', icon: 'mic-vocal', w: 880, h: 600, x: 200, y: 40 },
+      { id: 'terminal', title: 'Wispr CLI Telemetry Console', icon: 'terminal', w: 680, h: 480, x: 330, y: 110 },
+      { id: 'audio', title: 'Bangalore Acoustic Noise Lab', icon: 'headphones', w: 840, h: 540, x: 270, y: 80 },
+      { id: 'sweeper', title: 'Growth Sweeper Mini-Game', icon: 'gamepad-2', w: 460, h: 480, x: 380, y: 100 },
+      { id: 'playbook', title: 'Wispr Master Playbook & Brief', icon: 'file-text', w: 840, h: 560, x: 240, y: 50 }
+    ];
+
+    let highestZ = 100;
+    const windowState = {};
+
+    function initWindows() {
+      const winContainer = document.getElementById('window-container');
+      winContainer.innerHTML = '';
+
+      windowsConfig.forEach(cfg => {
+        windowState[cfg.id] = {
+          open: false,
+          minimized: false,
+          maximized: false,
+          x: cfg.x,
+          y: cfg.y,
+          w: cfg.w,
+          h: cfg.h
+        };
+
+        const win = document.createElement('div');
+        win.id = 'win-' + cfg.id;
+        win.className = 'os-window absolute rounded-2xl pointer-events-auto flex flex-col hidden';
+
+        // Responsive initial positioning
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) {
+          win.style.left = '0px';
+          win.style.top = '0px';
+          win.style.width = '100vw';
+          win.style.height = 'calc(100vh - 44px)';
+        } else {
+          win.style.left = cfg.x + 'px';
+          win.style.top = cfg.y + 'px';
+          win.style.width = Math.min(cfg.w, window.innerWidth - 60) + 'px';
+          win.style.maxHeight = 'calc(100vh - 120px)';
+        }
+
+        win.style.zIndex = highestZ;
+
+        win.onmousedown = () => bringToFront(cfg.id);
+
+        win.innerHTML = `
+          <!-- Window Title Bar -->
+          <div class="window-header h-11 bg-slate-900/95 border-b border-white/5 px-4 flex items-center justify-between select-none rounded-t-2xl backdrop-blur-xl">
+            <div class="flex items-center gap-2">
+              <button onclick="closeWindow('${cfg.id}')" title="Close" class="w-3 h-3 rounded-full bg-rose-500 hover:bg-rose-400 transition shadow-sm shadow-rose-500/40 focus:outline-none"></button>
+              <button onclick="minimizeWindow('${cfg.id}')" title="Minimize" class="w-3 h-3 rounded-full bg-amber-500 hover:bg-amber-400 transition shadow-sm shadow-amber-500/40 focus:outline-none"></button>
+              <button onclick="maximizeWindow('${cfg.id}')" title="Maximize" class="w-3 h-3 rounded-full bg-emerald-500 hover:bg-emerald-400 transition shadow-sm shadow-emerald-500/40 focus:outline-none"></button>
+            </div>
+            <div class="flex items-center gap-2 font-mono text-xs font-semibold text-slate-200 tracking-tight">
+              <span class="text-cyan-400"><i data-lucide="${cfg.icon}" class="w-4 h-4"></i></span>
+              <span>${cfg.title}</span>
+            </div>
+            <div class="flex items-center gap-2 text-[10px] font-mono text-slate-400">
+              <span class="px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 font-semibold hidden sm:inline">LIVE TELEMETRY</span>
+            </div>
+          </div>
+          <!-- Window Content Body -->
+          <div id="body-${cfg.id}" class="p-4 sm:p-6 overflow-y-auto flex-1 font-sans text-xs">
+            <!-- Section content dynamically docked here in desktop mode -->
+          </div>
+        `;
+
+        winContainer.appendChild(win);
+        makeDraggable(win);
+      });
+
+      lucide.createIcons();
+    }
+
+    function makeDraggable(winEl) {
+      const header = winEl.querySelector('.window-header');
+      let isDragging = false;
+      let startX, startY, initialX, initialY;
+
+      header.addEventListener('mousedown', (e) => {
+        if (e.target.closest('button')) return; // ignore control buttons
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        initialX = winEl.offsetLeft;
+        initialY = winEl.offsetTop;
+        document.body.style.userSelect = 'none';
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        let newX = initialX + dx;
+        let newY = initialY + dy;
+
+        // Clamping to desktop bounds
+        newX = Math.max(10, Math.min(newX, window.innerWidth - 100));
+        newY = Math.max(10, Math.min(newY, window.innerHeight - 80));
+
+        winEl.style.left = newX + 'px';
+        winEl.style.top = newY + 'px';
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+        document.body.style.userSelect = '';
+      });
+    }
+
+    function bringToFront(id) {
+      const win = document.getElementById('win-' + id);
+      if (!win) return;
+      highestZ++;
+      win.style.zIndex = highestZ;
+
+      document.querySelectorAll('.os-window').forEach(w => w.classList.remove('active-window'));
+      win.classList.add('active-window');
+
+      // Update taskbar button active state
+      updateTaskbarTabs();
+    }
+
+    
+    // Window Resize & Orientation Handler
+    window.addEventListener('resize', () => {
+      const isMobile = window.innerWidth < 768;
+      windowsConfig.forEach(cfg => {
+        const win = document.getElementById('win-' + cfg.id);
+        if (!win) return;
+        if (isMobile) {
+          win.style.left = '0px';
+          win.style.top = '0px';
+          win.style.width = '100vw';
+          win.style.height = 'calc(100vh - 44px)';
+        } else {
+          win.style.left = cfg.x + 'px';
+          win.style.top = cfg.y + 'px';
+          win.style.width = Math.min(cfg.w, window.innerWidth - 60) + 'px';
+          win.style.height = '';
+          win.style.maxHeight = 'calc(100vh - 120px)';
+        }
+      });
+    });
+
+    function openWindow(id) {
+      playSound('chime');
+      const win = document.getElementById('win-' + id);
+      if (!win) return;
+
+      // Transfer section content into window body if not already there
+      const content = document.getElementById('content-' + id);
+      const winBody = document.getElementById('body-' + id);
+      if (content && winBody && !winBody.contains(content)) {
+        winBody.appendChild(content);
+        content.classList.remove('hidden');
+      }
+
+            win.classList.remove('hidden', 'minimized');
+      if (window.innerWidth < 768) {
+        win.style.left = '0px';
+        win.style.top = '0px';
+        win.style.width = '100vw';
+        win.style.height = 'calc(100vh - 44px)';
+      }
+
+      windowState[id].open = true;
+      windowState[id].minimized = false;
+      bringToFront(id);
+      updateTaskbarTabs();
+    }
+
+    function closeWindow(id) {
+      playSound('click');
+      const win = document.getElementById('win-' + id);
+      if (!win) return;
+      win.classList.add('hidden');
+      windowState[id].open = false;
+      updateTaskbarTabs();
+    }
+
+    function minimizeWindow(id) {
+      playSound('click');
+      const win = document.getElementById('win-' + id);
+      if (!win) return;
+      win.classList.add('minimized');
+      windowState[id].minimized = true;
+      updateTaskbarTabs();
+    }
+
+    function maximizeWindow(id) {
+      playSound('click');
+      const win = document.getElementById('win-' + id);
+      if (!win) return;
+      const state = windowState[id];
+
+      if (state.maximized) {
+        win.style.left = state.x + 'px';
+        win.style.top = state.y + 'px';
+        win.style.width = state.w + 'px';
+        win.style.height = 'auto';
+        win.style.maxHeight = 'calc(100vh - 120px)';
+        state.maximized = false;
+      } else {
+        win.style.left = '16px';
+        win.style.top = '16px';
+        win.style.width = 'calc(100% - 32px)';
+        win.style.height = 'calc(100% - 80px)';
+        win.style.maxHeight = 'none';
+        state.maximized = true;
+      }
+    }
+
+    function minimizeAllWindows() {
+      playSound('click');
+      windowsConfig.forEach(cfg => {
+        if (windowState[cfg.id] && windowState[cfg.id].open) {
+          minimizeWindow(cfg.id);
+        }
+      });
+    }
+
+    function updateTaskbarTabs() {
+      const bar = document.getElementById('taskbar-tabs');
+      if (!bar) return;
+      bar.innerHTML = '';
+
+      windowsConfig.forEach(cfg => {
+        const state = windowState[cfg.id];
+        if (state && state.open) {
+          const win = document.getElementById('win-' + cfg.id);
+          const isActive = win && win.classList.contains('active-window') && !state.minimized;
+
+          const btn = document.createElement('button');
+          btn.className = `px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+            isActive 
+              ? 'bg-blue-600 text-white shadow-md shadow-blue-500/30' 
+              : 'bg-slate-800/90 text-slate-300 hover:bg-slate-700'
+          }`;
+
+          btn.innerHTML = `
+            <i data-lucide="${cfg.icon}" class="w-3.5 h-3.5"></i>
+            <span class="max-w-[120px] truncate">${cfg.title.split('//')[0]}</span>
+          `;
+
+          btn.onclick = () => {
+            if (state.minimized) {
+              openWindow(cfg.id);
+            } else if (isActive) {
+              minimizeWindow(cfg.id);
+            } else {
+              bringToFront(cfg.id);
+            }
+          };
+
+          bar.appendChild(btn);
+        }
+      });
+
+      lucide.createIcons();
+    }
+
+    // ==========================================
+    // START MENU & FLOWY ASSISTANT
+    // ==========================================
+    let startMenuOpen = false;
+
+    function toggleStartMenu() {
+      playSound('click');
+      startMenuOpen = !startMenuOpen;
+      const menu = document.getElementById('start-menu');
+      if (menu) {
+        menu.classList.toggle('hidden', !startMenuOpen);
+      }
+    }
+
+    // Close start menu when clicking outside
+    window.addEventListener('click', (e) => {
+      const menu = document.getElementById('start-menu');
+      const startBtn = document.getElementById('btn-start');
+      if (startMenuOpen && menu && !menu.contains(e.target) && !startBtn.contains(e.target)) {
+        menu.classList.add('hidden');
+        startMenuOpen = false;
+      }
+    });
+
+    function dismissFlowy() {
+      playSound('click');
+      const bubble = document.getElementById('flowy-bubble');
+      if (bubble) bubble.classList.add('hidden');
+    }
+
+    function toggleFlowyBubble() {
+      playSound('click');
+      const bubble = document.getElementById('flowy-bubble');
+      if (bubble) bubble.classList.toggle('hidden');
+    }
+
+    function updateFlowyText(msg) {
+      const txt = document.getElementById('flowy-text');
+      if (txt) {
+        txt.innerText = msg;
+      }
+    }
+
+    // ==========================================
+    // MODE SWITCHER (DESKTOP VS EXECUTIVE)
+    // ==========================================
+    let currentMode = 'desktop';
+
+    function setMode(mode) {
+      playSound('chime');
+      currentMode = mode;
+      document.body.classList.remove('mode-desktop', 'mode-executive');
+      document.body.classList.add('mode-' + mode);
+      localStorage.setItem('FLOWSTATE_VIEW_MODE', mode);
+
+      if (mode === 'executive') {
+        // Return sections to executive container
+        const execArea = document.getElementById('exec-content-area');
+        windowsConfig.forEach(cfg => {
+          const content = document.getElementById('content-' + cfg.id);
+          if (content && execArea && !execArea.contains(content)) {
+            execArea.appendChild(content);
+          }
+        });
+        switchTab('funnel');
+      } else {
+        // Desktop mode: open default windows
+        openWindow('funnel');
+      }
+
+      lucide.createIcons();
+    }
+
+    // ==========================================
+    // SIMULATED SYSTEM REBOOT / EASTER EGG
+    // ==========================================
+    function simulateReboot() {
+      playSound('reboot');
+      const overlay = document.createElement('div');
+      overlay.className = 'fixed inset-0 bg-black z-[999] flex flex-col items-center justify-center text-center p-6 font-mono text-xs text-blue-400 select-none';
+      overlay.innerHTML = `
+        <div class="space-y-4 max-w-md">
+          <div class="text-2xl font-bold text-white">RESTARTING FLOWOS...</div>
+          <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+            <div class="bg-blue-500 h-full w-full animate-pulse"></div>
+          </div>
+          <p class="text-slate-400">Flushing verified telemetry cache (8,420 words)... Recompiling Canto speech buffers... Mounting Bangalore Growth Rig...</p>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+
+      setTimeout(() => {
+        document.body.removeChild(overlay);
+        setMode('desktop');
+        openWindow('funnel');
+        playSound('chime');
+      }, 2200);
+    }
+
+    // ==========================================
+    // INTERACTIVE WISPR CLI TERMINAL LOGIC
+    // ==========================================
+    const terminalHistory = [];
+    let historyIdx = -1;
+
+    function executeTerminalCommand() {
+      const input = document.getElementById('terminalInput');
+      if (!input) return;
+      const cmd = input.value.trim();
+      if (!cmd) return;
+
+      playSound('key');
+      terminalHistory.push(cmd);
+      historyIdx = terminalHistory.length;
+
+      const output = document.getElementById('terminalOutput');
+      const userLine = document.createElement('div');
+      userLine.innerHTML = `<span class="text-emerald-400 font-bold">wispr@bangalore-rig:~$</span> <span class="text-white">${cmd}</span>`;
+      output.appendChild(userLine);
+
+      const respLine = document.createElement('div');
+      respLine.className = 'text-slate-300 pl-4 border-l-2 border-slate-700 my-1 leading-relaxed';
+
+      switch (cmd.toLowerCase()) {
+        case 'help':
+          respLine.innerHTML = `
+            <div class="font-bold text-blue-400 mb-1">Available Commands:</div>
+            • <span class="text-emerald-400">status</span> - Inspect live account telemetry & Canto accuracy metrics.<br>
+            • <span class="text-emerald-400">simulate</span> - Calculate projected India conversion ARR.<br>
+            • <span class="text-emerald-400">benchmark</span> - Run Hinglish Gboard comparison test.<br>
+            • <span class="text-emerald-400">rig</span> - Inspect the $3,000 setup grant distribution.<br>
+            • <span class="text-emerald-400">canto</span> - Technical model specs (WER, latency, context).<br>
+            • <span class="text-emerald-400">noise</span> - Launch the Bangalore Acoustic Sound Lab.<br>
+            • <span class="text-emerald-400">whoami</span> - Candidate profile & role target.<br>
+            • <span class="text-emerald-400">matrix</span> - Activate matrix rain visualizer.<br>
+            • <span class="text-emerald-400">clear</span> - Clear terminal scrollback.<br>
+            • <span class="text-rose-400">sudo rm -rf /</span> - Dangerous system root purge.
+          `;
+          break;
+        case 'status':
+          respLine.innerHTML = `
+            <div class="text-emerald-400 font-bold">✓ WISPR FLOW TELEMETRY VERIFIED:</div>
+            • Total Words Dictated: <strong>8,420 words</strong><br>
+            • Mean Dictation Velocity: <strong>162 WPM</strong><br>
+            • Canto Hinglish WER: <strong>10.2%</strong> (vs Apple 47% / Gboard 29%)<br>
+            • End-to-End Latency Ceiling: <strong>210ms</strong><br>
+            • Rig Status: Connected to Bangalore Field Rig #01
+          `;
+          break;
+        case 'simulate':
+          respLine.innerHTML = `Running conversion projection on 100,000 MAU... Projected Conversion: <strong class="text-blue-400">5.8%</strong> (+2.76x lift) -> Projected India ARR: <strong class="text-emerald-400">₹2.22 Crore</strong>.`;
+          break;
+        case 'benchmark':
+          respLine.innerHTML = `20-Sentence Hinglish Benchmark: Wispr Flow (92.5%) vs Google Gboard (71.0%). Flow dominance on tech terms, whisper mode, and high noise.`;
+          break;
+        case 'rig':
+          respLine.innerHTML = `$3,000 Allocation: $1,150 Live Proof Field Kit + $1,250 25-Creator Micro-Grant Pool + $600 Multi-Handset Android QA Rig.`;
+          break;
+        case 'canto':
+          respLine.innerHTML = `Canto Architecture: Context-conditioned transformer decoder, multi-modal token conditioning, reinforcement learning filler penalty, 700ms hard latency ceiling.`;
+          break;
+        case 'whoami':
+          respLine.innerHTML = `<strong>Vikas Sharma</strong> // Software Engineer & AI Systems Developer<br>• Current Internship: Full-Stack & AI Systems Intern (Autonomous Agent Infrastructure & MCP)<br>• Verified Dictation: 8,420 Words (162 WPM, 210ms latency)<br>• LinkedIn: <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" class="text-cyan-400 underline" rel="noreferrer">linkedin.com/in/vikas-sharma-97881737b/</a><br>• GitHub: <a href="https://github.com/vikassharma270907-alt" target="_blank" class="text-purple-400 underline" rel="noreferrer">github.com/vikassharma270907-alt</a><br>• Ready to join Wispr Flow immediately.`;
+          break;
+        case 'noise':
+          openWindow('audio');
+          respLine.innerHTML = `Launched Bangalore Acoustic Noise Lab window.`;
+          break;
+        case 'clear':
+          output.innerHTML = '';
+          input.value = '';
+          return;
+        case 'matrix':
+          startMatrixRain();
+          respLine.innerHTML = `<span class="text-emerald-400 font-bold">Matrix digital rain visualizer engaged. Press ESC to cancel.</span>`;
+          break;
+        case 'sudo rm -rf /':
+          respLine.innerHTML = `
+            <pre class="text-rose-400 font-mono text-[10px] leading-tight">
+⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆
+⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⠸⣼⡿
+⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉⠀⠀⠀⠀⠀
+⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀
+⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇    NICE JOB HACKER MAN...
+            </pre>
+            <div class="text-rose-500 font-bold mt-2">KERNEL PANIC: Reinitializing FlowOS in 2 seconds...</div>
+          `;
+          setTimeout(simulateReboot, 2000);
+          break;
+        default:
+          respLine.innerHTML = `<span class="text-rose-400">Command not found: ${cmd}</span>. Type <span class="text-blue-400">help</span> for routine list.`;
+      }
+
+      output.appendChild(respLine);
+      input.value = '';
+      output.scrollTop = output.scrollHeight;
+    }
+
+    // Terminal keyboard listeners
+    const terminalInput = document.getElementById('terminalInput');
+    if (terminalInput) {
+      terminalInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          executeTerminalCommand();
+        } else if (e.key === 'ArrowUp') {
+          if (historyIdx > 0) {
+            historyIdx--;
+            terminalInput.value = terminalHistory[historyIdx] || '';
+          }
+        } else if (e.key === 'ArrowDown') {
+          if (historyIdx < terminalHistory.length - 1) {
+            historyIdx++;
+            terminalInput.value = terminalHistory[historyIdx] || '';
+          } else {
+            historyIdx = terminalHistory.length;
+            terminalInput.value = '';
+          }
+        }
+      });
+    }
+
+    // Matrix Rain Effect
+    function startMatrixRain() {
+      const canvas = document.getElementById('matrixCanvas');
+      canvas.style.display = 'block';
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const letters = 'WISPRFLOWCANTO0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const fontSize = 14;
+      const columns = canvas.width / fontSize;
+      const drops = Array(Math.floor(columns)).fill(1);
+
+      let animId;
+      function draw() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#10b981';
+        ctx.font = fontSize + 'px monospace';
+
+        for (let i = 0; i < drops.length; i++) {
+          const text = letters.charAt(Math.floor(Math.random() * letters.length));
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+        animId = requestAnimationFrame(draw);
+      }
+
+      draw();
+
+      function stopRain(e) {
+        if (e.key === 'Escape' || e.type === 'click') {
+          cancelAnimationFrame(animId);
+          canvas.style.display = 'none';
+          window.removeEventListener('keydown', stopRain);
+          canvas.removeEventListener('click', stopRain);
+        }
+      }
+      window.addEventListener('keydown', stopRain);
+      canvas.addEventListener('click', stopRain);
+    }
+
+    // ==========================================
+    // BANGALORE ACOUSTIC LAB SYNTHESIZER
+    // ==========================================
+    let currentNoiseType = null;
+    let noiseSource = null;
+    let noiseFilter = null;
+    let cantoFilterActive = false;
+
+    function toggleNoise(type) {
+      const statusEl = document.getElementById('audioLabStatus');
+      const allBtns = ['metro', 'darshini', 'traffic'];
+
+      if (currentNoiseType === type) {
+        stopNoise();
+        allBtns.forEach(b => {
+          const btn = document.getElementById('btn-noise-' + b);
+          if (btn) btn.innerHTML = '<i data-lucide="play" class="w-3.5 h-3.5"></i> Play Soundscape';
+        });
+        if (statusEl) statusEl.innerText = 'Synthesizer Idle';
+        lucide.createIcons();
+        return;
+      }
+
+      stopNoise();
+      currentNoiseType = type;
+
+      const ctx = getAudioContext();
+      if (ctx.state === 'suspended') ctx.resume();
+
+      // Synthesize noise buffer
+      const bufferSize = ctx.sampleRate * 2;
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+
+      // Generate customized noise color
+      for (let i = 0; i < bufferSize; i++) {
+        if (type === 'metro') {
+          // Brown/low noise rumble
+          data[i] = (Math.random() * 2 - 1) * 0.4 + (Math.sin(i * 0.015) * 0.3);
+        } else if (type === 'darshini') {
+          // Steam hiss & high frequency chatter
+          data[i] = (Math.random() * 2 - 1) * (0.2 + (i % 2000 < 500 ? 0.4 : 0.05));
+        } else {
+          // Traffic roar + honking frequency bursts
+          const horn = (i % 8000 < 1200) ? Math.sin(i * 0.12) * 0.35 : 0;
+          data[i] = (Math.random() * 2 - 1) * 0.3 + horn;
+        }
+      }
+
+      noiseSource = ctx.createBufferSource();
+      noiseSource.buffer = buffer;
+      noiseSource.loop = true;
+
+      // Filter
+      noiseFilter = ctx.createBiquadFilter();
+      if (cantoFilterActive) {
+        // Canto Isolation bandpass
+        noiseFilter.type = 'bandpass';
+        noiseFilter.frequency.value = 1800;
+        noiseFilter.Q.value = 0.8;
+      } else {
+        noiseFilter.type = 'allpass';
+      }
+
+      const gain = ctx.createGain();
+      gain.gain.value = cantoFilterActive ? 0.04 : 0.15; // attenuated when canto filter is on
+
+      noiseSource.connect(noiseFilter);
+      noiseFilter.connect(gain);
+      gain.connect(ctx.destination);
+
+      noiseSource.start();
+
+      allBtns.forEach(b => {
+        const btn = document.getElementById('btn-noise-' + b);
+        if (btn) {
+          if (b === type) {
+            btn.innerHTML = '<i data-lucide="square" class="w-3.5 h-3.5 text-rose-400"></i> Stop Soundscape';
+          } else {
+            btn.innerHTML = '<i data-lucide="play" class="w-3.5 h-3.5"></i> Play Soundscape';
+          }
+        }
+      });
+
+      if (statusEl) statusEl.innerText = `Simulating ${type.toUpperCase()} Environment`;
+      lucide.createIcons();
+    }
+
+    function stopNoise() {
+      if (noiseSource) {
+        try { noiseSource.stop(); } catch(e) {}
+        noiseSource.disconnect();
+        noiseSource = null;
+      }
+      currentNoiseType = null;
+    }
+
+    function toggleAcousticFilter() {
+      cantoFilterActive = !cantoFilterActive;
+      const knob = document.getElementById('acousticKnob');
+      const text = document.getElementById('filterStatusText');
+
+      if (cantoFilterActive) {
+        knob.classList.remove('translate-x-1', 'bg-slate-400');
+        knob.classList.add('translate-x-7', 'bg-purple-400');
+        text.innerText = 'Canto Neural Bandpass Isolation Active (-22dB Noise Attenuation)';
+        playSound('chime');
+      } else {
+        knob.classList.add('translate-x-1', 'bg-slate-400');
+        knob.classList.remove('translate-x-7', 'bg-purple-400');
+        text.innerText = 'Standard Smartphone Raw Capture (Unfiltered Background Noise)';
+        playSound('click');
+      }
+
+      // If playing, re-toggle to update filter in real time
+      if (currentNoiseType) {
+        const t = currentNoiseType;
+        currentNoiseType = null;
+        toggleNoise(t);
+      }
+    }
+
+    // ==========================================
+    // GROWTH SWEEPER MINI-GAME
+    // ==========================================
+    let sweeperScore = 0;
+    const sweeperBombs = [4, 11, 19, 27, 33]; // indices
+
+    function initSweeperGame() {
+      sweeperScore = 0;
+      document.getElementById('sweeperScore').innerText = '₹0';
+      document.getElementById('sweeperSmiley').innerText = '😎';
+
+      const grid = document.getElementById('sweeperGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      for (let i = 0; i < 36; i++) {
+        const tile = document.createElement('button');
+        tile.className = 'w-10 h-10 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold transition flex items-center justify-center';
+        tile.onclick = () => clickSweeperTile(tile, i);
+        grid.appendChild(tile);
+      }
+    }
+
+    function clickSweeperTile(tile, idx) {
+      if (tile.disabled) return;
+      tile.disabled = true;
+
+      if (sweeperBombs.includes(idx)) {
+        tile.className = 'w-10 h-10 rounded bg-rose-600 text-white font-bold text-xs flex items-center justify-center';
+        tile.innerText = '💣';
+        document.getElementById('sweeperSmiley').innerText = '😵';
+        playSound('reboot');
+        alert('💥 Churn Bomb! Unaddressed desktop friction caused subscription cancellation.');
+      } else {
+        tile.className = 'w-10 h-10 rounded bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-bold text-xs flex items-center justify-center';
+        tile.innerText = '🚀';
+        sweeperScore += 10000;
+        document.getElementById('sweeperScore').innerText = '₹' + sweeperScore.toLocaleString();
+        playSound('click');
+      }
+    }
+
+    // ==========================================
+    // CLOCK & INITIALIZATION
+    // ==========================================
+    function updateClock() {
+      const now = new Date();
+      const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', hour12: true };
+      const timeStr = now.toLocaleTimeString('en-US', options) + ' IST';
+      const clockEl = document.getElementById('desktopClock');
+      if (clockEl) clockEl.innerText = timeStr;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initWindows();
+      initSweeperGame();
+      updateSimulator();
+      initApiState();
+      lucide.createIcons();
+
+      const defaultMode = window.innerWidth < 768 ? 'executive' : 'desktop';
+      const savedMode = localStorage.getItem('FLOWSTATE_VIEW_MODE') || defaultMode;
+      setMode(savedMode);
+    });
+
+    // Spacebar Hotkey for Dictation Studio
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+        const studioTab = document.getElementById('content-studio');
+        if (studioTab && (!studioTab.classList.contains('hidden') || windowState['studio']?.open)) {
+          e.preventDefault();
+          toggleDictation();
+        }
+      }
+    });
+
+    // Include the original simulator, studio, API, and tab-switching functions
     // Tab Switching
+    
+    // Real Hinglish Voice Synthesizer
+    function playBenchmarkAudio(text, type) {
+      playSound('click');
+      
+      if (type === 'traffic') {
+        toggleNoise('traffic');
+        setTimeout(() => stopNoise(), 3500);
+      }
+
+      if (!('speechSynthesis' in window)) {
+        alert("Text-to-Speech is not supported in this browser.");
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      const voices = window.speechSynthesis.getVoices();
+      const inVoice = voices.find(v => v.lang.includes('IN') || v.lang.includes('hi')) || voices[0];
+      if (inVoice) utterance.voice = inVoice;
+
+      if (type === 'whisper') {
+        utterance.volume = 0.25;
+        utterance.rate = 0.85;
+        utterance.pitch = 0.8;
+      } else if (type === 'tech') {
+        utterance.volume = 1.0;
+        utterance.rate = 1.15;
+        utterance.pitch = 1.05;
+      } else {
+        utterance.volume = 0.9;
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+
     function switchTab(tabName) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -1169,4 +3455,3 @@
   </script>
 </body>
 </html>
-
