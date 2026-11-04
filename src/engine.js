@@ -211,7 +211,8 @@ function parseTerminalCommand(cmdString) {
         status: 'ok',
         command: 'whoami',
         candidate: 'Vikas Sharma',
-        role: 'Software Engineer & AI Systems Developer',
+        role: 'Software Engineer & AI Systems Developer · Current Intern @ Rankved',
+        company: 'Rankved',
         verifiedWords: 8420
       };
     case 'matrix':

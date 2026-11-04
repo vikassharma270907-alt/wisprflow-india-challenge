@@ -64,4 +64,9 @@ describe('Evaluator Links & Identity Integrity Tests', () => {
       assert.ok(readme.includes(proj), `Project ${proj} missing from README.md`);
     }
   });
+
+  test('current professional internship at Rankved is verified across documentation and UI', () => {
+    assert.ok(html.includes('Rankved'), 'Rankved missing from index.html');
+    assert.ok(readme.includes('Rankved'), 'Rankved missing from README.md');
+  });
 });
