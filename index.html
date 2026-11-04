@@ -812,24 +812,7 @@
 
           <!-- DYNAMIC SIMULATION RESULTS -->
           <div class="lg:col-span-2 flex flex-col justify-between space-y-6">
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
-              <div class="bg-slate-950/80 border border-cyan-500/40 p-4 rounded-xl flex items-center justify-between shadow-lg shadow-cyan-500/5">
-                <div>
-                  <span class="text-[10px] text-cyan-400 font-mono font-bold block mb-1">CONVERSION GAUGE</span>
-                  <div id="gaugeRateText" class="text-2xl font-black text-cyan-400 font-mono">5.8%</div>
-                  <span id="gaugeTargetStatus" class="text-[10px] text-slate-400 font-mono">Target: 6.0% (<span class="text-cyan-400 font-semibold">97% reached</span>)</span>
-                </div>
-                <div class="relative w-14 h-14 flex items-center justify-center" title="Target Gauge: 97% of 6.0% goal">
-                  <svg class="w-14 h-14 transform -rotate-90" aria-hidden="true">
-                    <circle cx="28" cy="28" r="22" stroke="#1e293b" stroke-width="4" fill="none"></circle>
-                    <circle id="gaugeRing" cx="28" cy="28" r="22" stroke="#06b6d4" stroke-width="4" stroke-dasharray="138.2" stroke-dashoffset="4.6" stroke-linecap="round" fill="none" class="transition-all duration-500"></circle>
-                  </svg>
-                  <div id="gaugePercentText" class="absolute flex flex-col items-center justify-center leading-none text-center">
-                    <span class="text-[11px] font-mono font-bold text-slate-100">97%</span>
-                    <span class="text-[7px] font-mono text-cyan-400 uppercase tracking-wider block -mt-0.5">TARGET</span>
-                  </div>
-                </div>
-              </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div class="bg-slate-950/80 border border-slate-800 p-5 rounded-xl">
                 <span class="text-xs text-slate-400 font-semibold block mb-1">Baseline Conversion</span>
                 <div class="text-3xl font-black text-slate-300 font-mono">2.1%</div>
@@ -3637,45 +3620,6 @@
       const annualRev = payingUsers * 320 * 12; // in INR
       const crores = (annualRev / 10000000).toFixed(2);
       document.getElementById('projectedARR').innerText = '₹' + crores + ' Cr';
-
-      // Dynamic Conversion Target Gauge Update
-      const targetRate = 6.0;
-      const targetPct = Math.round((rate / targetRate) * 100);
-
-      const gaugeRateEl = document.getElementById('gaugeRateText');
-      if (gaugeRateEl) gaugeRateEl.innerText = rateFormatted;
-
-      const gaugeTargetStatusEl = document.getElementById('gaugeTargetStatus');
-      if (gaugeTargetStatusEl) {
-        if (rate >= targetRate) {
-          gaugeTargetStatusEl.innerHTML = `Target: ${targetRate.toFixed(1)}% (<span class="text-emerald-400 font-semibold">${targetPct}% reached</span>)`;
-        } else {
-          gaugeTargetStatusEl.innerHTML = `Target: ${targetRate.toFixed(1)}% (<span class="text-cyan-400 font-semibold">${targetPct}% reached</span>)`;
-        }
-      }
-
-      const gaugePercentEl = document.getElementById('gaugePercentText');
-      if (gaugePercentEl) {
-        const numColor = rate >= targetRate ? 'text-emerald-300' : 'text-slate-100';
-        const lblColor = rate >= targetRate ? 'text-emerald-400' : 'text-cyan-400';
-        gaugePercentEl.innerHTML = `<span class="text-[11px] font-mono font-bold ${numColor}">${targetPct}%</span><span class="text-[7px] font-mono ${lblColor} uppercase tracking-wider block -mt-0.5">TARGET</span>`;
-      }
-
-      const gaugeRingEl = document.getElementById('gaugeRing');
-      if (gaugeRingEl) {
-        const circumference = 138.2;
-        const progress = Math.min(rate / targetRate, 1.0);
-        const offset = Math.max(0, circumference * (1 - progress));
-        gaugeRingEl.style.strokeDashoffset = offset.toFixed(1);
-
-        if (rate >= targetRate) {
-          gaugeRingEl.setAttribute('stroke', '#10b981');
-        } else if (rate >= 4.0) {
-          gaugeRingEl.setAttribute('stroke', '#06b6d4');
-        } else {
-          gaugeRingEl.setAttribute('stroke', '#f59e0b');
-        }
-      }
     }
 
     // Initialize Lucide icons & state
