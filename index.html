@@ -252,30 +252,30 @@
         </div>
 
         <!-- Mode Switcher Pill -->
-        <button onclick="setMode('executive')" class="px-2.5 py-1 rounded bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 font-semibold text-[11px] flex items-center gap-1.5 transition">
-          <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
+        <button type="button" onclick="setMode('executive')" aria-label="Switch to Executive Report view" class="px-2.5 py-1 rounded bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 font-semibold text-[11px] flex items-center gap-1.5 transition">
+          <i data-lucide="layout-dashboard" class="w-3.5 h-3.5" aria-hidden="true"></i>
           <span class="hidden sm:inline">Switch to Executive View</span>
           <span class="sm:hidden">Report</span>
         </button>
 
         <!-- X-Ray Toggle -->
-        <button onclick="toggleXRay()" title="Toggle Voice-In / UI-Out Prompts" class="p-1 rounded hover:bg-slate-800 text-slate-300 hover:text-white transition flex items-center gap-1">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-blue-400"></i>
+        <button type="button" onclick="toggleXRay()" id="desktopXrayToggle" title="Toggle Voice-In / UI-Out Prompts" aria-label="Toggle Voice-In and UI-Out prompt cards" aria-pressed="false" class="p-1.5 min-w-[28px] min-h-[28px] rounded hover:bg-slate-800 text-slate-300 hover:text-white transition flex items-center justify-center gap-1">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-blue-400" aria-hidden="true"></i>
           <span class="text-[10px] hidden lg:inline font-mono">X-Ray</span>
         </button>
 
         <!-- Sound Toggle -->
-        <button onclick="toggleAudio()" id="desktopAudioBtn" title="Toggle System Sounds" class="p-1 rounded hover:bg-slate-800 text-slate-300 hover:text-white transition">
-          <i data-lucide="volume-2" class="w-3.5 h-3.5"></i>
+        <button type="button" onclick="toggleAudio()" id="desktopAudioBtn" title="Toggle System Sounds" aria-label="Toggle system sounds" aria-pressed="true" class="p-1.5 min-w-[28px] min-h-[28px] rounded hover:bg-slate-800 text-slate-300 hover:text-white transition flex items-center justify-center">
+          <i data-lucide="volume-2" class="w-3.5 h-3.5" aria-hidden="true"></i>
         </button>
 
         <!-- Judges Links: GitHub & LinkedIn -->
-        <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-mono text-[11px] flex items-center gap-1.5 transition" title="View GitHub Repositories">
-          <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-mono text-[11px] flex items-center gap-1.5 transition" title="View GitHub Repositories" aria-label="Open Vikas Sharma's GitHub profile in a new tab">
+          <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           <span class="hidden sm:inline">GitHub</span>
         </a>
-        <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-mono text-[11px] flex items-center gap-1.5 transition" title="View LinkedIn Profile">
-          <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-mono text-[11px] flex items-center gap-1.5 transition" title="View LinkedIn Profile" aria-label="Open Vikas Sharma's LinkedIn profile in a new tab">
+          <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
           <span class="hidden sm:inline">LinkedIn</span>
         </a>
 
@@ -580,69 +580,69 @@
 
         <!-- CONTROLS -->
         <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
-          <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 hover:text-white flex items-center gap-1.5 transition font-mono" title="View GitHub Repositories">
-            <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 hover:text-white flex items-center gap-1.5 transition font-mono" title="View GitHub Repositories" aria-label="Open Vikas Sharma's GitHub profile in a new tab">
+            <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             <span class="hidden md:inline">GitHub</span>
           </a>
 
-          <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 hover:text-white flex items-center gap-1.5 transition font-mono" title="View LinkedIn Profile">
-            <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 hover:text-white flex items-center gap-1.5 transition font-mono" title="View LinkedIn Profile" aria-label="Open Vikas Sharma's LinkedIn profile in a new tab">
+            <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
             <span class="hidden md:inline">LinkedIn</span>
           </a>
 
-          <button onclick="openApiModal()" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs text-slate-300 hover:text-white flex items-center gap-1.5 transition">
-            <i data-lucide="key" class="w-3.5 h-3.5 text-amber-400"></i>
+          <button type="button" onclick="openApiModal()" aria-label="Configure Wispr Flow API Key" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs text-slate-300 hover:text-white flex items-center gap-1.5 transition">
+            <i data-lucide="key" class="w-3.5 h-3.5 text-amber-400" aria-hidden="true"></i>
             <span id="apiKeyStatusLabel" class="hidden sm:inline">API</span>
           </button>
 
-          <button id="xrayToggle" onclick="toggleXRay()" title="Toggle Voice-In / UI-Out Prompts" class="relative inline-flex h-7 w-12 items-center rounded-full bg-slate-800 border border-slate-700 transition-colors focus:outline-none">
+          <button type="button" id="xrayToggle" onclick="toggleXRay()" role="switch" aria-checked="false" aria-label="Toggle Voice-In and UI-Out prompt cards" title="Toggle Voice-In / UI-Out Prompts" class="relative inline-flex h-7 w-12 items-center rounded-full bg-slate-800 border border-slate-700 transition-colors focus:outline-none">
             <span id="xrayKnob" class="inline-block h-5 w-5 transform rounded-full bg-slate-400 transition-transform translate-x-1 shadow-md"></span>
           </button>
         </div>
       </div>
 
       <!-- SUB-NAV TABS -->
-      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex overflow-x-auto space-x-1 border-t border-slate-800/80 py-2 scrollbar-none" aria-label="Tabs">
-        <button onclick="switchTab('funnel')" id="tab-funnel" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-blue-600 text-white flex items-center gap-2 whitespace-nowrap transition-all">
-          <i data-lucide="trending-up" class="w-4 h-4"></i>
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex overflow-x-auto space-x-1 border-t border-slate-800/80 py-2 scrollbar-none" aria-label="Executive report sections" role="tablist">
+        <button type="button" role="tab" aria-selected="true" aria-controls="content-funnel" onclick="switchTab('funnel')" id="tab-funnel" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-blue-600 text-white flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="trending-up" class="w-4 h-4" aria-hidden="true"></i>
           1. Fix the 14% → 2% Gap
         </button>
-        <button onclick="switchTab('benchmark')" id="tab-benchmark" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
-          <i data-lucide="mic" class="w-4 h-4"></i>
+        <button type="button" role="tab" aria-selected="false" aria-controls="content-benchmark" onclick="switchTab('benchmark')" id="tab-benchmark" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="mic" class="w-4 h-4" aria-hidden="true"></i>
           2. Honest Hinglish Test (Flow vs Gboard)
         </button>
-        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
-          <i data-lucide="pie-chart" class="w-4 h-4"></i>
+        <button type="button" role="tab" aria-selected="false" aria-controls="content-dashboard" onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="pie-chart" class="w-4 h-4" aria-hidden="true"></i>
           3. Funnel & Retention Dashboard
         </button>
-        <button onclick="switchTab('grant')" id="tab-grant" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
-          <i data-lucide="dollar-sign" class="w-4 h-4"></i>
+        <button type="button" role="tab" aria-selected="false" aria-controls="content-grant" onclick="switchTab('grant')" id="tab-grant" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="dollar-sign" class="w-4 h-4" aria-hidden="true"></i>
           4. $3,000 Bangalore Field Rig
         </button>
-        <button onclick="switchTab('operator')" id="tab-operator" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
-          <i data-lucide="user-check" class="w-4 h-4"></i>
+        <button type="button" role="tab" aria-selected="false" aria-controls="content-operator" onclick="switchTab('operator')" id="tab-operator" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="user-check" class="w-4 h-4" aria-hidden="true"></i>
           5. The Operator & Chances Taken
         </button>
-        <button onclick="switchTab('studio')" id="tab-studio" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-emerald-400 hover:text-emerald-300 hover:bg-emerald-950/40 border border-emerald-500/30 flex items-center gap-2 whitespace-nowrap transition-all">
-          <i data-lucide="mic-vocal" class="w-4 h-4 text-emerald-400 animate-pulse"></i>
+        <button type="button" role="tab" aria-selected="false" aria-controls="content-studio" onclick="switchTab('studio')" id="tab-studio" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-emerald-400 hover:text-emerald-300 hover:bg-emerald-950/40 border border-emerald-500/30 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="mic-vocal" class="w-4 h-4 text-emerald-400 animate-pulse" aria-hidden="true"></i>
           6. Live Voice Dictation Studio
         </button>
-        <button onclick="switchTab('audio')" id="tab-audio" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-purple-400 hover:text-purple-300 hover:bg-purple-950/40 border border-purple-500/30 flex items-center gap-2 whitespace-nowrap transition-all">
-          <i data-lucide="headphones" class="w-4 h-4 text-purple-400"></i>
+        <button type="button" role="tab" aria-selected="false" aria-controls="content-audio" onclick="switchTab('audio')" id="tab-audio" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-purple-400 hover:text-purple-300 hover:bg-purple-950/40 border border-purple-500/30 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="headphones" class="w-4 h-4 text-purple-400" aria-hidden="true"></i>
           7. Bangalore Acoustic Lab
         </button>
-        <button onclick="switchTab('terminal')" id="tab-terminal" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
-          <i data-lucide="terminal" class="w-4 h-4 text-slate-400"></i>
+        <button type="button" role="tab" aria-selected="false" aria-controls="content-terminal" onclick="switchTab('terminal')" id="tab-terminal" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="terminal" class="w-4 h-4 text-slate-400" aria-hidden="true"></i>
           8. Wispr CLI Console
         </button>
-        <button onclick="switchTab('playbook')" id="tab-playbook" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
-          <i data-lucide="file-text" class="w-4 h-4 text-slate-400"></i>
+        <button type="button" role="tab" aria-selected="false" aria-controls="content-playbook" onclick="switchTab('playbook')" id="tab-playbook" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/50 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="file-text" class="w-4 h-4 text-slate-400" aria-hidden="true"></i>
           9. Master Playbook
         </button>
-      <button onclick="switchTab('projects')" id="tab-projects" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-purple-300 hover:text-purple-200 hover:bg-purple-950/40 border border-purple-500/30 flex items-center gap-2 whitespace-nowrap transition-all">
-        <i data-lucide="folder-git-2" class="w-4 h-4 text-purple-400"></i>
-        7. Past Work & GitHub (Judges)
-      </button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="content-projects" onclick="switchTab('projects')" id="tab-projects" class="tab-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-purple-300 hover:text-purple-200 hover:bg-purple-950/40 border border-purple-500/30 flex items-center gap-2 whitespace-nowrap transition-all">
+          <i data-lucide="folder-git-2" class="w-4 h-4 text-purple-400" aria-hidden="true"></i>
+          10. Past Work & GitHub (Judges)
+        </button>
       </nav>
     </header>
 
@@ -2430,16 +2430,19 @@
         }
 
         win.style.zIndex = highestZ;
+        win.setAttribute('role', 'dialog');
+        win.setAttribute('aria-label', cfg.title);
+        win.setAttribute('aria-modal', 'false');
 
         win.onmousedown = () => bringToFront(cfg.id);
 
         win.innerHTML = `
           <!-- Window Title Bar -->
           <div class="window-header h-11 bg-slate-900/95 border-b border-white/5 px-4 flex items-center justify-between select-none rounded-t-2xl backdrop-blur-xl">
-            <div class="flex items-center gap-2">
-              <button onclick="closeWindow('${cfg.id}')" title="Close" class="w-3 h-3 rounded-full bg-rose-500 hover:bg-rose-400 transition shadow-sm shadow-rose-500/40 focus:outline-none"></button>
-              <button onclick="minimizeWindow('${cfg.id}')" title="Minimize" class="w-3 h-3 rounded-full bg-amber-500 hover:bg-amber-400 transition shadow-sm shadow-amber-500/40 focus:outline-none"></button>
-              <button onclick="maximizeWindow('${cfg.id}')" title="Maximize" class="w-3 h-3 rounded-full bg-emerald-500 hover:bg-emerald-400 transition shadow-sm shadow-emerald-500/40 focus:outline-none"></button>
+            <div class="flex items-center gap-1">
+              <button type="button" onclick="closeWindow('${cfg.id}')" aria-label="Close ${cfg.title} window" title="Close" class="w-6 h-6 flex items-center justify-center rounded hover:bg-slate-800 transition focus:outline-none"><span class="w-3 h-3 rounded-full bg-rose-500 hover:bg-rose-400 transition shadow-sm shadow-rose-500/40"></span></button>
+              <button type="button" onclick="minimizeWindow('${cfg.id}')" aria-label="Minimize ${cfg.title} window" title="Minimize" class="w-6 h-6 flex items-center justify-center rounded hover:bg-slate-800 transition focus:outline-none"><span class="w-3 h-3 rounded-full bg-amber-500 hover:bg-amber-400 transition shadow-sm shadow-amber-500/40"></span></button>
+              <button type="button" onclick="maximizeWindow('${cfg.id}')" aria-label="Maximize ${cfg.title} window" title="Maximize" class="w-6 h-6 flex items-center justify-center rounded hover:bg-slate-800 transition focus:outline-none"><span class="w-3 h-3 rounded-full bg-emerald-500 hover:bg-emerald-400 transition shadow-sm shadow-emerald-500/40"></span></button>
             </div>
             <div class="flex items-center gap-2 font-mono text-xs font-semibold text-slate-200 tracking-tight">
               <span class="text-cyan-400"><i data-lucide="${cfg.icon}" class="w-4 h-4"></i></span>
@@ -2752,6 +2755,16 @@
     // ==========================================
     // INTERACTIVE WISPR CLI TERMINAL LOGIC
     // ==========================================
+        function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
     const terminalHistory = [];
     let historyIdx = -1;
 
@@ -2767,7 +2780,8 @@
 
       const output = document.getElementById('terminalOutput');
       const userLine = document.createElement('div');
-      userLine.innerHTML = `<span class="text-emerald-400 font-bold">wispr@bangalore-rig:~$</span> <span class="text-white">${cmd}</span>`;
+      const safeCmd = escapeHtml(cmd);
+      userLine.innerHTML = `<span class="text-emerald-400 font-bold">wispr@bangalore-rig:~$</span> <span class="text-white">${safeCmd}</span>`;
       output.appendChild(userLine);
 
       const respLine = document.createElement('div');
@@ -2843,7 +2857,7 @@
           setTimeout(simulateReboot, 2000);
           break;
         default:
-          respLine.innerHTML = `<span class="text-rose-400">Command not found: ${cmd}</span>. Type <span class="text-blue-400">help</span> for routine list.`;
+          respLine.innerHTML = `<span class="text-rose-400">Command not found: ${safeCmd}</span>. Type <span class="text-blue-400">help</span> for routine list.`;
       }
 
       output.appendChild(respLine);
@@ -3165,6 +3179,7 @@
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('bg-blue-600', 'text-white');
         btn.classList.add('text-slate-400');
+        btn.setAttribute('aria-selected', 'false');
       });
 
       const selectedContent = document.getElementById('content-' + tabName);
@@ -3174,6 +3189,7 @@
       if (selectedTab) {
         selectedTab.classList.add('bg-blue-600', 'text-white');
         selectedTab.classList.remove('text-slate-400');
+        selectedTab.setAttribute('aria-selected', 'true');
       }
       lucide.createIcons();
     }
@@ -3184,12 +3200,20 @@
       xrayActive = !xrayActive;
       document.body.classList.toggle('xray-active', xrayActive);
       const knob = document.getElementById('xrayKnob');
+      const xrayBtn = document.getElementById('xrayToggle');
+      const desktopXrayBtn = document.getElementById('desktopXrayToggle');
+      if (xrayBtn) xrayBtn.setAttribute('aria-checked', xrayActive ? 'true' : 'false');
+      if (desktopXrayBtn) desktopXrayBtn.setAttribute('aria-pressed', xrayActive ? 'true' : 'false');
       if (xrayActive) {
-        knob.classList.remove('translate-x-1', 'bg-slate-400');
-        knob.classList.add('translate-x-7', 'bg-blue-400');
+        if (knob) {
+          knob.classList.remove('translate-x-1', 'bg-slate-400');
+          knob.classList.add('translate-x-7', 'bg-blue-400');
+        }
       } else {
-        knob.classList.add('translate-x-1', 'bg-slate-400');
-        knob.classList.remove('translate-x-7', 'bg-blue-400');
+        if (knob) {
+          knob.classList.add('translate-x-1', 'bg-slate-400');
+          knob.classList.remove('translate-x-7', 'bg-blue-400');
+        }
       }
     }
 
