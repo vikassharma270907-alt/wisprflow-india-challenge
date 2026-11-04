@@ -1,10 +1,10 @@
 # FlowState India // Wispr Flow Growth Challenge Master Playbook
 
 > **Target Role:** Wispr Flow Bangalore Growth Team Hiring Challenge  
-> **Candidate:** Vikas Sharma (Full-Stack & AI Systems Intern @ Rankved)  
+> **Candidate:** Vikas Sharma (Search Engine Optimization Analyst @ RankVed Healthcare Martech · Rankved Intern)  
 > **Evaluators:** [Nimisha Mehta](https://www.linkedin.com/in/nimisha-mehta-593758166/) (India Lead) & [Tanay Kothari](https://www.linkedin.com/in/tankots/) (CEO)  
 > **Key Metric:** Telemetry Proof + Demonstration over Claims  
-> **Automated Test Suite:** 68 / 68 Tests Passing (100% Green, 85.6% Coverage across 13 suites)  
+> **Automated Test Suite:** 69 / 69 Tests Passing (100% Green, 85.6% Coverage across 13 suites)  
 > **Direct Profile Page:** [https://flowstate-india.vercel.app/#profile](https://flowstate-india.vercel.app/#profile)  
 > **Direct Past Work Page:** [https://flowstate-india.vercel.app/#projects](https://flowstate-india.vercel.app/#projects)  
 > **Live Production App:** [https://flowstate-india.vercel.app](https://flowstate-india.vercel.app)  
@@ -103,7 +103,7 @@ https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4
 
 * **2:40 – 3:00 [The Close]:**  
   *(Look into camera)*  
-  "I'm currently interning at Rankved building AI systems and autonomous agent infrastructure, based right here in Bangalore, ready to join Wispr Flow immediately. All links and codebases are open source. Thank you!"
+  "I'm currently interning at RankVed Healthcare Martech as a Search Engine Optimization Analyst, working on search systems, growth engineering, and AI agent architectures. Ready to join Wispr Flow immediately. All links and codebases are open source. Thank you!"
 
 ---
 

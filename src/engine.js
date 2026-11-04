@@ -211,8 +211,8 @@ function parseTerminalCommand(cmdString) {
         status: 'ok',
         command: 'whoami',
         candidate: 'Vikas Sharma',
-        role: 'Software Engineer & AI Systems Developer · Current Intern @ Rankved',
-        company: 'Rankved',
+        role: 'Search Engine Optimization Analyst at RankVed Healthcare Martech · Current Intern @ Rankved',
+        company: 'RankVed Healthcare Martech (Rankved)',
         verifiedWords: 8420
       };
     case 'matrix':
