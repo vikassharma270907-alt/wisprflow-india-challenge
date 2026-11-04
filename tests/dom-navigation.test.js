@@ -46,6 +46,10 @@ describe('DOM & Navigation Architecture Verification', () => {
     assert(/id=["']convLift["']/.test(html), 'Missing #convLift display element');
     assert(/id=["']projectedARR["']/.test(html), 'Missing #projectedARR display element');
     assert(/id=["']capDisplay["']/.test(html), 'Missing #capDisplay display element');
+    assert(/id=["']gaugeRateText["']/.test(html), 'Missing #gaugeRateText conversion gauge element');
+    assert(/id=["']gaugePercentText["']/.test(html), 'Missing #gaugePercentText target percentage element');
+    assert(/id=["']gaugeRing["']/.test(html), 'Missing #gaugeRing SVG gauge ring');
+    assert(/id=["']gaugeTargetStatus["']/.test(html), 'Missing #gaugeTargetStatus target text');
     assert(/oninput=["']updateSimulator\(\)["']/.test(html), 'Slider must call updateSimulator on input');
   });
 

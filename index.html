@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="FlowState India // Wispr Flow Growth Simulator &amp; Playbook">
+  <meta property="og:description" content="10.2% WER Hinglish Benchmark, ₹2.22 Cr ARR Monetization Engine, and Ground-Truth Bangalore Noise Lab for Wispr Flow.">
+  <meta property="og:image" content="./thumbnail_og.png">
+  <meta property="og:url" content="https://flowstate-india.vercel.app">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FlowState India // Wispr Flow Growth Simulator &amp; Playbook">
+  <meta name="twitter:description" content="Official 3:40 Executive Video Walkthrough with Studio Neural Voiceover by Vikas Sharma.">
+  <meta name="twitter:image" content="./thumbnail_og.png">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text x='50' y='68' font-size='55' font-weight='900' fill='white' text-anchor='middle'>W</text></svg>">
   <title>FlowState India // Wispr Flow Growth Simulator & FlowOS</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -808,14 +817,17 @@
                 <div>
                   <span class="text-[10px] text-cyan-400 font-mono font-bold block mb-1">CONVERSION GAUGE</span>
                   <div id="gaugeRateText" class="text-2xl font-black text-cyan-400 font-mono">5.8%</div>
-                  <span class="text-[10px] text-slate-400 font-mono">Target: 6.0%</span>
+                  <span id="gaugeTargetStatus" class="text-[10px] text-slate-400 font-mono">Target: 6.0% (<span class="text-cyan-400 font-semibold">97% reached</span>)</span>
                 </div>
-                <div class="relative w-14 h-14 flex items-center justify-center">
-                  <svg class="w-14 h-14 transform -rotate-90">
+                <div class="relative w-14 h-14 flex items-center justify-center" title="Target Gauge: 97% of 6.0% goal">
+                  <svg class="w-14 h-14 transform -rotate-90" aria-hidden="true">
                     <circle cx="28" cy="28" r="22" stroke="#1e293b" stroke-width="4" fill="none"></circle>
-                    <circle id="gaugeRing" cx="28" cy="28" r="22" stroke="#06b6d4" stroke-width="4" stroke-dasharray="138.2" stroke-dashoffset="58" stroke-linecap="round" fill="none" class="transition-all duration-500"></circle>
+                    <circle id="gaugeRing" cx="28" cy="28" r="22" stroke="#06b6d4" stroke-width="4" stroke-dasharray="138.2" stroke-dashoffset="4.6" stroke-linecap="round" fill="none" class="transition-all duration-500"></circle>
                   </svg>
-                  <span id="gaugePercentText" class="absolute text-[10px] font-mono font-bold text-slate-200">58%</span>
+                  <div id="gaugePercentText" class="absolute flex flex-col items-center justify-center leading-none text-center">
+                    <span class="text-[11px] font-mono font-bold text-slate-100">97%</span>
+                    <span class="text-[7px] font-mono text-cyan-400 uppercase tracking-wider block -mt-0.5">TARGET</span>
+                  </div>
                 </div>
               </div>
               <div class="bg-slate-950/80 border border-slate-800 p-5 rounded-xl">
@@ -2011,7 +2023,7 @@
     </div>
     
     <div class="relative rounded-xl overflow-hidden bg-black aspect-video border border-slate-800 shadow-inner">
-      <video id="executive-playbook-video" controls preload="metadata" playsinline class="w-full h-full object-cover">
+      <video id="executive-playbook-video" poster="./thumbnail.png" controls preload="metadata" playsinline class="w-full h-full object-cover">
         <source src="./flowstate_india_walkthrough.mp4" type="video/mp4">
         Your browser does not support HTML5 video. You can <a href="./flowstate_india_walkthrough.mp4" class="text-blue-400 underline">download the MP4 directly</a>.
       </video>
@@ -2445,7 +2457,7 @@
 
           <!-- Video Player -->
           <div class="relative rounded-xl overflow-hidden bg-black border border-slate-800 aspect-video shadow-2xl">
-            <video id="walkthroughVideoPlayer" controls playsinline preload="auto" class="w-full h-full object-contain">
+            <video id="walkthroughVideoPlayer" poster="./thumbnail.png" controls playsinline preload="auto" class="w-full h-full object-contain">
               <source src="./flowstate_india_walkthrough.mp4" type="video/mp4">
               Your browser does not support HTML5 video.
             </video>
@@ -3625,6 +3637,45 @@
       const annualRev = payingUsers * 320 * 12; // in INR
       const crores = (annualRev / 10000000).toFixed(2);
       document.getElementById('projectedARR').innerText = '₹' + crores + ' Cr';
+
+      // Dynamic Conversion Target Gauge Update
+      const targetRate = 6.0;
+      const targetPct = Math.round((rate / targetRate) * 100);
+
+      const gaugeRateEl = document.getElementById('gaugeRateText');
+      if (gaugeRateEl) gaugeRateEl.innerText = rateFormatted;
+
+      const gaugeTargetStatusEl = document.getElementById('gaugeTargetStatus');
+      if (gaugeTargetStatusEl) {
+        if (rate >= targetRate) {
+          gaugeTargetStatusEl.innerHTML = `Target: ${targetRate.toFixed(1)}% (<span class="text-emerald-400 font-semibold">${targetPct}% reached</span>)`;
+        } else {
+          gaugeTargetStatusEl.innerHTML = `Target: ${targetRate.toFixed(1)}% (<span class="text-cyan-400 font-semibold">${targetPct}% reached</span>)`;
+        }
+      }
+
+      const gaugePercentEl = document.getElementById('gaugePercentText');
+      if (gaugePercentEl) {
+        const numColor = rate >= targetRate ? 'text-emerald-300' : 'text-slate-100';
+        const lblColor = rate >= targetRate ? 'text-emerald-400' : 'text-cyan-400';
+        gaugePercentEl.innerHTML = `<span class="text-[11px] font-mono font-bold ${numColor}">${targetPct}%</span><span class="text-[7px] font-mono ${lblColor} uppercase tracking-wider block -mt-0.5">TARGET</span>`;
+      }
+
+      const gaugeRingEl = document.getElementById('gaugeRing');
+      if (gaugeRingEl) {
+        const circumference = 138.2;
+        const progress = Math.min(rate / targetRate, 1.0);
+        const offset = Math.max(0, circumference * (1 - progress));
+        gaugeRingEl.style.strokeDashoffset = offset.toFixed(1);
+
+        if (rate >= targetRate) {
+          gaugeRingEl.setAttribute('stroke', '#10b981');
+        } else if (rate >= 4.0) {
+          gaugeRingEl.setAttribute('stroke', '#06b6d4');
+        } else {
+          gaugeRingEl.setAttribute('stroke', '#f59e0b');
+        }
+      }
     }
 
     // Initialize Lucide icons & state
