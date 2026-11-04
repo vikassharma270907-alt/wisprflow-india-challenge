@@ -46,6 +46,8 @@ describe('DOM & Navigation Architecture Verification', () => {
     assert(/id=["']convLift["']/.test(html), 'Missing #convLift display element');
     assert(/id=["']projectedARR["']/.test(html), 'Missing #projectedARR display element');
     assert(/id=["']capDisplay["']/.test(html), 'Missing #capDisplay display element');
+    assert(!/id=["']gaugeRing["']/.test(html), 'Observed deprecated #gaugeRing loading circle in DOM');
+    assert(!/id=["']gaugeRateText["']/.test(html), 'Observed deprecated #gaugeRateText in DOM');
     assert(/oninput=["']updateSimulator\(\)["']/.test(html), 'Slider must call updateSimulator on input');
   });
 

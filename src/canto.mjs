@@ -52,7 +52,7 @@ export function cantoPostProcess(text, {
   // 2. Resolve Mid-Sentence Course Corrections
   // Example: "Indiranagar actually Koramangala" -> "Koramangala"
   if (filterCourseCorrect) {
-    cleaned = cleaned.replace(/(.*?),?\s+actually\s+(nahi\s+)?(.*?)/gi, '$3');
+    cleaned = cleaned.replace(/\b(\w+),?\s+actually\s+(?:(?:\1)\s+)?(?:nahi\s+)?(\w+)\b/gi, '$2');
   }
 
   // 3. Auto-Capitalize Acronyms & Domain Terms

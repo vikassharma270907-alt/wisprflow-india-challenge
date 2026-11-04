@@ -58,8 +58,8 @@ function scanForSecrets(content, filename = '') {
  * Escapes unsafe characters for HTML rendering to prevent XSS.
  */
 function escapeHtml(str) {
-  if (!str || typeof str !== 'string') return '';
-  return str
+  if (str === null || str === undefined) return '';
+  return String(str)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
