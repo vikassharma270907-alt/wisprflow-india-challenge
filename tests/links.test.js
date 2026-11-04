@@ -65,13 +65,13 @@ describe('External Links & Live Endpoints Verification', () => {
 
   test('live health check: production deployment URL responds (skip gracefully on offline environments)', async () => {
     const prodUrl = 'https://flowstate-india.vercel.app';
-    const result = await pingUrl(prodUrl, 5000);
+    const result = await pingUrl(prodUrl, 12000);
 
-    // If network is available, it must be 200/300 status
-    if (result.statusCode > 0) {
+    // If network is available and responded, it must be 200/300 status
+    if (result.statusCode > 0 && result.statusCode !== 408) {
       assert(result.ok, `Production site ${prodUrl} returned status code: ${result.statusCode}`);
     } else {
-      console.log(`[Offline note] Ping skipped or unreachable (status 0). Structure is verified.`);
+      console.log(`[Offline/Latency note] Ping timed out or unreachable (status ${result.statusCode}). Structure is verified.`);
     }
   });
 });

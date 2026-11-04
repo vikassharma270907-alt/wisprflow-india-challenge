@@ -17,10 +17,11 @@ describe('DOM & Navigation Architecture Verification', () => {
     'audio',
     'terminal',
     'playbook',
-    'projects'
+    'projects',
+    'walkthrough'
   ];
 
-  test('all 10 navigation tab buttons are defined with proper onclick handlers', () => {
+  test('all 11 navigation tab buttons are defined with proper onclick handlers', () => {
     for (const tab of TABS) {
       const buttonPattern = new RegExp(`id=["']tab-${tab}["']`, 'i');
       const clickPattern = new RegExp(`onclick=["']switchTab\\(['"]${tab}['"]\\)["']`, 'i');
@@ -30,7 +31,7 @@ describe('DOM & Navigation Architecture Verification', () => {
     }
   });
 
-  test('all 10 tab content containers are defined with correct semantic classes', () => {
+  test('all 11 tab content containers are defined with correct semantic classes', () => {
     for (const tab of TABS) {
       const contentPattern = new RegExp(`id=["']content-${tab}["'][^>]*class=["'][^"']*tab-content`, 'i');
       assert(contentPattern.test(html), `Missing or invalid #content-${tab} tab-content container`);

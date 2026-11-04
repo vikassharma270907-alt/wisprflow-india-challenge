@@ -51,4 +51,12 @@ describe('Deep Linking & Profile Discoverability Tests', () => {
     assert.ok(/openWindow\(['"]projects['"]\).*?Past Work &amp; GitHub/s.test(html),
       'Missing Past Work in Flowy widget');
   });
+
+  test('Executive video walkthrough is embedded in Playbook and Walkthrough sections with valid MP4 sources', () => {
+    assert.ok(html.includes('id="executive-playbook-video"'), 'Missing executive video player in Master Playbook');
+    assert.ok(html.includes('id="walkthroughVideoPlayer"'), 'Missing video player in Walkthrough section');
+    assert.ok(html.includes('flowstate_india_walkthrough.mp4'), 'Missing flowstate_india_walkthrough.mp4 reference');
+    assert.ok(/id=["']tab-walkthrough["']/.test(html), 'Missing sub-nav Tab 11 for Video Walkthrough');
+    assert.ok(/\[['"]walkthrough['"],\s*['"]video['"]/.test(html), 'Missing walkthrough/video route aliases in handleUrlRouting');
+  });
 });
