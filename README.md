@@ -13,8 +13,11 @@
 `[your.clean.email@gmail.com]`
 
 ### Field: Portfolio / Build URL
-*Your publicly accessible Emergent or deployed URL (test in Incognito first!):*  
-`https://your-app-name.vercel.app` (or your Emergent public link)
+*Your publicly accessible live production URL (tested & verified 200 OK with zero login walls):*  
+`https://flowstate-india.vercel.app`
+
+### GitHub Repository
+`https://github.com/vikassharma270907-alt/wisprflow-india-challenge`
 
 ### Field: Recording URL (3-Minute Loom / YouTube Video)
 `https://www.loom.com/share/[your-id]` or `https://youtu.be/[unlisted-id]`
