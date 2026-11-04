@@ -52,10 +52,12 @@ describe('Deep Linking & Profile Discoverability Tests', () => {
       'Missing Past Work in Flowy widget');
   });
 
-  test('Executive video walkthrough is embedded in Playbook and Walkthrough sections with valid MP4 sources', () => {
+  test('Executive video walkthrough and standalone narration audio are embedded with valid sources', () => {
     assert.ok(html.includes('id="executive-playbook-video"'), 'Missing executive video player in Master Playbook');
     assert.ok(html.includes('id="walkthroughVideoPlayer"'), 'Missing video player in Walkthrough section');
+    assert.ok(html.includes('id="narrationAudioPlayer"'), 'Missing standalone audio player in Walkthrough section');
     assert.ok(html.includes('flowstate_india_walkthrough.mp4'), 'Missing flowstate_india_walkthrough.mp4 reference');
+    assert.ok(html.includes('flowstate_india_narration.mp3'), 'Missing flowstate_india_narration.mp3 reference');
     assert.ok(/id=["']tab-walkthrough["']/.test(html), 'Missing sub-nav Tab 11 for Video Walkthrough');
     assert.ok(/\[['"]walkthrough['"],\s*['"]video['"]/.test(html), 'Missing walkthrough/video route aliases in handleUrlRouting');
   });
