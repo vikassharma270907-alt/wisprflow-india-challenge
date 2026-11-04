@@ -2422,12 +2422,54 @@
             </div>
           </div>
 
+          <!-- Quick Voice / Unmute Control Banner -->
+          <div class="flex flex-wrap items-center justify-between gap-3 p-3 bg-gradient-to-r from-slate-900 via-indigo-950/60 to-slate-900 border border-indigo-500/40 rounded-xl mb-4">
+            <div class="flex items-center gap-2.5">
+              <span class="flex h-3 w-3 relative">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+              </span>
+              <span class="text-xs font-mono font-bold text-emerald-300">48 kHz STEREO BROADCAST VOICE READY</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="playWithFullAudio()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-1.5 transition shadow-lg shadow-emerald-500/20 cursor-pointer">
+                <i data-lucide="volume-2" class="w-4 h-4"></i>
+                Play with Voice (Unmuted)
+              </button>
+              <button type="button" onclick="toggleAudioBoost()" id="boostBtn" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold flex items-center gap-1.5 transition shadow-lg shadow-indigo-500/20 cursor-pointer">
+                <i data-lucide="zap" class="w-4 h-4"></i>
+                Max Volume (100%)
+              </button>
+            </div>
+          </div>
+
           <!-- Video Player -->
           <div class="relative rounded-xl overflow-hidden bg-black border border-slate-800 aspect-video shadow-2xl">
-            <video id="walkthroughVideoPlayer" controls playsinline preload="metadata" class="w-full h-full object-contain">
+            <video id="walkthroughVideoPlayer" controls playsinline preload="auto" class="w-full h-full object-contain">
               <source src="./flowstate_india_walkthrough.mp4" type="video/mp4">
               Your browser does not support HTML5 video.
             </video>
+          </div>
+
+          <!-- Standalone Voice Track Option -->
+          <div class="mt-4 p-4 rounded-xl bg-slate-800/60 border border-slate-700/60 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-lg bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center text-indigo-400">
+                <i data-lucide="headphones" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-white">Prefer Audio-Only Voiceover?</div>
+                <div class="text-[11px] text-slate-400">Direct neural voice track (en-IN-PrabhatNeural, 48 kHz stereo)</div>
+              </div>
+            </div>
+            <div class="flex items-center gap-3 w-full md:w-auto">
+              <audio id="narrationAudioPlayer" controls preload="metadata" class="h-9 w-full md:w-64">
+                <source src="./flowstate_india_narration.mp3" type="audio/mpeg">
+              </audio>
+              <a href="./flowstate_india_narration.mp3" download class="px-3 py-2 rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-mono flex items-center gap-1.5 transition whitespace-nowrap">
+                <i data-lucide="download" class="w-3.5 h-3.5"></i> MP3
+              </a>
+            </div>
           </div>
 
           <!-- Interactive Chapter Navigation -->
@@ -3823,12 +3865,36 @@
       }
     });
   
+    function playWithFullAudio() {
+      playSound('chime');
+      const vid = document.getElementById('walkthroughVideoPlayer');
+      if (vid) {
+        vid.muted = false;
+        vid.volume = 1.0;
+        vid.play().catch(e => console.log('Autoplay unmuted playback:', e));
+      }
+    }
+
+    function toggleAudioBoost() {
+      playSound('click');
+      const vid = document.getElementById('walkthroughVideoPlayer');
+      if (vid) {
+        vid.muted = false;
+        vid.volume = 1.0;
+        const btn = document.getElementById('boostBtn');
+        if (btn) btn.innerHTML = '<i data-lucide="check" class="w-4 h-4"></i> Volume at 100%';
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
     function jumpVideoChapter(sec) {
       playSound('click');
       const vid = document.getElementById('walkthroughVideoPlayer');
       if (vid) {
+        vid.muted = false;
+        vid.volume = 1.0;
         vid.currentTime = sec;
-        vid.play();
+        vid.play().catch(e => console.log('Chapter playback:', e));
       }
     }
 </script>

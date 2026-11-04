@@ -63,6 +63,7 @@ https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4
 
 > **File:** [`flowstate_india_walkthrough.mp4`](https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4) (28.08 MB, 1080p @ 30 FPS)  
 > **Direct Stream / Download:** [https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4](https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4)  
+> **Standalone Neural Voice Track:** [https://flowstate-india.vercel.app/flowstate_india_narration.mp3](https://flowstate-india.vercel.app/flowstate_india_narration.mp3) (48 kHz Broadcast Stereo)  
 > **Interactive In-App Theater:** [https://flowstate-india.vercel.app/#walkthrough](https://flowstate-india.vercel.app/#walkthrough)  
 > **Voiceover:** Neural Voiceover (`en-IN-PrabhatNeural`, Indian English executive cadence)  
 > **Narrator & Candidate:** Vikas Sharma (`vikas.sharma270907@gmail.com`)  
