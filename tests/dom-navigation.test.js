@@ -64,7 +64,7 @@ describe('DOM & Navigation Architecture Verification', () => {
     assert(/id=["']window-container["']/.test(html), 'Missing #window-container');
     assert(/const windowsConfig = \[/.test(html), 'Missing windowsConfig declaration');
 
-    const WINDOWS = ['funnel', 'benchmark', 'dashboard', 'grant', 'operator', 'studio', 'audio', 'terminal', 'playbook', 'sweeper', 'projects'];
+    const WINDOWS = ['funnel', 'benchmark', 'dashboard', 'grant', 'operator', 'studio', 'audio', 'terminal', 'playbook', 'sweeper', 'projects', 'walkthrough'];
     for (const win of WINDOWS) {
       assert(new RegExp(`id:\\s*['"]${win}['"]`, 'i').test(html), `Missing window definition for ${win} in windowsConfig`);
     }
