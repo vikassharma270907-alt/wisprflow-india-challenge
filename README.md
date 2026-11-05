@@ -62,7 +62,7 @@ https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4
 
 ## 1.5 Official Animated Video Walkthrough (3m 40s)
 
-[![FlowState India Video Walkthrough](thumbnail.png)](https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4)
+[![FlowState India Video Walkthrough](thumbnail.webp)](https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4)
 
 > **File:** [`flowstate_india_walkthrough.mp4`](https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4) (28.08 MB, 1080p @ 30 FPS)  
 > **Direct Stream / Download:** [https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4](https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4)  

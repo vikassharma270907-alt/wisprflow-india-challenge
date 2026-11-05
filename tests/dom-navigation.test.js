@@ -48,7 +48,16 @@ describe('DOM & Navigation Architecture Verification', () => {
     assert(/id=["']capDisplay["']/.test(html), 'Missing #capDisplay display element');
     assert(!/id=["']gaugeRing["']/.test(html), 'Observed deprecated #gaugeRing loading circle in DOM');
     assert(!/id=["']gaugeRateText["']/.test(html), 'Observed deprecated #gaugeRateText in DOM');
+    assert(/id=["']convProgressBar["']/.test(html), 'Missing #convProgressBar linear conversion velocity bar');
+    assert(/id=["']convProgressPercent["']/.test(html), 'Missing #convProgressPercent target velocity label');
     assert(/oninput=["']updateSimulator\(\)["']/.test(html), 'Slider must call updateSimulator on input');
+  });
+
+  test('creative animated header and soundwave voice visualizer elements exist in DOM', () => {
+    assert(/aurora-header-bar/.test(html), 'Missing aurora-header-bar animated border styling');
+    assert(/eq-bar/.test(html), 'Missing animated eq-bar soundwave visualizer bars');
+    assert(/CANTO 700MS/.test(html), 'Missing Canto sub-700ms voice badge in header');
+    assert(/bottom-14/.test(html), 'Discovery dock must be positioned at bottom-14 to prevent window title overlap');
   });
 
   test('live Canto dictation studio elements are fully defined', () => {

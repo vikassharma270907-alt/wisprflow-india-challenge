@@ -28,15 +28,16 @@ describe('Security & Hardening Tests', () => {
     }
   });
 
-  test('external links include rel="noreferrer" for security', () => {
-    // Links with target="_blank" must include rel="noreferrer" or rel="noopener"
+  test('external links include rel="noopener noreferrer" for reverse tabnabbing defense', () => {
+    // Links with target="_blank" must include rel="noopener noreferrer"
     const targetBlankRegex = /<a\s+[^>]*target="_blank"[^>]*>/gi;
     const matches = html.match(targetBlankRegex) || [];
     assert.ok(matches.length > 0, 'No external target="_blank" links found');
 
     for (const match of matches) {
       const hasRel = /rel=["'][^"']*(noreferrer|noopener)[^"']*["']/i.test(match);
-      assert.ok(hasRel, `Link missing rel="noreferrer": ${match}`);
+      assert.ok(hasRel, `Link missing rel attribute: ${match}`);
+      assert.ok(match.includes('rel="noopener noreferrer"'), `Link missing full rel="noopener noreferrer": ${match}`);
     }
   });
 
@@ -44,5 +45,18 @@ describe('Security & Hardening Tests', () => {
     // No eval() calls in client scripts
     assert.strictEqual(/\beval\s*\(/.test(html), false, 'Dangerous eval() found in index.html');
     assert.strictEqual(/document\.write\s*\(/.test(html), false, 'Dangerous document.write() found in index.html');
+  });
+
+  test('vercel.json enforces complete suite of HTTP security headers including CSP', () => {
+    const vercel = JSON.parse(fs.readFileSync(path.join(rootDir, 'vercel.json'), 'utf-8'));
+    const headers = vercel.headers[0].headers;
+    const headerMap = Object.fromEntries(headers.map(h => [h.key.toLowerCase(), h.value]));
+
+    assert.ok(headerMap['content-security-policy'], 'Missing Content-Security-Policy header in vercel.json');
+    assert.ok(headerMap['strict-transport-security'], 'Missing Strict-Transport-Security header in vercel.json');
+    assert.strictEqual(headerMap['x-content-type-options'], 'nosniff', 'Missing or invalid X-Content-Type-Options');
+    assert.strictEqual(headerMap['x-frame-options'], 'DENY', 'Missing or invalid X-Frame-Options');
+    assert.ok(headerMap['referrer-policy'], 'Missing Referrer-Policy header');
+    assert.ok(headerMap['permissions-policy'], 'Missing Permissions-Policy header');
   });
 });
