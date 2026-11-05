@@ -50,11 +50,19 @@ https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4
 
 ### Field: What is your oddly specific work setup pick? ($3,000 Grant)
 **Copy & paste this exact text:**
-> **The Bangalore Street-to-Studio Voice Growth Rig ($3,000 Allocation):**  
-> Rather than a luxury desk setup, this is an operational acquisition budget turning field testing into high-converting organic distribution:  
-> 1. **$1,150 — Live Demonstration Field Kit:** AR glasses (Rokid Max) + Shure MV7+ directional mic + bone-conduction whisper array. Used to film raw, unscripted proof stunts in extreme acoustic environments (Namma Metro, Darshinis, Silk Board traffic) showing Canto's noise rejection over Apple/Gboard.  
-> 2. **$1,250 — 25-Creator Micro-Grant Pool:** Replicating Wispr’s 7% ad-spend UGC model by offering $50 performance bounties to 25 student developers, CA interns, and remote operators to test "7 Days Replacing My Keyboard" across Hinglish, Tamil, and Telugu.  
-> 3. **$600 — Multi-Handset Android QA Rig:** Testing bank across budget Android devices (Redmi/Realme) to audit Gboard conflict latency, low-end mic distortion, and code-mixed transcription reliability.
+> **The $3,000 Growth-Tech Plan:**  
+> *Challenge budget in USD*  
+> *Planned allocation. Results will replace these lines as experiments run.*  
+> 
+> 1. **$750 (25.0%) — Hinglish Test Lab:** about 6 Android phones across price tiers, a reference recorder and earbuds. Record Bangalore metro, auto and café noise once, replay it on every device, and publish a repeatable Wispr vs Gboard error comparison.  
+> 2. **$600 (20.0%) — Paywall Experiments:** analytics, feature flags and a UPI AutoPay pilot (Razorpay or Cashfree). A/B test the paywall trigger at 1,000, 2,000 and 3,000 words at the ₹320 price point, to turn the modeled conversion lift into measured data.  
+> 3. **$550 (18.3%) — Mobile-to-Desktop Handoff:** a "continue on desktop" QR or deep-link flow plus WhatsApp and email nudges after N mobile dictations. Metric: desktop activation rate.  
+> 4. **$600 (20.0%) — "Report a Mishear" Bounties:** small bounties for verified Hinglish corrections, plus a public edge-case leaderboard (for example "Macha" vs "Matcha tea").  
+> 5. **$350 (11.7%) — Referral Engine:** share cards ("written with 0 typing"), tracked links and a dashboard for 25 student ambassadors, with rewards as free-month credits instead of cash.  
+> 6. **$150 (5.0%) — Hosting and API Costs:** Vercel, domain and voice API usage for the demo.  
+> 
+> **Total: Exactly $3,000.00 (100.0%)**  
+> **What we'll measure:** Desktop activation rate, trial-to-paid conversion at each paywall trigger, Hinglish error rate vs Gboard, and cost per referred install.
 
 ---
 
@@ -79,7 +87,7 @@ https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4
 | **01 // System Architecture & Telemetry** | `00:00 - 00:40` | 39.8s | Introduction of Vikas Sharma, FlowOS v2.4 telemetry cockpit, 8,420 words verified, 210ms latency across 10 modules. |
 | **02 // The 14% to 2% Monetization Unlock** | `00:40 - 01:27` | 47.3s | Why mobile price cuts fail (Gboard is free), 2,000-word Desktop Sprint trigger in Cursor/VS Code, Instant UPI AutoPay at ₹849/mo, ₹2.22 Cr ARR. |
 | **03 // Hinglish Benchmark & Failure Modes** | `01:27 - 02:11` | 43.7s | 20-sentence corpus (Canto 10.2% WER vs Apple 47% & Gboard 29%), honest "Macha" vs "Matcha" stumble analysis & speech science blueprint. |
-| **04 // Bangalore Acoustic Noise Lab & $3k Rig** | `02:11 - 02:55` | 43.8s | Silk Board (84 dB), Namma Metro (76 dB), Darshini (72 dB), multi-band spectral gating, $3k hardware field test kit breakdown. |
+| **04 // Bangalore Acoustic Noise Lab & The $3,000 Growth-Tech Plan** | `02:11 - 02:55` | 43.8s | Silk Board (84 dB), Namma Metro (76 dB), Darshini (72 dB), multi-band spectral gating, $3,000 growth-tech allocation breakdown. |
 | **05 // Candidate Profile & 8 Shipped Repos** | `02:55 - 03:40` | 45.8s | Vikas Sharma's verified LinkedIn, current internship in autonomous agent infrastructure & MCP, 8 shipped production builds, 79 passed tests. |
 
 ## 2. The 180-Second Video Presentation Script
@@ -98,9 +106,9 @@ https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4
   *(Click onto Tab 2, scroll down the comparison table)*  
   "Following the principle of *demonstration beats claims*, I ran 20 real Hinglish sentences across Wispr Flow and Google Gboard with Gemini. Flow dominated on tech workplace slang, ambient traffic noise, and sub-audible whisper mode. But in the spirit of intellectual honesty, I also documented two edge-case stumbles—like Canto biasing toward 'Matcha tea' when a Bangalore user said 'Macha'. I included the exact linguistic fix for Ariya's team."
 
-* **2:05 – 2:40 [Module 3 & 4: Dashboard & The $3,000 Setup]:**  
+* **2:05 – 2:40 [Module 3 & 4: Dashboard & The $3,000 Growth-Tech Plan]:**  
   *(Click onto Tab 3 and Tab 4)*  
-  "Our retention dashboard shows our real North Star isn’t mobile installs—it's users dictating over 2,000 words across two desktop surfaces like Cursor and Slack. For the $3,000 grant, I designed the Bangalore Street-to-Studio Rig: splitting the funds between a mobile stunt rig, a 25-creator micro-grant pool for Hinglish UGC, and an Android QA test station."
+  "Our retention dashboard shows our real North Star isn’t mobile installs—it's users dictating over 2,000 words across two desktop surfaces like Cursor and Slack. For the $3,000 grant, I designed The $3,000 Growth-Tech Plan: six technology-first investments covering our Hinglish test lab, paywall experiments, mobile-to-desktop handoff, 'Report a Mishear' bounties, referral engine, and demo infrastructure."
 
 * **2:40 – 3:00 [The Close]:**  
   *(Look into camera)*  
@@ -116,7 +124,7 @@ https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4
 | **Mean Dictation Velocity** | 120 – 180 WPM | **162 WPM** | Verified |
 | **Hinglish Word Error Rate (WER)** | < 15.0% | **10.2%** (vs Apple 47% / Gboard 29%) | Verified |
 | **End-to-End Latency Ceiling** | < 700ms | **210ms** (sub-audible streaming) | Verified |
-| **Field Hardware Rig** | Mobile / Studio | Connected to Bangalore Field Rig #01 | Verified |
+| **Lab & Telemetry Station** | Mobile / Studio | Connected to Bangalore Growth-Tech Lab #01 | Verified |
 
 ### Telemetry Dictation Prompt (To Speak into Wispr Flow)
 *Open Wispr Flow on your desktop or phone, press your dictation shortcut, and speak this aloud into Notion or Google Docs:*
