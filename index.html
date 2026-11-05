@@ -392,7 +392,7 @@
         <span>•</span>
         <span>🚀 100K MAU ARR PROJECTION: <strong class="text-purple-400">₹2.22 CRORE</strong></span>
         <span>•</span>
-        <span>📍 HARDWARE RIG: <strong class="text-amber-400">BANGALORE URBAN ACOUSTICS #01</strong></span>
+        <span>📍 HARDWARE RIG: <strong class="text-amber-400">INDORE URBAN ACOUSTICS #01</strong></span>
         <span>•</span>
         <span>💎 HABIT THRESHOLD: <strong class="text-cyan-400">&gt;2,000 WORDS ACROSS 2+ DESKTOP SURFACES</strong></span>
         <span>•</span>
@@ -1301,7 +1301,7 @@
                 <div class="flex flex-wrap items-center gap-3 mt-1.5 text-xs text-slate-400 font-mono">
                   <span>✉️ <a href="mailto:vikas.sharma270907@gmail.com" class="text-slate-300 hover:text-white underline">vikas.sharma270907@gmail.com</a></span>
                   <span>•</span>
-                  <span>📍 Bangalore Urban Acoustics #01</span>
+                  <span>📍 Indore, MP (Urban Acoustics #01)</span>
                   <span>•</span>
                   <span class="text-emerald-400 font-bold">✓ 8,420 Spoken Words Verified</span>
                 </div>
@@ -3350,6 +3350,27 @@
         case 'whoami':
           respLine.innerHTML = `<strong>Vikas Sharma</strong> // Software Engineer & AI Systems Developer<br>  Location: Indore, MP, India (Ready to Relocate / Join Immediately)<br>• Current Internship: Search Engine Optimization Analyst @ RankVed Healthcare Martech (Rankved Intern)<br>• Verified Dictation: 8,420 Words (162 WPM, 210ms latency)<br>• LinkedIn: <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" class="text-cyan-400 underline" rel="noreferrer">linkedin.com/in/vikas-sharma-97881737b/</a><br>• GitHub: <a href="https://github.com/vikassharma270907-alt" target="_blank" class="text-purple-400 underline" rel="noreferrer">github.com/vikassharma270907-alt</a><br>• Ready to join Wispr Flow immediately.`;
           break;
+        case 'theme':
+        case 'theme aurora':
+        case 'theme cyberpunk':
+        case 'theme solaris':
+        case 'theme nebula': {
+          const parts = cmd.toLowerCase().trim().split(/\s+/);
+          if (parts.length > 1 && THEMES[parts[1]]) {
+            setTheme(parts[1]);
+            respLine.innerHTML = `<span class="text-emerald-400 font-bold">Theme updated to ${THEMES[parts[1]].name}.</span> Applied across FlowOS Desktop and Executive Cockpit.`;
+          } else {
+            respLine.innerHTML = `
+              <div class="font-bold text-cyan-400 mb-1">Creative Themes Available:</div>
+              • <span class="text-emerald-400 font-bold">aurora</span> - Canto Aurora (Deep obsidian, neural mint waves, cyan prism)<br>
+              • <span class="text-pink-400 font-bold">cyberpunk</span> - Cyberpunk Bengaluru (Toxic neon, laser pink, cyber cyan)<br>
+              • <span class="text-amber-400 font-bold">solaris</span> - Solaris Saffron (Royal basalt, molten gold, warm amber)<br>
+              • <span class="text-purple-400 font-bold">nebula</span> - Midnight Nebula (Velvet violet, astral magenta, starlight cyan)<br>
+              <span class="text-slate-400 text-xs">Usage: <code>theme &lt;name&gt;</code> (e.g. <code>theme cyberpunk</code>)</span>
+            `;
+          }
+          break;
+        }
         case 'noise':
           openWindow('audio');
           respLine.innerHTML = `Launched Bangalore Acoustic Noise Lab window.`;
