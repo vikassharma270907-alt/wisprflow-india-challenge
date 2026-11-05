@@ -923,7 +923,7 @@
     </div>
 
     <!-- DESKTOP WORKSPACE AREA -->
-    <div id="desktop-area" class="flex-1 relative overflow-hidden p-4">
+    <main id="desktop-area" role="main" aria-label="Desktop Applications" class="flex-1 relative overflow-hidden p-4">
       <!-- AMBIENT LIVING AUDIO SOUNDWAVE CANVAS -->
       <canvas id="ambientWaveCanvas" class="absolute inset-0 pointer-events-none z-0 w-full h-full" aria-hidden="true"></canvas>
       
@@ -1165,14 +1165,14 @@
           <i data-lucide="power" class="w-3.5 h-3.5"></i> Reboot
         </button>
       </div>
-    </div>
+    </main>
 
     <!-- BOTTOM TASKBAR -->
     <footer id="desktop-taskbar" class="h-11 bg-slate-900/95 border-t border-slate-800/80 backdrop-blur-md px-3 flex items-center justify-between z-40 select-none">
       
       <!-- LEFT: START BUTTON & QUICK LAUNCH -->
       <div class="flex items-center gap-2">
-        <button id="btn-start" onclick="toggleStartMenu()" aria-haspopup="true" aria-expanded="false" aria-label="Start menu" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95 transition-all">
+        <button id="btn-start" onclick="toggleStartMenu()" aria-haspopup="true" aria-expanded="false" aria-controls="start-menu" aria-label="Start menu" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95 transition-all">
           <span class="w-4 h-4 rounded bg-white text-blue-600 flex items-center justify-center font-black text-[10px]">W</span>
           <span>Start</span>
         </button>
@@ -1188,7 +1188,7 @@
 
       <!-- RIGHT: SYSTEM TRAY -->
       <div class="flex items-center gap-2 text-xs">
-        <button onclick="minimizeAllWindows()" title="Show Desktop" aria-label="Show desktop" class="w-2.5 h-7 hover:bg-slate-700/50 rounded-sm border-l border-slate-700/80"></button>
+        <button onclick="minimizeAllWindows()" title="Show Desktop" aria-label="Show desktop" class="w-6 h-7 hover:bg-slate-700/50 rounded-sm border-l border-slate-700/80 flex items-center justify-center"><span class="w-0.5 h-4 bg-slate-500/60"></span></button>
       </div>
 
     </footer>
@@ -2506,7 +2506,7 @@
 
         </div>
       </div></div>
-      <div id="content-audio" class="tab-content hidden space-y-6">
+      <div id="content-audio" role="tabpanel" aria-labelledby="tab-audio" class="tab-content hidden space-y-6">
 <div class="xray-badge bg-gradient-to-r from-blue-950 to-indigo-950 border-2 border-dashed border-blue-500 rounded-xl p-4 text-xs font-mono mb-4 text-blue-200">
   <div class="font-bold text-blue-400 flex items-center gap-2 mb-1">
     <i data-lucide="sparkles" class="w-4 h-4"></i>
@@ -2677,7 +2677,7 @@
   </div>
 </div>
 </div>
-      <div id="content-playbook" class="tab-content hidden space-y-6">
+      <div id="content-playbook" role="tabpanel" aria-labelledby="tab-playbook" class="tab-content hidden space-y-6">
         <!-- X-RAY OVERLAY CARD -->
         <div class="xray-badge bg-gradient-to-r from-blue-950 to-indigo-950 border-2 border-dashed border-blue-500 rounded-xl p-4 text-xs font-mono mb-4 text-blue-200">
           <div class="font-bold text-blue-400 flex items-center gap-2 mb-1">
@@ -2800,7 +2800,7 @@
 </div>
     
       <!-- TAB: PAST WORK & SHIPPED GITHUB BUILDS (FOR JUDGES) -->
-      <div id="content-projects" class="tab-content hidden space-y-6">
+      <div id="content-projects" role="tabpanel" aria-labelledby="tab-projects" class="tab-content hidden space-y-6">
         
         <!-- X-RAY OVERLAY CARD -->
         <div class="xray-badge bg-gradient-to-r from-purple-950 to-indigo-950 border-2 border-dashed border-purple-500 rounded-xl p-4 text-xs font-mono mb-4 text-purple-200">
@@ -3107,7 +3107,7 @@
       </div>
 
       <!-- MODULE: VIDEO WALKTHROUGH (FOR EVALUATORS) -->
-      <div id="content-walkthrough" class="tab-content hidden space-y-6">
+      <div id="content-walkthrough" role="tabpanel" aria-labelledby="tab-walkthrough" class="tab-content hidden space-y-6">
         <div class="xray-badge bg-gradient-to-r from-cyan-950 to-indigo-950 border-2 border-dashed border-cyan-500 rounded-xl p-4 text-xs font-mono mb-4 text-cyan-200">
           <div class="font-bold text-cyan-400 flex items-center gap-2 mb-1">
             <i data-lucide="film" class="w-4 h-4"></i>
@@ -3733,6 +3733,7 @@
     }
 
     let currentActiveTab = 'funnel';
+    let windowOrder = [];
 
     function bringToFront(id) {
       const win = document.getElementById('win-' + id);
@@ -3743,6 +3744,10 @@
       document.querySelectorAll('.os-window').forEach(w => w.classList.remove('active-window'));
       win.classList.add('active-window');
       currentActiveTab = id;
+
+      // Track window z-order for keyboard accessibility (Escape dismissal)
+      windowOrder = windowOrder.filter(wId => wId !== id);
+      windowOrder.push(id);
 
       // Update taskbar button active state
       updateTaskbarTabs();
@@ -3812,6 +3817,7 @@
       if (!win) return;
       win.classList.add('hidden');
       windowState[id].open = false;
+      windowOrder = windowOrder.filter(wId => wId !== id);
       updateTaskbarTabs();
     }
 
