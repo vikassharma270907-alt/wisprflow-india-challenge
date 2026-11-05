@@ -95,7 +95,7 @@
       .animate-marquee {
         animation: none !important;
       }
-      .animate-pulse, .animate-ping {
+      .aurora-header-bar::after, .eq-bar, .profile-glow-pill, .animate-pulse, .animate-ping {
         animation: none !important;
       }
       * {
@@ -418,6 +418,59 @@
     .wave-bar:nth-child(7) { animation-delay: 0.9s; }
     .wave-bar:nth-child(8) { animation-delay: 1.05s; }
 
+    /* ======================================================== */
+    /* 🌊 CREATIVE ANIMATED WISPR AURORA HEADER & SOUNDWAVE     */
+    /* ======================================================== */
+    @keyframes auroraBeam {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .aurora-header-bar {
+      position: relative;
+    }
+    .aurora-header-bar::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #00F5A0, #00D2FF, #7928CA, #FF007F, #FF9E00, #00F5A0);
+      background-size: 300% 100%;
+      animation: auroraBeam 8s linear infinite;
+      box-shadow: 0 0 12px rgba(0, 245, 160, 0.45);
+      z-index: 50;
+      pointer-events: none;
+    }
+
+    /* Voice Soundwave Equalizer Oscillators */
+    @keyframes eqPulse1 { 0%, 100% { height: 4px; } 50% { height: 16px; } }
+    @keyframes eqPulse2 { 0%, 100% { height: 14px; } 50% { height: 5px; } }
+    @keyframes eqPulse3 { 0%, 100% { height: 6px; } 50% { height: 17px; } }
+    @keyframes eqPulse4 { 0%, 100% { height: 15px; } 50% { height: 7px; } }
+    @keyframes eqPulse5 { 0%, 100% { height: 5px; } 50% { height: 13px; } }
+    .eq-bar {
+      display: inline-block;
+      width: 2.5px;
+      border-radius: 9999px;
+      background: linear-gradient(to top, #00F5A0, #00D2FF);
+    }
+    .eq-bar-1 { animation: eqPulse1 0.9s ease-in-out infinite; }
+    .eq-bar-2 { animation: eqPulse2 1.1s ease-in-out infinite 0.15s; }
+    .eq-bar-3 { animation: eqPulse3 0.8s ease-in-out infinite 0.3s; }
+    .eq-bar-4 { animation: eqPulse4 1.2s ease-in-out infinite 0.45s; }
+    .eq-bar-5 { animation: eqPulse5 1.0s ease-in-out infinite 0.2s; }
+
+    /* Shimmering Profile Glow Pill */
+    @keyframes profileGlow {
+      0%, 100% { box-shadow: 0 0 8px rgba(0, 245, 160, 0.2); }
+      50% { box-shadow: 0 0 16px rgba(0, 210, 255, 0.35); }
+    }
+    .profile-glow-pill {
+      animation: profileGlow 4s ease-in-out infinite;
+    }
+
     /* Glassmorphic Cards & Glowing Micro-borders */
     .wispr-glass {
       background: var(--theme-card-bg) !important;
@@ -498,45 +551,68 @@
   <div id="workspace-desktop" class="fixed inset-0 flex flex-col desktop-bg z-20 overflow-hidden">
     
     <!-- DESKTOP TOP BAR -->
-    <header class="h-9 bg-slate-900/90 border-b border-slate-800/80 backdrop-blur-md px-3 sm:px-4 flex items-center justify-between text-xs z-[500] select-none">
+    <header class="h-10 sm:h-11 bg-slate-950/90 border-b border-cyan-500/20 backdrop-blur-xl px-3 sm:px-4 flex items-center justify-between text-xs z-[500] select-none aurora-header-bar">
       <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-        <div class="flex items-center gap-2">
-          <div class="w-5 h-5 rounded bg-blue-600 flex items-center justify-center font-black text-white text-xs shadow-md">W</div>
-          <span class="font-bold text-slate-200">FlowOS <span class="text-blue-400 font-mono text-[10px] px-1.5 py-0.2 bg-blue-950/80 rounded border border-blue-500/30">v2.4 Pro</span></span>
+        <div class="flex items-center gap-2.5">
+          <div class="relative group cursor-pointer" onclick="toggleStartMenu()" title="Open FlowOS Launch Menu">
+            <div class="w-6 h-6 rounded-lg bg-gradient-to-tr from-cyan-400 via-blue-600 to-indigo-600 flex items-center justify-center font-black text-white text-xs shadow-md shadow-cyan-500/20 ring-1 ring-cyan-400/40 group-hover:scale-105 transition">W</div>
+            <span class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-slate-950 animate-ping"></span>
+            <span class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-slate-950"></span>
+          </div>
+          <span class="font-extrabold text-slate-100 flex items-center gap-1.5 tracking-tight">
+            <span class="bg-gradient-to-r from-white via-cyan-200 to-blue-300 bg-clip-text text-transparent">FlowOS</span>
+            <span class="text-cyan-400 font-mono text-[10px] px-1.5 py-0.2 bg-cyan-950/80 rounded border border-cyan-500/30">v2.4 Pro</span>
+          </span>
         </div>
-        <span class="text-slate-600 hidden lg:inline">|</span>
-        <span class="text-slate-400 hidden xl:inline">Wispr Flow Bangalore Growth Desktop</span>
+        
+        <!-- Live Neural Soundwave Visualizer in Header -->
+        <div class="hidden md:flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-900/80 border border-slate-800" title="Canto Neural Voice Engine Active // sub-700ms Latency">
+          <div class="flex items-center gap-0.5 h-4">
+            <span class="eq-bar eq-bar-1"></span>
+            <span class="eq-bar eq-bar-2"></span>
+            <span class="eq-bar eq-bar-3"></span>
+            <span class="eq-bar eq-bar-4"></span>
+            <span class="eq-bar eq-bar-5"></span>
+          </div>
+          <span class="text-[10px] font-mono text-cyan-400 font-bold ml-1">CANTO 700MS</span>
+        </div>
+
+        <span class="text-slate-700 hidden xl:inline">|</span>
+        <span class="text-slate-400 hidden 2xl:inline text-[11px] font-medium">Wispr Flow Bangalore Growth Desktop</span>
       </div>
 
       <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
         <!-- Telemetry Pill -->
-        <div class="hidden 2xl:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-[11px] text-emerald-300">
+        <div class="hidden 2xl:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-[11px] text-emerald-300">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span><strong>8,420</strong> Words Spoken</span>
         </div>
 
         <!-- Mode Switcher Pill -->
-        <button type="button" onclick="setMode('executive')" aria-label="Switch to Executive Report view" class="px-2 sm:px-2.5 py-1 rounded bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 font-semibold text-[11px] flex items-center gap-1.5 transition">
-          <i data-lucide="layout-dashboard" class="w-3.5 h-3.5" aria-hidden="true"></i>
+        <button type="button" onclick="setMode('executive')" aria-label="Switch to Executive Report view" class="px-2.5 sm:px-3 py-1 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 font-semibold text-[11px] flex items-center gap-1.5 transition active:scale-95 shadow-sm">
+          <i data-lucide="layout-dashboard" class="w-3.5 h-3.5 text-blue-400" aria-hidden="true"></i>
           <span class="hidden md:inline">Switch to Executive View</span>
           <span class="md:hidden">Report</span>
         </button>
 
         <!-- Candidate Profile Direct Button -->
-        <button type="button" onclick="openWindow('operator'); bringToFront('operator');" aria-label="Open Vikas Sharma Profile & Rankved Internship" class="hidden sm:flex px-2 sm:px-2.5 py-1 rounded bg-emerald-950/80 hover:bg-emerald-900 text-emerald-200 border border-emerald-500/40 font-semibold text-[11px] items-center gap-1.5 transition shadow-sm hover:scale-105 active:scale-95" title="View Vikas Sharma Profile & Rankved Experience">
-          <img src="./profile.webp" loading="lazy" decoding="async" alt="Vikas Sharma" class="w-4 h-4 rounded-full object-cover ring-1 ring-emerald-400">
+        <button type="button" onclick="openWindow('operator'); bringToFront('operator');" aria-label="Open Vikas Sharma Profile & Rankved Internship" class="hidden sm:flex px-2.5 py-1 rounded-lg bg-gradient-to-r from-emerald-950/90 to-teal-950/90 hover:from-emerald-900 hover:to-teal-900 text-emerald-200 border border-emerald-500/40 font-semibold text-[11px] items-center gap-1.5 transition shadow-sm hover:scale-105 active:scale-95 profile-glow-pill" title="View Vikas Sharma Profile & Rankved Experience">
+          <div class="relative">
+            <img src="./profile.webp" loading="lazy" decoding="async" alt="Vikas Sharma" class="w-4 h-4 rounded-full object-cover ring-1 ring-emerald-400">
+            <span class="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+          </div>
           <span>👤 Profile <span class="hidden 2xl:inline text-emerald-300 font-normal font-mono">(Rankved Intern)</span></span>
         </button>
 
         <!-- Past Work Direct Button -->
-        <button type="button" onclick="openWindow('projects'); bringToFront('projects');" aria-label="Open Past Work and GitHub Repositories" class="hidden lg:flex px-2 sm:px-2.5 py-1 rounded bg-purple-600/30 hover:bg-purple-600/50 text-purple-200 border border-purple-400/40 font-semibold text-[11px] items-center gap-1.5 transition hover:scale-105 active:scale-95" title="View Vikas Sharma 7 GitHub Projects">
+        <button type="button" onclick="openWindow('projects'); bringToFront('projects');" aria-label="Open Past Work and GitHub Repositories" class="hidden lg:flex px-2.5 py-1 rounded-lg bg-purple-950/80 hover:bg-purple-900/90 text-purple-200 border border-purple-400/40 font-semibold text-[11px] items-center gap-1.5 transition hover:scale-105 active:scale-95" title="View Vikas Sharma 7 GitHub Projects">
           <i data-lucide="folder-git-2" class="w-3.5 h-3.5 text-purple-400" aria-hidden="true"></i>
           <span>🚀 Past Work <span class="hidden 2xl:inline text-purple-300 font-normal font-mono">(7 Repos)</span></span>
         </button>
 
         <!-- Creative Theme Selector Pill (Desktop) -->
         <div class="relative">
-          <button type="button" onclick="event.stopPropagation(); toggleThemeMenu('desktop')" id="desktopThemeBtn" aria-label="Select Creative Theme" class="px-2 sm:px-2.5 py-1 rounded bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-200 text-[11px] font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-sm" title="Change Visual Theme">
+          <button type="button" onclick="event.stopPropagation(); toggleThemeMenu('desktop')" id="desktopThemeBtn" aria-label="Select Creative Theme" class="px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-200 text-[11px] font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-sm" title="Change Visual Theme">
             <i data-lucide="palette" class="w-3.5 h-3.5 text-cyan-400" aria-hidden="true"></i>
             <span id="desktopThemeLabel" class="hidden sm:inline font-mono">Canto Aurora</span>
             <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400" aria-hidden="true"></i>
@@ -599,11 +675,11 @@
         </button>
 
         <!-- Judges Links: GitHub & LinkedIn -->
-        <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="hidden sm:flex px-2 sm:px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-mono text-[11px] items-center gap-1.5 transition" title="View GitHub Repositories" aria-label="Open Vikas Sharma's GitHub profile in a new tab">
+        <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noopener noreferrer" class="hidden sm:flex px-2 sm:px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-mono text-[11px] items-center gap-1.5 transition" title="View GitHub Repositories" aria-label="Open Vikas Sharma's GitHub profile in a new tab">
           <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           <span class="hidden md:inline">GitHub</span>
         </a>
-        <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="hidden sm:flex px-2 sm:px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-mono text-[11px] items-center gap-1.5 transition" title="View LinkedIn Profile" aria-label="Open Vikas Sharma's LinkedIn profile in a new tab">
+        <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noopener noreferrer" class="hidden sm:flex px-2 sm:px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-mono text-[11px] items-center gap-1.5 transition" title="View LinkedIn Profile" aria-label="Open Vikas Sharma's LinkedIn profile in a new tab">
           <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
           <span class="hidden md:inline">LinkedIn</span>
         </a>
@@ -646,7 +722,7 @@
       <canvas id="ambientWaveCanvas" class="absolute inset-0 pointer-events-none opacity-30 z-0" aria-hidden="true"></canvas>
       
       <!-- CANDIDATE PROFILE DISCOVERY DOCK (DESKTOP) -->
-      <aside aria-label="Candidate profile discovery" class="absolute top-2.5 left-1/2 -translate-x-1/2 z-20 pointer-events-auto bg-slate-900/95 border border-sky-500/40 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-2xl flex items-center gap-2 sm:gap-3 text-xs max-w-[95vw]">
+      <aside aria-label="Candidate profile discovery" class="absolute bottom-14 left-1/2 -translate-x-1/2 z-30 pointer-events-auto bg-slate-900/95 border border-sky-500/40 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-2xl flex items-center gap-2 sm:gap-3 text-xs max-w-[95vw]">
         <div class="flex items-center gap-2 font-mono">
           <img src="./profile.webp" loading="lazy" decoding="async" alt="Vikas Sharma" class="w-5 h-5 rounded-full object-cover ring-1 ring-emerald-400">
           <span class="text-slate-300">Candidate: <strong class="text-white">Vikas Sharma</strong></span>
@@ -871,11 +947,11 @@
       <!-- Bottom Quick Links & Actions -->
       <div class="p-2.5 bg-slate-950/70 flex items-center justify-between text-[11px] text-slate-400">
         <div class="flex items-center gap-2">
-          <a href="https://github.com/vikassharma270907-alt/wisprflow-india-challenge" target="_blank" class="hover:text-white flex items-center gap-1" rel="noreferrer">
+          <a href="https://github.com/vikassharma270907-alt/wisprflow-india-challenge" target="_blank" class="hover:text-white flex items-center gap-1" rel="noopener noreferrer">
             <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub
           </a>
           <span>•</span>
-          <a href="https://flowstate-india.vercel.app" target="_blank" class="hover:text-white flex items-center gap-1" rel="noreferrer">
+          <a href="https://flowstate-india.vercel.app" target="_blank" class="hover:text-white flex items-center gap-1" rel="noopener noreferrer">
             <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Vercel
           </a>
         </div>
@@ -942,16 +1018,27 @@
     </aside>
 
     <!-- MAIN EXECUTIVE HEADER -->
-    <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 py-2 sm:py-3">
+    <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-xl border-b border-cyan-500/20 py-2.5 sm:py-3 aurora-header-bar">
       <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
         <div class="flex items-center gap-2 sm:gap-3">
-          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-black text-sm sm:text-xl shadow-lg shadow-blue-500/25 flex-shrink-0">
-            W
+          <div class="relative group">
+            <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center font-black text-sm sm:text-xl shadow-lg shadow-cyan-500/25 ring-1 ring-cyan-400/40 text-white flex-shrink-0 group-hover:scale-105 transition">
+              W
+            </div>
+            <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-slate-950 animate-ping"></span>
+            <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-slate-950"></span>
           </div>
           <div>
             <div class="flex items-center gap-1.5 sm:gap-2">
-              <h1 class="font-bold text-sm sm:text-lg text-white tracking-tight">FlowState <span class="text-blue-400">India</span></h1>
-              <span class="text-[9px] sm:text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">v2.4 Executive</span>
+              <h1 class="font-bold text-sm sm:text-lg text-white tracking-tight flex items-center gap-2">FlowState <span class="text-cyan-400">India</span></h1>
+              <span class="text-[9px] sm:text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-950/80 text-cyan-300 border border-cyan-500/30">v2.4 Executive</span>
+              <div class="hidden sm:flex items-center gap-0.5 px-2 py-1 rounded-full bg-slate-900/90 border border-slate-800 ml-1" title="Canto Neural Voice Engine Active">
+                <span class="eq-bar eq-bar-1"></span>
+                <span class="eq-bar eq-bar-2"></span>
+                <span class="eq-bar eq-bar-3"></span>
+                <span class="eq-bar eq-bar-4"></span>
+                <span class="eq-bar eq-bar-5"></span>
+              </div>
             </div>
             <p class="text-[11px] text-slate-400 hidden sm:block">Proof of Work // Growth Operator & Acquisition Engine</p>
           </div>
@@ -959,6 +1046,11 @@
 
         <!-- CONTROLS -->
         <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+          <!-- Return to Desktop OS -->
+          <button type="button" onclick="setMode('desktop')" aria-label="Switch to FlowOS Desktop Mode" class="hidden lg:flex px-2.5 sm:px-3 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 font-semibold text-xs items-center gap-1.5 transition active:scale-95" title="Return to FlowOS Desktop Mode">
+            <i data-lucide="monitor" class="w-3.5 h-3.5 text-blue-400"></i>
+            <span>Desktop OS</span>
+          </button>
           <!-- Profile & Past Work Direct Access -->
           <button type="button" onclick="switchTab('operator')" aria-label="View Vikas Sharma Profile and Rankved Internship" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs flex items-center gap-2 transition shadow-md shadow-emerald-600/25 active:scale-95 ring-1 ring-emerald-300/40" title="View Vikas Sharma's Profile & Rankved Internship">
             <img src="./profile.webp" loading="lazy" decoding="async" alt="Vikas Sharma" class="w-4 h-4 rounded-full object-cover ring-1 ring-white">
@@ -972,12 +1064,12 @@
             <span class="hidden md:inline text-[10px] px-1.5 py-0.5 rounded bg-purple-950/80 border border-purple-400/40 text-purple-200 font-mono">7 Repos</span>
           </button>
 
-          <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 hover:text-white flex items-center gap-1.5 transition font-mono" title="View GitHub Repositories" aria-label="Open Vikas Sharma's GitHub profile in a new tab">
+          <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noopener noreferrer" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 hover:text-white flex items-center gap-1.5 transition font-mono" title="View GitHub Repositories" aria-label="Open Vikas Sharma's GitHub profile in a new tab">
             <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             <span class="hidden md:inline">GitHub</span>
           </a>
 
-          <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 hover:text-white flex items-center gap-1.5 transition font-mono" title="View LinkedIn Profile" aria-label="Open Vikas Sharma's LinkedIn profile in a new tab">
+          <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noopener noreferrer" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 hover:text-white flex items-center gap-1.5 transition font-mono" title="View LinkedIn Profile" aria-label="Open Vikas Sharma's LinkedIn profile in a new tab">
             <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
             <span class="hidden md:inline">LinkedIn</span>
           </a>
@@ -1182,10 +1274,28 @@
                 <span class="text-[11px] text-rose-400 font-medium">Standard India cohort</span>
               </div>
 
-              <div class="bg-slate-950/80 border border-blue-500/40 p-5 rounded-xl shadow-lg shadow-blue-500/10">
-                <span class="text-xs text-blue-400 font-semibold block mb-1">Projected Conversion</span>
-                <div id="projectedConv" class="text-3xl font-black text-blue-400 font-mono">5.8%</div>
-                <span id="convLift" class="text-[11px] text-emerald-400 font-medium">+2.76x conversion lift</span>
+              <div class="bg-slate-950/80 border border-blue-500/40 p-5 rounded-xl shadow-lg shadow-blue-500/10 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-xs text-blue-400 font-semibold">Projected Conversion</span>
+                    <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-950/80 text-blue-300 border border-blue-500/30 font-bold">TARGET: 6.0%</span>
+                  </div>
+                  <div id="projectedConv" class="text-3xl font-black text-blue-400 font-mono">5.8%</div>
+                  <span id="convLift" class="text-[11px] text-emerald-400 font-medium">+2.76x conversion lift</span>
+                </div>
+                <!-- Linear Conversion Velocity Bar (Replaces Any Confusing Old Loading Circle) -->
+                <div class="mt-4 pt-3 border-t border-slate-800/80">
+                  <div class="flex justify-between items-center text-[10px] font-mono text-slate-400 mb-1.5">
+                    <span class="flex items-center gap-1 text-slate-300">
+                      <i data-lucide="activity" class="w-3 h-3 text-cyan-400"></i>
+                      Conversion Velocity
+                    </span>
+                    <span id="convProgressPercent" class="text-cyan-400 font-bold">96.7% of Goal</span>
+                  </div>
+                  <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden p-0.5 border border-slate-800">
+                    <div id="convProgressBar" class="h-full rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 transition-all duration-500 ease-out shadow-sm shadow-cyan-500/50" style="width: 96.7%"></div>
+                  </div>
+                </div>
               </div>
 
               <div class="bg-slate-950/80 border border-emerald-500/40 p-5 rounded-xl shadow-lg shadow-emerald-500/10">
@@ -1602,19 +1712,19 @@
 
             <!-- Social & Profile Links -->
             <div class="flex flex-wrap items-center gap-2">
-              <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs flex items-center gap-2 transition shadow-md shadow-sky-600/20 hover:scale-105 active:scale-95" title="View LinkedIn Profile">
+              <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs flex items-center gap-2 transition shadow-md shadow-sky-600/20 hover:scale-105 active:scale-95" title="View LinkedIn Profile">
                 <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 <span>LinkedIn</span>
               </a>
-              <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-mono text-xs flex items-center gap-2 transition shadow-md hover:scale-105 active:scale-95" title="View GitHub Repositories">
+              <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-mono text-xs flex items-center gap-2 transition shadow-md hover:scale-105 active:scale-95" title="View GitHub Repositories">
                 <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                 <span>GitHub</span>
               </a>
-              <a href="https://beyondvikas-portfolio.vercel.app" target="_blank" rel="noreferrer" class="px-3.5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs flex items-center gap-1.5 transition shadow-md shadow-purple-600/20 hover:scale-105 active:scale-95" title="View Motion Portfolio">
+              <a href="https://beyondvikas-portfolio.vercel.app" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs flex items-center gap-1.5 transition shadow-md shadow-purple-600/20 hover:scale-105 active:scale-95" title="View Motion Portfolio">
                 <i data-lucide="globe" class="w-4 h-4"></i>
                 <span>Portfolio</span>
               </a>
-              <a href="https://x.com/VikasSharm90791" target="_blank" rel="noreferrer" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition shadow-md hover:scale-105 active:scale-95" title="View X (Twitter)">
+              <a href="https://x.com/VikasSharm90791" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition shadow-md hover:scale-105 active:scale-95" title="View X (Twitter)">
                 <span class="font-bold text-xs">𝕏</span>
               </a>
             </div>
@@ -1777,7 +1887,7 @@
                 </span>
                 <span class="text-xs text-slate-400 font-mono">// 8 Verifiable Projects</span>
               </div>
-              <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="text-xs text-cyan-400 hover:text-cyan-300 font-mono flex items-center gap-1">
+              <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noopener noreferrer" class="text-xs text-cyan-400 hover:text-cyan-300 font-mono flex items-center gap-1">
                 View All on GitHub <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
               </a>
             </div>
@@ -1798,9 +1908,9 @@
                 <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
                   <span class="text-[10px] font-mono text-slate-500">Python · Tailwind · Web Audio</span>
                   <div class="flex items-center gap-2">
-                    <a href="https://flowstate-india.vercel.app" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <a href="https://flowstate-india.vercel.app" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
                     <span class="text-slate-600">•</span>
-                    <a href="https://github.com/vikassharma270907-alt/wisprflow-india-challenge" target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                    <a href="https://github.com/vikassharma270907-alt/wisprflow-india-challenge" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
                   </div>
                 </div>
               </div>
@@ -1819,9 +1929,9 @@
                 <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
                   <span class="text-[10px] font-mono text-slate-500">Next.js · MCP · ElevenLabs</span>
                   <div class="flex items-center gap-2">
-                    <a href="https://flowguard-treasury.vercel.app" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <a href="https://flowguard-treasury.vercel.app" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
                     <span class="text-slate-600">•</span>
-                    <a href="https://github.com/vikassharma270907-alt/flowguard-treasury" target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                    <a href="https://github.com/vikassharma270907-alt/flowguard-treasury" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
                   </div>
                 </div>
               </div>
@@ -1840,9 +1950,9 @@
                 <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
                   <span class="text-[10px] font-mono text-slate-500">TypeScript · PayPal API · NVIDIA</span>
                   <div class="flex items-center gap-2">
-                    <a href="https://restockpilot.vercel.app" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <a href="https://restockpilot.vercel.app" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
                     <span class="text-slate-600">•</span>
-                    <a href="https://github.com/vikassharma270907-alt/restockpilot" target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                    <a href="https://github.com/vikassharma270907-alt/restockpilot" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
                   </div>
                 </div>
               </div>
@@ -1861,9 +1971,9 @@
                 <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
                   <span class="text-[10px] font-mono text-slate-500">Python · FastAPI · GitLab API</span>
                   <div class="flex items-center gap-2">
-                    <a href="https://airlock-guardrails.vercel.app" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <a href="https://airlock-guardrails.vercel.app" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
                     <span class="text-slate-600">•</span>
-                    <a href="https://github.com/vikassharma270907-alt/airlock-guardrails" target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                    <a href="https://github.com/vikassharma270907-alt/airlock-guardrails" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
                   </div>
                 </div>
               </div>
@@ -1882,9 +1992,9 @@
                 <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
                   <span class="text-[10px] font-mono text-slate-500">TypeScript · Next.js · Qloo API</span>
                   <div class="flex items-center gap-2">
-                    <a href="https://swapcast-tau.vercel.app" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <a href="https://swapcast-tau.vercel.app" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
                     <span class="text-slate-600">•</span>
-                    <a href="https://github.com/vikassharma270907-alt/swapcast" target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                    <a href="https://github.com/vikassharma270907-alt/swapcast" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
                   </div>
                 </div>
               </div>
@@ -1903,9 +2013,9 @@
                 <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
                   <span class="text-[10px] font-mono text-slate-500">JavaScript · PostgreSQL 16 · Render</span>
                   <div class="flex items-center gap-2">
-                    <a href="https://brightloop-do6a.onrender.com" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <a href="https://brightloop-do6a.onrender.com" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
                     <span class="text-slate-600">•</span>
-                    <a href="https://github.com/vikassharma270907-alt/odoo-flux-hackathon" target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                    <a href="https://github.com/vikassharma270907-alt/odoo-flux-hackathon" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
                   </div>
                 </div>
               </div>
@@ -1924,9 +2034,9 @@
                 <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
                   <span class="text-[10px] font-mono text-slate-500">Python · Twitch EventSub · Canvas</span>
                   <div class="flex items-center gap-2">
-                    <a href="https://chaosforge-3ky4.onrender.com" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <a href="https://chaosforge-3ky4.onrender.com" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
                     <span class="text-slate-600">•</span>
-                    <a href="https://github.com/vikassharma270907-alt/ChaosForge-deployment-and-compliance-check." target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                    <a href="https://github.com/vikassharma270907-alt/ChaosForge-deployment-and-compliance-check." target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
                   </div>
                 </div>
               </div>
@@ -1945,9 +2055,9 @@
                 <div class="flex items-center justify-between pt-2.5 border-t border-slate-800/80">
                   <span class="text-[10px] font-mono text-slate-500">Python · Next.js · Document AI</span>
                   <div class="flex items-center gap-2">
-                    <a href="https://verifyflow-blond.vercel.app" target="_blank" rel="noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
+                    <a href="https://verifyflow-blond.vercel.app" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline font-mono text-[11px]">Live App</a>
                     <span class="text-slate-600">•</span>
-                    <a href="https://github.com/vikassharma270907-alt/verifynow" target="_blank" rel="noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
+                    <a href="https://github.com/vikassharma270907-alt/verifynow" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:underline font-mono text-[11px]">Repo</a>
                   </div>
                 </div>
               </div>
@@ -2453,11 +2563,11 @@
         </div>
         <div>
           <span class="text-slate-400 block font-semibold">Target Evaluators:</span>
-          <span class="text-slate-200"><a href="https://www.linkedin.com/in/nimisha-mehta-593758166/" target="_blank" rel="noreferrer" class="text-blue-400 hover:underline font-semibold">Nimisha Mehta</a> (India Lead) & <a href="https://www.linkedin.com/in/tankots/" target="_blank" rel="noreferrer" class="text-blue-400 hover:underline font-semibold">Tanay Kothari</a> (CEO)</span>
+          <span class="text-slate-200"><a href="https://www.linkedin.com/in/nimisha-mehta-593758166/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline font-semibold">Nimisha Mehta</a> (India Lead) & <a href="https://www.linkedin.com/in/tankots/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline font-semibold">Tanay Kothari</a> (CEO)</span>
         </div>
         <div>
           <span class="text-slate-400 block font-semibold">LinkedIn Profile:</span>
-          <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="font-mono text-cyan-400 hover:underline">linkedin.com/in/vikas-sharma-97881737b/</a>
+          <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noopener noreferrer" class="font-mono text-cyan-400 hover:underline">linkedin.com/in/vikas-sharma-97881737b/</a>
         </div>
         <div>
           <span class="text-slate-400 block font-semibold">Wispr Flow Account Email:</span>
@@ -2500,17 +2610,17 @@
                 Shipped Projects & Past Work (For Judges)
               </h2>
               <p class="text-slate-400 mt-1 text-sm">
-                Evaluator reference for <a href="https://www.linkedin.com/in/nimisha-mehta-593758166/" target="_blank" rel="noreferrer" class="text-blue-400 hover:underline">Nimisha Mehta</a>, <a href="https://www.linkedin.com/in/tankots/" target="_blank" rel="noreferrer" class="text-blue-400 hover:underline">Tanay Kothari</a>, and the Wispr Flow hiring team.
+                Evaluator reference for <a href="https://www.linkedin.com/in/nimisha-mehta-593758166/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">Nimisha Mehta</a>, <a href="https://www.linkedin.com/in/tankots/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline">Tanay Kothari</a>, and the Wispr Flow hiring team.
               </p>
             </div>
 
             <!-- Profile Badges -->
             <div class="flex items-center gap-3">
-              <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 hover:border-purple-500 text-xs text-white font-mono flex items-center gap-2 transition shadow-md">
+              <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 hover:border-purple-500 text-xs text-white font-mono flex items-center gap-2 transition shadow-md">
                 <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
                 <span>vikassharma270907-alt</span>
               </a>
-              <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 hover:border-sky-500 text-xs text-white font-mono flex items-center gap-2 transition shadow-md">
+              <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 hover:border-sky-500 text-xs text-white font-mono flex items-center gap-2 transition shadow-md">
                 <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 <span>vikas-sharma-97881737b</span>
               </a>
@@ -2555,13 +2665,13 @@
                   <p class="text-xs font-mono text-amber-400 mt-1">★ Cryptographic policy proxy: Allowed (lookup) / Blocked (hijack) / Held (refund)</p>
                 </div>
                 <div class="flex items-center gap-2 flex-shrink-0">
-                  <a href="https://flowguard-treasury.vercel.app" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+                  <a href="https://flowguard-treasury.vercel.app" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
                     <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live App
                   </a>
-                  <a href="https://flowguard-treasury.vercel.app/judges" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs flex items-center gap-1.5 transition">
+                  <a href="https://flowguard-treasury.vercel.app/judges" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs flex items-center gap-1.5 transition">
                     Judges Page
                   </a>
-                  <a href="https://github.com/vikassharma270907-alt/flowguard-treasury" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
+                  <a href="https://github.com/vikassharma270907-alt/flowguard-treasury" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
                     <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub Repo
                   </a>
                 </div>
@@ -2591,10 +2701,10 @@
                   <p class="text-xs font-mono text-amber-400 mt-1">★ Multi-step purchasing agent with hard server-side budget limits & PayPal Orders v2</p>
                 </div>
                 <div class="flex items-center gap-2 flex-shrink-0">
-                  <a href="https://restockpilot.vercel.app" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+                  <a href="https://restockpilot.vercel.app" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
                     <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live App
                   </a>
-                  <a href="https://github.com/vikassharma270907-alt/restockpilot" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
+                  <a href="https://github.com/vikassharma270907-alt/restockpilot" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
                     <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub Repo
                   </a>
                 </div>
@@ -2624,13 +2734,13 @@
                   <p class="text-xs font-mono text-amber-400 mt-1">★ Reader/writer agent isolation + control-plane CI policy gate</p>
                 </div>
                 <div class="flex items-center gap-2 flex-shrink-0">
-                  <a href="https://airlock-guardrails.vercel.app" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+                  <a href="https://airlock-guardrails.vercel.app" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
                     <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live Playground
                   </a>
-                  <a href="https://www.youtube.com/watch?v=jFqkEme0DG8" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white font-semibold text-xs flex items-center gap-1.5 transition">
+                  <a href="https://www.youtube.com/watch?v=jFqkEme0DG8" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white font-semibold text-xs flex items-center gap-1.5 transition">
                     Demo Video (2:42)
                   </a>
-                  <a href="https://github.com/vikassharma270907-alt/airlock-guardrails" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
+                  <a href="https://github.com/vikassharma270907-alt/airlock-guardrails" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
                     <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub Repo
                   </a>
                 </div>
@@ -2660,10 +2770,10 @@
                   <p class="text-xs font-mono text-amber-400 mt-1">★ Two-way listener taste overlap check with Qloo insights & automated pitch drafter</p>
                 </div>
                 <div class="flex items-center gap-2 flex-shrink-0">
-                  <a href="https://swapcast-tau.vercel.app" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+                  <a href="https://swapcast-tau.vercel.app" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
                     <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live App
                   </a>
-                  <a href="https://github.com/vikassharma270907-alt/swapcast" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
+                  <a href="https://github.com/vikassharma270907-alt/swapcast" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
                     <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub Repo
                   </a>
                 </div>
@@ -2693,10 +2803,10 @@
                   <p class="text-xs font-mono text-amber-400 mt-1">★ Full quotation-to-subscription pipeline & PostgreSQL relational ledger</p>
                 </div>
                 <div class="flex items-center gap-2 flex-shrink-0">
-                  <a href="https://brightloop-do6a.onrender.com" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+                  <a href="https://brightloop-do6a.onrender.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
                     <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live Demo
                   </a>
-                  <a href="https://github.com/vikassharma270907-alt/odoo-flux-hackathon" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
+                  <a href="https://github.com/vikassharma270907-alt/odoo-flux-hackathon" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
                     <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub Repo
                   </a>
                 </div>
@@ -2726,10 +2836,10 @@
                   <p class="text-xs font-mono text-amber-400 mt-1">★ Real-time Twitch EventSub chat modding into OBS transparent canvas</p>
                 </div>
                 <div class="flex items-center gap-2 flex-shrink-0">
-                  <a href="https://chaosforge-3ky4.onrender.com" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+                  <a href="https://chaosforge-3ky4.onrender.com" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
                     <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live Portal
                   </a>
-                  <a href="https://github.com/vikassharma270907-alt/ChaosForge-deployment-and-compliance-check." target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
+                  <a href="https://github.com/vikassharma270907-alt/ChaosForge-deployment-and-compliance-check." target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
                     <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub Repo
                   </a>
                 </div>
@@ -2759,10 +2869,10 @@
                   <p class="text-xs font-mono text-amber-400 mt-1">★ 8,420 words spoken via Wispr Flow · Zero manual keyboards</p>
                 </div>
                 <div class="flex items-center gap-2 flex-shrink-0">
-                  <a href="https://flowstate-india.vercel.app" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
+                  <a href="https://flowstate-india.vercel.app" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 transition">
                     <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Live App
                   </a>
-                  <a href="https://github.com/vikassharma270907-alt/wisprflow-india-challenge" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
+                  <a href="https://github.com/vikassharma270907-alt/wisprflow-india-challenge" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-mono text-xs flex items-center gap-1.5 transition">
                     <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> GitHub Repo
                   </a>
                 </div>
@@ -2950,10 +3060,10 @@
               Full-Stack & Search Engine Optimization Analyst at <strong class="text-white">RankVed Healthcare Martech</strong>. Built FlowState India using Wispr Flow voice dictation on Emergent with 0 manual typing.
             </p>
             <div class="pt-2 flex flex-wrap gap-2 text-xs">
-              <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-sky-950/80 hover:bg-sky-900 border border-sky-500/40 text-sky-200 font-medium flex items-center gap-1.5 transition">
+              <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-sky-950/80 hover:bg-sky-900 border border-sky-500/40 text-sky-200 font-medium flex items-center gap-1.5 transition">
                 <i data-lucide="linkedin" class="w-3.5 h-3.5 text-sky-400"></i> LinkedIn Profile
               </a>
-              <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-mono flex items-center gap-1.5 transition">
+              <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-mono flex items-center gap-1.5 transition">
                 <i data-lucide="github" class="w-3.5 h-3.5"></i> GitHub Profile
               </a>
             </div>
@@ -2970,13 +3080,13 @@
             <div class="space-y-2 font-mono">
               <div class="p-2.5 rounded-lg bg-slate-900/80 border border-slate-800">
                 <div class="text-[11px] text-slate-400">India Growth Lead:</div>
-                <a href="https://www.linkedin.com/in/nimisha-mehta-593758166/" target="_blank" rel="noreferrer" class="text-blue-400 hover:text-blue-300 font-bold underline flex items-center gap-1 mt-0.5">
+                <a href="https://www.linkedin.com/in/nimisha-mehta-593758166/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 font-bold underline flex items-center gap-1 mt-0.5">
                   Nimisha Mehta <i data-lucide="external-link" class="w-3 h-3"></i>
                 </a>
               </div>
               <div class="p-2.5 rounded-lg bg-slate-900/80 border border-slate-800">
                 <div class="text-[11px] text-slate-400">CEO & Co-founder:</div>
-                <a href="https://www.linkedin.com/in/tankots/" target="_blank" rel="noreferrer" class="text-blue-400 hover:text-blue-300 font-bold underline flex items-center gap-1 mt-0.5">
+                <a href="https://www.linkedin.com/in/tankots/" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300 font-bold underline flex items-center gap-1 mt-0.5">
                   Tanay Kothari <i data-lucide="external-link" class="w-3 h-3"></i>
                 </a>
               </div>
@@ -2993,37 +3103,37 @@
             </h4>
             <ul class="space-y-1.5 font-mono text-[11px]">
               <li>
-                <a href="https://github.com/vikassharma270907-alt/wisprflow-india-challenge" target="_blank" rel="noreferrer" class="text-blue-400 hover:underline flex items-center justify-between">
+                <a href="https://github.com/vikassharma270907-alt/wisprflow-india-challenge" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:underline flex items-center justify-between">
                   <span>wisprflow-india-challenge</span> <span class="text-slate-500">Live</span>
                 </a>
               </li>
               <li>
-                <a href="https://github.com/vikassharma270907-alt/flowguard-treasury" target="_blank" rel="noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
+                <a href="https://github.com/vikassharma270907-alt/flowguard-treasury" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
                   <span>flowguard-treasury</span> <span class="text-slate-500">ArmorIQ</span>
                 </a>
               </li>
               <li>
-                <a href="https://github.com/vikassharma270907-alt/restockpilot" target="_blank" rel="noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
+                <a href="https://github.com/vikassharma270907-alt/restockpilot" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
                   <span>restockpilot</span> <span class="text-slate-500">PayPal</span>
                 </a>
               </li>
               <li>
-                <a href="https://github.com/vikassharma270907-alt/airlock-guardrails" target="_blank" rel="noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
+                <a href="https://github.com/vikassharma270907-alt/airlock-guardrails" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
                   <span>airlock-guardrails</span> <span class="text-slate-500">GitLab</span>
                 </a>
               </li>
               <li>
-                <a href="https://github.com/vikassharma270907-alt/swapcast" target="_blank" rel="noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
+                <a href="https://github.com/vikassharma270907-alt/swapcast" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
                   <span>swapcast</span> <span class="text-slate-500">Qloo</span>
                 </a>
               </li>
               <li>
-                <a href="https://github.com/vikassharma270907-alt/odoo-flux-hackathon" target="_blank" rel="noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
+                <a href="https://github.com/vikassharma270907-alt/odoo-flux-hackathon" target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
                   <span>odoo-flux-hackathon</span> <span class="text-slate-500">Brightloop</span>
                 </a>
               </li>
               <li>
-                <a href="https://github.com/vikassharma270907-alt/ChaosForge-deployment-and-compliance-check." target="_blank" rel="noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
+                <a href="https://github.com/vikassharma270907-alt/ChaosForge-deployment-and-compliance-check." target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
                   <span>ChaosForge</span> <span class="text-slate-500">TwitchCon</span>
                 </a>
               </li>
@@ -3103,8 +3213,8 @@
 
       <div class="bg-slate-950 p-3 rounded-lg border border-slate-800/80 text-[11px] text-slate-400 space-y-1">
         <div class="font-semibold text-slate-300">How to get an API Key:</div>
-        <p>1. Sign in to your dashboard at <a href="https://wisprflow.ai" target="_blank" class="text-blue-400 hover:underline" rel="noreferrer">wisprflow.ai</a>.</p>
-        <p>2. Request developer Voice Interface access via <a href="https://wisprflow.ai/developers" target="_blank" class="text-blue-400 hover:underline" rel="noreferrer">wisprflow.ai/developers</a>.</p>
+        <p>1. Sign in to your dashboard at <a href="https://wisprflow.ai" target="_blank" class="text-blue-400 hover:underline" rel="noopener noreferrer">wisprflow.ai</a>.</p>
+        <p>2. Request developer Voice Interface access via <a href="https://wisprflow.ai/developers" target="_blank" class="text-blue-400 hover:underline" rel="noopener noreferrer">wisprflow.ai/developers</a>.</p>
         <p class="text-amber-400 font-medium">✓ If you don't have an API key, leave this empty. The app runs in <strong>Client Canto Engine Mode</strong> using your browser's microphone with simulated sub-200ms formatting!</p>
       </div>
 
@@ -3681,7 +3791,7 @@
           respLine.innerHTML = `Canto Architecture: Context-conditioned transformer decoder, multi-modal token conditioning, reinforcement learning filler penalty, 700ms hard latency ceiling.`;
           break;
         case 'whoami':
-          respLine.innerHTML = `<strong>Vikas Sharma</strong> // Software Engineer & AI Systems Developer<br>  Location: Indore, MP, India (Ready to Relocate / Join Immediately)<br>• Current Internship: Search Engine Optimization Analyst @ RankVed Healthcare Martech (Rankved Intern)<br>• Verified Dictation: 8,420 Words (162 WPM, 210ms latency)<br>• LinkedIn: <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" class="text-cyan-400 underline" rel="noreferrer">linkedin.com/in/vikas-sharma-97881737b/</a><br>• GitHub: <a href="https://github.com/vikassharma270907-alt" target="_blank" class="text-purple-400 underline" rel="noreferrer">github.com/vikassharma270907-alt</a><br>• Ready to join Wispr Flow immediately.`;
+          respLine.innerHTML = `<strong>Vikas Sharma</strong> // Software Engineer & AI Systems Developer<br>  Location: Indore, MP, India (Ready to Relocate / Join Immediately)<br>• Current Internship: Search Engine Optimization Analyst @ RankVed Healthcare Martech (Rankved Intern)<br>• Verified Dictation: 8,420 Words (162 WPM, 210ms latency)<br>• LinkedIn: <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" class="text-cyan-400 underline" rel="noopener noreferrer">linkedin.com/in/vikas-sharma-97881737b/</a><br>• GitHub: <a href="https://github.com/vikassharma270907-alt" target="_blank" class="text-purple-400 underline" rel="noopener noreferrer">github.com/vikassharma270907-alt</a><br>• Ready to join Wispr Flow immediately.`;
           break;
         case 'theme':
         case 'theme aurora':
@@ -4351,6 +4461,14 @@
 
       const rateFormatted = rate.toFixed(1) + '%';
       document.getElementById('projectedConv').innerText = rateFormatted;
+
+      // Animate Linear Conversion Velocity Bar towards 6.0% target
+      const targetRate = 6.0;
+      const velocityPct = Math.min(100, Math.max(10, (rate / targetRate) * 100)).toFixed(1);
+      const convBar = document.getElementById('convProgressBar');
+      const convPctLabel = document.getElementById('convProgressPercent');
+      if (convBar) convBar.style.width = velocityPct + '%';
+      if (convPctLabel) convPctLabel.innerText = velocityPct + '% of Goal';
 
       const lift = ((rate / 2.1 - 1) * 100).toFixed(0);
       document.getElementById('convLift').innerText = (lift >= 0 ? '+' : '') + lift + '% conversion lift';
