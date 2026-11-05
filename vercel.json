@@ -7,7 +7,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://flowstate-india.vercel.app; media-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://flowstate-india.vercel.app; media-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
         },
         {
           "key": "X-Content-Type-Options",
@@ -36,7 +36,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(mp4|mp3|webp|png|jpg|jpeg|svg|woff2)",
+      "source": "/(.*)\\.(mp4|mp3|webp|png|jpg|jpeg|svg|woff2|css|js)",
       "headers": [
         {
           "key": "Cache-Control",

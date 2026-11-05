@@ -60,6 +60,13 @@ describe('DOM & Navigation Architecture Verification', () => {
     assert(/bottom-14/.test(html), 'Discovery dock must be positioned at bottom-14 to prevent window title overlap');
   });
 
+  test('black and grey theme and animated background canvas are configured in DOM', () => {
+    assert(/data-theme=["']noir["']/.test(html) || /THEMES.*noir/.test(html), 'Missing noir Black and Grey theme configuration');
+    assert(/id=["']ambientWaveCanvas["']/.test(html), 'Missing ambientWaveCanvas background canvas');
+    assert(/initAmbientWaves/.test(html), 'Missing initAmbientWaves animation engine');
+    assert(/Obsidian Noir/.test(html), 'Missing Obsidian Noir Black and Grey theme label in UI');
+  });
+
   test('live Canto dictation studio elements are fully defined', () => {
     assert(/id=["']micBtn["']/.test(html), 'Missing #micBtn dictation toggle button');
     assert(/id=["']rawTranscript["']/.test(html), 'Missing #rawTranscript container');

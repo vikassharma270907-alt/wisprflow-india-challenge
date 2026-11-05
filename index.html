@@ -195,7 +195,40 @@
     /* 🎨 CREATIVE THEME ENGINE: 4 BESPOKE THEMES                */
     /* ======================================================== */
     
-    /* 1. CANTO AURORA (Signature Default) - Deep Obsidian + Iridescent Mint + Cyan Prism + Violet Wave */
+    /* 1. OBSIDIAN NOIR / TITANIUM (Signature Black & Grey Theme - Default) */
+    :root, [data-theme="noir"] {
+      --theme-name: "Obsidian Noir (Black & Grey)";
+      --theme-bg-base: #030406;
+      --theme-bg-gradient: radial-gradient(ellipse 90% 60% at 50% -15%, rgba(148, 163, 184, 0.14), transparent 75%),
+                           radial-gradient(ellipse 75% 50% at 95% 85%, rgba(71, 85, 105, 0.12), transparent 65%),
+                           radial-gradient(ellipse 70% 45% at 5% 95%, rgba(51, 65, 85, 0.15), transparent 60%),
+                           radial-gradient(ellipse 40% 30% at 50% 50%, rgba(30, 41, 59, 0.18), transparent 70%);
+      --theme-mesh-grid: rgba(255, 255, 255, 0.035);
+      --theme-card-bg: rgba(12, 14, 18, 0.88);
+      --theme-card-border: rgba(255, 255, 255, 0.12);
+      --theme-card-glow: 0 10px 30px -10px rgba(0, 0, 0, 0.95), 0 0 25px -4px rgba(255, 255, 255, 0.06);
+      --theme-window-bg: rgba(10, 12, 16, 0.95);
+      --theme-window-border: rgba(255, 255, 255, 0.18);
+      --theme-window-active-border: rgba(226, 232, 240, 0.65);
+      --theme-window-glow: 0 25px 50px -12px rgba(0, 0, 0, 0.95), 0 0 32px -2px rgba(255, 255, 255, 0.10);
+      --theme-accent-primary: #f8fafc;
+      --theme-accent-secondary: #cbd5e1;
+      --theme-accent-tertiary: #94a3b8;
+      --theme-accent-grad: linear-gradient(135deg, #ffffff, #cbd5e1, #64748b);
+      --theme-topbar-bg: rgba(8, 9, 12, 0.94);
+      --theme-topbar-border: rgba(255, 255, 255, 0.14);
+      --theme-hud-bg: rgba(5, 6, 8, 0.98);
+      --theme-hud-border: rgba(255, 255, 255, 0.12);
+      --theme-dock-bg: rgba(11, 13, 17, 0.94);
+      --theme-dock-border: rgba(255, 255, 255, 0.18);
+      --theme-dock-glow: 0 16px 36px -8px rgba(0, 0, 0, 0.92), 0 0 25px -2px rgba(255, 255, 255, 0.08);
+      --theme-selection-bg: #e2e8f0;
+      --theme-selection-color: #050608;
+      --theme-wave-1: #f1f5f9;
+      --theme-wave-2: #64748b;
+    }
+
+    /* 2. CANTO AURORA - Deep Obsidian + Iridescent Mint + Cyan Prism + Violet Wave */
     :root, [data-theme="aurora"] {
       --theme-name: "Canto Aurora";
       --theme-bg-base: #060913;
@@ -616,12 +649,22 @@
         <div class="relative">
           <button type="button" onclick="event.stopPropagation(); toggleThemeMenu('desktop')" id="desktopThemeBtn" aria-label="Select Creative Theme" class="px-2.5 py-1 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-200 text-[11px] font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-sm" title="Change Visual Theme">
             <i data-lucide="palette" class="w-3.5 h-3.5 text-cyan-400" aria-hidden="true"></i>
-            <span id="desktopThemeLabel" class="hidden sm:inline font-mono">Canto Aurora</span>
+            <span id="desktopThemeLabel" class="hidden sm:inline font-mono">Obsidian Noir</span>
             <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400" aria-hidden="true"></i>
           </button>
           <!-- Theme Dropdown Menu -->
           <div onclick="event.stopPropagation()" id="desktopThemeMenu" class="hidden absolute right-0 mt-1.5 w-60 rounded-xl theme-dropdown-menu p-2 z-[100] text-xs space-y-1">
             <div class="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800">Creative Themes</div>
+            <button type="button" onclick="setTheme('noir')" class="theme-option-btn w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 flex items-center justify-between transition group" data-theme-val="noir">
+              <div class="flex items-center gap-2.5">
+                <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#FFFFFF] via-[#94A3B8] to-[#1E293B] ring-2 ring-slate-400/40 shadow-sm"></span>
+                <div>
+                  <div class="font-bold text-slate-200 group-hover:text-white">Obsidian Noir (Black &amp; Grey)</div>
+                  <div class="text-[10px] text-slate-400">Titanium Carbon &amp; Silver Waves</div>
+                </div>
+              </div>
+              <span class="theme-check text-slate-200 font-bold hidden">✓</span>
+            </button>
             <button type="button" onclick="setTheme('aurora')" class="theme-option-btn w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 flex items-center justify-between transition group" data-theme-val="aurora">
               <div class="flex items-center gap-2.5">
                 <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#00F5A0] to-[#00D2FF] ring-2 ring-emerald-400/40 shadow-sm"></span>
@@ -721,7 +764,7 @@
     <!-- DESKTOP WORKSPACE AREA -->
     <div id="desktop-area" class="flex-1 relative overflow-hidden p-4">
       <!-- AMBIENT LIVING AUDIO SOUNDWAVE CANVAS -->
-      <canvas id="ambientWaveCanvas" class="absolute inset-0 pointer-events-none opacity-30 z-0" aria-hidden="true"></canvas>
+      <canvas id="ambientWaveCanvas" class="absolute inset-0 pointer-events-none z-0 w-full h-full" aria-hidden="true"></canvas>
       
       <!-- CANDIDATE PROFILE DISCOVERY DOCK (DESKTOP) -->
       <aside aria-label="Candidate profile discovery" class="absolute bottom-14 left-1/2 -translate-x-1/2 z-30 pointer-events-auto bg-slate-900/95 border border-sky-500/40 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-2xl flex items-center gap-2 sm:gap-3 text-xs max-w-[95vw]">
@@ -1080,11 +1123,21 @@
           <div class="relative">
             <button type="button" onclick="event.stopPropagation(); toggleThemeMenu('executive')" id="execThemeBtn" aria-label="Select Creative Theme" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 hover:text-white flex items-center gap-1.5 transition font-semibold" title="Change Visual Theme">
               <i data-lucide="palette" class="w-3.5 h-3.5 text-cyan-400" aria-hidden="true"></i>
-              <span id="execThemeLabel" class="hidden md:inline font-mono">Canto Aurora</span>
+              <span id="execThemeLabel" class="hidden md:inline font-mono">Obsidian Noir</span>
               <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400" aria-hidden="true"></i>
             </button>
             <div onclick="event.stopPropagation()" id="execThemeMenu" class="hidden absolute right-0 mt-1.5 w-60 rounded-xl theme-dropdown-menu p-2 z-[100] text-xs space-y-1">
               <div class="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800">Creative Themes</div>
+            <button type="button" onclick="setTheme('noir')" class="theme-option-btn w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 flex items-center justify-between transition group" data-theme-val="noir">
+              <div class="flex items-center gap-2.5">
+                <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#FFFFFF] via-[#94A3B8] to-[#1E293B] ring-2 ring-slate-400/40 shadow-sm"></span>
+                <div>
+                  <div class="font-bold text-slate-200 group-hover:text-white">Obsidian Noir (Black &amp; Grey)</div>
+                  <div class="text-[10px] text-slate-400">Titanium Carbon &amp; Silver Waves</div>
+                </div>
+              </div>
+              <span class="theme-check text-slate-200 font-bold hidden">✓</span>
+            </button>
               <button type="button" onclick="setTheme('aurora')" class="theme-option-btn w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 flex items-center justify-between transition group" data-theme-val="aurora">
                 <div class="flex items-center gap-2.5">
                   <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#00F5A0] to-[#00D2FF] ring-2 ring-emerald-400/40 shadow-sm"></span>
@@ -3835,6 +3888,8 @@
           respLine.innerHTML = `<strong>Vikas Sharma</strong> // Software Engineer & AI Systems Developer<br>  Location: Indore, MP, India (Ready to Relocate / Join Immediately)<br>• Current Internship: Search Engine Optimization Analyst @ RankVed Healthcare Martech (Rankved Intern)<br>• Verified Dictation: 8,420 Words (162 WPM, 210ms latency)<br>• LinkedIn: <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" class="text-cyan-400 underline" rel="noopener noreferrer">linkedin.com/in/vikas-sharma-97881737b/</a><br>• GitHub: <a href="https://github.com/vikassharma270907-alt" target="_blank" class="text-purple-400 underline" rel="noopener noreferrer">github.com/vikassharma270907-alt</a><br>• Ready to join Wispr Flow immediately.`;
           break;
         case 'theme':
+        case 'theme noir':
+        case 'theme carbon':
         case 'theme aurora':
         case 'theme cyberpunk':
         case 'theme solaris':
@@ -4213,6 +4268,7 @@
     // 🎨 CREATIVE THEME ENGINE JAVASCRIPT
     // ==========================================
     const THEMES = {
+      noir: { name: 'Obsidian Noir (Black & Grey)', accent: '#E2E8F0' },
       aurora: { name: 'Canto Aurora', accent: '#00F5A0' },
       cyberpunk: { name: 'Cyberpunk Bengaluru', accent: '#39FF14' },
       solaris: { name: 'Solaris Saffron', accent: '#FF9E00' },
@@ -4220,9 +4276,9 @@
     };
 
     function setTheme(themeKey) {
-      if (!THEMES[themeKey]) themeKey = 'aurora';
+      if (!THEMES[themeKey]) themeKey = 'noir';
       document.documentElement.setAttribute('data-theme', themeKey);
-      safeStorage.setItem('FLOWSTATE_THEME', themeKey);
+      safeStorage.setItem('FLOWSTATE_THEME', themeKey); safeStorage.setItem('FLOWSTATE_THEME_V2', themeKey);
 
       // Update labels
       const dLabel = document.getElementById('desktopThemeLabel');
@@ -4288,47 +4344,175 @@
       resize();
       window.addEventListener('resize', resize);
 
+      // Track mouse position over desktop workspace for interactive acoustic resonance
+      const mouse = { x: -1000, y: -1000, active: false, radius: 150 };
+      if (canvas.parentElement) {
+        canvas.parentElement.addEventListener('mousemove', (e) => {
+          const rect = canvas.getBoundingClientRect();
+          mouse.x = e.clientX - rect.left;
+          mouse.y = e.clientY - rect.top;
+          mouse.active = true;
+        });
+        canvas.parentElement.addEventListener('mouseleave', () => {
+          mouse.active = false;
+        });
+      }
+
+      // Initialize Neural Audio Nodes (Constellation Particles)
+      const NODE_COUNT = Math.min(85, Math.max(45, Math.floor(window.innerWidth / 22)));
+      const nodes = [];
+      for (let i = 0; i < NODE_COUNT; i++) {
+        nodes.push({
+          x: Math.random() * (width || window.innerWidth),
+          y: Math.random() * (height || window.innerHeight),
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45,
+          radius: Math.random() * 1.8 + 1.2,
+          baseAlpha: Math.random() * 0.4 + 0.3,
+          pulse: Math.random() * Math.PI * 2,
+          pulseSpeed: Math.random() * 0.02 + 0.01
+        });
+      }
+
       let step = 0;
       function render() {
-        step += 0.012;
+        step += 0.014;
         ctx.clearRect(0, 0, width, height);
 
-        const currentTheme = document.documentElement.getAttribute('data-theme') || 'aurora';
-        let g1, g2;
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'noir';
+        
+        // Dynamic theme palette for waves & particles
+        let pColor, pLineRgb, waveGrad;
         if (currentTheme === 'cyberpunk') {
-          g1 = 'rgba(57, 255, 20, 0.22)';
-          g2 = 'rgba(255, 0, 127, 0.18)';
+          pColor = '#39FF14';
+          pLineRgb = '57, 255, 20';
+          waveGrad = ['rgba(57, 255, 20, 0.28)', 'rgba(255, 0, 127, 0.22)'];
         } else if (currentTheme === 'solaris') {
-          g1 = 'rgba(255, 158, 0, 0.25)';
-          g2 = 'rgba(234, 88, 12, 0.15)';
+          pColor = '#FF9E00';
+          pLineRgb = '255, 158, 0';
+          waveGrad = ['rgba(255, 158, 0, 0.26)', 'rgba(234, 88, 12, 0.20)'];
         } else if (currentTheme === 'nebula') {
-          g1 = 'rgba(189, 0, 255, 0.24)';
-          g2 = 'rgba(0, 229, 255, 0.18)';
+          pColor = '#BD00FF';
+          pLineRgb = '189, 0, 255';
+          waveGrad = ['rgba(189, 0, 255, 0.28)', 'rgba(0, 229, 255, 0.20)'];
+        } else if (currentTheme === 'aurora') {
+          pColor = '#00F5A0';
+          pLineRgb = '0, 245, 160';
+          waveGrad = ['rgba(0, 245, 160, 0.26)', 'rgba(0, 210, 255, 0.20)'];
         } else {
-          g1 = 'rgba(0, 245, 160, 0.22)';
-          g2 = 'rgba(0, 210, 255, 0.18)';
+          // Default: Obsidian Noir (Black & Grey Titanium)
+          pColor = '#E2E8F0';
+          pLineRgb = '226, 232, 240';
+          waveGrad = ['rgba(241, 245, 249, 0.32)', 'rgba(148, 163, 184, 0.16)'];
         }
 
-        const gradient = ctx.createLinearGradient(0, 0, width, height);
-        gradient.addColorStop(0, g1);
-        gradient.addColorStop(1, g2);
-
-        ctx.strokeStyle = gradient;
-        ctx.lineWidth = 1.6;
-
-        for (let j = 0; j < 3; j++) {
+        // 1. Draw Subtle Interactive Mouse Acoustic Ripple
+        if (mouse.active) {
+          const rippleRadius = (Math.sin(step * 4) * 15) + 45;
           ctx.beginPath();
-          const waveOffset = j * 0.9;
-          const baseFreq = 0.003 + j * 0.0012;
-          const amp = 32 + j * 10;
-          const centerY = height * 0.52 + j * 18;
+          ctx.arc(mouse.x, mouse.y, rippleRadius, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(${pLineRgb}, 0.12)`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
 
-          for (let x = 0; x <= width; x += 10) {
-            const y = centerY + Math.sin(x * baseFreq + step + waveOffset) * amp * Math.cos(step * 0.4 + x * 0.0008);
+          ctx.beginPath();
+          ctx.arc(mouse.x, mouse.y, rippleRadius * 1.6, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(${pLineRgb}, 0.05)`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+
+        // 2. Update and Draw Neural Acoustic Nodes (Particles & Synaptic Lines)
+        for (let i = 0; i < nodes.length; i++) {
+          const n = nodes[i];
+          n.x += n.vx;
+          n.y += n.vy;
+          n.pulse += n.pulseSpeed;
+
+          // Wrap edges softly
+          if (n.x < -20) n.x = width + 20;
+          if (n.x > width + 20) n.x = -20;
+          if (n.y < -20) n.y = height + 20;
+          if (n.y > height + 20) n.y = -20;
+
+          // Mouse acoustic repulsion
+          let proximityBonus = 0;
+          if (mouse.active) {
+            const dx = n.x - mouse.x;
+            const dy = n.y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < mouse.radius) {
+              const force = (1 - dist / mouse.radius) * 1.2;
+              n.x += (dx / dist) * force;
+              n.y += (dy / dist) * force;
+              proximityBonus = 0.4 * (1 - dist / mouse.radius);
+            }
+          }
+
+          // Draw particle
+          const currentAlpha = Math.min(1, Math.max(0.1, n.baseAlpha + Math.sin(n.pulse) * 0.15 + proximityBonus));
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.radius + proximityBonus * 1.2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${pLineRgb}, ${currentAlpha})`;
+          ctx.fill();
+
+          // Connect nearby nodes
+          for (let k = i + 1; k < nodes.length; k++) {
+            const n2 = nodes[k];
+            const distSq = (n.x - n2.x) * (n.x - n2.x) + (n.y - n2.y) * (n.y - n2.y);
+            const maxDist = 110;
+            if (distSq < maxDist * maxDist) {
+              const dist = Math.sqrt(distSq);
+              const lineAlpha = (1 - dist / maxDist) * 0.14 * (n.baseAlpha + n2.baseAlpha) * 0.8;
+              ctx.beginPath();
+              ctx.moveTo(n.x, n.y);
+              ctx.lineTo(n2.x, n2.y);
+              ctx.strokeStyle = `rgba(${pLineRgb}, ${lineAlpha})`;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+          }
+        }
+
+        // 3. Draw Multi-Layered Liquid Silk Acoustic Waveforms
+        const gradient = ctx.createLinearGradient(0, height * 0.2, width, height * 0.8);
+        gradient.addColorStop(0, waveGrad[0]);
+        gradient.addColorStop(1, waveGrad[1]);
+
+        for (let j = 0; j < 4; j++) {
+          ctx.beginPath();
+          const waveOffset = j * 1.1;
+          const baseFreq = 0.0024 + j * 0.0011;
+          const amp = 38 + j * 14;
+          const centerY = height * 0.48 + j * 24;
+
+          for (let x = 0; x <= width; x += 8) {
+            let y = centerY + Math.sin(x * baseFreq + step + waveOffset) * amp * Math.cos(step * 0.35 + x * 0.0006);
+            if (mouse.active) {
+              const mDist = Math.abs(x - mouse.x);
+              if (mDist < 120) {
+                y += Math.sin((x - mouse.x) * 0.05) * 8 * (1 - mDist / 120);
+              }
+            }
             if (x === 0) ctx.moveTo(x, y);
             else ctx.lineTo(x, y);
           }
+
+          ctx.strokeStyle = gradient;
+          ctx.lineWidth = j === 0 ? 2.0 : 1.2;
           ctx.stroke();
+
+          // Fill under the lowest wave with a soft dark fading mist
+          if (j === 3) {
+            ctx.lineTo(width, height);
+            ctx.lineTo(0, height);
+            ctx.closePath();
+            const fillGrad = ctx.createLinearGradient(0, centerY, 0, height);
+            fillGrad.addColorStop(0, `rgba(${pLineRgb}, 0.04)`);
+            fillGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            ctx.fillStyle = fillGrad;
+            ctx.fill();
+          }
         }
 
         requestAnimationFrame(render);
@@ -4364,7 +4548,7 @@
     });
 
     window.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = safeStorage.getItem('FLOWSTATE_THEME') || 'aurora';
+      const savedTheme = safeStorage.getItem('FLOWSTATE_THEME_V2') || 'noir';
       setTheme(savedTheme);
       initAmbientWaves();
       initWindows();
