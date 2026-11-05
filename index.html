@@ -3689,7 +3689,9 @@
           if (typeof window !== 'undefined' && window.localStorage) {
             window.localStorage.removeItem(key);
           }
-        } catch (e) {}
+        } catch (e) {
+          console.warn('localStorage removeItem restricted, using in-memory store:', e);
+        }
         delete this._memory[key];
       }
     };
@@ -3720,7 +3722,7 @@
       try {
         const ctx = getAudioContext();
         if (ctx.state === 'suspended') {
-          ctx.resume().catch(() => {});
+          ctx.resume().catch(e => console.warn('Web Audio resume failed:', e));
           return;
         }
 
@@ -4080,6 +4082,11 @@
         }
         if (typeof isRecording !== 'undefined' && isRecording) {
           stopDictation(false);
+        }
+      }
+      if (id === 'audio') {
+        if (typeof stopNoise === 'function') {
+          stopNoise();
         }
       }
       const win = document.getElementById('win-' + id);
@@ -4649,51 +4656,59 @@
       currentNoiseType = type;
 
       const ctx = getAudioContext();
-      if (ctx.state === 'suspended') ctx.resume();
+      if (ctx.state === 'suspended') {
+        ctx.resume().catch(err => console.warn('AudioContext resume failed:', err));
+      }
 
-      // Synthesize noise buffer
-      const bufferSize = ctx.sampleRate * 2;
-      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-      const data = buffer.getChannelData(0);
+      try {
+        // Synthesize noise buffer
+        const bufferSize = ctx.sampleRate * 2;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
 
-      // Generate customized noise color
-      for (let i = 0; i < bufferSize; i++) {
-        if (type === 'metro') {
-          // Brown/low noise rumble
-          data[i] = (Math.random() * 2 - 1) * 0.4 + (Math.sin(i * 0.015) * 0.3);
-        } else if (type === 'darshini') {
-          // Steam hiss & high frequency chatter
-          data[i] = (Math.random() * 2 - 1) * (0.2 + (i % 2000 < 500 ? 0.4 : 0.05));
-        } else {
-          // Traffic roar + honking frequency bursts
-          const horn = (i % 8000 < 1200) ? Math.sin(i * 0.12) * 0.35 : 0;
-          data[i] = (Math.random() * 2 - 1) * 0.3 + horn;
+        // Generate customized noise color
+        for (let i = 0; i < bufferSize; i++) {
+          if (type === 'metro') {
+            // Brown/low noise rumble
+            data[i] = (Math.random() * 2 - 1) * 0.4 + (Math.sin(i * 0.015) * 0.3);
+          } else if (type === 'darshini') {
+            // Steam hiss & high frequency chatter
+            data[i] = (Math.random() * 2 - 1) * (0.2 + (i % 2000 < 500 ? 0.4 : 0.05));
+          } else {
+            // Traffic roar + honking frequency bursts
+            const horn = (i % 8000 < 1200) ? Math.sin(i * 0.12) * 0.35 : 0;
+            data[i] = (Math.random() * 2 - 1) * 0.3 + horn;
+          }
         }
+
+        noiseSource = ctx.createBufferSource();
+        noiseSource.buffer = buffer;
+        noiseSource.loop = true;
+
+        // Filter
+        noiseFilter = ctx.createBiquadFilter();
+        if (cantoFilterActive) {
+          // Canto Isolation bandpass
+          noiseFilter.type = 'bandpass';
+          noiseFilter.frequency.value = 1800;
+          noiseFilter.Q.value = 0.8;
+        } else {
+          noiseFilter.type = 'allpass';
+        }
+
+        const gain = ctx.createGain();
+        gain.gain.value = cantoFilterActive ? 0.04 : 0.15; // attenuated when canto filter is on
+
+        noiseSource.connect(noiseFilter);
+        noiseFilter.connect(gain);
+        gain.connect(ctx.destination);
+
+        noiseSource.start();
+      } catch (err) {
+        console.warn('Failed to start soundscape audio:', err);
+        stopNoise();
+        return;
       }
-
-      noiseSource = ctx.createBufferSource();
-      noiseSource.buffer = buffer;
-      noiseSource.loop = true;
-
-      // Filter
-      noiseFilter = ctx.createBiquadFilter();
-      if (cantoFilterActive) {
-        // Canto Isolation bandpass
-        noiseFilter.type = 'bandpass';
-        noiseFilter.frequency.value = 1800;
-        noiseFilter.Q.value = 0.8;
-      } else {
-        noiseFilter.type = 'allpass';
-      }
-
-      const gain = ctx.createGain();
-      gain.gain.value = cantoFilterActive ? 0.04 : 0.15; // attenuated when canto filter is on
-
-      noiseSource.connect(noiseFilter);
-      noiseFilter.connect(gain);
-      gain.connect(ctx.destination);
-
-      noiseSource.start();
 
       allBtns.forEach(b => {
         const btn = document.getElementById('btn-noise-' + b);
@@ -4712,8 +4727,8 @@
 
     function stopNoise() {
       if (noiseSource) {
-        try { noiseSource.stop(); } catch(e) {}
-        noiseSource.disconnect();
+        try { noiseSource.stop(); } catch(e) { console.warn('stopNoise error:', e); }
+        try { noiseSource.disconnect(); } catch(e) {}
         noiseSource = null;
       }
       currentNoiseType = null;
@@ -5294,9 +5309,13 @@
         selectedTab.classList.add('bg-blue-600', 'text-white');
         selectedTab.classList.remove('text-slate-400');
         selectedTab.setAttribute('aria-selected', 'true');
-        try {
-          selectedTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        } catch (e) {}
+        if (typeof selectedTab.scrollIntoView === 'function') {
+          try {
+            selectedTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          } catch (e) {
+            console.warn('Tab scrollIntoView notice:', e);
+          }
+        }
       }
 
       if (window.location.hash !== '#' + tabName && history.replaceState) {
@@ -5472,7 +5491,12 @@
     }
 
     function initApiState() {
-      const savedKey = safeStorage.getItem('WISPR_API_KEY') || (typeof localStorage !== 'undefined' ? localStorage.getItem('WISPR_API_KEY') : '') || '';
+      let savedKey = '';
+      try {
+        savedKey = safeStorage.getItem('WISPR_API_KEY', '') || (typeof window !== 'undefined' && window.localStorage ? localStorage.getItem('WISPR_API_KEY') || '' : '');
+      } catch (e) {
+        console.warn('API key storage read notice:', e);
+      }
       const statusLabel = document.getElementById('apiKeyStatusLabel');
       const activeEngineText = document.getElementById('activeEngineText');
 
@@ -5715,14 +5739,14 @@
     function stopDictation(isError = false) {
       isRecording = false;
       if (recognition) {
-        try { recognition.stop(); } catch (e) {}
+        try { recognition.stop(); } catch (e) { console.warn('Recognition stop error:', e); }
       }
 
       // Stop media stream tracks
       if (mediaStream) {
         try {
           mediaStream.getTracks().forEach(track => track.stop());
-        } catch (e) {}
+        } catch (e) { console.warn('MediaStream stop error:', e); }
         mediaStream = null;
       }
 
@@ -5732,7 +5756,7 @@
         micAnimFrame = null;
       }
       if (micAudioContext && micAudioContext.state !== 'closed') {
-        try { micAudioContext.close(); } catch (e) {}
+        micAudioContext.close().catch(e => console.warn('micAudioContext close error:', e));
         micAudioContext = null;
       }
 
@@ -5765,7 +5789,13 @@
         if (isError && lastDictationError) {
           status.innerHTML = '<span class="text-rose-400 font-medium">⚠️ ' + escapeHtml(lastDictationError) + '</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
         } else {
-          status.innerHTML = '<span class="text-emerald-400 font-medium">✓ Dictation captured and formatted within 200ms latency window.</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+          const rawEl = document.getElementById('rawTranscript');
+          const hasCaptured = rawEl && rawEl.innerText && !rawEl.innerText.startsWith('Awaiting');
+          if (hasCaptured) {
+            status.innerHTML = '<span class="text-emerald-400 font-medium">✓ Dictation captured and formatted within 200ms latency window.</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+          } else {
+            status.innerHTML = '<span class="text-slate-400 font-medium">Dictation standby. Ready for voice input.</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+          }
         }
       }
     }
@@ -5983,7 +6013,7 @@
       if (vid) {
         vid.muted = false;
         vid.volume = 1.0;
-        vid.play().catch(() => {});
+        vid.play().catch(e => console.warn('Video playback prevented by browser policy:', e));
       }
     }
 
@@ -6006,7 +6036,7 @@
         vid.muted = false;
         vid.volume = 1.0;
         vid.currentTime = sec;
-        vid.play().catch(() => {});
+        vid.play().catch(e => console.warn('Video playback prevented by browser policy:', e));
       }
     }
 </script>

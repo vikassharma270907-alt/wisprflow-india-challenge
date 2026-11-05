@@ -23,10 +23,14 @@ function calculateSimulator({
   baseUsers = 100000,
   monthlyPriceInr = 320
 } = {}) {
+  const numCap = Number.isFinite(Number(cap)) ? Number(cap) : 2000;
+  const numBase = Number.isFinite(Number(baseUsers)) ? Math.max(0, Number(baseUsers)) : 100000;
+  const numPrice = Number.isFinite(Number(monthlyPriceInr)) ? Math.max(0, Number(monthlyPriceInr)) : 320;
+
   let rate = 2.1;
 
   // Cap impact
-  rate += ((3000 - cap) / 1000) * 0.7;
+  rate += ((3000 - numCap) / 1000) * 0.7;
 
   // Bonus impact
   if (bonusState === 'eliminate') {
@@ -56,8 +60,8 @@ function calculateSimulator({
   const rateFormatted = parseFloat(rate.toFixed(1));
   const lift = parseFloat(((rate / 2.1 - 1) * 100).toFixed(0));
 
-  const payingUsers = Math.round(baseUsers * (rate / 100));
-  const annualRevInr = payingUsers * monthlyPriceInr * 12;
+  const payingUsers = Math.round(numBase * (rate / 100));
+  const annualRevInr = payingUsers * numPrice * 12;
   const crores = parseFloat((annualRevInr / 10000000).toFixed(2));
 
   return {
@@ -97,7 +101,7 @@ function cantoPostProcess(text, {
   // 2. Resolve Mid-Sentence Course Corrections
   if (filterCourseCorrect) {
     // Example: "Indiranagar actually Koramangala" -> "Koramangala"
-    cleaned = cleaned.replace(/(.*?),?\s+actually\s+(nahi\s+)?(.*?)/gi, '$3');
+    cleaned = cleaned.replace(/\b(\w+),?\s+actually\s+(?:(?:\1)\s+)?(?:nahi\s+)?(\w+)\b/gi, '$2');
   }
 
   // 3. Auto-Capitalize Acronyms & Domain Terms
@@ -196,7 +200,13 @@ const GROWTH_TECH_PLAN = [
  * Parses and returns deterministic responses for FlowOS CLI commands.
  */
 function parseTerminalCommand(cmdString) {
-  if (!cmdString || typeof cmdString !== 'string') return null;
+  if (!cmdString || typeof cmdString !== 'string') {
+    return {
+      status: 'error',
+      command: '',
+      message: 'Invalid command input: string expected'
+    };
+  }
   const cmd = cmdString.trim().toLowerCase();
 
   switch (cmd) {

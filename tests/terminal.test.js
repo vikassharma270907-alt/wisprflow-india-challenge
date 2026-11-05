@@ -101,6 +101,14 @@ describe('Wispr CLI Terminal Engine & Telemetry Verification', () => {
     const unknown = parseTerminalCommand('invalid_command_xyz');
     assert.equal(unknown.status, 'error');
     assert(unknown.message.includes('Command not found'));
+
+    const nullCmd = parseTerminalCommand(null);
+    assert.equal(nullCmd.status, 'error');
+    assert.equal(nullCmd.message, 'Invalid command input: string expected');
+
+    const emptyCmd = parseTerminalCommand('');
+    assert.equal(emptyCmd.status, 'error');
+    assert.equal(emptyCmd.message, 'Invalid command input: string expected');
   });
 
   test('telemetry validation rejects fabricated or sub-threshold metrics', () => {
