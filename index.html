@@ -41,7 +41,6 @@
   <meta name="twitter:image" content="https://flowstate-india.vercel.app/thumbnail_og.webp">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text x='50' y='68' font-size='55' font-weight='900' fill='white' text-anchor='middle'>W</text></svg>">
   <title>FlowState India // Wispr Flow Growth Simulator & FlowOS</title>
-  <link rel="preload" as="style" href="./styles.min.css">
   <link rel="stylesheet" href="./styles.min.css">
   <script src="./lucide.min.js" defer></script>
   <style>
@@ -206,7 +205,7 @@
                            radial-gradient(ellipse 75% 50% at 95% 85%, rgba(71, 85, 105, 0.12), transparent 65%),
                            radial-gradient(ellipse 70% 45% at 5% 95%, rgba(51, 65, 85, 0.15), transparent 60%),
                            radial-gradient(ellipse 40% 30% at 50% 50%, rgba(30, 41, 59, 0.18), transparent 70%);
-      --theme-mesh-grid: rgba(255, 255, 255, 0.035);
+      --theme-mesh-grid: rgba(255, 255, 255, 0.08);
       --theme-card-bg: rgba(12, 14, 18, 0.88);
       --theme-card-border: rgba(255, 255, 255, 0.12);
       --theme-card-glow: 0 10px 30px -10px rgba(0, 0, 0, 0.95), 0 0 25px -4px rgba(255, 255, 255, 0.06);
@@ -239,7 +238,7 @@
                            radial-gradient(ellipse 70% 50% at 95% 85%, rgba(6, 182, 212, 0.15), transparent 65%),
                            radial-gradient(ellipse 65% 45% at 5% 95%, rgba(139, 92, 246, 0.14), transparent 60%),
                            radial-gradient(ellipse 40% 30% at 50% 50%, rgba(20, 184, 166, 0.06), transparent 70%);
-      --theme-mesh-grid: rgba(0, 245, 160, 0.04);
+      --theme-mesh-grid: rgba(0, 245, 160, 0.10);
       --theme-card-bg: rgba(9, 14, 28, 0.84);
       --theme-card-border: rgba(0, 245, 160, 0.24);
       --theme-card-glow: 0 10px 30px -10px rgba(0, 0, 0, 0.75), 0 0 25px -4px rgba(0, 245, 160, 0.18);
@@ -272,7 +271,7 @@
                            radial-gradient(ellipse 70% 50% at 95% 85%, rgba(255, 0, 127, 0.16), transparent 65%),
                            radial-gradient(ellipse 65% 45% at 5% 95%, rgba(0, 240, 255, 0.15), transparent 60%),
                            radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255, 230, 0, 0.05), transparent 70%);
-      --theme-mesh-grid: rgba(57, 255, 20, 0.045);
+      --theme-mesh-grid: rgba(57, 255, 20, 0.10);
       --theme-card-bg: rgba(7, 9, 15, 0.9);
       --theme-card-border: rgba(57, 255, 20, 0.32);
       --theme-card-glow: 0 10px 30px -10px rgba(0, 0, 0, 0.85), 0 0 25px -4px rgba(57, 255, 20, 0.24);
@@ -305,7 +304,7 @@
                            radial-gradient(ellipse 70% 50% at 95% 85%, rgba(245, 158, 11, 0.15), transparent 65%),
                            radial-gradient(ellipse 65% 45% at 5% 95%, rgba(234, 88, 12, 0.14), transparent 60%),
                            radial-gradient(ellipse 40% 30% at 50% 50%, rgba(253, 224, 71, 0.06), transparent 70%);
-      --theme-mesh-grid: rgba(255, 158, 0, 0.04);
+      --theme-mesh-grid: rgba(255, 158, 0, 0.09);
       --theme-card-bg: rgba(18, 13, 9, 0.88);
       --theme-card-border: rgba(255, 158, 0, 0.28);
       --theme-card-glow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 25px -4px rgba(255, 158, 0, 0.22);
@@ -338,7 +337,7 @@
                            radial-gradient(ellipse 70% 50% at 95% 85%, rgba(255, 46, 147, 0.16), transparent 65%),
                            radial-gradient(ellipse 65% 45% at 5% 95%, rgba(0, 229, 255, 0.14), transparent 60%),
                            radial-gradient(ellipse 40% 30% at 50% 50%, rgba(168, 85, 247, 0.06), transparent 70%);
-      --theme-mesh-grid: rgba(189, 0, 255, 0.045);
+      --theme-mesh-grid: rgba(189, 0, 255, 0.09);
       --theme-card-bg: rgba(14, 7, 24, 0.88);
       --theme-card-border: rgba(189, 0, 255, 0.3);
       --theme-card-glow: 0 10px 30px -10px rgba(0, 0, 0, 0.85), 0 0 26px -4px rgba(189, 0, 255, 0.24);
@@ -363,14 +362,14 @@
       --theme-wave-2: #00E5FF;
     }
 
-    /* Desktop Wallpaper & Grid */
+    /* Desktop Wallpaper & Precision Developer Grid */
     .desktop-bg {
       background-color: var(--theme-bg-base) !important;
       background-image: var(--theme-bg-gradient),
-        linear-gradient(to right, var(--theme-mesh-grid) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--theme-mesh-grid) 1px, transparent 1px) !important;
-      background-size: 100% 100%, 40px 40px, 40px 40px !important;
-      transition: background 0.4s ease;
+        radial-gradient(circle at 1px 1px, var(--theme-mesh-grid) 1.2px, transparent 1.2px) !important;
+      background-size: 100% 100%, 36px 36px !important;
+      background-position: 0 0, 0 0 !important;
+      transition: background-color 0.4s ease, background-image 0.4s ease;
     }
 
     /* Creative Theme Dropdown Menu */
@@ -673,7 +672,7 @@
 </head>
 <body class="mode-desktop bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-emerald-500 selection:text-white">
   <!-- Skip to Main Content Link (WCAG 2.2 SC 2.4.1) -->
-  <a href="#exec-content-area" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:font-bold focus:rounded-lg focus:shadow-2xl focus:ring-2 focus:ring-white">Skip to main content</a>
+  <a id="skipToContentLink" href="#desktop-area" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:font-bold focus:rounded-lg focus:shadow-2xl focus:ring-2 focus:ring-white">Skip to main content</a>
 
   <canvas id="matrixCanvas" aria-hidden="true"></canvas>
 
@@ -923,7 +922,7 @@
     </div>
 
     <!-- DESKTOP WORKSPACE AREA -->
-    <main id="desktop-area" role="main" aria-label="Desktop Applications" class="flex-1 relative overflow-hidden p-4">
+    <main id="desktop-area" role="main" aria-label="Desktop Applications" tabindex="-1" class="flex-1 relative overflow-hidden p-4 focus:outline-none">
       <!-- AMBIENT LIVING AUDIO SOUNDWAVE CANVAS -->
       <canvas id="ambientWaveCanvas" class="absolute inset-0 pointer-events-none z-0 w-full h-full" aria-hidden="true"></canvas>
       
@@ -1406,7 +1405,7 @@
     </header>
 
     <!-- EXECUTIVE MAIN CONTAINER -->
-    <main id="exec-content-area" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+    <main id="exec-content-area" tabindex="-1" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full focus:outline-none">
       <!-- Tabs will render here when in executive mode -->
       <div id="content-funnel" role="tabpanel" aria-labelledby="tab-funnel" class="tab-content space-y-6"><!-- X-RAY OVERLAY CARD -->
       <div class="xray-badge bg-gradient-to-r from-blue-950 to-indigo-950 border-2 border-dashed border-blue-500 rounded-xl p-4 text-xs font-mono mb-4 text-blue-200">
@@ -2881,12 +2880,12 @@
   </div>
 
   <div class="inline-block bg-slate-950 p-4 rounded-xl border border-slate-800">
-    <div id="sweeperGrid" class="grid grid-cols-6 gap-2">
+    <div id="sweeperGrid" role="grid" aria-label="Wispr Funnel Retention Sweeper Grid" class="flex flex-col gap-2">
       <!-- Generated via JS -->
     </div>
   </div>
 
-  <div class="text-xs text-slate-500 font-mono">
+  <div class="text-xs text-slate-400 font-mono">
     Click tiles to discover growth opportunities. If you hit a Churn Bomb, review your retention cohorts!
   </div>
 </div>
@@ -3626,7 +3625,7 @@
           <i data-lucide="key" class="w-5 h-5 text-amber-400"></i>
           <h3 id="apiModalTitle" class="font-bold text-white text-base">Wispr Flow API Key Setup</h3>
         </div>
-        <button onclick="closeApiModal()" aria-label="Close API configuration modal" class="text-slate-400 hover:text-white">
+        <button type="button" onclick="closeApiModal()" aria-label="Close API configuration modal" class="text-slate-400 hover:text-white">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -3635,23 +3634,25 @@
         Wispr Flow provides low-latency speech recognition through its developer Voice Interface API. You can enter an API key to route audio to the live endpoint, or use the built-in browser engine.
       </p>
 
-      <div>
-        <label for="apiKeyInput" class="block text-xs font-semibold text-slate-200 mb-1.5">Enter Wispr API Key:</label>
-        <input type="password" id="apiKeyInput" aria-label="Wispr Flow API Key" placeholder="wispr_live_xxxxxxxxxxxxxxxx" class="w-full bg-slate-950 border border-slate-700 text-slate-100 font-mono text-xs rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-        <span class="text-[11px] text-slate-500 mt-1 block">Keys are stored securely in your local browser storage (<code class="text-slate-400">localStorage</code>) and never transmitted to third parties.</span>
-      </div>
+      <form id="apiKeyForm" onsubmit="event.preventDefault(); saveApiKey();" class="space-y-4">
+        <div>
+          <label for="apiKeyInput" class="block text-xs font-semibold text-slate-200 mb-1.5">Enter Wispr API Key:</label>
+          <input type="password" id="apiKeyInput" name="apiKey" autocomplete="off" aria-label="Wispr Flow API Key" placeholder="wispr_live_xxxxxxxxxxxxxxxx" class="w-full bg-slate-950 border border-slate-700 text-slate-100 font-mono text-xs rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+          <span class="text-[11px] text-slate-500 mt-1 block">Keys are stored securely in your local browser storage (<code class="text-slate-400">localStorage</code>) and never transmitted to third parties.</span>
+        </div>
 
-      <div class="bg-slate-950 p-3 rounded-lg border border-slate-800/80 text-[11px] text-slate-400 space-y-1">
-        <div class="font-semibold text-slate-300">How to get an API Key:</div>
-        <p>1. Sign in to your dashboard at <a href="https://wisprflow.ai" target="_blank" class="text-blue-400 hover:underline" rel="noopener noreferrer">wisprflow.ai</a>.</p>
-        <p>2. Request developer Voice Interface access via <a href="https://wisprflow.ai/developers" target="_blank" class="text-blue-400 hover:underline" rel="noopener noreferrer">wisprflow.ai/developers</a>.</p>
-        <p class="text-amber-400 font-medium">✓ If you don't have an API key, leave this empty. The app runs in <strong>Client Canto Engine Mode</strong> using your browser's microphone with simulated sub-200ms formatting!</p>
-      </div>
+        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800/80 text-[11px] text-slate-400 space-y-1">
+          <div class="font-semibold text-slate-300">How to get an API Key:</div>
+          <p>1. Sign in to your dashboard at <a href="https://wisprflow.ai" target="_blank" class="text-blue-400 hover:underline" rel="noopener noreferrer">wisprflow.ai</a>.</p>
+          <p>2. Request developer Voice Interface access via <a href="https://wisprflow.ai/developers" target="_blank" class="text-blue-400 hover:underline" rel="noopener noreferrer">wisprflow.ai/developers</a>.</p>
+          <p class="text-amber-400 font-medium">✓ If you don't have an API key, leave this empty. The app runs in <strong>Client Canto Engine Mode</strong> using your browser's microphone with simulated sub-200ms formatting!</p>
+        </div>
 
-      <div class="flex justify-end gap-2 pt-2 border-t border-slate-800">
-        <button onclick="clearApiKey()" class="px-3 py-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-semibold">Remove Key</button>
-        <button onclick="saveApiKey()" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-md">Save & Activate</button>
-      </div>
+        <div class="flex justify-end gap-2 pt-2 border-t border-slate-800">
+          <button type="button" onclick="clearApiKey()" class="px-3 py-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-semibold">Remove Key</button>
+          <button type="submit" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold shadow-md">Save & Activate</button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -3700,6 +3701,15 @@
     // ==========================================
     let audioEnabled = true;
     let audioCtx = null;
+    let userHasInteracted = false;
+
+    if (typeof window !== 'undefined') {
+      ['click', 'keydown', 'touchstart', 'pointerdown'].forEach(evt => {
+        window.addEventListener(evt, () => {
+          userHasInteracted = true;
+        }, { once: true, passive: true });
+      });
+    }
 
     function getAudioContext() {
       if (!audioCtx) {
@@ -3712,13 +3722,16 @@
       audioEnabled = !audioEnabled;
       const btn = document.getElementById('desktopAudioBtn');
       if (btn) {
+        btn.setAttribute('aria-pressed', audioEnabled ? 'true' : 'false');
+        btn.setAttribute('title', audioEnabled ? 'Mute System Sounds' : 'Unmute System Sounds');
+        btn.setAttribute('aria-label', audioEnabled ? 'Mute system sounds' : 'Unmute system sounds');
         btn.innerHTML = audioEnabled ? '<i data-lucide="volume-2" class="w-3.5 h-3.5"></i>' : '<i data-lucide="volume-x" class="w-3.5 h-3.5 text-rose-400"></i>';
         lucide.createIcons();
       }
     }
 
     function playSound(type) {
-      if (!audioEnabled) return;
+      if (!audioEnabled || !userHasInteracted) return;
       try {
         const ctx = getAudioContext();
         if (ctx.state === 'suspended') {
@@ -3965,25 +3978,36 @@
       const header = winEl.querySelector('.window-header');
       let isDragging = false;
       let startX, startY, initialX, initialY;
+      let dragRaf = null;
+      let pendingX = 0, pendingY = 0;
 
       function onMouseMove(e) {
         if (!isDragging) return;
         const dx = e.clientX - startX;
         const dy = e.clientY - startY;
-        let newX = initialX + dx;
-        let newY = initialY + dy;
 
         // Clamping to desktop bounds
-        newX = Math.max(10, Math.min(newX, window.innerWidth - 100));
-        newY = Math.max(10, Math.min(newY, window.innerHeight - 80));
+        pendingX = Math.max(10, Math.min(initialX + dx, window.innerWidth - 100));
+        pendingY = Math.max(10, Math.min(initialY + dy, window.innerHeight - 80));
 
-        winEl.style.left = newX + 'px';
-        winEl.style.top = newY + 'px';
+        if (!dragRaf) {
+          dragRaf = requestAnimationFrame(() => {
+            winEl.style.left = pendingX + 'px';
+            winEl.style.top = pendingY + 'px';
+            dragRaf = null;
+          });
+        }
       }
 
       function onMouseUp() {
         if (!isDragging) return;
         isDragging = false;
+        if (dragRaf) {
+          cancelAnimationFrame(dragRaf);
+          dragRaf = null;
+        }
+        winEl.style.left = pendingX + 'px';
+        winEl.style.top = pendingY + 'px';
         document.body.style.userSelect = '';
         window.removeEventListener('mousemove', onMouseMove);
         window.removeEventListener('mouseup', onMouseUp);
@@ -3997,6 +4021,8 @@
         startY = e.clientY;
         initialX = winEl.offsetLeft;
         initialY = winEl.offsetTop;
+        pendingX = initialX;
+        pendingY = initialY;
         document.body.style.userSelect = 'none';
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mouseup', onMouseUp);
@@ -4025,29 +4051,40 @@
     }
 
     
-    // Window Resize & Orientation Handler
+    // Window Resize & Orientation Handler (Throttled & Active-Window Optimized)
+    let windowResizeTimer = null;
     window.addEventListener('resize', () => {
-      const isMobile = window.innerWidth < 768;
-      windowsConfig.forEach(cfg => {
-        const win = document.getElementById('win-' + cfg.id);
-        if (!win) return;
-        if (isMobile) {
-          win.style.left = '0px';
-          win.style.top = '0px';
-          win.style.width = '100vw';
-          win.style.height = 'calc(100vh - 44px)';
-        } else {
-          win.style.left = cfg.x + 'px';
-          win.style.top = cfg.y + 'px';
-          win.style.width = Math.min(cfg.w, window.innerWidth - 60) + 'px';
-          win.style.height = '';
-          win.style.maxHeight = 'calc(100vh - 120px)';
-        }
-      });
+      if (windowResizeTimer) return;
+      windowResizeTimer = setTimeout(() => {
+        windowResizeTimer = null;
+        const isMobile = window.innerWidth < 768;
+        windowsConfig.forEach(cfg => {
+          if (!windowState[cfg.id]?.open) return; // Reposition open windows only
+          const win = document.getElementById('win-' + cfg.id);
+          if (!win) return;
+          if (isMobile) {
+            win.style.left = '0px';
+            win.style.top = '0px';
+            win.style.width = '100vw';
+            win.style.height = 'calc(100vh - 44px)';
+          } else {
+            win.style.left = cfg.x + 'px';
+            win.style.top = cfg.y + 'px';
+            win.style.width = Math.min(cfg.w, window.innerWidth - 60) + 'px';
+            win.style.height = '';
+            win.style.maxHeight = 'calc(100vh - 120px)';
+          }
+        });
+      }, 100);
     });
+
+    let windowTriggerMap = {};
 
     function openWindow(id) {
       playSound('chime');
+      if (document.activeElement && document.activeElement !== document.body) {
+        windowTriggerMap[id] = document.activeElement;
+      }
       const win = document.getElementById('win-' + id);
       if (!win) return;
 
@@ -4059,7 +4096,7 @@
         content.classList.remove('hidden');
       }
 
-            win.classList.remove('hidden', 'minimized');
+      win.classList.remove('hidden', 'minimized');
       if (window.innerWidth < 768) {
         win.style.left = '0px';
         win.style.top = '0px';
@@ -4071,6 +4108,14 @@
       windowState[id].minimized = false;
       bringToFront(id);
       updateTaskbarTabs();
+
+      // Keyboard focus transfer (WCAG 2.2 SC 2.4.3)
+      setTimeout(() => {
+        const focusable = win.querySelector('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])');
+        if (focusable && typeof focusable.focus === 'function') {
+          focusable.focus();
+        }
+      }, 60);
     }
 
     function closeWindow(id) {
@@ -4095,6 +4140,13 @@
       windowState[id].open = false;
       windowOrder = windowOrder.filter(wId => wId !== id);
       updateTaskbarTabs();
+
+      // Restore focus to triggering control (WCAG 2.2 SC 2.4.3)
+      const trigger = windowTriggerMap[id];
+      if (trigger && typeof trigger.focus === 'function') {
+        trigger.focus();
+        delete windowTriggerMap[id];
+      }
     }
 
     function minimizeWindow(id) {
@@ -4361,6 +4413,11 @@
       document.body.classList.add('mode-' + mode);
       safeStorage.setItem('FLOWSTATE_VIEW_MODE', mode);
 
+      const skipLink = document.getElementById('skipToContentLink');
+      if (skipLink) {
+        skipLink.setAttribute('href', mode === 'desktop' ? '#desktop-area' : '#exec-content-area');
+      }
+
       if (mode === 'executive') {
         document.body.style.overflowY = 'auto';
         document.body.style.overflowX = 'hidden';
@@ -4383,6 +4440,9 @@
         const winToOpen = targetTab || currentActiveTab || 'funnel';
         openWindow(winToOpen);
         bringToFront(winToOpen);
+        if (typeof resumeAmbientWaves === 'function') {
+          resumeAmbientWaves();
+        }
       }
 
       lucide.createIcons();
@@ -4778,25 +4838,38 @@
       if (!grid) return;
       grid.innerHTML = '';
 
-      for (let i = 0; i < 36; i++) {
-        const tile = document.createElement('button');
-        tile.className = 'w-10 h-10 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold transition flex items-center justify-center';
-        tile.onclick = () => clickSweeperTile(tile, i);
-        grid.appendChild(tile);
+      for (let r = 0; r < 6; r++) {
+        const row = document.createElement('div');
+        row.setAttribute('role', 'row');
+        row.className = 'flex gap-2';
+        for (let c = 0; c < 6; c++) {
+          const idx = r * 6 + c;
+          const tile = document.createElement('button');
+          tile.type = 'button';
+          tile.setAttribute('role', 'gridcell');
+          tile.setAttribute('aria-label', `Row ${r + 1}, Column ${c + 1}, unrevealed`);
+          tile.className = 'w-10 h-10 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-bold transition flex items-center justify-center';
+          tile.onclick = () => clickSweeperTile(tile, idx, r + 1, c + 1);
+          row.appendChild(tile);
+        }
+        grid.appendChild(row);
       }
     }
 
-    function clickSweeperTile(tile, idx) {
+    function clickSweeperTile(tile, idx, rowNum, colNum) {
       if (tile.disabled) return;
       tile.disabled = true;
 
+      const posLabel = rowNum && colNum ? `Row ${rowNum}, Column ${colNum}` : `Tile ${idx + 1}`;
       if (sweeperBombs.includes(idx)) {
+        tile.setAttribute('aria-label', `${posLabel}, Churn Bomb triggered`);
         tile.className = 'w-10 h-10 rounded bg-rose-600 text-white font-bold text-xs flex items-center justify-center';
         tile.innerText = '💣';
         document.getElementById('sweeperSmiley').innerText = '😵';
         playSound('reboot');
         alert('💥 Churn Bomb! Unaddressed desktop friction caused subscription cancellation.');
       } else {
+        tile.setAttribute('aria-label', `${posLabel}, safe growth opportunity tile, score increased by ₹10,000`);
         tile.className = 'w-10 h-10 rounded bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 font-bold text-xs flex items-center justify-center';
         tile.innerText = '🚀';
         sweeperScore += 10000;
@@ -4924,6 +4997,9 @@
 
       closeAllThemeMenus();
       playSound('click');
+      if (typeof window.resumeAmbientWaves === 'function') {
+        window.resumeAmbientWaves();
+      }
     }
 
     function toggleThemeMenu(target) {
@@ -5014,12 +5090,31 @@
 
       let step = 0;
       let lastFrameTime = 0;
+      let isLoopRunning = false;
       const FRAME_INTERVAL = 1000 / 30; // 30 fps cap for background ambient canvas to minimize TBT
+
+      let cachedWaveGrad = null;
+      let cachedTheme = null;
+      let cachedW = 0, cachedH = 0;
+
+      window.resumeAmbientWaves = function() {
+        if (!isLoopRunning && canvas.offsetParent && !document.hidden) {
+          isLoopRunning = true;
+          lastFrameTime = performance.now();
+          requestAnimationFrame(render);
+        }
+      };
+
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden && canvas.offsetParent && !isLoopRunning) {
+          window.resumeAmbientWaves();
+        }
+      });
 
       function render(now) {
         if (!canvas.offsetParent || document.hidden) {
-          requestAnimationFrame(render);
-          return;
+          isLoopRunning = false;
+          return; // Halt render loop when hidden to drop background CPU to 0%
         }
 
         if (now && now - lastFrameTime < FRAME_INTERVAL) {
@@ -5129,10 +5224,15 @@
           }
         }
 
-        // 3. Draw Multi-Layered Liquid Silk Acoustic Waveforms
-        const gradient = ctx.createLinearGradient(0, height * 0.25, width, height * 0.75);
-        gradient.addColorStop(0, waveGrad[0]);
-        gradient.addColorStop(1, waveGrad[1]);
+        // 3. Draw Multi-Layered Liquid Silk Acoustic Waveforms (Cached Gradients & 16px Steps)
+        if (!cachedWaveGrad || cachedTheme !== currentTheme || cachedW !== width || cachedH !== height) {
+          cachedTheme = currentTheme;
+          cachedW = width;
+          cachedH = height;
+          cachedWaveGrad = ctx.createLinearGradient(0, height * 0.25, width, height * 0.75);
+          cachedWaveGrad.addColorStop(0, waveGrad[0]);
+          cachedWaveGrad.addColorStop(1, waveGrad[1]);
+        }
 
         for (let j = 0; j < 4; j++) {
           ctx.beginPath();
@@ -5141,7 +5241,7 @@
           const amp = 36 + j * 14;
           const centerY = height * 0.50 + j * 22;
 
-          for (let x = 0; x <= width; x += 8) {
+          for (let x = 0; x <= width; x += 16) {
             let y = centerY + Math.sin(x * baseFreq + step + waveOffset) * amp * Math.cos(step * 0.35 + x * 0.0007);
             if (mouse.active) {
               const mDist = Math.abs(x - mouse.x);
@@ -5153,7 +5253,7 @@
             else ctx.lineTo(x, y);
           }
 
-          ctx.strokeStyle = (j === 0) ? 'rgba(255, 255, 255, 0.45)' : gradient;
+          ctx.strokeStyle = (j === 0) ? 'rgba(255, 255, 255, 0.45)' : cachedWaveGrad;
           ctx.lineWidth = (j === 0) ? 2.0 : 1.3;
           ctx.stroke();
 
@@ -5170,6 +5270,7 @@
           }
         }
 
+        isLoopRunning = true;
         requestAnimationFrame(render);
       }
 
