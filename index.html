@@ -716,7 +716,7 @@
         <h3 class="text-lg sm:text-xl font-black text-white tracking-tight flex items-center justify-center gap-1.5">
           <span>FlowState</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-purple-400">India</span>
         </h3>
-        <p id="bootTelemetryStatus" class="text-xs font-mono text-slate-400 h-5 transition-all">
+        <p id="bootTelemetryStatus" role="status" aria-live="polite" class="text-xs font-mono text-slate-400 h-5 transition-all">
           Mounting neural voice compositor...
         </p>
       </div>
@@ -750,11 +750,11 @@
     <header class="h-10 sm:h-11 bg-slate-950/90 border-b border-cyan-500/20 backdrop-blur-xl px-3 sm:px-4 flex items-center justify-between text-xs z-[500] select-none aurora-header-bar">
       <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
         <div class="flex items-center gap-2.5">
-          <div class="relative group cursor-pointer" onclick="toggleStartMenu()" title="Open FlowOS Launch Menu">
+          <button type="button" class="relative group cursor-pointer bg-transparent border-0 p-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg" onclick="toggleStartMenu()" aria-label="Open FlowOS Launch Menu" title="Open FlowOS Launch Menu">
             <div class="w-6 h-6 rounded-lg bg-gradient-to-tr from-cyan-400 via-blue-600 to-indigo-600 flex items-center justify-center font-black text-white text-xs shadow-md shadow-cyan-500/20 ring-1 ring-cyan-400/40 group-hover:scale-105 transition">W</div>
             <span class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-slate-950 animate-ping"></span>
             <span class="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-slate-950"></span>
-          </div>
+          </button>
           <span class="font-extrabold text-slate-100 flex items-center gap-1.5 tracking-tight">
             <span class="bg-gradient-to-r from-white via-cyan-200 to-blue-300 bg-clip-text text-transparent">FlowOS</span>
             <span class="text-cyan-400 font-mono text-[10px] px-1.5 py-0.2 bg-cyan-950/80 rounded border border-cyan-500/30">v2.4 Pro</span>
@@ -3422,7 +3422,7 @@
       </p>
 
       <div>
-        <label class="block text-xs font-semibold text-slate-200 mb-1.5">Enter Wispr API Key:</label>
+        <label for="apiKeyInput" class="block text-xs font-semibold text-slate-200 mb-1.5">Enter Wispr API Key:</label>
         <input type="password" id="apiKeyInput" aria-label="Wispr Flow API Key" placeholder="wispr_live_xxxxxxxxxxxxxxxx" class="w-full bg-slate-950 border border-slate-700 text-slate-100 font-mono text-xs rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
         <span class="text-[11px] text-slate-500 mt-1 block">Keys are stored securely in your local browser storage (<code class="text-slate-400">localStorage</code>) and never transmitted to third parties.</span>
       </div>
@@ -4433,12 +4433,11 @@
     }
 
     function toggleAcousticFilter() {
+      cantoFilterActive = !cantoFilterActive;
       const filterBtn = document.getElementById('btn-acoustic-filter');
       if (filterBtn) {
-        const nextState = !acousticFilterActive;
-        filterBtn.setAttribute('aria-checked', String(nextState));
+        filterBtn.setAttribute('aria-checked', String(cantoFilterActive));
       }
-      cantoFilterActive = !cantoFilterActive;
       const knob = document.getElementById('acousticKnob');
       const text = document.getElementById('filterStatusText');
 
