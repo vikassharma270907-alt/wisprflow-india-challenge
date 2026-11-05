@@ -3,22 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FlowState India: Wispr Flow Growth Simulator &amp; Executive Architecture. 10.2% WER Hinglish Benchmark, ₹2.22 Cr ARR Monetization Engine, and Bangalore Acoustic Field Lab.">
+  <link rel="canonical" href="https://flowstate-india.vercel.app/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "FlowState India",
+    "alternateName": "Wispr Flow Growth Simulator &amp; FlowOS",
+    "url": "https://flowstate-india.vercel.app/",
+    "description": "Ground-truth growth simulator, 10.2% WER Hinglish benchmark suite, and executive playbook for Wispr Flow in India.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "author": {
+      "@type": "Person",
+      "name": "Vikas Sharma",
+      "jobTitle": "Full-Stack &amp; AI Systems Engineering Intern",
+      "url": "https://www.linkedin.com/in/vikas-sharma-97881737b/"
+    }
+  }
+  </script>
   <meta property="og:title" content="FlowState India // Wispr Flow Growth Simulator &amp; Playbook">
   <meta property="og:description" content="10.2% WER Hinglish Benchmark, ₹2.22 Cr ARR Monetization Engine, and Ground-Truth Bangalore Noise Lab for Wispr Flow.">
-  <meta property="og:image" content="./thumbnail_og.png">
+  <meta property="og:image" content="https://flowstate-india.vercel.app/thumbnail_og.webp">
   <meta property="og:url" content="https://flowstate-india.vercel.app">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="FlowState India // Wispr Flow Growth Simulator &amp; Playbook">
   <meta name="twitter:description" content="Official 3:40 Executive Video Walkthrough with Studio Neural Voiceover by Vikas Sharma.">
-  <meta name="twitter:image" content="./thumbnail_og.png">
+  <meta name="twitter:image" content="https://flowstate-india.vercel.app/thumbnail_og.webp">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232563eb'/><text x='50' y='68' font-size='55' font-weight='900' fill='white' text-anchor='middle'>W</text></svg>">
   <title>FlowState India // Wispr Flow Growth Simulator & FlowOS</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js" defer></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-    
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       user-select: none;
@@ -168,29 +189,177 @@
       background: #334155;
     }
 
+    /* ======================================================== */
+    /* 🎨 CREATIVE THEME ENGINE: 4 BESPOKE THEMES                */
+    /* ======================================================== */
+    
+    /* 1. CANTO AURORA (Signature Default) - Deep Obsidian + Iridescent Mint + Cyan Prism + Violet Wave */
+    :root, [data-theme="aurora"] {
+      --theme-name: "Canto Aurora";
+      --theme-bg-base: #060913;
+      --theme-bg-gradient: radial-gradient(ellipse 90% 60% at 50% -15%, rgba(0, 245, 160, 0.18), transparent 75%),
+                           radial-gradient(ellipse 70% 50% at 95% 85%, rgba(6, 182, 212, 0.15), transparent 65%),
+                           radial-gradient(ellipse 65% 45% at 5% 95%, rgba(139, 92, 246, 0.14), transparent 60%),
+                           radial-gradient(ellipse 40% 30% at 50% 50%, rgba(20, 184, 166, 0.06), transparent 70%);
+      --theme-mesh-grid: rgba(0, 245, 160, 0.04);
+      --theme-card-bg: rgba(9, 14, 28, 0.84);
+      --theme-card-border: rgba(0, 245, 160, 0.24);
+      --theme-card-glow: 0 10px 30px -10px rgba(0, 0, 0, 0.75), 0 0 25px -4px rgba(0, 245, 160, 0.18);
+      --theme-window-bg: rgba(8, 13, 27, 0.94);
+      --theme-window-border: rgba(0, 245, 160, 0.32);
+      --theme-window-active-border: rgba(0, 210, 255, 0.75);
+      --theme-window-glow: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 32px -2px rgba(0, 245, 160, 0.22);
+      --theme-accent-primary: #00F5A0;
+      --theme-accent-secondary: #00D2FF;
+      --theme-accent-tertiary: #A78BFA;
+      --theme-accent-grad: linear-gradient(135deg, #00F5A0, #00D2FF, #8B5CF6);
+      --theme-topbar-bg: rgba(8, 12, 24, 0.92);
+      --theme-topbar-border: rgba(0, 245, 160, 0.22);
+      --theme-hud-bg: rgba(5, 8, 17, 0.96);
+      --theme-hud-border: rgba(0, 210, 255, 0.28);
+      --theme-dock-bg: rgba(10, 16, 32, 0.92);
+      --theme-dock-border: rgba(0, 245, 160, 0.32);
+      --theme-dock-glow: 0 16px 36px -8px rgba(0, 0, 0, 0.8), 0 0 25px -2px rgba(0, 245, 160, 0.28);
+      --theme-selection-bg: #00F5A0;
+      --theme-selection-color: #030712;
+      --theme-wave-1: #00F5A0;
+      --theme-wave-2: #00D2FF;
+    }
+
+    /* 2. CYBERPUNK BENGALURU (High-Energy Neon) - Midnight Carbon + Toxic Green + Laser Pink + Cyber Cyan */
+    [data-theme="cyberpunk"] {
+      --theme-name: "Cyberpunk Bengaluru";
+      --theme-bg-base: #030407;
+      --theme-bg-gradient: radial-gradient(ellipse 90% 60% at 50% -15%, rgba(57, 255, 20, 0.17), transparent 75%),
+                           radial-gradient(ellipse 70% 50% at 95% 85%, rgba(255, 0, 127, 0.16), transparent 65%),
+                           radial-gradient(ellipse 65% 45% at 5% 95%, rgba(0, 240, 255, 0.15), transparent 60%),
+                           radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255, 230, 0, 0.05), transparent 70%);
+      --theme-mesh-grid: rgba(57, 255, 20, 0.045);
+      --theme-card-bg: rgba(7, 9, 15, 0.9);
+      --theme-card-border: rgba(57, 255, 20, 0.32);
+      --theme-card-glow: 0 10px 30px -10px rgba(0, 0, 0, 0.85), 0 0 25px -4px rgba(57, 255, 20, 0.24);
+      --theme-window-bg: rgba(6, 8, 14, 0.95);
+      --theme-window-border: rgba(57, 255, 20, 0.42);
+      --theme-window-active-border: rgba(255, 0, 127, 0.85);
+      --theme-window-glow: 0 25px 50px -12px rgba(0, 0, 0, 0.92), 0 0 35px 0 rgba(255, 0, 127, 0.28);
+      --theme-accent-primary: #39FF14;
+      --theme-accent-secondary: #FF007F;
+      --theme-accent-tertiary: #00F0FF;
+      --theme-accent-grad: linear-gradient(135deg, #39FF14, #00F0FF, #FF007F);
+      --theme-topbar-bg: rgba(5, 7, 12, 0.94);
+      --theme-topbar-border: rgba(57, 255, 20, 0.28);
+      --theme-hud-bg: rgba(3, 4, 8, 0.98);
+      --theme-hud-border: rgba(255, 0, 127, 0.32);
+      --theme-dock-bg: rgba(7, 10, 18, 0.94);
+      --theme-dock-border: rgba(57, 255, 20, 0.38);
+      --theme-dock-glow: 0 16px 36px -8px rgba(0, 0, 0, 0.88), 0 0 28px 0 rgba(57, 255, 20, 0.32);
+      --theme-selection-bg: #FF007F;
+      --theme-selection-color: #ffffff;
+      --theme-wave-1: #39FF14;
+      --theme-wave-2: #FF007F;
+    }
+
+    /* 3. SOLARIS SAFFRON (Royal Rajputana & Bangalore Sun) - Basalt Obsidian + Molten Gold + Warm Amber */
+    [data-theme="solaris"] {
+      --theme-name: "Solaris Saffron";
+      --theme-bg-base: #0B0806;
+      --theme-bg-gradient: radial-gradient(ellipse 90% 60% at 50% -15%, rgba(255, 158, 0, 0.19), transparent 75%),
+                           radial-gradient(ellipse 70% 50% at 95% 85%, rgba(245, 158, 11, 0.15), transparent 65%),
+                           radial-gradient(ellipse 65% 45% at 5% 95%, rgba(234, 88, 12, 0.14), transparent 60%),
+                           radial-gradient(ellipse 40% 30% at 50% 50%, rgba(253, 224, 71, 0.06), transparent 70%);
+      --theme-mesh-grid: rgba(255, 158, 0, 0.04);
+      --theme-card-bg: rgba(18, 13, 9, 0.88);
+      --theme-card-border: rgba(255, 158, 0, 0.28);
+      --theme-card-glow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 25px -4px rgba(255, 158, 0, 0.22);
+      --theme-window-bg: rgba(16, 11, 8, 0.95);
+      --theme-window-border: rgba(255, 158, 0, 0.38);
+      --theme-window-active-border: rgba(251, 191, 36, 0.85);
+      --theme-window-glow: 0 25px 50px -12px rgba(0, 0, 0, 0.88), 0 0 32px -2px rgba(255, 158, 0, 0.26);
+      --theme-accent-primary: #FF9E00;
+      --theme-accent-secondary: #F59E0B;
+      --theme-accent-tertiary: #FB7185;
+      --theme-accent-grad: linear-gradient(135deg, #FF9E00, #FBBF24, #EA580C);
+      --theme-topbar-bg: rgba(14, 10, 7, 0.92);
+      --theme-topbar-border: rgba(255, 158, 0, 0.25);
+      --theme-hud-bg: rgba(10, 7, 5, 0.97);
+      --theme-hud-border: rgba(255, 158, 0, 0.28);
+      --theme-dock-bg: rgba(19, 13, 9, 0.92);
+      --theme-dock-border: rgba(255, 158, 0, 0.38);
+      --theme-dock-glow: 0 16px 36px -8px rgba(0, 0, 0, 0.84), 0 0 28px -2px rgba(255, 158, 0, 0.3);
+      --theme-selection-bg: #FF9E00;
+      --theme-selection-color: #0c0a09;
+      --theme-wave-1: #FF9E00;
+      --theme-wave-2: #FBBF24;
+    }
+
+    /* 4. MIDNIGHT NEBULA (Cosmic Synthwave) - Deep Velvet Violet + Astral Magenta + Starlight Cyan */
+    [data-theme="nebula"] {
+      --theme-name: "Midnight Nebula";
+      --theme-bg-base: #080312;
+      --theme-bg-gradient: radial-gradient(ellipse 90% 60% at 50% -15%, rgba(189, 0, 255, 0.18), transparent 75%),
+                           radial-gradient(ellipse 70% 50% at 95% 85%, rgba(255, 46, 147, 0.16), transparent 65%),
+                           radial-gradient(ellipse 65% 45% at 5% 95%, rgba(0, 229, 255, 0.14), transparent 60%),
+                           radial-gradient(ellipse 40% 30% at 50% 50%, rgba(168, 85, 247, 0.06), transparent 70%);
+      --theme-mesh-grid: rgba(189, 0, 255, 0.045);
+      --theme-card-bg: rgba(14, 7, 24, 0.88);
+      --theme-card-border: rgba(189, 0, 255, 0.3);
+      --theme-card-glow: 0 10px 30px -10px rgba(0, 0, 0, 0.85), 0 0 26px -4px rgba(189, 0, 255, 0.24);
+      --theme-window-bg: rgba(12, 6, 21, 0.95);
+      --theme-window-border: rgba(189, 0, 255, 0.4);
+      --theme-window-active-border: rgba(255, 46, 147, 0.88);
+      --theme-window-glow: 0 25px 50px -12px rgba(0, 0, 0, 0.92), 0 0 35px 0 rgba(189, 0, 255, 0.28);
+      --theme-accent-primary: #BD00FF;
+      --theme-accent-secondary: #FF2E93;
+      --theme-accent-tertiary: #00E5FF;
+      --theme-accent-grad: linear-gradient(135deg, #BD00FF, #FF2E93, #00E5FF);
+      --theme-topbar-bg: rgba(10, 5, 18, 0.94);
+      --theme-topbar-border: rgba(189, 0, 255, 0.26);
+      --theme-hud-bg: rgba(7, 3, 14, 0.98);
+      --theme-hud-border: rgba(255, 46, 147, 0.3);
+      --theme-dock-bg: rgba(16, 8, 28, 0.94);
+      --theme-dock-border: rgba(189, 0, 255, 0.4);
+      --theme-dock-glow: 0 16px 36px -8px rgba(0, 0, 0, 0.88), 0 0 30px -2px rgba(189, 0, 255, 0.32);
+      --theme-selection-bg: #BD00FF;
+      --theme-selection-color: #ffffff;
+      --theme-wave-1: #BD00FF;
+      --theme-wave-2: #00E5FF;
+    }
+
     /* Desktop Wallpaper & Grid */
     .desktop-bg {
-      background-color: #030712;
-      background-image: 
-        radial-gradient(at 10% 20%, rgba(30, 58, 138, 0.4) 0px, transparent 50%),
-        radial-gradient(at 90% 80%, rgba(88, 28, 135, 0.35) 0px, transparent 50%),
-        radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.8) 0px, transparent 80%),
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+      background-color: var(--theme-bg-base) !important;
+      background-image: var(--theme-bg-gradient),
+        linear-gradient(to right, var(--theme-mesh-grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--theme-mesh-grid) 1px, transparent 1px) !important;
+      background-size: 100% 100%, 40px 40px, 40px 40px !important;
+      transition: background 0.4s ease;
+    }
+
+    /* Creative Theme Dropdown Menu */
+    .theme-dropdown-menu {
+      background: #090e1d !important;
+      background-color: #090e1d !important;
+      backdrop-filter: blur(24px) saturate(200%) !important;
+      -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+      border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+    }
+    .theme-dropdown-menu .theme-option-btn:hover {
+      background: rgba(255, 255, 255, 0.08) !important;
     }
 
     /* Window Glass Effect */
     .os-window {
-      backdrop-filter: blur(16px);
-      background: rgba(15, 23, 42, 0.94);
-      border: 1px solid rgba(51, 65, 85, 0.8);
-      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.06);
-      transition: transform 0.15s ease, opacity 0.15s ease;
+      backdrop-filter: blur(20px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+      background: var(--theme-window-bg) !important;
+      border: 1px solid var(--theme-window-border) !important;
+      box-shadow: var(--theme-window-glow) !important;
+      transition: transform 0.15s ease, opacity 0.15s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
     }
     .os-window.active-window {
-      border-color: rgba(96, 165, 250, 0.6);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 20px 0 rgba(59, 130, 246, 0.2);
+      border-color: var(--theme-window-active-border) !important;
+      box-shadow: var(--theme-window-glow) !important;
     }
     .os-window.minimized {
       display: none !important;
@@ -216,24 +385,16 @@
       z-index: 100;
     }
 
-    /* ======================================================== */
-    /* UNIQUE SIGNATURE THEME: WISPR CANTO AURORA & OBSIDIAN    */
-    /* ======================================================== */
-    :root {
-      --wispr-emerald: #10b981;
-      --wispr-teal: #14b8a6;
-      --wispr-cyan: #06b6d4;
-      --wispr-accent: #059669;
-      --wispr-bg-dark: #070a13;
+    body {
+      background-color: var(--theme-bg-base) !important;
+      background-image: var(--theme-bg-gradient) !important;
+      background-attachment: fixed;
+      transition: background-color 0.4s ease, background-image 0.4s ease;
     }
 
-    body {
-      background-color: #070a13;
-      background-image: 
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.12), transparent 70%),
-        radial-gradient(ellipse 60% 40% at 90% 80%, rgba(6, 182, 212, 0.08), transparent 60%),
-        radial-gradient(ellipse 60% 40% at 10% 90%, rgba(139, 92, 246, 0.06), transparent 60%);
-      background-attachment: fixed;
+    ::selection {
+      background: var(--theme-selection-bg) !important;
+      color: var(--theme-selection-color) !important;
     }
 
     /* Ambient Voice Waveform Animations */
@@ -246,7 +407,7 @@
       width: 3px;
       height: 6px;
       border-radius: 9999px;
-      background: linear-gradient(to top, #10b981, #06b6d4);
+      background: linear-gradient(to top, var(--theme-wave-1), var(--theme-wave-2)) !important;
       animation: voiceWave 1.2s ease-in-out infinite;
     }
     .wave-bar:nth-child(2) { animation-delay: 0.15s; }
@@ -259,15 +420,39 @@
 
     /* Glassmorphic Cards & Glowing Micro-borders */
     .wispr-glass {
-      background: rgba(11, 16, 29, 0.78) !important;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(16, 185, 129, 0.2) !important;
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 20px -5px rgba(16, 185, 129, 0.12);
+      background: var(--theme-card-bg) !important;
+      backdrop-filter: blur(18px) saturate(180%) !important;
+      -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+      border: 1px solid var(--theme-card-border) !important;
+      box-shadow: var(--theme-card-glow) !important;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .wispr-glass:hover {
-      border-color: rgba(16, 185, 129, 0.4) !important;
-      box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.7), 0 0 25px -3px rgba(16, 185, 129, 0.22);
+      border-color: var(--theme-accent-primary) !important;
+    }
+
+    /* Candidate Discovery Dock Theming */
+    aside[aria-label="Candidate profile discovery"] {
+      background: var(--theme-dock-bg) !important;
+      border-color: var(--theme-dock-border) !important;
+      box-shadow: var(--theme-dock-glow) !important;
+    }
+
+    /* Executive Mode Theming */
+    #workspace-executive header {
+      background: var(--theme-topbar-bg) !important;
+      border-bottom-color: var(--theme-topbar-border) !important;
+    }
+    #workspace-executive .bg-slate-950\/80,
+    #workspace-executive .bg-slate-900\/90,
+    #workspace-executive .bg-slate-900\/95,
+    #workspace-executive .bg-slate-900,
+    #workspace-executive .bg-slate-950\/60,
+    #workspace-executive .bg-slate-950\/50,
+    #workspace-executive .bg-slate-950\/40,
+    #workspace-executive .bg-slate-950 {
+      background-color: var(--theme-card-bg) !important;
+      border-color: var(--theme-card-border) !important;
     }
 
     /* Mode Switching Display & Scroll Rules (Fixes Executive Scrolling) */
@@ -313,46 +498,99 @@
   <div id="workspace-desktop" class="fixed inset-0 flex flex-col desktop-bg z-20 overflow-hidden">
     
     <!-- DESKTOP TOP BAR -->
-    <header class="h-9 bg-slate-900/90 border-b border-slate-800/80 backdrop-blur-md px-4 flex items-center justify-between text-xs z-30 select-none">
-      <div class="flex items-center gap-3">
+    <header class="h-9 bg-slate-900/90 border-b border-slate-800/80 backdrop-blur-md px-3 sm:px-4 flex items-center justify-between text-xs z-[500] select-none">
+      <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
         <div class="flex items-center gap-2">
           <div class="w-5 h-5 rounded bg-blue-600 flex items-center justify-center font-black text-white text-xs shadow-md">W</div>
           <span class="font-bold text-slate-200">FlowOS <span class="text-blue-400 font-mono text-[10px] px-1.5 py-0.2 bg-blue-950/80 rounded border border-blue-500/30">v2.4 Pro</span></span>
         </div>
-        <span class="text-slate-600">|</span>
-        <span class="text-slate-400 hidden md:inline">Wispr Flow Bangalore Growth Desktop</span>
+        <span class="text-slate-600 hidden lg:inline">|</span>
+        <span class="text-slate-400 hidden xl:inline">Wispr Flow Bangalore Growth Desktop</span>
       </div>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
         <!-- Telemetry Pill -->
-        <div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-[11px] text-emerald-300">
+        <div class="hidden 2xl:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-[11px] text-emerald-300">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span><strong>8,420</strong> Words Spoken</span>
         </div>
 
         <!-- Mode Switcher Pill -->
-        <button type="button" onclick="setMode('executive')" aria-label="Switch to Executive Report view" class="px-2.5 py-1 rounded bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 font-semibold text-[11px] flex items-center gap-1.5 transition">
+        <button type="button" onclick="setMode('executive')" aria-label="Switch to Executive Report view" class="px-2 sm:px-2.5 py-1 rounded bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 font-semibold text-[11px] flex items-center gap-1.5 transition">
           <i data-lucide="layout-dashboard" class="w-3.5 h-3.5" aria-hidden="true"></i>
-          <span class="hidden sm:inline">Switch to Executive View</span>
-          <span class="sm:hidden">Report</span>
+          <span class="hidden md:inline">Switch to Executive View</span>
+          <span class="md:hidden">Report</span>
         </button>
 
         <!-- Candidate Profile Direct Button -->
-        <button type="button" onclick="openWindow('operator'); bringToFront('operator');" aria-label="Open Vikas Sharma Profile & Rankved Internship" class="px-2.5 py-1 rounded bg-emerald-950/80 hover:bg-emerald-900 text-emerald-200 border border-emerald-500/40 font-semibold text-[11px] flex items-center gap-1.5 transition shadow-sm hover:scale-105 active:scale-95" title="View Vikas Sharma Profile & Rankved Experience">
-          <img src="./profile.jpg" alt="Vikas Sharma" class="w-4 h-4 rounded-full object-cover ring-1 ring-emerald-400">
-          <span>👤 My Profile <span class="hidden xl:inline text-emerald-300 font-normal font-mono">(Rankved Intern)</span></span>
+        <button type="button" onclick="openWindow('operator'); bringToFront('operator');" aria-label="Open Vikas Sharma Profile & Rankved Internship" class="hidden sm:flex px-2 sm:px-2.5 py-1 rounded bg-emerald-950/80 hover:bg-emerald-900 text-emerald-200 border border-emerald-500/40 font-semibold text-[11px] items-center gap-1.5 transition shadow-sm hover:scale-105 active:scale-95" title="View Vikas Sharma Profile & Rankved Experience">
+          <img src="./profile.webp" loading="lazy" decoding="async" alt="Vikas Sharma" class="w-4 h-4 rounded-full object-cover ring-1 ring-emerald-400">
+          <span>👤 Profile <span class="hidden 2xl:inline text-emerald-300 font-normal font-mono">(Rankved Intern)</span></span>
         </button>
 
         <!-- Past Work Direct Button -->
-        <button type="button" onclick="openWindow('projects'); bringToFront('projects');" aria-label="Open Past Work and GitHub Repositories" class="px-2.5 py-1 rounded bg-purple-600/30 hover:bg-purple-600/50 text-purple-200 border border-purple-400/40 font-semibold text-[11px] flex items-center gap-1.5 transition hover:scale-105 active:scale-95" title="View Vikas Sharma 7 GitHub Projects">
+        <button type="button" onclick="openWindow('projects'); bringToFront('projects');" aria-label="Open Past Work and GitHub Repositories" class="hidden lg:flex px-2 sm:px-2.5 py-1 rounded bg-purple-600/30 hover:bg-purple-600/50 text-purple-200 border border-purple-400/40 font-semibold text-[11px] items-center gap-1.5 transition hover:scale-105 active:scale-95" title="View Vikas Sharma 7 GitHub Projects">
           <i data-lucide="folder-git-2" class="w-3.5 h-3.5 text-purple-400" aria-hidden="true"></i>
-          <span>🚀 Past Work <span class="hidden xl:inline text-purple-300 font-normal font-mono">(7 Repos)</span></span>
+          <span>🚀 Past Work <span class="hidden 2xl:inline text-purple-300 font-normal font-mono">(7 Repos)</span></span>
         </button>
+
+        <!-- Creative Theme Selector Pill (Desktop) -->
+        <div class="relative">
+          <button type="button" onclick="toggleThemeMenu('desktop')" id="desktopThemeBtn" aria-label="Select Creative Theme" class="px-2 sm:px-2.5 py-1 rounded bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700/80 text-slate-200 text-[11px] font-semibold flex items-center gap-1.5 transition active:scale-95 shadow-sm" title="Change Visual Theme">
+            <i data-lucide="palette" class="w-3.5 h-3.5 text-cyan-400" aria-hidden="true"></i>
+            <span id="desktopThemeLabel" class="hidden sm:inline font-mono">Canto Aurora</span>
+            <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400" aria-hidden="true"></i>
+          </button>
+          <!-- Theme Dropdown Menu -->
+          <div id="desktopThemeMenu" class="hidden absolute right-0 mt-1.5 w-60 rounded-xl theme-dropdown-menu p-2 z-[100] text-xs space-y-1">
+            <div class="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800">Creative Themes</div>
+            <button type="button" onclick="setTheme('aurora')" class="theme-option-btn w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 flex items-center justify-between transition group" data-theme-val="aurora">
+              <div class="flex items-center gap-2.5">
+                <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#00F5A0] to-[#00D2FF] ring-2 ring-emerald-400/40 shadow-sm"></span>
+                <div>
+                  <div class="font-bold text-slate-200 group-hover:text-emerald-300">Canto Aurora</div>
+                  <div class="text-[10px] text-slate-400">Obsidian &amp; Neural Mint Waves</div>
+                </div>
+              </div>
+              <span class="theme-check text-emerald-400 font-bold hidden">✓</span>
+            </button>
+            <button type="button" onclick="setTheme('cyberpunk')" class="theme-option-btn w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 flex items-center justify-between transition group" data-theme-val="cyberpunk">
+              <div class="flex items-center gap-2.5">
+                <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#39FF14] to-[#FF007F] ring-2 ring-pink-500/40 shadow-sm"></span>
+                <div>
+                  <div class="font-bold text-slate-200 group-hover:text-pink-300">Cyberpunk Bengaluru</div>
+                  <div class="text-[10px] text-slate-400">Toxic Neon &amp; Laser Magenta</div>
+                </div>
+              </div>
+              <span class="theme-check text-pink-400 font-bold hidden">✓</span>
+            </button>
+            <button type="button" onclick="setTheme('solaris')" class="theme-option-btn w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 flex items-center justify-between transition group" data-theme-val="solaris">
+              <div class="flex items-center gap-2.5">
+                <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#FF9E00] to-[#FBBF24] ring-2 ring-amber-400/40 shadow-sm"></span>
+                <div>
+                  <div class="font-bold text-slate-200 group-hover:text-amber-300">Solaris Saffron</div>
+                  <div class="text-[10px] text-slate-400">Royal Basalt &amp; Molten Gold</div>
+                </div>
+              </div>
+              <span class="theme-check text-amber-400 font-bold hidden">✓</span>
+            </button>
+            <button type="button" onclick="setTheme('nebula')" class="theme-option-btn w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 flex items-center justify-between transition group" data-theme-val="nebula">
+              <div class="flex items-center gap-2.5">
+                <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#BD00FF] to-[#FF2E93] ring-2 ring-purple-400/40 shadow-sm"></span>
+                <div>
+                  <div class="font-bold text-slate-200 group-hover:text-purple-300">Midnight Nebula</div>
+                  <div class="text-[10px] text-slate-400">Velvet Violet &amp; Astral Pink</div>
+                </div>
+              </div>
+              <span class="theme-check text-purple-400 font-bold hidden">✓</span>
+            </button>
+          </div>
+        </div>
 
         <!-- X-Ray Toggle -->
         <button type="button" onclick="toggleXRay()" id="desktopXrayToggle" title="Toggle Voice-In / UI-Out Prompts" aria-label="Toggle Voice-In and UI-Out prompt cards" aria-pressed="false" class="p-1.5 min-w-[28px] min-h-[28px] rounded hover:bg-slate-800 text-slate-300 hover:text-white transition flex items-center justify-center gap-1">
           <i data-lucide="sparkles" class="w-3.5 h-3.5 text-blue-400" aria-hidden="true"></i>
-          <span class="text-[10px] hidden lg:inline font-mono">X-Ray</span>
+          <span class="text-[10px] hidden xl:inline font-mono">X-Ray</span>
         </button>
 
         <!-- Sound Toggle -->
@@ -361,17 +599,17 @@
         </button>
 
         <!-- Judges Links: GitHub & LinkedIn -->
-        <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-mono text-[11px] flex items-center gap-1.5 transition" title="View GitHub Repositories" aria-label="Open Vikas Sharma's GitHub profile in a new tab">
+        <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="hidden sm:flex px-2 sm:px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-mono text-[11px] items-center gap-1.5 transition" title="View GitHub Repositories" aria-label="Open Vikas Sharma's GitHub profile in a new tab">
           <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <span class="hidden sm:inline">GitHub</span>
+          <span class="hidden md:inline">GitHub</span>
         </a>
-        <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-mono text-[11px] flex items-center gap-1.5 transition" title="View LinkedIn Profile" aria-label="Open Vikas Sharma's LinkedIn profile in a new tab">
+        <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="hidden sm:flex px-2 sm:px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-mono text-[11px] items-center gap-1.5 transition" title="View LinkedIn Profile" aria-label="Open Vikas Sharma's LinkedIn profile in a new tab">
           <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-          <span class="hidden sm:inline">LinkedIn</span>
+          <span class="hidden md:inline">LinkedIn</span>
         </a>
 
         <!-- IST Clock -->
-        <div id="desktopClock" class="font-mono text-slate-400 text-xs pl-2 border-l border-slate-800">
+        <div id="desktopClock" class="font-mono text-slate-400 text-xs pl-2 border-l border-slate-800 hidden sm:block">
           --:-- IST
         </div>
       </div>
@@ -404,11 +642,13 @@
 
     <!-- DESKTOP WORKSPACE AREA -->
     <div id="desktop-area" class="flex-1 relative overflow-hidden p-4">
+      <!-- AMBIENT LIVING AUDIO SOUNDWAVE CANVAS -->
+      <canvas id="ambientWaveCanvas" class="absolute inset-0 pointer-events-none opacity-30 z-0" aria-hidden="true"></canvas>
       
       <!-- CANDIDATE PROFILE DISCOVERY DOCK (DESKTOP) -->
       <aside aria-label="Candidate profile discovery" class="absolute top-2.5 left-1/2 -translate-x-1/2 z-20 pointer-events-auto bg-slate-900/95 border border-sky-500/40 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-2xl flex items-center gap-2 sm:gap-3 text-xs max-w-[95vw]">
         <div class="flex items-center gap-2 font-mono">
-          <img src="./profile.jpg" alt="Vikas Sharma" class="w-5 h-5 rounded-full object-cover ring-1 ring-emerald-400">
+          <img src="./profile.webp" loading="lazy" decoding="async" alt="Vikas Sharma" class="w-5 h-5 rounded-full object-cover ring-1 ring-emerald-400">
           <span class="text-slate-300">Candidate: <strong class="text-white">Vikas Sharma</strong></span>
           <span class="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-[10px] text-emerald-300 font-semibold hidden sm:inline">Rankved Intern</span>
         </div>
@@ -546,7 +786,7 @@
               <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
               Flowy // Voice Guide
             </div>
-            <button onclick="dismissFlowy()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-3.5 h-3.5"></i></button>
+            <button onclick="dismissFlowy()" aria-label="Dismiss Flowy guide" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-3.5 h-3.5"></i></button>
           </div>
           <p id="flowy-text" class="text-slate-300 leading-relaxed text-[11px]">
             Hi Tanay & Nimisha! Welcome to FlowState India. I'm Vikas Sharma's voice-driven navigator. Which module shall we inspect first?
@@ -562,7 +802,7 @@
           </div>
         </div>
         <!-- Flowy Avatar Orb -->
-        <button onclick="toggleFlowyBubble()" class="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 p-0.5 shadow-xl shadow-blue-500/30 hover:scale-110 active:scale-95 transition-all">
+        <button onclick="toggleFlowyBubble()" aria-label="Toggle Flowy assistant" class="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 p-0.5 shadow-xl shadow-blue-500/30 hover:scale-110 active:scale-95 transition-all">
           <div class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center">
             <i data-lucide="sparkles" class="w-6 h-6 text-blue-400 animate-pulse"></i>
           </div>
@@ -666,7 +906,7 @@
 
       <!-- RIGHT: SYSTEM TRAY -->
       <div class="flex items-center gap-2 text-xs">
-        <button onclick="minimizeAllWindows()" title="Show Desktop" class="w-2.5 h-7 hover:bg-slate-700/50 rounded-sm border-l border-slate-700/80"></button>
+        <button onclick="minimizeAllWindows()" title="Show Desktop" aria-label="Show desktop" class="w-2.5 h-7 hover:bg-slate-700/50 rounded-sm border-l border-slate-700/80"></button>
       </div>
 
     </footer>
@@ -692,7 +932,7 @@
         <span class="hidden md:inline text-slate-500">|</span>
         <span class="hidden lg:inline">Built via <strong>Emergent + Wispr Flow</strong></span>
         <button type="button" onclick="switchTab('operator')" class="px-2.5 py-1 rounded bg-emerald-600/90 hover:bg-emerald-500 text-white font-semibold text-[11px] shadow-sm flex items-center gap-1.5 transition active:scale-95 ring-1 ring-emerald-400/40" title="Jump to Vikas Sharma Profile">
-          <img src="./profile.jpg" alt="Vikas Sharma" class="w-4 h-4 rounded-full object-cover ring-1 ring-white">
+          <img src="./profile.webp" loading="lazy" decoding="async" alt="Vikas Sharma" class="w-4 h-4 rounded-full object-cover ring-1 ring-white">
           <span class="hidden sm:inline">Vikas Sharma </span>Profile
         </button>
         <button onclick="setMode('desktop')" class="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white font-semibold text-[11px] shadow-sm flex items-center gap-1 transition active:scale-95">
@@ -721,7 +961,7 @@
         <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
           <!-- Profile & Past Work Direct Access -->
           <button type="button" onclick="switchTab('operator')" aria-label="View Vikas Sharma Profile and Rankved Internship" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs flex items-center gap-2 transition shadow-md shadow-emerald-600/25 active:scale-95 ring-1 ring-emerald-300/40" title="View Vikas Sharma's Profile & Rankved Internship">
-            <img src="./profile.jpg" alt="Vikas Sharma" class="w-4 h-4 rounded-full object-cover ring-1 ring-white">
+            <img src="./profile.webp" loading="lazy" decoding="async" alt="Vikas Sharma" class="w-4 h-4 rounded-full object-cover ring-1 ring-white">
             <span>👤 Profile</span>
             <span class="hidden md:inline text-[10px] px-1.5 py-0.5 rounded bg-sky-950/80 border border-sky-400/40 text-sky-200 font-mono">Rankved</span>
           </button>
@@ -741,6 +981,58 @@
             <svg class="w-3.5 h-3.5 fill-current inline-block" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
             <span class="hidden md:inline">LinkedIn</span>
           </a>
+
+          <!-- Creative Theme Selector (Executive) -->
+          <div class="relative">
+            <button type="button" onclick="toggleThemeMenu('executive')" id="execThemeBtn" aria-label="Select Creative Theme" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-xs text-slate-200 hover:text-white flex items-center gap-1.5 transition font-semibold" title="Change Visual Theme">
+              <i data-lucide="palette" class="w-3.5 h-3.5 text-cyan-400" aria-hidden="true"></i>
+              <span id="execThemeLabel" class="hidden md:inline font-mono">Canto Aurora</span>
+              <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400" aria-hidden="true"></i>
+            </button>
+            <div id="execThemeMenu" class="hidden absolute right-0 mt-1.5 w-60 rounded-xl theme-dropdown-menu p-2 z-[100] text-xs space-y-1">
+              <div class="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800">Creative Themes</div>
+              <button type="button" onclick="setTheme('aurora')" class="theme-option-btn w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 flex items-center justify-between transition group" data-theme-val="aurora">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#00F5A0] to-[#00D2FF] ring-2 ring-emerald-400/40 shadow-sm"></span>
+                  <div>
+                    <div class="font-bold text-slate-200 group-hover:text-emerald-300">Canto Aurora</div>
+                    <div class="text-[10px] text-slate-400">Obsidian &amp; Neural Mint Waves</div>
+                  </div>
+                </div>
+                <span class="theme-check text-emerald-400 font-bold hidden">✓</span>
+              </button>
+              <button type="button" onclick="setTheme('cyberpunk')" class="theme-option-btn w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 flex items-center justify-between transition group" data-theme-val="cyberpunk">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#39FF14] to-[#FF007F] ring-2 ring-pink-500/40 shadow-sm"></span>
+                  <div>
+                    <div class="font-bold text-slate-200 group-hover:text-pink-300">Cyberpunk Bengaluru</div>
+                    <div class="text-[10px] text-slate-400">Toxic Neon &amp; Laser Magenta</div>
+                  </div>
+                </div>
+                <span class="theme-check text-pink-400 font-bold hidden">✓</span>
+              </button>
+              <button type="button" onclick="setTheme('solaris')" class="theme-option-btn w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 flex items-center justify-between transition group" data-theme-val="solaris">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#FF9E00] to-[#FBBF24] ring-2 ring-amber-400/40 shadow-sm"></span>
+                  <div>
+                    <div class="font-bold text-slate-200 group-hover:text-amber-300">Solaris Saffron</div>
+                    <div class="text-[10px] text-slate-400">Royal Basalt &amp; Molten Gold</div>
+                  </div>
+                </div>
+                <span class="theme-check text-amber-400 font-bold hidden">✓</span>
+              </button>
+              <button type="button" onclick="setTheme('nebula')" class="theme-option-btn w-full text-left px-2.5 py-2 rounded-lg hover:bg-slate-800 flex items-center justify-between transition group" data-theme-val="nebula">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-[#BD00FF] to-[#FF2E93] ring-2 ring-purple-400/40 shadow-sm"></span>
+                  <div>
+                    <div class="font-bold text-slate-200 group-hover:text-purple-300">Midnight Nebula</div>
+                    <div class="text-[10px] text-slate-400">Velvet Violet &amp; Astral Pink</div>
+                  </div>
+                </div>
+                <span class="theme-check text-purple-400 font-bold hidden">✓</span>
+              </button>
+            </div>
+          </div>
 
           <button type="button" onclick="openApiModal()" aria-label="Configure Wispr Flow API Key" class="p-1.5 sm:px-2.5 sm:py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs text-slate-300 hover:text-white flex items-center gap-1.5 transition">
             <i data-lucide="key" class="w-3.5 h-3.5 text-amber-400" aria-hidden="true"></i>
@@ -845,7 +1137,7 @@
                 <span class="text-slate-300">Desktop Free Cap:</span>
                 <span id="capDisplay" class="text-blue-400 font-mono">2,000 words/wk</span>
               </div>
-              <input type="range" id="capSlider" min="1000" max="5000" step="500" value="2000" oninput="updateSimulator()" class="w-full accent-blue-500 bg-slate-800 h-2 rounded-lg cursor-pointer">
+              <input type="range" id="capSlider" aria-label="Desktop free word cap slider" min="1000" max="5000" step="500" value="2000" oninput="updateSimulator()" class="w-full accent-blue-500 bg-slate-800 h-2 rounded-lg cursor-pointer">
               <span class="text-[11px] text-slate-500">Lower cap creates urgency; higher cap increases habit runway.</span>
             </div>
 
@@ -863,7 +1155,7 @@
             <!-- Radio 3: UPI Prompt Moment -->
             <div>
               <span class="block text-xs font-semibold text-slate-300 mb-2">Upgrade Trigger & Payment:</span>
-              <select id="triggerSelect" onchange="updateSimulator()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg p-2.5 focus:ring-blue-500 focus:border-blue-500">
+              <select id="triggerSelect" aria-label="Paywall trigger policy" onchange="updateSimulator()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg p-2.5 focus:ring-blue-500 focus:border-blue-500">
                 <option value="cap-upi">Instant UPI Prompt at Word 2,000 (Recommended)</option>
                 <option value="styles-gate">Pro Feature Gate (Styles & AI Commands)</option>
                 <option value="standard">Standard Web Checkout (Credit Card Modal)</option>
@@ -877,7 +1169,7 @@
                 <span class="text-xs font-semibold text-slate-200">Student Clarification</span>
                 <p class="text-[10px] text-slate-400">Harmonize 3-mo free + ₹160/mo</p>
               </div>
-              <input type="checkbox" id="studentCheck" onchange="updateSimulator()" checked class="w-4 h-4 accent-blue-500 rounded bg-slate-900">
+              <input type="checkbox" id="studentCheck" aria-label="Student and developer discount pricing" onchange="updateSimulator()" checked class="w-4 h-4 accent-blue-500 rounded bg-slate-900">
             </div>
           </div>
 
@@ -1121,7 +1413,7 @@
 
         <!-- COHORT TABLE -->
         <div class="bg-slate-950/80 rounded-xl p-5 border border-slate-800">
-          <h4 class="text-xs font-mono uppercase text-slate-400 tracking-wider mb-4">Cohort Decay By Activation Depth (Weekly Word Volume)</h4>
+          <h3 class="text-xs font-mono uppercase text-slate-400 tracking-wider mb-4">Cohort Decay By Activation Depth (Weekly Word Volume)</h3>
           <div class="space-y-4">
             <div>
               <div class="flex justify-between text-xs mb-1">
@@ -1282,7 +1574,7 @@
           <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-800 relative z-10">
             <div class="flex items-start sm:items-center gap-4">
               <div class="relative">
-                <img src="./profile.jpg" alt="Vikas Sharma" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover shadow-2xl shadow-emerald-500/30 ring-2 ring-emerald-400/60 border border-emerald-400/30">
+                <img src="./profile.webp" loading="lazy" decoding="async" alt="Vikas Sharma" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover shadow-2xl shadow-emerald-500/30 ring-2 ring-emerald-400/60 border border-emerald-400/30">
                 <span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-slate-900 flex items-center justify-center" title="Available Immediately">
                   <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
                 </span>
@@ -1684,7 +1976,7 @@
                   <span class="text-xs font-bold font-mono text-blue-400">BET 01 // ACQUISITION</span>
                   <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Pivot Succeeded</span>
                 </div>
-                <h4 class="font-bold text-sm text-white mb-1.5">Betting on Tier-1 Tech Influencers vs Unpolished Micro-Builders</h4>
+                <h3 class="font-bold text-sm text-white mb-1.5">Betting on Tier-1 Tech Influencers vs Unpolished Micro-Builders</h3>
                 <p class="text-xs text-slate-300 leading-relaxed">
                   <strong>The Hypothesis:</strong> Partnering with top Indian tech creators (100k+ followers) would drive high-intent sign-ups for a developer tool.<br>
                   <strong>The Scratchpad Failure:</strong> CPM was high ($4.20), but D7 retention was under 8%. Viewers watched for entertainment, not workflow integration.<br>
@@ -1698,7 +1990,7 @@
                   <span class="text-xs font-bold font-mono text-indigo-400">BET 02 // MONETIZATION</span>
                   <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Metric-Backed Pivot</span>
                 </div>
-                <h4 class="font-bold text-sm text-white mb-1.5">Assuming Lowering the Monthly Price Would Fix Indian Churn</h4>
+                <h3 class="font-bold text-sm text-white mb-1.5">Assuming Lowering the Monthly Price Would Fix Indian Churn</h3>
                 <p class="text-xs text-slate-300 leading-relaxed">
                   <strong>The Hypothesis:</strong> Indian churn was driven by price sensitivity, so offering a 40% discount on monthly billing would boost renewals.<br>
                   <strong>The Scratchpad Failure:</strong> Monthly churn remained at 28%. Users weren't leaving because of the price; they forgot to use the desktop hotkey after Day 3.<br>
@@ -1766,23 +2058,37 @@
               <span class="text-xs font-mono uppercase text-slate-400 block mb-4">Microphone Input</span>
 
               <!-- BIG MIC BUTTON -->
-              <div class="flex flex-col items-center justify-center py-4">
+              <div class="flex flex-col items-center justify-center py-3">
                 <button id="micBtn" type="button" onclick="toggleDictation()" aria-label="Start voice dictation" aria-pressed="false" class="relative w-24 h-24 rounded-full bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center shadow-xl shadow-blue-500/30 transition-all transform hover:scale-105 active:scale-95 focus:outline-none">
                   <i id="micIcon" data-lucide="mic" class="w-10 h-10" aria-hidden="true"></i>
-                  <span id="micRing" class="absolute inset-0 rounded-full border-4 border-blue-400 opacity-0 animate-ping" aria-hidden="true"></span>
+                  <span id="micRing" class="absolute inset-0 rounded-full border-4 border-blue-400 opacity-0 transition-transform duration-75" aria-hidden="true"></span>
                 </button>
-                <span id="micLabel" class="text-xs font-semibold text-slate-300 mt-3" aria-hidden="true">Click to Start Dictating</span>
+                <span id="micLabel" class="text-xs font-semibold text-slate-200 mt-3" aria-hidden="true">Click to Start Dictating</span>
                 <span class="text-[11px] text-slate-500 mt-0.5">or press [Spacebar]</span>
+              </div>
+
+              <!-- LIVE AUDIO VU METER & HARDWARE ACTIVITY -->
+              <div class="w-full bg-slate-900/80 p-2.5 rounded-lg border border-slate-800 space-y-1.5">
+                <div class="flex items-center justify-between text-[10px] font-mono">
+                  <span class="text-slate-400 flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    ACOUSTIC INPUT
+                  </span>
+                  <span id="micDbLevel" class="text-slate-500">Muted / Idle</span>
+                </div>
+                <div class="w-full bg-slate-950 rounded-full h-2 overflow-hidden border border-slate-800 p-0.5">
+                  <div id="micVuBar" class="h-full bg-gradient-to-r from-teal-500 via-emerald-400 to-rose-500 rounded-full w-0 transition-all duration-75"></div>
+                </div>
               </div>
 
               <!-- CONTROLS -->
               <div class="space-y-3 mt-4 pt-4 border-t border-slate-800 text-xs">
                 <div>
-                  <label class="block text-slate-400 mb-1 font-medium">Spoken Language / Locale:</label>
-                  <select id="dictationLang" class="w-full bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg p-2 focus:ring-blue-500">
-                    <option value="en-IN">Indian English + Hinglish (hi-IN)</option>
+                  <label for="dictationLang" class="block text-slate-400 mb-1 font-medium">Spoken Language / Locale:</label>
+                  <select id="dictationLang" aria-label="Speech dictation language" class="w-full bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg p-2 focus:ring-blue-500">
+                    <option value="en-IN">Indian English + Hinglish (en-IN)</option>
+                    <option value="hi-IN">Hindi Spoken / Canto (hi-IN)</option>
                     <option value="en-US">US English (en-US)</option>
-                    <option value="hi-Latn">Hindi Romanized (Hinglish)</option>
                   </select>
                 </div>
 
@@ -1790,15 +2096,15 @@
                   <span class="block text-slate-400 mb-1 font-medium">Canto Real-Time Filters:</span>
                   <div class="space-y-1.5 text-[11px] text-slate-300">
                     <label class="flex items-center gap-2 cursor-pointer">
-                      <input type="checkbox" id="filterFillers" checked class="rounded bg-slate-800 text-blue-500 accent-blue-500">
+                      <input type="checkbox" id="filterFillers" aria-label="Filter verbal filler words" checked class="rounded bg-slate-800 text-blue-500 accent-blue-500">
                       <span>Strip filler words ("um", "uh", "matlab", "like")</span>
                     </label>
                     <label class="flex items-center gap-2 cursor-pointer">
-                      <input type="checkbox" id="filterAcronyms" checked class="rounded bg-slate-800 text-blue-500 accent-blue-500">
+                      <input type="checkbox" id="filterAcronyms" aria-label="Capitalize technical acronyms" checked class="rounded bg-slate-800 text-blue-500 accent-blue-500">
                       <span>Auto-capitalize tech acronyms (PR, API, UPI, ARR)</span>
                     </label>
                     <label class="flex items-center gap-2 cursor-pointer">
-                      <input type="checkbox" id="filterCourseCorrect" checked class="rounded bg-slate-800 text-blue-500 accent-blue-500">
+                      <input type="checkbox" id="filterCourseCorrect" aria-label="Resolve speech course corrections" checked class="rounded bg-slate-800 text-blue-500 accent-blue-500">
                       <span>Resolve mid-sentence course corrections</span>
                     </label>
                   </div>
@@ -1806,10 +2112,27 @@
               </div>
             </div>
 
-            <!-- SAMPLE TEST SENTENCE PROMPT -->
-            <div class="bg-blue-950/30 border border-blue-900/50 p-3 rounded-lg text-xs">
-              <span class="text-blue-300 font-semibold block mb-1">Try speaking this aloud:</span>
-              <p class="text-slate-300 italic text-[11px]">"Let's meet at Indiranagar, actually Indiranagar nahi Koramangala chalte hai umm PR merge karke staging pe deploy kar do."</p>
+            <!-- SAMPLE TEST SENTENCE PROMPT & 1-CLICK DEMO -->
+            <div class="bg-blue-950/30 border border-blue-900/50 p-3.5 rounded-xl text-xs space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="text-blue-300 font-semibold flex items-center gap-1.5">
+                  <i data-lucide="sparkles" class="w-3.5 h-3.5 text-blue-400"></i>
+                  Try speaking this aloud:
+                </span>
+                <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-500/30">Hinglish Model</span>
+              </div>
+              <p class="text-slate-300 italic text-[11px] leading-relaxed bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">"Let's meet at Indiranagar, actually Indiranagar nahi Koramangala chalte hai umm PR merge karke staging pe deploy kar do."</p>
+
+              <div class="pt-1 flex flex-col gap-1.5">
+                <button type="button" onclick="simulateVoiceDictation('tech')" class="w-full px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-lg text-xs flex items-center justify-center gap-1.5 shadow-md shadow-blue-900/30 transition-all">
+                  <i data-lucide="play" class="w-3.5 h-3.5"></i>
+                  <span>🎙️ Play Sample Hinglish Voice Input</span>
+                </button>
+                <button type="button" onclick="simulateVoiceDictation('traffic')" class="w-full px-2.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium rounded-lg text-[11px] flex items-center justify-center gap-1.5 border border-slate-700/80 transition-all">
+                  <i data-lucide="volume-2" class="w-3 h-3 text-amber-400"></i>
+                  <span>Bangalore Traffic Acoustic Stream (Test)</span>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -1997,7 +2320,7 @@
 
   <div class="flex items-center gap-2 pt-3 border-t border-slate-800">
     <span class="text-emerald-400 font-bold">wispr@bangalore-rig:~$</span>
-    <input type="text" id="terminalInput" autocomplete="off" spellcheck="false" placeholder="type command here..." class="flex-1 bg-transparent text-slate-100 outline-none font-mono text-xs">
+    <input type="text" id="terminalInput" aria-label="Wispr CLI terminal command" autocomplete="off" spellcheck="false" placeholder="type command here..." class="flex-1 bg-transparent text-slate-100 outline-none font-mono text-xs">
     <button onclick="executeTerminalCommand()" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-[11px] text-slate-300 rounded font-sans">Run</button>
   </div>
 </div>
@@ -2075,7 +2398,7 @@
     </div>
     
     <div class="relative rounded-xl overflow-hidden bg-black aspect-video border border-slate-800 shadow-inner">
-      <video id="executive-playbook-video" poster="./thumbnail.png" controls preload="metadata" playsinline class="w-full h-full object-cover">
+      <video id="executive-playbook-video" poster="./thumbnail.webp" controls preload="none" playsinline class="w-full h-full object-cover">
         <source src="./flowstate_india_walkthrough.mp4" type="video/mp4">
         Your browser does not support HTML5 video. You can <a href="./flowstate_india_walkthrough.mp4" class="text-blue-400 underline">download the MP4 directly</a>.
       </video>
@@ -2477,7 +2800,7 @@
               </div>
               <h3 class="text-xl font-bold text-white mt-2">FlowState India // Executive Video Walkthrough</h3>
               <div class="flex items-center gap-2 mt-1">
-                <img src="./profile.jpg" alt="Vikas Sharma" class="w-5 h-5 rounded-full object-cover ring-1 ring-emerald-400">
+                <img src="./profile.webp" loading="lazy" decoding="async" alt="Vikas Sharma" class="w-5 h-5 rounded-full object-cover ring-1 ring-emerald-400">
                 <p class="text-sm text-slate-300">Authored by <strong class="text-white">Vikas Sharma</strong> | Search Engine Optimization Analyst @ RankVed Healthcare Martech</p>
               </div>
             </div>
@@ -2512,7 +2835,7 @@
 
           <!-- Video Player -->
           <div class="relative rounded-xl overflow-hidden bg-black border border-slate-800 aspect-video shadow-2xl">
-            <video id="walkthroughVideoPlayer" poster="./thumbnail.png" controls playsinline preload="auto" class="w-full h-full object-contain">
+            <video id="walkthroughVideoPlayer" poster="./thumbnail.webp" controls playsinline preload="none" class="w-full h-full object-contain">
               <source src="./flowstate_india_walkthrough.mp4" type="video/mp4">
               Your browser does not support HTML5 video.
             </video>
@@ -2530,7 +2853,7 @@
               </div>
             </div>
             <div class="flex items-center gap-3 w-full md:w-auto">
-              <audio id="narrationAudioPlayer" controls preload="metadata" class="h-9 w-full md:w-64">
+              <audio id="narrationAudioPlayer" controls preload="none" class="h-9 w-full md:w-64">
                 <source src="./flowstate_india_narration.mp3" type="audio/mpeg">
               </audio>
               <a href="./flowstate_india_narration.mp3" download class="px-3 py-2 rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-mono flex items-center gap-1.5 transition whitespace-nowrap">
@@ -2616,7 +2939,7 @@
           <!-- Column 1: Candidate Profile & Experience -->
           <div class="space-y-4">
             <div class="flex items-center gap-3">
-              <img src="./profile.jpg" alt="Vikas Sharma" class="w-14 h-14 rounded-2xl object-cover ring-2 ring-emerald-400/50 shadow-lg shadow-emerald-500/20">
+              <img src="./profile.webp" loading="lazy" decoding="async" alt="Vikas Sharma" class="w-14 h-14 rounded-2xl object-cover ring-2 ring-emerald-400/50 shadow-lg shadow-emerald-500/20">
               <div>
                 <h3 class="text-lg font-bold text-white tracking-tight">Vikas Sharma</h3>
                 <p class="text-xs text-emerald-400 font-semibold">Rankved Intern</p>
@@ -2763,7 +3086,7 @@
           <i data-lucide="key" class="w-5 h-5 text-amber-400"></i>
           <h3 class="font-bold text-white text-base">Wispr Flow API Key Setup</h3>
         </div>
-        <button onclick="closeApiModal()" class="text-slate-400 hover:text-white">
+        <button onclick="closeApiModal()" aria-label="Close API configuration modal" class="text-slate-400 hover:text-white">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -2774,7 +3097,7 @@
 
       <div>
         <label class="block text-xs font-semibold text-slate-200 mb-1.5">Enter Wispr API Key:</label>
-        <input type="password" id="apiKeyInput" placeholder="wispr_live_xxxxxxxxxxxxxxxx" class="w-full bg-slate-950 border border-slate-700 text-slate-100 font-mono text-xs rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        <input type="password" id="apiKeyInput" aria-label="Wispr Flow API Key" placeholder="wispr_live_xxxxxxxxxxxxxxxx" class="w-full bg-slate-950 border border-slate-700 text-slate-100 font-mono text-xs rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:outline-none">
         <span class="text-[11px] text-slate-500 mt-1 block">Keys are stored securely in your local browser storage (<code class="text-slate-400">localStorage</code>) and never transmitted to third parties.</span>
       </div>
 
@@ -3320,6 +3643,7 @@
             • <span class="text-emerald-400">canto</span> - Technical model specs (WER, latency, context).<br>
             • <span class="text-emerald-400">noise</span> - Launch the Bangalore Acoustic Sound Lab.<br>
             • <span class="text-emerald-400">whoami</span> - Candidate profile & role target.<br>
+            • <span class="text-cyan-400">theme [aurora|cyberpunk|solaris|nebula]</span> - Switch creative visual theme.<br>
             • <span class="text-emerald-400">matrix</span> - Activate matrix rain visualizer.<br>
             • <span class="text-emerald-400">clear</span> - Clear terminal scrollback.<br>
             • <span class="text-rose-400">sudo rm -rf /</span> - Dangerous system root purge.
@@ -3720,7 +4044,140 @@
       handleUrlRouting();
     });
 
+    // ==========================================
+    // 🎨 CREATIVE THEME ENGINE JAVASCRIPT
+    // ==========================================
+    const THEMES = {
+      aurora: { name: 'Canto Aurora', accent: '#00F5A0' },
+      cyberpunk: { name: 'Cyberpunk Bengaluru', accent: '#39FF14' },
+      solaris: { name: 'Solaris Saffron', accent: '#FF9E00' },
+      nebula: { name: 'Midnight Nebula', accent: '#BD00FF' }
+    };
+
+    function setTheme(themeKey) {
+      if (!THEMES[themeKey]) themeKey = 'aurora';
+      document.documentElement.setAttribute('data-theme', themeKey);
+      localStorage.setItem('FLOWSTATE_THEME', themeKey);
+
+      // Update labels
+      const dLabel = document.getElementById('desktopThemeLabel');
+      if (dLabel) dLabel.innerText = THEMES[themeKey].name;
+      const eLabel = document.getElementById('execThemeLabel');
+      if (eLabel) eLabel.innerText = THEMES[themeKey].name;
+
+      // Update checkmark state
+      document.querySelectorAll('.theme-option-btn').forEach(btn => {
+        const val = btn.getAttribute('data-theme-val');
+        const check = btn.querySelector('.theme-check');
+        if (check) {
+          if (val === themeKey) {
+            check.classList.remove('hidden');
+            btn.classList.add('bg-slate-800/90');
+          } else {
+            check.classList.add('hidden');
+            btn.classList.remove('bg-slate-800/90');
+          }
+        }
+      });
+
+      closeAllThemeMenus();
+      playSound('click');
+    }
+
+    function toggleThemeMenu(target) {
+      const menu = target === 'executive' 
+        ? document.getElementById('execThemeMenu') 
+        : document.getElementById('desktopThemeMenu');
+      if (!menu) return;
+      const isHidden = menu.classList.contains('hidden');
+      closeAllThemeMenus();
+      if (isHidden) menu.classList.remove('hidden');
+    }
+
+    function closeAllThemeMenus() {
+      const dMenu = document.getElementById('desktopThemeMenu');
+      if (dMenu) dMenu.classList.add('hidden');
+      const eMenu = document.getElementById('execThemeMenu');
+      if (eMenu) eMenu.classList.add('hidden');
+    }
+
+    window.addEventListener('click', (e) => {
+      if (!e.target.closest('#desktopThemeBtn') && !e.target.closest('#desktopThemeMenu') &&
+          !e.target.closest('#execThemeBtn') && !e.target.closest('#execThemeMenu')) {
+        closeAllThemeMenus();
+      }
+    });
+
+    // Ambient Living Audio Waveform Ribbon
+    function initAmbientWaves() {
+      const canvas = document.getElementById('ambientWaveCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width, height;
+
+      function resize() {
+        if (!canvas.parentElement) return;
+        width = canvas.width = canvas.parentElement.clientWidth;
+        height = canvas.height = canvas.parentElement.clientHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      let step = 0;
+      function render() {
+        step += 0.012;
+        ctx.clearRect(0, 0, width, height);
+
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'aurora';
+        let g1, g2;
+        if (currentTheme === 'cyberpunk') {
+          g1 = 'rgba(57, 255, 20, 0.22)';
+          g2 = 'rgba(255, 0, 127, 0.18)';
+        } else if (currentTheme === 'solaris') {
+          g1 = 'rgba(255, 158, 0, 0.25)';
+          g2 = 'rgba(234, 88, 12, 0.15)';
+        } else if (currentTheme === 'nebula') {
+          g1 = 'rgba(189, 0, 255, 0.24)';
+          g2 = 'rgba(0, 229, 255, 0.18)';
+        } else {
+          g1 = 'rgba(0, 245, 160, 0.22)';
+          g2 = 'rgba(0, 210, 255, 0.18)';
+        }
+
+        const gradient = ctx.createLinearGradient(0, 0, width, height);
+        gradient.addColorStop(0, g1);
+        gradient.addColorStop(1, g2);
+
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 1.6;
+
+        for (let j = 0; j < 3; j++) {
+          ctx.beginPath();
+          const waveOffset = j * 0.9;
+          const baseFreq = 0.003 + j * 0.0012;
+          const amp = 32 + j * 10;
+          const centerY = height * 0.52 + j * 18;
+
+          for (let x = 0; x <= width; x += 10) {
+            const y = centerY + Math.sin(x * baseFreq + step + waveOffset) * amp * Math.cos(step * 0.4 + x * 0.0008);
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+        }
+
+        requestAnimationFrame(render);
+      }
+
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        render();
+      }
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('FLOWSTATE_THEME') || 'aurora';
+      setTheme(savedTheme);
+      initAmbientWaves();
       initWindows();
       initSweeperGame();
       updateSimulator();
@@ -3735,9 +4192,9 @@
       }
     });
 
-    // Spacebar Hotkey for Dictation Studio
+    // Spacebar Hotkey for Dictation Studio (with repeat lock to prevent double-triggering)
     window.addEventListener('keydown', (e) => {
-      if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      if (e.code === 'Space' && !e.repeat && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
         const studioTab = document.getElementById('content-studio');
         if (studioTab && (!studioTab.classList.contains('hidden') || windowState['studio']?.open)) {
           e.preventDefault();
@@ -3950,104 +4407,385 @@
       }
     }
 
-    // ==========================================
+        // ==========================================
     // LIVE DICTATION & CANTO AUTO-EDIT PIPELINE
     // ==========================================
     let isRecording = false;
     let recognition = null;
     let recordingStartTime = null;
+    let mediaStream = null;
+    let micAudioContext = null;
+    let micAnalyser = null;
+    let micAnimFrame = null;
+    let lastDictationError = null;
+    let voiceSimulationInterval = null;
 
     function toggleDictation() {
+      if (voiceSimulationInterval) {
+        clearInterval(voiceSimulationInterval);
+        voiceSimulationInterval = null;
+      }
       if (isRecording) {
-        stopDictation();
+        stopDictation(false);
       } else {
         startDictation();
       }
     }
 
-    function startDictation() {
+    async function startDictation() {
+      lastDictationError = null;
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      const btn = document.getElementById('micBtn');
+      const ring = document.getElementById('micRing');
+      const label = document.getElementById('micLabel');
+      const status = document.getElementById('studioStatus');
+      const vuBar = document.getElementById('micVuBar');
+      const dbLabel = document.getElementById('micDbLevel');
+
+      if (label) label.innerText = 'Requesting Microphone...';
+      if (status) {
+        status.innerHTML = '<span class="text-amber-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span> Initializing microphone input & acoustic channels...</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+      }
+
+      // Step 1: Request microphone permission & initialize real-time audio VU-meter
+      try {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (AudioContextClass) {
+            micAudioContext = new AudioContextClass();
+            const source = micAudioContext.createMediaStreamSource(mediaStream);
+            micAnalyser = micAudioContext.createAnalyser();
+            micAnalyser.fftSize = 64;
+            source.connect(micAnalyser);
+
+            const dataArray = new Uint8Array(micAnalyser.frequencyBinCount);
+            function updateVuMeter() {
+              if (!isRecording) return;
+              micAnalyser.getByteFrequencyData(dataArray);
+              let sum = 0;
+              for (let i = 0; i < dataArray.length; i++) {
+                sum += dataArray[i];
+              }
+              const avg = sum / dataArray.length;
+              const pct = Math.min(100, Math.round((avg / 128) * 100));
+              if (vuBar) vuBar.style.width = pct + '%';
+              if (dbLabel) {
+                if (pct > 35) {
+                  dbLabel.innerText = 'Speaking: ' + pct + '% (Active)';
+                  dbLabel.className = 'text-emerald-400 font-bold';
+                } else if (pct > 5) {
+                  dbLabel.innerText = 'Acoustic Signal: ' + pct + '%';
+                  dbLabel.className = 'text-teal-400';
+                } else {
+                  dbLabel.innerText = 'Listening (Silent)';
+                  dbLabel.className = 'text-slate-500';
+                }
+              }
+              if (ring) {
+                const scale = 1 + (avg / 255) * 0.45;
+                ring.style.transform = 'scale(' + scale.toFixed(2) + ')';
+              }
+              micAnimFrame = requestAnimationFrame(updateVuMeter);
+            }
+            updateVuMeter();
+          }
+        }
+      } catch (err) {
+        console.warn("Microphone getUserMedia notice:", err);
+        if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+          lastDictationError = 'Microphone permission blocked. Please click the lock icon in your browser address bar to allow microphone access.';
+          if (status) {
+            status.innerHTML = '<span class="text-rose-400 flex items-center gap-1.5 font-medium">⚠️ ' + lastDictationError + '</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+          }
+          stopDictation(true);
+          return;
+        }
+      }
+
+      // Step 2: Initialize SpeechRecognition
       if (!SpeechRecognition) {
-        alert("Speech Recognition API is not supported in this browser. Please use Chrome, Edge, or Safari.");
+        lastDictationError = "Speech Recognition API is not supported in this browser. Please use Chrome/Edge or click 'Play Sample Voice Input' below!";
+        if (status) {
+          status.innerHTML = '<span class="text-amber-400 font-medium">⚠️ ' + lastDictationError + '</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+        }
+        stopDictation(true);
         return;
       }
 
-      recognition = new SpeechRecognition();
-      const lang = document.getElementById('dictationLang').value || 'en-IN';
+      try {
+        recognition = new SpeechRecognition();
+      } catch (e) {
+        console.error("SpeechRecognition instantiation error:", e);
+        lastDictationError = "Unable to instantiate SpeechRecognition. Use the 'Play Sample Voice' button below.";
+        stopDictation(true);
+        return;
+      }
+
+      let lang = document.getElementById('dictationLang') ? document.getElementById('dictationLang').value : 'en-IN';
+      if (lang === 'hi-Latn' || !lang) {
+        lang = 'en-IN';
+      }
       recognition.lang = lang;
       recognition.continuous = true;
       recognition.interimResults = true;
+      recognition.maxAlternatives = 1;
 
       recordingStartTime = Date.now();
       isRecording = true;
 
       // Update UI
-      const btn = document.getElementById('micBtn');
-      const ring = document.getElementById('micRing');
-      const label = document.getElementById('micLabel');
-      const status = document.getElementById('studioStatus');
-
-      btn.classList.remove('bg-blue-600', 'hover:bg-blue-500');
-      btn.classList.add('bg-rose-600', 'hover:bg-rose-500');
-      btn.setAttribute('aria-pressed', 'true');
-      btn.setAttribute('aria-label', 'Stop voice dictation');
-      ring.classList.remove('opacity-0');
-      ring.classList.add('opacity-100');
-      label.innerText = 'Listening... Speak naturally';
-      status.innerHTML = '<span class="text-rose-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span> Streaming microphone input to Canto engine...</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+      if (btn) {
+        btn.classList.remove('bg-blue-600', 'hover:bg-blue-500');
+        btn.classList.add('bg-rose-600', 'hover:bg-rose-500');
+        btn.setAttribute('aria-pressed', 'true');
+        btn.setAttribute('aria-label', 'Stop voice dictation');
+      }
+      if (ring) {
+        ring.classList.remove('opacity-0');
+        ring.classList.add('opacity-100');
+      }
+      if (label) label.innerText = 'Listening... Speak naturally';
+      if (status) {
+        status.innerHTML = '<span class="text-rose-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span> Streaming microphone input to Canto engine...</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+      }
 
       recognition.onresult = (event) => {
-        let rawTranscript = '';
+        let finalTranscript = '';
+        let interimTranscript = '';
+
         for (let i = 0; i < event.results.length; i++) {
-          rawTranscript += event.results[i][0].transcript + ' ';
+          const item = event.results[i];
+          if (item.isFinal) {
+            finalTranscript += item[0].transcript + ' ';
+          } else {
+            interimTranscript += item[0].transcript;
+          }
         }
 
-        document.getElementById('rawTranscript').innerText = rawTranscript;
-        
-        // Pass to Canto auto-edit pipeline
-        const startProcessing = performance.now();
-        const formatted = cantoPostProcess(rawTranscript);
-        const latency = Math.round(performance.now() - startProcessing + 110); // Simulated acoustic + LLM round-trip
-        
-        document.getElementById('cantoTranscript').innerText = formatted.text;
-        document.getElementById('fillersCount').innerText = formatted.fillersCount;
-        document.getElementById('latencyDisplay').innerText = latency + ' ms';
+        const combinedRaw = (finalTranscript + interimTranscript).trim();
+        if (combinedRaw) {
+          const rawEl = document.getElementById('rawTranscript');
+          if (rawEl) {
+            rawEl.innerHTML = '<span class="text-slate-100 font-mono">' + escapeHtml(finalTranscript) + '</span><span class="text-amber-300 italic font-mono animate-pulse">' + escapeHtml(interimTranscript) + ' ▊</span>';
+          }
+
+          // Pass to Canto auto-edit pipeline
+          const startProcessing = performance.now();
+          const formatted = cantoPostProcess(combinedRaw);
+          const latency = Math.round(performance.now() - startProcessing + 110); // Simulated acoustic + LLM round-trip
+
+          const cantoEl = document.getElementById('cantoTranscript');
+          if (cantoEl) cantoEl.innerText = formatted.text;
+          const fillersEl = document.getElementById('fillersCount');
+          if (fillersEl) fillersEl.innerText = formatted.fillersCount;
+          const latEl = document.getElementById('latencyDisplay');
+          if (latEl) latEl.innerText = latency + ' ms';
+        }
       };
 
       recognition.onerror = (event) => {
-        console.error("Speech Recognition Error:", event.error);
-        stopDictation();
-        document.getElementById('studioStatus').innerText = 'Microphone notice: ' + (event.error === 'not-allowed' ? 'Permission denied. Please allow mic access.' : event.error);
+        console.warn("Speech Recognition Error:", event.error);
+        if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+          lastDictationError = 'Microphone permission denied. Please allow microphone access in your browser.';
+        } else if (event.error === 'network') {
+          lastDictationError = 'Browser Speech API network error: Google STT endpoint unreachable. Click "Play Sample Voice Input" to test the formatting engine!';
+        } else if (event.error === 'no-speech') {
+          lastDictationError = 'No speech detected. Please speak louder into your microphone.';
+        } else if (event.error === 'audio-capture') {
+          lastDictationError = 'No microphone hardware found. Please plug in or enable a microphone.';
+        } else {
+          lastDictationError = 'Speech notice: ' + event.error;
+        }
+        stopDictation(true);
       };
 
       recognition.onend = () => {
         if (isRecording) {
-          stopDictation();
+          stopDictation(false);
         }
       };
 
-      recognition.start();
+      try {
+        recognition.start();
+      } catch (err) {
+        console.error("Recognition start error:", err);
+        lastDictationError = "Recognition already active or blocked: " + err.message;
+        stopDictation(true);
+      }
     }
 
-    function stopDictation() {
+    function stopDictation(isError = false) {
       isRecording = false;
       if (recognition) {
-        recognition.stop();
+        try { recognition.stop(); } catch (e) {}
+      }
+
+      // Stop media stream tracks
+      if (mediaStream) {
+        try {
+          mediaStream.getTracks().forEach(track => track.stop());
+        } catch (e) {}
+        mediaStream = null;
+      }
+
+      // Stop audio context & VU meter
+      if (micAnimFrame) {
+        cancelAnimationFrame(micAnimFrame);
+        micAnimFrame = null;
+      }
+      if (micAudioContext && micAudioContext.state !== 'closed') {
+        try { micAudioContext.close(); } catch (e) {}
+        micAudioContext = null;
       }
 
       const btn = document.getElementById('micBtn');
       const ring = document.getElementById('micRing');
       const label = document.getElementById('micLabel');
       const status = document.getElementById('studioStatus');
+      const vuBar = document.getElementById('micVuBar');
+      const dbLabel = document.getElementById('micDbLevel');
 
-      btn.classList.remove('bg-rose-600', 'hover:bg-rose-500');
-      btn.classList.add('bg-blue-600', 'hover:bg-blue-500');
-      btn.setAttribute('aria-pressed', 'false');
-      btn.setAttribute('aria-label', 'Start voice dictation');
-      ring.classList.add('opacity-0');
-      ring.classList.remove('opacity-100');
-      label.innerText = 'Click to Start Dictating';
-      status.innerHTML = '<span class="text-emerald-400">✓ Dictation captured and formatted within 200ms latency window.</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+      if (btn) {
+        btn.classList.remove('bg-rose-600', 'hover:bg-rose-500', 'bg-purple-600', 'hover:bg-purple-500');
+        btn.classList.add('bg-blue-600', 'hover:bg-blue-500');
+        btn.setAttribute('aria-pressed', 'false');
+        btn.setAttribute('aria-label', 'Start voice dictation');
+      }
+      if (ring) {
+        ring.classList.add('opacity-0');
+        ring.classList.remove('opacity-100');
+        ring.style.transform = 'scale(1)';
+      }
+      if (label) label.innerText = 'Click to Start Dictating';
+      if (vuBar) vuBar.style.width = '0%';
+      if (dbLabel) {
+        dbLabel.innerText = 'Muted / Idle';
+        dbLabel.className = 'text-slate-500';
+      }
+
+      if (status) {
+        if (isError && lastDictationError) {
+          status.innerHTML = '<span class="text-rose-400 font-medium">⚠️ ' + escapeHtml(lastDictationError) + '</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+        } else {
+          status.innerHTML = '<span class="text-emerald-400 font-medium">✓ Dictation captured and formatted within 200ms latency window.</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+        }
+      }
+    }
+
+    function simulateVoiceDictation(type = 'tech') {
+      if (isRecording) {
+        stopDictation(false);
+      }
+      if (voiceSimulationInterval) {
+        clearInterval(voiceSimulationInterval);
+        voiceSimulationInterval = null;
+      }
+
+      playSound('click');
+
+      const sampleSentences = {
+        tech: "Let's meet at Indiranagar, actually Indiranagar nahi Koramangala chalte hai umm PR merge karke staging pe deploy kar do.",
+        traffic: "Hey Wispr Flow matlab Silk Board traffic was crazy today but we hit 100 Crore ARR anyway."
+      };
+
+      const sentence = sampleSentences[type] || sampleSentences.tech;
+      const words = sentence.split(' ');
+
+      const btn = document.getElementById('micBtn');
+      const ring = document.getElementById('micRing');
+      const label = document.getElementById('micLabel');
+      const status = document.getElementById('studioStatus');
+      const vuBar = document.getElementById('micVuBar');
+      const dbLabel = document.getElementById('micDbLevel');
+
+      if (btn) {
+        btn.classList.remove('bg-blue-600', 'hover:bg-blue-500');
+        btn.classList.add('bg-purple-600', 'hover:bg-purple-500');
+        btn.setAttribute('aria-pressed', 'true');
+      }
+      if (ring) {
+        ring.classList.remove('opacity-0');
+        ring.classList.add('opacity-100');
+      }
+      if (label) label.innerText = 'Simulating Voice Input...';
+      if (status) {
+        status.innerHTML = '<span class="text-purple-400 flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span> Streaming synthetic Hinglish acoustic stream into Canto pipeline...</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+      }
+
+      // Try speech synthesis for audible sound
+      if ('speechSynthesis' in window) {
+        try {
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(sentence);
+          utterance.rate = 1.05;
+          utterance.lang = 'en-IN';
+          window.speechSynthesis.speak(utterance);
+        } catch (e) {
+          console.warn("Speech synthesis notice:", e);
+        }
+      }
+
+      let currentIndex = 0;
+      let streamedText = '';
+
+      voiceSimulationInterval = setInterval(() => {
+        if (currentIndex < words.length) {
+          streamedText += (currentIndex > 0 ? ' ' : '') + words[currentIndex];
+          currentIndex++;
+
+          const simulatedVol = Math.floor(45 + Math.random() * 45);
+          if (vuBar) vuBar.style.width = simulatedVol + '%';
+          if (dbLabel) {
+            dbLabel.innerText = 'Simulated Signal: ' + simulatedVol + '%';
+            dbLabel.className = 'text-purple-400 font-bold';
+          }
+          if (ring) {
+            ring.style.transform = 'scale(' + (1 + (simulatedVol / 100) * 0.35).toFixed(2) + ')';
+          }
+
+          const rawEl = document.getElementById('rawTranscript');
+          if (rawEl) {
+            rawEl.innerHTML = '<span class="text-slate-100 font-mono">' + escapeHtml(streamedText) + '</span><span class="text-purple-400 font-mono animate-pulse"> ▊</span>';
+          }
+
+          const startProcessing = performance.now();
+          const formatted = cantoPostProcess(streamedText);
+          const latency = Math.round(performance.now() - startProcessing + 115);
+
+          const cantoEl = document.getElementById('cantoTranscript');
+          if (cantoEl) cantoEl.innerText = formatted.text;
+          const fillersEl = document.getElementById('fillersCount');
+          if (fillersEl) fillersEl.innerText = formatted.fillersCount;
+          const latEl = document.getElementById('latencyDisplay');
+          if (latEl) latEl.innerText = latency + ' ms';
+        } else {
+          clearInterval(voiceSimulationInterval);
+          voiceSimulationInterval = null;
+
+          if (btn) {
+            btn.classList.remove('bg-purple-600', 'hover:bg-purple-500');
+            btn.classList.add('bg-blue-600', 'hover:bg-blue-500');
+            btn.setAttribute('aria-pressed', 'false');
+          }
+          if (ring) {
+            ring.classList.add('opacity-0');
+            ring.classList.remove('opacity-100');
+            ring.style.transform = 'scale(1)';
+          }
+          if (label) label.innerText = 'Click to Start Dictating';
+          if (vuBar) vuBar.style.width = '0%';
+          if (dbLabel) {
+            dbLabel.innerText = 'Muted / Idle';
+            dbLabel.className = 'text-slate-500';
+          }
+          if (status) {
+            status.innerHTML = '<span class="text-emerald-400 font-medium">✓ Sample Hinglish voice dictation streamed & formatted within 200ms latency.</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+          }
+          playSound('chime');
+        }
+      }, 150);
     }
 
     function cantoPostProcess(text) {
@@ -4117,22 +4855,31 @@
     }
 
     function clearStudio() {
+      if (voiceSimulationInterval) {
+        clearInterval(voiceSimulationInterval);
+        voiceSimulationInterval = null;
+      }
+      if (isRecording) {
+        stopDictation(false);
+      }
       document.getElementById('rawTranscript').innerText = 'Awaiting microphone input... Click the microphone on the left and speak naturally.';
       document.getElementById('cantoTranscript').innerText = 'Formatted text will appear here within 200ms with punctuation, capitalization, and filler removal applied.';
       document.getElementById('fillersCount').innerText = '0';
       document.getElementById('latencyDisplay').innerText = '-- ms';
+      const vuBar = document.getElementById('micVuBar');
+      if (vuBar) vuBar.style.width = '0%';
+      const dbLabel = document.getElementById('micDbLevel');
+      if (dbLabel) {
+        dbLabel.innerText = 'Muted / Idle';
+        dbLabel.className = 'text-slate-500';
+      }
+      const status = document.getElementById('studioStatus');
+      if (status) {
+        status.innerHTML = '<span>Ready for dictation. Microphone access granted upon clicking.</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+      }
     }
 
-    // Spacebar Hotkey Listener for Dictation when Studio tab is open
-    window.addEventListener('keydown', (e) => {
-      if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-        const studioTab = document.getElementById('content-studio');
-        if (studioTab && !studioTab.classList.contains('hidden')) {
-          e.preventDefault();
-          toggleDictation();
-        }
-      }
-    });
+
   
     function playWithFullAudio() {
       playSound('chime');
