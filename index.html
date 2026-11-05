@@ -3695,17 +3695,7 @@
       let isDragging = false;
       let startX, startY, initialX, initialY;
 
-      header.addEventListener('mousedown', (e) => {
-        if (e.target.closest('button')) return; // ignore control buttons
-        isDragging = true;
-        startX = e.clientX;
-        startY = e.clientY;
-        initialX = winEl.offsetLeft;
-        initialY = winEl.offsetTop;
-        document.body.style.userSelect = 'none';
-      });
-
-      window.addEventListener('mousemove', (e) => {
+      function onMouseMove(e) {
         if (!isDragging) return;
         const dx = e.clientX - startX;
         const dy = e.clientY - startY;
@@ -3718,11 +3708,27 @@
 
         winEl.style.left = newX + 'px';
         winEl.style.top = newY + 'px';
-      });
+      }
 
-      window.addEventListener('mouseup', () => {
+      function onMouseUp() {
+        if (!isDragging) return;
         isDragging = false;
         document.body.style.userSelect = '';
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseup', onMouseUp);
+      }
+
+      header.addEventListener('mousedown', (e) => {
+        if (e.target.closest('button')) return; // ignore control buttons
+        bringToFront(winEl.id.replace('win-', ''));
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        initialX = winEl.offsetLeft;
+        initialY = winEl.offsetTop;
+        document.body.style.userSelect = 'none';
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
       });
     }
 
@@ -4652,15 +4658,20 @@
 
       // Track mouse position over desktop workspace for interactive acoustic resonance
       const mouse = { x: -1000, y: -1000, active: false, radius: 160 };
+      let cachedRect = null;
       if (canvas.parentElement) {
+        canvas.parentElement.addEventListener('mouseenter', () => {
+          cachedRect = canvas.getBoundingClientRect();
+        });
         canvas.parentElement.addEventListener('mousemove', (e) => {
-          const rect = canvas.getBoundingClientRect();
-          mouse.x = e.clientX - rect.left;
-          mouse.y = e.clientY - rect.top;
+          if (!cachedRect) cachedRect = canvas.getBoundingClientRect();
+          mouse.x = e.clientX - cachedRect.left;
+          mouse.y = e.clientY - cachedRect.top;
           mouse.active = true;
         });
         canvas.parentElement.addEventListener('mouseleave', () => {
           mouse.active = false;
+          cachedRect = null;
         });
       }
 
@@ -4681,6 +4692,7 @@
       }
 
       function resize() {
+        cachedRect = null;
         if (!canvas.parentElement) return;
         const newW = canvas.parentElement.clientWidth;
         const newH = canvas.parentElement.clientHeight;
@@ -4701,6 +4713,10 @@
 
       let step = 0;
       function render() {
+        if (!canvas.offsetParent) {
+          requestAnimationFrame(render);
+          return;
+        }
         step += 0.015;
         if (!width || !height || width === 0 || height === 0) {
           resize();
@@ -5066,12 +5082,7 @@
       document.getElementById('projectedARR').innerText = '₹' + crores + ' Cr';
     }
 
-    // Initialize Lucide icons & state
-    window.addEventListener('DOMContentLoaded', () => {
-      lucide.createIcons();
-      updateSimulator();
-      initApiState();
-    });
+
 
     // ==========================================
     // API KEY MANAGEMENT
@@ -5124,6 +5135,7 @@
     // LIVE DICTATION & CANTO AUTO-EDIT PIPELINE
     // ==========================================
     let isRecording = false;
+    let isRequestingMic = false;
     let recognition = null;
     let recordingStartTime = null;
     let mediaStream = null;
@@ -5146,7 +5158,10 @@
     }
 
     async function startDictation() {
+      if (isRecording || isRequestingMic) return;
+      isRequestingMic = true;
       lastDictationError = null;
+      let startVuMeter = null;
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
       const btn = document.getElementById('micBtn');
@@ -5202,7 +5217,7 @@
               }
               micAnimFrame = requestAnimationFrame(updateVuMeter);
             }
-            updateVuMeter();
+            startVuMeter = updateVuMeter;
           }
         }
       } catch (err) {
@@ -5219,6 +5234,7 @@
         if (status) {
           status.innerHTML = '<span class="text-rose-400 flex items-center gap-1.5 font-medium">⚠️ ' + escapeHtml(lastDictationError) + '</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
         }
+        isRequestingMic = false;
         stopDictation(true);
         return;
       }
@@ -5229,6 +5245,7 @@
         if (status) {
           status.innerHTML = '<span class="text-amber-400 font-medium">⚠️ ' + escapeHtml(lastDictationError) + '</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
         }
+        isRequestingMic = false;
         stopDictation(true);
         return;
       }
@@ -5238,6 +5255,7 @@
       } catch (e) {
         console.error("SpeechRecognition instantiation error:", e);
         lastDictationError = "Unable to instantiate SpeechRecognition. Use the 'Play Sample Voice' button below.";
+        isRequestingMic = false;
         stopDictation(true);
         return;
       }
@@ -5253,6 +5271,9 @@
 
       recordingStartTime = Date.now();
       isRecording = true;
+      if (typeof startVuMeter === 'function') {
+        startVuMeter();
+      }
 
       // Update UI
       if (btn) {
@@ -5332,6 +5353,8 @@
         console.error("Recognition start error:", err);
         lastDictationError = "Recognition already active or blocked: " + err.message;
         stopDictation(true);
+      } finally {
+        isRequestingMic = false;
       }
     }
 
