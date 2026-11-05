@@ -5,7 +5,7 @@
 > **Location:** Indore, Madhya Pradesh, India (Ready to Relocate / Join Immediately)  
 > **Evaluators:** [Nimisha Mehta](https://www.linkedin.com/in/nimisha-mehta-593758166/) (India Lead) & [Tanay Kothari](https://www.linkedin.com/in/tankots/) (CEO)  
 > **Key Metric:** Telemetry Proof + Demonstration over Claims  
-> **Automated Test Suite:** 79 / 79 Tests Passing (100% Green, 85.64% Coverage across 14 suites)  
+> **Automated Test Suite:** 79 / 79 Tests Passing (100% Green, 86.36% Coverage across 14 suites)  
 > **Direct Profile Page:** [https://flowstate-india.vercel.app/#profile](https://flowstate-india.vercel.app/#profile)  
 > **Direct Past Work Page:** [https://flowstate-india.vercel.app/#projects](https://flowstate-india.vercel.app/#projects)  
 > **Live Production App:** [https://flowstate-india.vercel.app](https://flowstate-india.vercel.app)  
@@ -170,7 +170,7 @@ npm run test:coverage
 - **`src/benchmark.mjs`**: 100% Statements | 100% Branches | 100% Functions
 - **`src/canto.mjs`**: 100% Statements | 100% Branches | 100% Functions
 - **`src/funnel.mjs`**: 100% Statements | 92.3% Branches | 100% Functions
-- **Overall Project Coverage**: **85.64% Lines | 84.17% Branches | 90.91% Functions** (Exceeds 80% threshold).
+- **Overall Project Coverage**: **86.36% Lines | 84.62% Branches | 91.18% Functions** (Exceeds 80% threshold).
 
 ---
 
