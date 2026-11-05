@@ -3981,8 +3981,11 @@
       const startTime = performance.now();
       const totalDuration = 950; // ms
 
+      let animInterval = null;
+
       function finish() {
         if (!isBootingFlowOS) return;
+        if (animInterval) { clearInterval(animInterval); animInterval = null; }
         if (bar) bar.style.width = '100%';
         if (pct) pct.innerText = '100%';
         if (status) status.innerText = 'FlowOS Desktop interface ready. Welcome, Vikas Sharma.';
@@ -4007,6 +4010,7 @@
         }
       }
       function cleanupFastTrack() {
+        if (animInterval) { clearInterval(animInterval); animInterval = null; }
         window.removeEventListener('keydown', onFastTrack);
         overlay.removeEventListener('click', onFastTrack);
       }
@@ -4018,7 +4022,8 @@
           cleanupFastTrack();
           return;
         }
-        const elapsed = now - startTime;
+        const currentTime = (typeof now === 'number' && now > 0) ? now : performance.now();
+        const elapsed = currentTime - startTime;
         const ratio = Math.min(1, elapsed / totalDuration);
 
         // Smooth cubic ease out
@@ -4037,15 +4042,16 @@
           }
         }
 
-        if (ratio < 1) {
-          requestAnimationFrame(stepAnim);
-        } else {
+        if (ratio >= 1) {
           cleanupFastTrack();
           finish();
         }
       }
 
-      requestAnimationFrame(stepAnim);
+      animInterval = setInterval(() => {
+        stepAnim(performance.now());
+      }, 16);
+      stepAnim(performance.now());
     }
 
     function setMode(mode, targetTab, options = {}) {

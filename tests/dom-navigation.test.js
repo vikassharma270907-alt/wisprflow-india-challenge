@@ -115,4 +115,17 @@ describe('DOM & Navigation Architecture Verification', () => {
     assert(/cdn\.tailwindcss\.com|styles\.min\.css/.test(html), 'Must include Tailwind stylesheet or CDN');
     assert(/unpkg\.com\/lucide|lucide\.min\.js/.test(html), 'Must include Lucide icons or local bundle');
   });
+
+  test('FlowOS futuristic boot animation overlay and transition controller are fully defined', () => {
+    assert(/id=["']flowos-boot-overlay["']/.test(html), 'Missing #flowos-boot-overlay container');
+    assert(/role=["']status["']/.test(html), 'Missing role="status" on boot overlay for accessibility');
+    assert(/id=["']bootProgressBar["']/.test(html), 'Missing #bootProgressBar');
+    assert(/id=["']bootPercentText["']/.test(html), 'Missing #bootPercentText');
+    assert(/id=["']bootTelemetryStatus["']/.test(html), 'Missing #bootTelemetryStatus');
+    assert(/boot-gyro-ring/.test(html), 'Missing 3D gyroscope ring classes');
+    assert(/boot-sonar-ring/.test(html), 'Missing sonic pulse wave rings');
+    assert(/function triggerFlowOSBootTransition\(/.test(html), 'Missing triggerFlowOSBootTransition function');
+    assert(/type === 'boot'/.test(html), 'Missing Web Audio synthesizer boot sound definition in playSound');
+    assert(/prefers-reduced-motion/.test(html), 'Missing prefers-reduced-motion accessibility safeguard');
+  });
 });
