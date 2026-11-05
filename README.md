@@ -5,7 +5,7 @@
 > **Location:** Indore, Madhya Pradesh, India (Ready to Relocate / Join Immediately)  
 > **Evaluators:** [Nimisha Mehta](https://www.linkedin.com/in/nimisha-mehta-593758166/) (India Lead) & [Tanay Kothari](https://www.linkedin.com/in/tankots/) (CEO)  
 > **Key Metric:** Telemetry Proof + Demonstration over Claims  
-> **Automated Test Suite:** 75 / 75 Tests Passing (100% Green, 85.6% Coverage across 14 suites)  
+> **Automated Test Suite:** 79 / 79 Tests Passing (100% Green, 85.64% Coverage across 14 suites)  
 > **Direct Profile Page:** [https://flowstate-india.vercel.app/#profile](https://flowstate-india.vercel.app/#profile)  
 > **Direct Past Work Page:** [https://flowstate-india.vercel.app/#projects](https://flowstate-india.vercel.app/#projects)  
 > **Live Production App:** [https://flowstate-india.vercel.app](https://flowstate-india.vercel.app)  
@@ -80,7 +80,7 @@ https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4
 | **02 // The 14% to 2% Monetization Unlock** | `00:40 - 01:27` | 47.3s | Why mobile price cuts fail (Gboard is free), 2,000-word Desktop Sprint trigger in Cursor/VS Code, Instant UPI AutoPay at ₹849/mo, ₹2.22 Cr ARR. |
 | **03 // Hinglish Benchmark & Failure Modes** | `01:27 - 02:11` | 43.7s | 20-sentence corpus (Canto 10.2% WER vs Apple 47% & Gboard 29%), honest "Macha" vs "Matcha" stumble analysis & speech science blueprint. |
 | **04 // Bangalore Acoustic Noise Lab & $3k Rig** | `02:11 - 02:55` | 43.8s | Silk Board (84 dB), Namma Metro (76 dB), Darshini (72 dB), multi-band spectral gating, $3k hardware field test kit breakdown. |
-| **05 // Candidate Profile & 8 Shipped Repos** | `02:55 - 03:40` | 45.8s | Vikas Sharma's verified LinkedIn, current internship in autonomous agent infrastructure & MCP, 8 shipped production builds, 75 passed tests. |
+| **05 // Candidate Profile & 8 Shipped Repos** | `02:55 - 03:40` | 45.8s | Vikas Sharma's verified LinkedIn, current internship in autonomous agent infrastructure & MCP, 8 shipped production builds, 79 passed tests. |
 
 ## 2. The 180-Second Video Presentation Script
 
@@ -140,17 +140,17 @@ flowstate-india/
 │   └── utils/
 │       ├── link-scanner.js  # External link auditor, HTTPS verification & HTTP health pinger
 │       └── security-guard.js# Secret scanner, XSS auditor & HTML sanitizer
-└── tests/                   # 12 Automated Test Suites (62 Tests)
+└── tests/                   # 14 Automated Test Suites (79 Tests)
 ```
 
 ---
 
 ## 5. Automated Test Suite & Coverage
 
-FlowState India is backed by **62 automated tests across 12 test suites** with **zero external test dependencies**, executing in under 200ms using Node.js's native test runner (`node:test`):
+FlowState India is backed by **79 automated tests across 14 test suites** with **zero external test dependencies**, executing in under 200ms using Node.js's native test runner (`node:test`):
 
 ```bash
-# Run all 62 tests:
+# Run all 79 tests:
 npm test
 
 # Run tests with experimental coverage:
@@ -162,7 +162,7 @@ npm run test:coverage
 - **`src/benchmark.mjs`**: 100% Statements | 100% Branches | 100% Functions
 - **`src/canto.mjs`**: 100% Statements | 100% Branches | 100% Functions
 - **`src/funnel.mjs`**: 100% Statements | 92.3% Branches | 100% Functions
-- **Overall Project Coverage**: **85.60% Lines | 84.17% Branches | 90.91% Functions** (Exceeds 80% threshold).
+- **Overall Project Coverage**: **85.64% Lines | 84.17% Branches | 90.91% Functions** (Exceeds 80% threshold).
 
 ---
 
