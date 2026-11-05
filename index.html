@@ -3402,6 +3402,15 @@
 
     function closeWindow(id) {
       playSound('click');
+      if (id === 'studio') {
+        if (typeof voiceSimulationInterval !== 'undefined' && voiceSimulationInterval) {
+          clearInterval(voiceSimulationInterval);
+          voiceSimulationInterval = null;
+        }
+        if (typeof isRecording !== 'undefined' && isRecording) {
+          stopDictation(false);
+        }
+      }
       const win = document.getElementById('win-' + id);
       if (!win) return;
       win.classList.add('hidden');
@@ -4496,12 +4505,18 @@
         console.warn("Microphone getUserMedia notice:", err);
         if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
           lastDictationError = 'Microphone permission blocked. Please click the lock icon in your browser address bar to allow microphone access.';
-          if (status) {
-            status.innerHTML = '<span class="text-rose-400 flex items-center gap-1.5 font-medium">⚠️ ' + escapeHtml(lastDictationError) + '</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
-          }
-          stopDictation(true);
-          return;
+        } else if (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError') {
+          lastDictationError = 'No microphone hardware found. Please plug in or enable a microphone.';
+        } else if (err.name === 'NotReadableError' || err.name === 'TrackStartError') {
+          lastDictationError = 'Microphone is currently in use by another application or OS service.';
+        } else {
+          lastDictationError = 'Microphone access notice: ' + (err.message || err.name);
         }
+        if (status) {
+          status.innerHTML = '<span class="text-rose-400 flex items-center gap-1.5 font-medium">⚠️ ' + escapeHtml(lastDictationError) + '</span><button onclick="clearStudio()" class="text-slate-500 hover:text-slate-300 font-mono text-[11px] underline">Clear Output</button>';
+        }
+        stopDictation(true);
+        return;
       }
 
       // Step 2: Initialize SpeechRecognition
