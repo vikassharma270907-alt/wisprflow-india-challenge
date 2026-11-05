@@ -5,7 +5,7 @@
 > **Location:** Indore, Madhya Pradesh, India (Ready to Relocate / Join Immediately)  
 > **Evaluators:** [Nimisha Mehta](https://www.linkedin.com/in/nimisha-mehta-593758166/) (India Lead) & [Tanay Kothari](https://www.linkedin.com/in/tankots/) (CEO)  
 > **Key Metric:** Telemetry Proof + Demonstration over Claims  
-> **Automated Test Suite:** 79 / 79 Tests Passing (100% Green, 86.36% Coverage across 14 suites)  
+> **Automated Test Suite:** 79 / 79 Tests Passing (100% Green, 86.15% Line Coverage, 91.18% Functions across 14 suites)  
 > **Direct Profile Page:** [https://flowstate-india.vercel.app/#profile](https://flowstate-india.vercel.app/#profile)  
 > **Direct Past Work Page:** [https://flowstate-india.vercel.app/#projects](https://flowstate-india.vercel.app/#projects)  
 > **Live Production App:** [https://flowstate-india.vercel.app](https://flowstate-india.vercel.app)  
@@ -85,7 +85,7 @@ https://flowstate-india.vercel.app/flowstate_india_walkthrough.mp4
 | Chapter | Timestamp | Duration | Core Focus & Thesis |
 |---|---|---|---|
 | **01 // System Architecture & Telemetry** | `00:00 - 00:40` | 39.8s | Introduction of Vikas Sharma, FlowOS v2.4 telemetry cockpit, 8,420 words verified, 210ms latency across 10 modules. |
-| **02 // The 14% to 2% Monetization Unlock** | `00:40 - 01:27` | 47.3s | Why mobile price cuts fail (Gboard is free), 2,000-word Desktop Sprint trigger in Cursor/VS Code, Instant UPI AutoPay at ₹849/mo, ₹2.22 Cr ARR. |
+| **02 // The 14% to 2% Monetization Unlock** | `00:40 - 01:27` | 47.3s | Why mobile price cuts fail (Gboard is free), 2,000-word Desktop Sprint trigger in Cursor/VS Code, Instant UPI AutoPay at ₹320/mo, ₹2.23 Cr ARR. |
 | **03 // Hinglish Benchmark & Failure Modes** | `01:27 - 02:11` | 43.7s | 20-sentence corpus (Canto 10.2% WER vs Apple 47% & Gboard 29%), honest "Macha" vs "Matcha" stumble analysis & speech science blueprint. |
 | **04 // Bangalore Acoustic Noise Lab & The $3,000 Growth-Tech Plan** | `02:11 - 02:55` | 43.8s | Silk Board (84 dB), Namma Metro (76 dB), Darshini (72 dB), multi-band spectral gating, $3,000 growth-tech allocation breakdown. |
 | **05 // Candidate Profile & 8 Shipped Repos** | `02:55 - 03:40` | 45.8s | Vikas Sharma's verified LinkedIn, current internship in autonomous agent infrastructure & MCP, 8 shipped production builds, 79 passed tests. |
