@@ -52,6 +52,7 @@ describe('Wispr CLI Terminal Engine & Telemetry Verification', () => {
     const res = parseTerminalCommand('whoami');
     assert.equal(res.status, 'ok');
     assert.equal(res.candidate, 'Vikas Sharma');
+    assert.equal(res.location, 'Indore, MP, India');
     assert(res.verifiedWords >= 8400);
   });
 

@@ -65,6 +65,11 @@ describe('Evaluator Links & Identity Integrity Tests', () => {
     }
   });
 
+  test('candidate location is verified as Indore, MP with relocation readiness', () => {
+    assert.ok(html.includes('Indore, MP'), 'Indore, MP missing from index.html');
+    assert.ok(readme.includes('Indore, Madhya Pradesh'), 'Indore, Madhya Pradesh missing from README.md');
+  });
+
   test('current professional internship at Rankved is verified across documentation and UI', () => {
     assert.ok(html.includes('Rankved'), 'Rankved missing from index.html');
     assert.ok(readme.includes('Rankved'), 'Rankved missing from README.md');

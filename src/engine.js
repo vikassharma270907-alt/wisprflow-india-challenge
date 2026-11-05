@@ -211,6 +211,8 @@ function parseTerminalCommand(cmdString) {
         status: 'ok',
         command: 'whoami',
         candidate: 'Vikas Sharma',
+        location: 'Indore, MP, India',
+        relocation: 'Ready to Relocate / Join Immediately',
         role: 'Search Engine Optimization Analyst at RankVed Healthcare Martech · Current Intern @ Rankved',
         company: 'RankVed Healthcare Martech (Rankved)',
         verifiedWords: 8420
