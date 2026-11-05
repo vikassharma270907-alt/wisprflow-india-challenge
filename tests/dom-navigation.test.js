@@ -112,7 +112,7 @@ describe('DOM & Navigation Architecture Verification', () => {
     assert(/<meta\s+charset=["']UTF-8["']/i.test(html), 'Missing UTF-8 charset');
     assert(/<meta\s+name=["']viewport["']/i.test(html), 'Missing viewport meta tag');
     assert(/<title>FlowState India/i.test(html), 'Missing proper page title');
-    assert(/cdn\.tailwindcss\.com/.test(html), 'Must include Tailwind CDN');
-    assert(/unpkg\.com\/lucide/.test(html), 'Must include Lucide icons CDN');
+    assert(/cdn\.tailwindcss\.com|styles\.min\.css/.test(html), 'Must include Tailwind stylesheet or CDN');
+    assert(/unpkg\.com\/lucide|lucide\.min\.js/.test(html), 'Must include Lucide icons or local bundle');
   });
 });
