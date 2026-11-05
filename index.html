@@ -216,22 +216,92 @@
       z-index: 100;
     }
 
-    /* Mode Switching Display Rules */
+    /* ======================================================== */
+    /* UNIQUE SIGNATURE THEME: WISPR CANTO AURORA & OBSIDIAN    */
+    /* ======================================================== */
+    :root {
+      --wispr-emerald: #10b981;
+      --wispr-teal: #14b8a6;
+      --wispr-cyan: #06b6d4;
+      --wispr-accent: #059669;
+      --wispr-bg-dark: #070a13;
+    }
+
+    body {
+      background-color: #070a13;
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.12), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 90% 80%, rgba(6, 182, 212, 0.08), transparent 60%),
+        radial-gradient(ellipse 60% 40% at 10% 90%, rgba(139, 92, 246, 0.06), transparent 60%);
+      background-attachment: fixed;
+    }
+
+    /* Ambient Voice Waveform Animations */
+    @keyframes voiceWave {
+      0%, 100% { height: 4px; opacity: 0.4; }
+      50% { height: 16px; opacity: 1; }
+    }
+    .wave-bar {
+      display: inline-block;
+      width: 3px;
+      height: 6px;
+      border-radius: 9999px;
+      background: linear-gradient(to top, #10b981, #06b6d4);
+      animation: voiceWave 1.2s ease-in-out infinite;
+    }
+    .wave-bar:nth-child(2) { animation-delay: 0.15s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(4) { animation-delay: 0.45s; }
+    .wave-bar:nth-child(5) { animation-delay: 0.6s; }
+    .wave-bar:nth-child(6) { animation-delay: 0.75s; }
+    .wave-bar:nth-child(7) { animation-delay: 0.9s; }
+    .wave-bar:nth-child(8) { animation-delay: 1.05s; }
+
+    /* Glassmorphic Cards & Glowing Micro-borders */
+    .wispr-glass {
+      background: rgba(11, 16, 29, 0.78) !important;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(16, 185, 129, 0.2) !important;
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 20px -5px rgba(16, 185, 129, 0.12);
+    }
+    .wispr-glass:hover {
+      border-color: rgba(16, 185, 129, 0.4) !important;
+      box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.7), 0 0 25px -3px rgba(16, 185, 129, 0.22);
+    }
+
+    /* Mode Switching Display & Scroll Rules (Fixes Executive Scrolling) */
+    body.mode-desktop {
+      overflow: hidden !important;
+      height: 100vh !important;
+    }
     body.mode-desktop #workspace-executive {
       display: none !important;
     }
     body.mode-desktop #workspace-desktop {
       display: flex !important;
     }
+
+    body.mode-executive {
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      height: auto !important;
+      min-height: 100vh !important;
+      scroll-behavior: smooth;
+    }
     body.mode-executive #workspace-executive {
       display: flex !important;
+      min-height: 100vh;
+      height: auto !important;
+      overflow-y: visible !important;
+      overflow-x: hidden !important;
     }
     body.mode-executive #workspace-desktop {
       display: none !important;
     }
   </style>
 </head>
-<body class="mode-desktop bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-blue-600 selection:text-white overflow-hidden">
+<body class="mode-desktop bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-emerald-500 selection:text-white">
   <!-- Skip to Main Content Link (WCAG 2.2 SC 2.4.1) -->
   <a href="#exec-content-area" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:font-bold focus:rounded-lg focus:shadow-2xl focus:ring-2 focus:ring-white">Skip to main content</a>
 
@@ -268,9 +338,9 @@
         </button>
 
         <!-- Candidate Profile Direct Button -->
-        <button type="button" onclick="openWindow('operator'); bringToFront('operator');" aria-label="Open Vikas Sharma Profile & Rankved Internship" class="px-2.5 py-1 rounded bg-sky-600/30 hover:bg-sky-600/50 text-sky-200 border border-sky-400/40 font-semibold text-[11px] flex items-center gap-1.5 transition shadow-sm hover:scale-105 active:scale-95" title="View Vikas Sharma Profile & Rankved Experience">
-          <i data-lucide="user-check" class="w-3.5 h-3.5 text-sky-400" aria-hidden="true"></i>
-          <span>👤 My Profile <span class="hidden xl:inline text-sky-300 font-normal font-mono">(Rankved Intern)</span></span>
+        <button type="button" onclick="openWindow('operator'); bringToFront('operator');" aria-label="Open Vikas Sharma Profile & Rankved Internship" class="px-2.5 py-1 rounded bg-emerald-950/80 hover:bg-emerald-900 text-emerald-200 border border-emerald-500/40 font-semibold text-[11px] flex items-center gap-1.5 transition shadow-sm hover:scale-105 active:scale-95" title="View Vikas Sharma Profile & Rankved Experience">
+          <img src="./profile.jpg" alt="Vikas Sharma" class="w-4 h-4 rounded-full object-cover ring-1 ring-emerald-400">
+          <span>👤 My Profile <span class="hidden xl:inline text-emerald-300 font-normal font-mono">(Rankved Intern)</span></span>
         </button>
 
         <!-- Past Work Direct Button -->
@@ -338,9 +408,9 @@
       <!-- CANDIDATE PROFILE DISCOVERY DOCK (DESKTOP) -->
       <aside aria-label="Candidate profile discovery" class="absolute top-2.5 left-1/2 -translate-x-1/2 z-20 pointer-events-auto bg-slate-900/95 border border-sky-500/40 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-2xl flex items-center gap-2 sm:gap-3 text-xs max-w-[95vw]">
         <div class="flex items-center gap-2 font-mono">
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" aria-hidden="true"></span>
+          <img src="./profile.jpg" alt="Vikas Sharma" class="w-5 h-5 rounded-full object-cover ring-1 ring-emerald-400">
           <span class="text-slate-300">Candidate: <strong class="text-white">Vikas Sharma</strong></span>
-          <span class="px-2 py-0.5 rounded bg-sky-950/80 border border-sky-500/30 text-[10px] text-sky-300 font-semibold hidden sm:inline">Rankved Intern</span>
+          <span class="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-[10px] text-emerald-300 font-semibold hidden sm:inline">Rankved Intern</span>
         </div>
         <div class="h-4 w-px bg-slate-700 hidden sm:block"></div>
         <div class="flex items-center gap-1.5">
@@ -607,7 +677,7 @@
   <!-- ======================================================== -->
   <!-- 2. EXECUTIVE COCKPIT VIEW WORKSPACE                      -->
   <!-- ======================================================== -->
-  <div id="workspace-executive" class="min-h-screen flex flex-col bg-slate-950 text-slate-100 z-10 overflow-y-auto">
+  <div id="workspace-executive" class="min-h-screen flex flex-col text-slate-100 z-10 overflow-x-hidden">
     
     <!-- TOP ANNOUNCEMENT BANNER -->
     <aside aria-label="Announcement" class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 border-b border-blue-500/30 px-3 sm:px-4 py-2 text-xs flex flex-wrap items-center justify-between gap-2">
@@ -621,8 +691,9 @@
         <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> <strong>8,420 Words</strong></span>
         <span class="hidden md:inline text-slate-500">|</span>
         <span class="hidden lg:inline">Built via <strong>Emergent + Wispr Flow</strong></span>
-        <button type="button" onclick="switchTab('operator')" class="px-2.5 py-1 rounded bg-sky-600/80 hover:bg-sky-500 text-white font-semibold text-[11px] shadow-sm flex items-center gap-1 transition active:scale-95" title="Jump to Vikas Sharma Profile">
-          <i data-lucide="user-check" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Vikas Sharma </span>Profile
+        <button type="button" onclick="switchTab('operator')" class="px-2.5 py-1 rounded bg-emerald-600/90 hover:bg-emerald-500 text-white font-semibold text-[11px] shadow-sm flex items-center gap-1.5 transition active:scale-95 ring-1 ring-emerald-400/40" title="Jump to Vikas Sharma Profile">
+          <img src="./profile.jpg" alt="Vikas Sharma" class="w-4 h-4 rounded-full object-cover ring-1 ring-white">
+          <span class="hidden sm:inline">Vikas Sharma </span>Profile
         </button>
         <button onclick="setMode('desktop')" class="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white font-semibold text-[11px] shadow-sm flex items-center gap-1 transition active:scale-95">
           <i data-lucide="monitor" class="w-3.5 h-3.5"></i> <span class="hidden sm:inline">Switch to </span>FlowOS Desktop
@@ -649,8 +720,8 @@
         <!-- CONTROLS -->
         <div class="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
           <!-- Profile & Past Work Direct Access -->
-          <button type="button" onclick="switchTab('operator')" aria-label="View Vikas Sharma Profile and Rankved Internship" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-semibold text-xs flex items-center gap-1.5 transition shadow-md shadow-sky-600/25 active:scale-95" title="View Vikas Sharma's Profile & Rankved Internship">
-            <i data-lucide="user-check" class="w-3.5 h-3.5"></i>
+          <button type="button" onclick="switchTab('operator')" aria-label="View Vikas Sharma Profile and Rankved Internship" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs flex items-center gap-2 transition shadow-md shadow-emerald-600/25 active:scale-95 ring-1 ring-emerald-300/40" title="View Vikas Sharma's Profile & Rankved Internship">
+            <img src="./profile.jpg" alt="Vikas Sharma" class="w-4 h-4 rounded-full object-cover ring-1 ring-white">
             <span>👤 Profile</span>
             <span class="hidden md:inline text-[10px] px-1.5 py-0.5 rounded bg-sky-950/80 border border-sky-400/40 text-sky-200 font-mono">Rankved</span>
           </button>
@@ -1211,9 +1282,7 @@
           <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-slate-800 relative z-10">
             <div class="flex items-start sm:items-center gap-4">
               <div class="relative">
-                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center text-white text-2xl sm:text-3xl font-black font-mono shadow-xl shadow-blue-500/25 ring-2 ring-cyan-400/40">
-                  VS
-                </div>
+                <img src="./profile.jpg" alt="Vikas Sharma" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover shadow-2xl shadow-emerald-500/30 ring-2 ring-emerald-400/60 border border-emerald-400/30">
                 <span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-slate-900 flex items-center justify-center" title="Available Immediately">
                   <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
                 </span>
@@ -2407,7 +2476,10 @@
                 <span class="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">NEURAL VOICEOVER</span>
               </div>
               <h3 class="text-xl font-bold text-white mt-2">FlowState India // Executive Video Walkthrough</h3>
-              <p class="text-sm text-slate-400">Authored by Vikas Sharma | Search Engine Optimization Analyst @ RankVed Healthcare Martech</p>
+              <div class="flex items-center gap-2 mt-1">
+                <img src="./profile.jpg" alt="Vikas Sharma" class="w-5 h-5 rounded-full object-cover ring-1 ring-emerald-400">
+                <p class="text-sm text-slate-300">Authored by <strong class="text-white">Vikas Sharma</strong> | Search Engine Optimization Analyst @ RankVed Healthcare Martech</p>
+              </div>
             </div>
             <div class="flex items-center gap-3">
               <a href="./flowstate_india_walkthrough.mp4" download class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold flex items-center gap-2 transition shadow-lg shadow-blue-500/20">
@@ -2499,9 +2571,185 @@
 
     </main>
 
-    <!-- FOOTER -->
-    <footer class="bg-slate-950 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-      <p>FlowState India // Wispr Flow Growth Hiring Submission • Built with Voice on Emergent • Bangalore, India</p>
+    <!-- ======================================================== -->
+    <!-- MASTER EXECUTIVE FOOTER (ALL DETAILS & VERIFIED PROOFS)  -->
+    <!-- ======================================================== -->
+    <footer id="master-footer" class="mt-16 bg-gradient-to-b from-slate-950 via-[#070b16] to-[#04070f] border-t border-emerald-500/30 text-slate-300">
+      
+      <!-- Top Live Audio Waveform & Status Strip -->
+      <div class="border-b border-slate-800/80 bg-slate-950/80 px-4 sm:px-8 py-3">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <!-- Animated Acoustic Voice Waveform -->
+            <div class="flex items-center gap-1 h-5 px-2.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 shadow-sm" title="Canto Speech Active Monitor">
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+              <span class="wave-bar"></span>
+            </div>
+            <span class="font-mono text-xs text-emerald-400 font-semibold tracking-wide">CANTO TELEMETRY ACTIVE // 8,420 WORDS VERIFIED</span>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-4 text-xs font-mono">
+            <span class="flex items-center gap-1.5 text-slate-300">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              Status: <strong class="text-emerald-300">Available Immediately (November 2026)</strong>
+            </span>
+            <span class="text-slate-600 hidden sm:inline">•</span>
+            <span class="text-slate-300">📍 Bangalore, India</span>
+            <span class="text-slate-600 hidden sm:inline">•</span>
+            <a href="mailto:vikas.sharma270907@gmail.com" class="text-cyan-400 hover:text-cyan-300 underline flex items-center gap-1">
+              <i data-lucide="mail" class="w-3.5 h-3.5"></i> vikas.sharma270907@gmail.com
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Footer Columns -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          
+          <!-- Column 1: Candidate Profile & Experience -->
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <img src="./profile.jpg" alt="Vikas Sharma" class="w-14 h-14 rounded-2xl object-cover ring-2 ring-emerald-400/50 shadow-lg shadow-emerald-500/20">
+              <div>
+                <h3 class="text-lg font-bold text-white tracking-tight">Vikas Sharma</h3>
+                <p class="text-xs text-emerald-400 font-semibold">Rankved Intern</p>
+                <p class="text-[11px] text-slate-400 font-mono">Growth & AI Systems Developer</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Full-Stack & Search Engine Optimization Analyst at <strong class="text-white">RankVed Healthcare Martech</strong>. Built FlowState India using Wispr Flow voice dictation on Emergent with 0 manual typing.
+            </p>
+            <div class="pt-2 flex flex-wrap gap-2 text-xs">
+              <a href="https://www.linkedin.com/in/vikas-sharma-97881737b/" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-sky-950/80 hover:bg-sky-900 border border-sky-500/40 text-sky-200 font-medium flex items-center gap-1.5 transition">
+                <i data-lucide="linkedin" class="w-3.5 h-3.5 text-sky-400"></i> LinkedIn Profile
+              </a>
+              <a href="https://github.com/vikassharma270907-alt" target="_blank" rel="noreferrer" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-mono flex items-center gap-1.5 transition">
+                <i data-lucide="github" class="w-3.5 h-3.5"></i> GitHub Profile
+              </a>
+            </div>
+          </div>
+
+          <!-- Column 2: Evaluators & Submission Context -->
+          <div class="space-y-3 text-xs">
+            <h4 class="text-xs font-mono uppercase tracking-wider text-emerald-400 font-bold flex items-center gap-1.5">
+              <i data-lucide="shield-check" class="w-4 h-4"></i> Evaluators & Hiring Team
+            </h4>
+            <p class="text-slate-300 leading-relaxed">
+              Directly targeted for the Wispr Flow Bangalore Growth Team Hiring Challenge:
+            </p>
+            <div class="space-y-2 font-mono">
+              <div class="p-2.5 rounded-lg bg-slate-900/80 border border-slate-800">
+                <div class="text-[11px] text-slate-400">India Growth Lead:</div>
+                <a href="https://www.linkedin.com/in/nimisha-mehta-593758166/" target="_blank" rel="noreferrer" class="text-blue-400 hover:text-blue-300 font-bold underline flex items-center gap-1 mt-0.5">
+                  Nimisha Mehta <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+              </div>
+              <div class="p-2.5 rounded-lg bg-slate-900/80 border border-slate-800">
+                <div class="text-[11px] text-slate-400">CEO & Co-founder:</div>
+                <a href="https://www.linkedin.com/in/tankots/" target="_blank" rel="noreferrer" class="text-blue-400 hover:text-blue-300 font-bold underline flex items-center gap-1 mt-0.5">
+                  Tanay Kothari <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+              </div>
+            </div>
+            <div class="pt-1 text-[11px] text-slate-400">
+              Verified Submission: <strong class="text-emerald-300">challenge.wisprflow.ai</strong>
+            </div>
+          </div>
+
+          <!-- Column 3: Shipped Hackathon Repos (Proof of Work) -->
+          <div class="space-y-3 text-xs">
+            <h4 class="text-xs font-mono uppercase tracking-wider text-purple-400 font-bold flex items-center gap-1.5">
+              <i data-lucide="git-branch" class="w-4 h-4"></i> Shipped Builds (7 Repos)
+            </h4>
+            <ul class="space-y-1.5 font-mono text-[11px]">
+              <li>
+                <a href="https://github.com/vikassharma270907-alt/wisprflow-india-challenge" target="_blank" rel="noreferrer" class="text-blue-400 hover:underline flex items-center justify-between">
+                  <span>wisprflow-india-challenge</span> <span class="text-slate-500">Live</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/vikassharma270907-alt/flowguard-treasury" target="_blank" rel="noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
+                  <span>flowguard-treasury</span> <span class="text-slate-500">ArmorIQ</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/vikassharma270907-alt/restockpilot" target="_blank" rel="noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
+                  <span>restockpilot</span> <span class="text-slate-500">PayPal</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/vikassharma270907-alt/airlock-guardrails" target="_blank" rel="noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
+                  <span>airlock-guardrails</span> <span class="text-slate-500">GitLab</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/vikassharma270907-alt/swapcast" target="_blank" rel="noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
+                  <span>swapcast</span> <span class="text-slate-500">Qloo</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/vikassharma270907-alt/odoo-flux-hackathon" target="_blank" rel="noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
+                  <span>odoo-flux-hackathon</span> <span class="text-slate-500">Brightloop</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/vikassharma270907-alt/ChaosForge-deployment-and-compliance-check." target="_blank" rel="noreferrer" class="text-slate-300 hover:text-white flex items-center justify-between">
+                  <span>ChaosForge</span> <span class="text-slate-500">TwitchCon</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 4: All 11 Modules Quick Navigation -->
+          <div class="space-y-3 text-xs">
+            <h4 class="text-xs font-mono uppercase tracking-wider text-cyan-400 font-bold flex items-center gap-1.5">
+              <i data-lucide="layers" class="w-4 h-4"></i> Interactive Modules
+            </h4>
+            <div class="grid grid-cols-2 gap-1.5 text-[11px] font-medium">
+              <button onclick="switchTab('funnel'); window.scrollTo({top: 0, behavior: 'smooth'});" class="p-1.5 text-left rounded bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white transition truncate">1. Funnel Simulator</button>
+              <button onclick="switchTab('benchmark'); window.scrollTo({top: 0, behavior: 'smooth'});" class="p-1.5 text-left rounded bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white transition truncate">2. Hinglish Test</button>
+              <button onclick="switchTab('dashboard'); window.scrollTo({top: 0, behavior: 'smooth'});" class="p-1.5 text-left rounded bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white transition truncate">3. Cohorts & ARR</button>
+              <button onclick="switchTab('grant'); window.scrollTo({top: 0, behavior: 'smooth'});" class="p-1.5 text-left rounded bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white transition truncate">4. $3,000 Setup</button>
+              <button onclick="switchTab('operator'); window.scrollTo({top: 0, behavior: 'smooth'});" class="p-1.5 text-left rounded bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white transition truncate">5. Operator Story</button>
+              <button onclick="switchTab('studio'); window.scrollTo({top: 0, behavior: 'smooth'});" class="p-1.5 text-left rounded bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white transition truncate">6. Canto Studio</button>
+              <button onclick="switchTab('audio'); window.scrollTo({top: 0, behavior: 'smooth'});" class="p-1.5 text-left rounded bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white transition truncate">7. Acoustic Lab</button>
+              <button onclick="switchTab('terminal'); window.scrollTo({top: 0, behavior: 'smooth'});" class="p-1.5 text-left rounded bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white transition truncate">8. wispr-cli</button>
+              <button onclick="switchTab('playbook'); window.scrollTo({top: 0, behavior: 'smooth'});" class="p-1.5 text-left rounded bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white transition truncate">9. Playbook</button>
+              <button onclick="switchTab('projects'); window.scrollTo({top: 0, behavior: 'smooth'});" class="p-1.5 text-left rounded bg-slate-900/60 hover:bg-slate-800 text-slate-300 hover:text-white transition truncate">10. Past Work</button>
+              <button onclick="switchTab('walkthrough'); window.scrollTo({top: 0, behavior: 'smooth'});" class="col-span-2 p-1.5 text-left rounded bg-cyan-950/60 hover:bg-cyan-900 text-cyan-200 border border-cyan-500/30 font-semibold transition flex items-center justify-between">
+                <span>11. Video Walkthrough (03:40)</span>
+                <i data-lucide="play" class="w-3 h-3 text-cyan-400"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom Copyright & Verification Seal -->
+        <div class="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>FlowState India // Wispr Flow Growth Hiring Challenge Master Artifact</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-3 font-mono text-[11px]">
+            <span class="px-2 py-0.5 rounded bg-emerald-950 border border-emerald-500/40 text-emerald-300 font-bold">69/69 Tests Passing (85.6% Coverage)</span>
+            <span class="text-slate-600">•</span>
+            <span>Built with Voice on Emergent</span>
+            <span class="text-slate-600">•</span>
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-blue-400 hover:text-blue-300 underline flex items-center gap-1">
+              Back to Top ↑
+            </button>
+          </div>
+        </div>
+
+      </div>
     </footer>
 
   </div>
@@ -2975,6 +3223,9 @@
       localStorage.setItem('FLOWSTATE_VIEW_MODE', mode);
 
       if (mode === 'executive') {
+        document.body.style.overflowY = 'auto';
+        document.body.style.overflowX = 'hidden';
+        document.body.style.height = 'auto';
         // Return sections to executive container
         const execArea = document.getElementById('exec-content-area');
         windowsConfig.forEach(cfg => {
@@ -2986,6 +3237,8 @@
         const tabToOpen = targetTab || currentActiveTab || 'funnel';
         switchTab(tabToOpen);
       } else {
+        document.body.style.overflow = 'hidden';
+        document.body.style.height = '100vh';
         // Desktop mode: open specified or active window
         const winToOpen = targetTab || currentActiveTab || 'funnel';
         openWindow(winToOpen);
