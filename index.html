@@ -3973,6 +3973,7 @@
 
       overlay.classList.remove('boot-flare');
       overlay.style.display = 'flex';
+      overlay.setAttribute('aria-hidden', 'false');
       void overlay.offsetWidth; // Force reflow
       overlay.classList.add('boot-active');
 
@@ -4003,6 +4004,7 @@
         setTimeout(() => {
           overlay.classList.remove('boot-active', 'boot-flare');
           overlay.style.display = 'none';
+          overlay.setAttribute('aria-hidden', 'true');
           if (bar) bar.style.width = '0%';
           if (pct) pct.innerText = '0%';
           isBootingFlowOS = false;
@@ -4874,6 +4876,14 @@
     // Global Escape Key Listener for Modals and Windows (WCAG 2.2 SC 2.1.2)
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
+        const desktopThemeMenu = document.getElementById('desktopThemeMenu');
+        const execThemeMenu = document.getElementById('execThemeMenu');
+        if ((desktopThemeMenu && !desktopThemeMenu.classList.contains('hidden')) ||
+            (execThemeMenu && !execThemeMenu.classList.contains('hidden'))) {
+          if (typeof closeAllThemeMenus === 'function') closeAllThemeMenus();
+          return;
+        }
+
         const apiModal = document.getElementById('apiModal');
         if (apiModal && !apiModal.classList.contains('hidden')) {
           closeApiModal();
@@ -4914,7 +4924,10 @@
 
     // Spacebar Hotkey for Dictation Studio (with repeat lock to prevent double-triggering)
     window.addEventListener('keydown', (e) => {
-      if (e.code === 'Space' && !e.repeat && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      const isInteractive = ['INPUT', 'TEXTAREA', 'BUTTON', 'SELECT', 'SUMMARY'].includes(e.target.tagName) ||
+                            e.target.isContentEditable ||
+                            e.target.getAttribute('role') === 'button';
+      if (e.code === 'Space' && !e.repeat && !isInteractive) {
         const studioTab = document.getElementById('content-studio');
         if (studioTab && (!studioTab.classList.contains('hidden') || windowState['studio']?.open)) {
           e.preventDefault();
@@ -5086,16 +5099,57 @@
     // ==========================================
     // API KEY MANAGEMENT
     // ==========================================
+    let apiModalTriggerElement = null;
+
+    function handleApiModalKeyDown(e) {
+      if (e.key !== 'Tab') return;
+      const modal = document.getElementById('apiModal');
+      if (!modal || modal.classList.contains('hidden')) return;
+
+      const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
     function openApiModal() {
+      apiModalTriggerElement = document.activeElement;
       const modal = document.getElementById('apiModal');
       const input = document.getElementById('apiKeyInput');
       const savedKey = safeStorage.getItem('WISPR_API_KEY') || '';
-      input.value = savedKey;
-      modal.classList.remove('hidden');
+      if (input) input.value = savedKey;
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.addEventListener('keydown', handleApiModalKeyDown);
+      }
+      setTimeout(() => {
+        if (input) input.focus();
+      }, 50);
     }
 
     function closeApiModal() {
-      document.getElementById('apiModal').classList.add('hidden');
+      const modal = document.getElementById('apiModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.removeEventListener('keydown', handleApiModalKeyDown);
+      }
+      if (apiModalTriggerElement && typeof apiModalTriggerElement.focus === 'function') {
+        apiModalTriggerElement.focus();
+        apiModalTriggerElement = null;
+      }
     }
 
     function saveApiKey() {
