@@ -11,6 +11,7 @@ describe('Wispr CLI Terminal Engine & Telemetry Verification', () => {
     assert(res.available.includes('status'));
     assert(res.available.includes('simulate'));
     assert(res.available.includes('benchmark'));
+    assert(res.available.includes('plan'));
     assert(res.available.includes('rig'));
     assert(res.available.includes('canto'));
   });
@@ -40,12 +41,48 @@ describe('Wispr CLI Terminal Engine & Telemetry Verification', () => {
     assert(res.projectedArrInr.includes('Crore'));
   });
 
-  test('rig command outputs exact $3,000 grant distribution', () => {
-    const res = parseTerminalCommand('rig');
-    assert.equal(res.status, 'ok');
-    assert.equal(res.totalGrant, 3000);
-    const totalAllocated = res.breakdown.reduce((sum, item) => sum + item.amount, 0);
-    assert.equal(totalAllocated, 3000, 'All $3,000 must be accounted for');
+  test('plan and rig commands output exact $3,000 Growth-Tech Plan distribution', () => {
+    for (const cmd of ['plan', 'rig']) {
+      const res = parseTerminalCommand(cmd);
+      assert.equal(res.status, 'ok');
+      assert.equal(res.totalGrant, 3000);
+      assert.equal(res.section, 'The $3,000 Growth-Tech Plan');
+      assert.equal(res.subtitle, 'Challenge budget in USD');
+      assert.equal(res.breakdown.length, 6);
+
+      const totalAllocated = res.breakdown.reduce((sum, item) => sum + item.amount, 0);
+      assert.equal(totalAllocated, 3000, 'All $3,000 must be accounted for');
+
+      assert.equal(res.breakdown[0].name, 'Hinglish Test Lab');
+      assert.equal(res.breakdown[0].amount, 750);
+      assert.equal(res.breakdown[0].share, '25.0%');
+
+      assert.equal(res.breakdown[1].name, 'Paywall Experiments');
+      assert.equal(res.breakdown[1].amount, 600);
+      assert.equal(res.breakdown[1].share, '20.0%');
+
+      assert.equal(res.breakdown[2].name, 'Mobile-to-Desktop Handoff');
+      assert.equal(res.breakdown[2].amount, 550);
+      assert.equal(res.breakdown[2].share, '18.3%');
+
+      assert.equal(res.breakdown[3].name, '"Report a Mishear" Bounties');
+      assert.equal(res.breakdown[3].amount, 600);
+      assert.equal(res.breakdown[3].share, '20.0%');
+
+      assert.equal(res.breakdown[4].name, 'Referral Engine');
+      assert.equal(res.breakdown[4].amount, 350);
+      assert.equal(res.breakdown[4].share, '11.7%');
+
+      assert.equal(res.breakdown[5].name, 'Hosting and API Costs');
+      assert.equal(res.breakdown[5].amount, 150);
+      assert.equal(res.breakdown[5].share, '5.0%');
+
+      assert.equal(res.whatWellMeasure.length, 4);
+      assert(res.whatWellMeasure.includes('Desktop activation rate'));
+      assert(res.whatWellMeasure.includes('Trial-to-paid conversion at each paywall trigger'));
+      assert(res.whatWellMeasure.includes('Hinglish error rate vs Gboard'));
+      assert(res.whatWellMeasure.includes('Cost per referred install'));
+    }
   });
 
   test('whoami command returns candidate identity and contact verified credentials', () => {

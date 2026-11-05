@@ -143,6 +143,55 @@ function cantoPostProcess(text, {
 }
 
 /**
+ * Canonical $3,000 Growth-Tech Plan Budget Object
+ * Total: Exactly $3,000.00 (100% Challenge Budget in USD)
+ */
+const GROWTH_TECH_PLAN = [
+  {
+    name: 'Hinglish Test Lab',
+    amount: 750,
+    share: '25.0%',
+    description: 'about 6 Android phones across price tiers, a reference recorder and earbuds. Record Bangalore metro, auto and café noise once, replay it on every device, and publish a repeatable Wispr vs Gboard error comparison.',
+    metric: 'Hinglish error rate vs Gboard'
+  },
+  {
+    name: 'Paywall Experiments',
+    amount: 600,
+    share: '20.0%',
+    description: 'analytics, feature flags and a UPI AutoPay pilot (Razorpay or Cashfree). A/B test the paywall trigger at 1,000, 2,000 and 3,000 words at the ₹320 price point, to turn the modeled conversion lift into measured data.',
+    metric: 'Trial-to-paid conversion at each paywall trigger'
+  },
+  {
+    name: 'Mobile-to-Desktop Handoff',
+    amount: 550,
+    share: '18.3%',
+    description: 'a "continue on desktop" QR or deep-link flow plus WhatsApp and email nudges after N mobile dictations. Metric: desktop activation rate.',
+    metric: 'Desktop activation rate'
+  },
+  {
+    name: '"Report a Mishear" Bounties',
+    amount: 600,
+    share: '20.0%',
+    description: 'small bounties for verified Hinglish corrections, plus a public edge-case leaderboard (for example "Macha" vs "Matcha tea").',
+    metric: 'Verified Hinglish edge cases logged'
+  },
+  {
+    name: 'Referral Engine',
+    amount: 350,
+    share: '11.7%',
+    description: 'share cards ("written with 0 typing"), tracked links and a dashboard for 25 student ambassadors, with rewards as free-month credits instead of cash.',
+    metric: 'Cost per referred install'
+  },
+  {
+    name: 'Hosting and API Costs',
+    amount: 150,
+    share: '5.0%',
+    description: 'Vercel, domain and voice API usage for the demo.',
+    metric: 'Demo uptime & API availability'
+  }
+];
+
+/**
  * Terminal Command Dispatcher
  * Parses and returns deterministic responses for FlowOS CLI commands.
  */
@@ -155,7 +204,7 @@ function parseTerminalCommand(cmdString) {
       return {
         status: 'ok',
         command: 'help',
-        available: ['status', 'simulate', 'benchmark', 'rig', 'canto', 'noise', 'whoami', 'matrix', 'clear', 'sudo rm -rf /']
+        available: ['status', 'simulate', 'benchmark', 'plan', 'rig', 'canto', 'noise', 'whoami', 'matrix', 'clear', 'sudo rm -rf /']
       };
     case 'status':
       return {
@@ -166,7 +215,7 @@ function parseTerminalCommand(cmdString) {
           wpm: 162,
           cantoWer: 10.2,
           latencyMs: 210,
-          rig: 'Bangalore Field Rig #01'
+          rig: 'Bangalore Growth-Tech Lab #01'
         }
       };
     case 'simulate':
@@ -185,15 +234,27 @@ function parseTerminalCommand(cmdString) {
         gboardAccuracy: 71.0,
         summary: 'Flow dominance on tech terms, whisper mode, and high noise.'
       };
+    case 'plan':
     case 'rig':
       return {
         status: 'ok',
-        command: 'rig',
+        command: cmd === 'plan' ? 'plan' : 'rig',
+        section: 'The $3,000 Growth-Tech Plan',
+        subtitle: 'Challenge budget in USD',
+        note: 'Planned allocation. Results will replace these lines as experiments run.',
         totalGrant: 3000,
-        breakdown: [
-          { name: 'Live Proof Field Kit', amount: 1150 },
-          { name: '25-Creator Micro-Grant Pool', amount: 1250 },
-          { name: 'Multi-Handset Android QA Rig', amount: 600 }
+        breakdown: GROWTH_TECH_PLAN.map(item => ({
+          name: item.name,
+          amount: item.amount,
+          share: item.share,
+          metric: item.metric,
+          description: item.description
+        })),
+        whatWellMeasure: [
+          'Desktop activation rate',
+          'Trial-to-paid conversion at each paywall trigger',
+          'Hinglish error rate vs Gboard',
+          'Cost per referred install'
         ]
       };
     case 'canto':
@@ -254,6 +315,7 @@ if (typeof module !== 'undefined' && module.exports) {
     calculateSimulator,
     cantoPostProcess,
     parseTerminalCommand,
-    validateTelemetry
+    validateTelemetry,
+    GROWTH_TECH_PLAN
   };
 }
