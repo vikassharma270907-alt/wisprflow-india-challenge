@@ -53,6 +53,8 @@ describe('Security & Hardening Tests', () => {
     const headerMap = Object.fromEntries(headers.map(h => [h.key.toLowerCase(), h.value]));
 
     assert.ok(headerMap['content-security-policy'], 'Missing Content-Security-Policy header in vercel.json');
+    assert.ok(headerMap['content-security-policy'].includes("object-src 'none'"), 'CSP must enforce object-src none');
+    assert.ok(headerMap['content-security-policy'].includes("frame-ancestors 'none'"), 'CSP must enforce frame-ancestors none');
     assert.ok(headerMap['strict-transport-security'], 'Missing Strict-Transport-Security header in vercel.json');
     assert.strictEqual(headerMap['x-content-type-options'], 'nosniff', 'Missing or invalid X-Content-Type-Options');
     assert.strictEqual(headerMap['x-frame-options'], 'DENY', 'Missing or invalid X-Frame-Options');
