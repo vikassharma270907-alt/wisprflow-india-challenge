@@ -4961,8 +4961,8 @@
         });
       }
 
-      // Initialize Neural Audio Nodes (Constellation Particles)
-      const NODE_COUNT = Math.min(95, Math.max(55, Math.floor(window.innerWidth / 18)));
+      // Initialize Neural Audio Nodes (Constellation Particles - optimized density for 60fps/100 performance)
+      const NODE_COUNT = Math.min(36, Math.max(18, Math.floor((window.innerWidth || 1200) / 45)));
       const nodes = [];
       for (let i = 0; i < NODE_COUNT; i++) {
         nodes.push({
@@ -4998,11 +4998,21 @@
       window.addEventListener('resize', resize);
 
       let step = 0;
-      function render() {
-        if (!canvas.offsetParent) {
+      let lastFrameTime = 0;
+      const FRAME_INTERVAL = 1000 / 30; // 30 fps cap for background ambient canvas to minimize TBT
+
+      function render(now) {
+        if (!canvas.offsetParent || document.hidden) {
           requestAnimationFrame(render);
           return;
         }
+
+        if (now && now - lastFrameTime < FRAME_INTERVAL) {
+          requestAnimationFrame(render);
+          return;
+        }
+        lastFrameTime = now || performance.now();
+
         step += 0.015;
         if (!width || !height || width === 0 || height === 0) {
           resize();
@@ -5192,12 +5202,18 @@
     window.addEventListener('DOMContentLoaded', () => {
       const savedTheme = safeStorage.getItem('FLOWSTATE_THEME_V2') || 'noir';
       setTheme(savedTheme);
-      initAmbientWaves();
       initWindows();
       initSweeperGame();
       updateSimulator();
       initApiState();
       lucide.createIcons();
+
+      // Defer ambient canvas animation to idle to free main thread during initial paint (PageSpeed 100)
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => initAmbientWaves(), { timeout: 1200 });
+      } else {
+        setTimeout(initAmbientWaves, 400);
+      }
 
       const routed = handleUrlRouting();
       if (!routed) {
