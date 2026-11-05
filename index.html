@@ -7,7 +7,8 @@
   <link rel="canonical" href="https://flowstate-india.vercel.app/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" media="print" onload="this.media='all'">
+  <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/plusjakartasans/v12/LDIoaomQNQcsA88c7O9yZ4KMCoOg4Ko20yygg_vb.woff2" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap"></noscript>
   <script type="application/ld+json">
   {
@@ -749,7 +750,7 @@
   <div id="workspace-desktop" class="fixed inset-0 flex flex-col desktop-bg z-20 overflow-hidden">
     
     <!-- DESKTOP TOP BAR -->
-    <header class="h-10 sm:h-11 bg-slate-950/90 border-b border-cyan-500/20 backdrop-blur-xl px-3 sm:px-4 flex items-center justify-between text-xs z-[500] select-none aurora-header-bar">
+    <header class="h-10 min-h-[40px] max-h-[40px] bg-slate-950/90 border-b border-cyan-500/20 backdrop-blur-xl px-3 sm:px-4 flex items-center justify-between text-xs z-[500] select-none aurora-header-bar">
       <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
         <div class="flex items-center gap-2.5">
           <button type="button" class="relative group cursor-pointer bg-transparent border-0 p-0 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg" onclick="toggleStartMenu()" aria-label="Open FlowOS Launch Menu" title="Open FlowOS Launch Menu">
@@ -3973,8 +3974,6 @@
         winContainer.appendChild(win);
         makeDraggable(win);
       });
-
-      lucide.createIcons();
     }
 
     function makeDraggable(winEl) {
